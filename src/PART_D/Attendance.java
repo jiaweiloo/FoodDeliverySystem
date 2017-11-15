@@ -168,7 +168,7 @@ public class Attendance extends javax.swing.JFrame {
             currentEMP = jtfEmpID.getText();
             jTextArea1.setText("");
         }
-
+//functions
         if (!status) {
             if (!jPasswordField1.getText().equals("abc123")) {
                 JOptionPane.showMessageDialog(null, "Unique ID incorrect", "InfoBox: " + "AAA", JOptionPane.INFORMATION_MESSAGE);
