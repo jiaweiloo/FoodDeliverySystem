@@ -234,26 +234,33 @@ public class Attendance extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-
+        Attendance att = new Attendance();
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             public void run() {
-                new Attendance().setVisible(true);
+                att.setVisible(true);
             }
         });
 
-        /*
-         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-         //get current date time with Date()
-         Date date = new Date();
-         System.out.println(dateFormat.format(date));
-         Attendance att = new Attendance();
-         JTextField jtf = new JTextField();
+        //updateTxtField();
+        //att.jTextField1.setText("AAAA");
+        int interval = 100; // 1000 ms
 
-         att.jTextField1.setText(dateFormat.format(date));
-         System.out.println(dateFormat.format(date));
-         */
+        new Timer(interval, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                att.updateTxtField();
+            }
+        }).start();
+
+        
     }
+
+    private void updateTxtField() {
+        jTextField1.setText(new Date().toString() + "");
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
