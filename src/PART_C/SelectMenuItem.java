@@ -1,6 +1,8 @@
 package PART_C;
 
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /*
@@ -18,6 +20,11 @@ public class SelectMenuItem extends javax.swing.JFrame {
     /**
      * Creates new form SelectMenuItem
      */
+    
+    List<String> menuItem1 = new ArrayList<String>();
+    public void setRestaurant (String restName){
+       menuItem1.add("haha");
+    }
     public SelectMenuItem() {
         initComponents();
     }
