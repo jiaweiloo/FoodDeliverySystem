@@ -24,10 +24,15 @@ public class OrderConfirmation extends JFrame {
     JButton jbConfirm = new JButton("Confirm");
     JTable table;
     String[] columnNames = {"Item Name", "Quantity", "Amount (RM)"};
-    Object[][] data = {{"Curry Chicken", "2", "10"}, {"Curry Fish Head", "1", "20"}, {"Thai Fried Rice", "1", "10"}};
+    String[][] data = {{"Curry Chicken", "2", "10"}, {"Curry Fish Head", "1", "20"}, {"Thai Fried Rice", "1", "10"}};
     JScrollPane scrollPane;
+    int totalPrice = 0;
 
     public OrderConfirmation() {
+        for(int a=0;a<3;a++){
+            int amount = Integer.parseInt(data[a][2]);
+            totalPrice += amount;
+        }
         table = new JTable(data, columnNames);
 
         table.setPreferredScrollableViewportSize(new Dimension(500, 500));
@@ -44,7 +49,7 @@ public class OrderConfirmation extends JFrame {
         add(jlblOrder);
         add(new JLabel());
         add(scrollPane);
-        add(new JLabel());
+        add(new JLabel("Total Amount (RM) : "+String.valueOf(totalPrice)));
         add(new JLabel());
         add(jbConfirm);
         
