@@ -22,10 +22,13 @@ public class OrderConfirmation extends JFrame {
     JLabel jlblDate = new JLabel("Date :");
     JLabel jlblOrder = new JLabel("Order Item");
     JButton jbConfirm = new JButton("Confirm");
+    JLabel jlblAddressHeader = new JLabel("Delivery Address :");
+    JLabel jlblAddress = new JLabel("123, Taman Sri Rampai, 53300 Setapak, Kuala Lumpur");
     JTable table;
     String[] columnNames = {"Item Name", "Quantity", "Amount (RM)"};
-    String[][] data = {{"Curry Chicken", "2", "10"}, {"Curry Fish Head", "1", "20"}, {"Thai Fried Rice", "1", "10"}};
+    String[][] data = new Order().getOrderItem();
     JScrollPane scrollPane;
+    JButton jbtBack = new JButton("Back");
     int totalPrice = 0;
 
     public OrderConfirmation() {
@@ -41,21 +44,29 @@ public class OrderConfirmation extends JFrame {
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         Date date = new Date();
         System.out.println();
-        setLayout(new GridLayout(5, 2));
+        setLayout(new GridLayout(6, 2));
         add(jlblName);
         add(new JLabel("James Bond"));
         add(jlblDate);
         add(new JLabel(dateFormat.format(date)));
         add(jlblOrder);
-        add(new JLabel());
         add(scrollPane);
-        add(new JLabel("Total Amount (RM) : "+String.valueOf(totalPrice)));
-        add(new JLabel());
+        add(new JLabel("Total Amount (RM) :"));
+        add(new JLabel(String.valueOf(totalPrice)));
+        add(jlblAddressHeader);
+        add(jlblAddress);
+        add(jbtBack);
         add(jbConfirm);
         
         jbConfirm.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
                 jbConfirm(e);
+            }
+        });
+        
+        jbtBack.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e) {
+                jbBack(e);
             }
         });
 
@@ -67,6 +78,17 @@ public class OrderConfirmation extends JFrame {
         if(result==JOptionPane.YES_OPTION){
             JOptionPane.showMessageDialog(null, "Your order is on its way!"); 
         }
+    }
+    
+    private void jbBack(ActionEvent e) {                                         
+        // TODO add your handling code here:
+        this.setVisible(false);
+        Cart ct = new Cart();
+        ct.setTitle("Cart");
+        ct.setSize(800, 500);
+        ct.setLocationRelativeTo(null);
+        ct.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ct.setVisible(true);
     }
 
     public static void main(String[] args) {
