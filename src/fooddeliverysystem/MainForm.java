@@ -93,8 +93,9 @@ public class MainForm extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        new Attendance().setVisible(true);
-        this.setVisible(false);
+        Attendance attendance = new Attendance();
+        attendance.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
@@ -130,8 +131,11 @@ public class MainForm extends javax.swing.JFrame {
                 new MainForm().setVisible(true);
             }
         });
+        
+        //new MainForm().setVisible(true);
     }
 
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
