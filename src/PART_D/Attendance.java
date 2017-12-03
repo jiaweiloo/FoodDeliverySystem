@@ -5,6 +5,7 @@
  */
 package PART_D;
 
+import fooddeliverysystem.MainForm;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
@@ -61,8 +62,13 @@ public class Attendance extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("EMPLOYEE ATTENDANCE");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("Employee Attendance Interface");
@@ -309,6 +315,19 @@ public class Attendance extends javax.swing.JFrame {
         jTextArea1.setText("");
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        closed_windows();
+    }//GEN-LAST:event_formWindowClosing
+
+    public void closed_windows() {
+        if (JOptionPane.showConfirmDialog(this, "Are you sure ?") == JOptionPane.OK_OPTION) {
+            new MainForm().setVisible(true);
+            this.dispose();
+        }
+        //this.dispose();
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -356,7 +375,6 @@ public class Attendance extends javax.swing.JFrame {
             }
         }).start();
 
-        
     }
 
     private void updateTxtField() {
