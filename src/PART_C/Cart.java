@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Loi Kah Hou
  */
 public class Cart extends JFrame {
-    
+
     Order order = new Order();
     String[][] orderItem = order.getOrderItem();
     JTable table = new JTable();
@@ -30,10 +30,12 @@ public class Cart extends JFrame {
     JButton jbDelete = new JButton("Remove");
     DefaultTableModel model = new DefaultTableModel();
     JScrollPane pane;
+    JPanel jpane1 = new JPanel();
+    JPanel jpane2 = new JPanel();
     JButton jbCheckOut = new JButton("Check Out");
 
     public Cart() {
-        setLayout(new GridLayout(3, 1));
+        setLayout(new GridLayout(2, 1));
         table = new JTable();
         model.setColumnIdentifiers(columns);
         table.setModel(model);
@@ -46,14 +48,16 @@ public class Cart extends JFrame {
         table.setRowHeight(30);
 
         pane = new JScrollPane(table);
+        
+     //   jpane1.setSize(new Dimension(1200,500));
+      //  jpane2.setPreferredSize(new Dimension(1200,100));
+        pane.setPreferredSize(new Dimension(1100,200));
 
-        Object[] row = new Object[4];
+        Object[] row = new Object[3];
         for (int i = 0; i < orderItem.length; i++) {
             row[0] = orderItem[i][0];
             row[1] = orderItem[i][1];
             row[2] = orderItem[i][2];
-            row[3] = new JButton("asdasd");
-
             model.addRow(row);
         }
 
@@ -62,16 +66,18 @@ public class Cart extends JFrame {
                 jbtDelete(evt);
             }
         });
-        
+
         jbCheckOut.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 jbtCheckOut(evt);
             }
         });
-        
-        add(pane);
-        add(jbDelete);
-        add(jbCheckOut);
+
+        jpane1.add(pane);
+        jpane2.add(jbDelete);
+        jpane2.add(jbCheckOut);
+        add(jpane1);
+        add(jpane2);
 
     }
 
@@ -87,9 +93,9 @@ public class Cart extends JFrame {
 
         }
     }
-    
+
     private void jbtCheckOut(ActionEvent evt) {
-       this.setVisible(false);
+        this.setVisible(false);
         OrderConfirmation oc = new OrderConfirmation();
         oc.setTitle("Cart");
         oc.setSize(800, 500);
@@ -101,7 +107,7 @@ public class Cart extends JFrame {
     public static void main(String[] args) {
         Cart cart = new Cart();
         cart.setTitle("Cart");
-        cart.setSize(1200, 500);
+        cart.setSize(1200, 600);
         cart.setLocationRelativeTo(null);
         cart.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         cart.setVisible(true);

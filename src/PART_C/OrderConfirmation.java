@@ -85,7 +85,8 @@ public class OrderConfirmation extends JFrame {
         this.setVisible(false);
         Cart ct = new Cart();
         ct.setTitle("Cart");
-        ct.setSize(800, 500);
+        
+        ct.setSize(1200, 600);
         ct.setLocationRelativeTo(null);
         ct.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         ct.setVisible(true);
