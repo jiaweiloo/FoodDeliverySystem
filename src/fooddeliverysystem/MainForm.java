@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package fooddeliverysystem;
+import PART_C.SelectRestaurant;
 import PART_D.*; 
 
 /**
@@ -47,6 +48,11 @@ public class MainForm extends javax.swing.JFrame {
         jButton3.setText("PART B");
 
         jButton4.setText("PART C");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("PART D");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -97,6 +103,13 @@ public class MainForm extends javax.swing.JFrame {
         attendance.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        SelectRestaurant restaurant = new SelectRestaurant();
+        restaurant.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
