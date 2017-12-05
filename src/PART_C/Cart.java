@@ -12,7 +12,6 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
-import java.util.*;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -34,7 +33,7 @@ public class Cart extends JFrame {
     JButton jbCheckOut = new JButton("Check Out");
 
     public Cart() {
-        setLayout(new GridLayout(2, 2));
+        setLayout(new GridLayout(3, 1));
         table = new JTable();
         model.setColumnIdentifiers(columns);
         table.setModel(model);
@@ -48,11 +47,12 @@ public class Cart extends JFrame {
 
         pane = new JScrollPane(table);
 
-        Object[] row = new Object[3];
+        Object[] row = new Object[4];
         for (int i = 0; i < orderItem.length; i++) {
             row[0] = orderItem[i][0];
             row[1] = orderItem[i][1];
             row[2] = orderItem[i][2];
+            row[3] = new JButton("asdasd");
 
             model.addRow(row);
         }
@@ -71,7 +71,6 @@ public class Cart extends JFrame {
         
         add(pane);
         add(jbDelete);
-        add(new JLabel());
         add(jbCheckOut);
 
     }
