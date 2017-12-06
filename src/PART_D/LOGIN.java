@@ -5,11 +5,19 @@
  */
 package PART_D;
 
+import fooddeliverysystem.MainForm;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Date;
+import javax.swing.Timer;
+
 /**
  *
  * @author jiawe
  */
 public class LOGIN extends javax.swing.JFrame {
+
+    MainForm mainform;
 
     /**
      * Creates new form LOGIN
@@ -31,11 +39,15 @@ public class LOGIN extends javax.swing.JFrame {
         lblPassword = new javax.swing.JLabel();
         jtfEmail = new javax.swing.JTextField();
         jpfPassword = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnLogin = new javax.swing.JButton();
+        btnFgtPw = new javax.swing.JButton();
+        btnCancel = new javax.swing.JButton();
+        jtfTime = new javax.swing.JTextField();
+        lblTime = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Login");
+        setName("LoginFrame"); // NOI18N
 
         jLabel1.setLabelFor(jtfEmail);
         jLabel1.setText("Email:");
@@ -43,13 +55,26 @@ public class LOGIN extends javax.swing.JFrame {
         lblPassword.setLabelFor(jpfPassword);
         lblPassword.setText("Password:");
 
-        jpfPassword.setText("jPasswordField1");
+        btnLogin.setText("Login");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
 
-        jButton1.setText("Login");
+        btnFgtPw.setText("Forget Password");
 
-        jButton2.setText("Forget Password");
+        btnCancel.setText("Cancel");
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Cancel");
+        jtfTime.setEditable(false);
+        jtfTime.setText("Thu Dec 07 00:00:01 SGT 2017");
+
+        lblTime.setText("Current Time:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -68,20 +93,29 @@ public class LOGIN extends javax.swing.JFrame {
                             .addComponent(jpfPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(119, 119, 119)
-                        .addComponent(jButton1)
+                        .addComponent(btnLogin)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)
+                        .addComponent(btnFgtPw)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3)))
+                        .addComponent(btnCancel))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(133, 133, 133)
+                        .addComponent(lblTime)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jtfTime, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(130, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton1, jButton2, jButton3});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnCancel, btnFgtPw, btnLogin});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(80, 80, 80)
+                .addGap(42, 42, 42)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTime)
+                    .addComponent(jtfTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jtfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -91,9 +125,9 @@ public class LOGIN extends javax.swing.JFrame {
                     .addComponent(jpfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(btnLogin)
+                    .addComponent(btnFgtPw)
+                    .addComponent(btnCancel))
                 .addContainerGap(121, Short.MAX_VALUE))
         );
 
@@ -101,6 +135,21 @@ public class LOGIN extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        // TODO add your handling code here:
+        mainform.setVisible(true); //NOT GOOD PRACTICE
+        this.dispose();
+    }//GEN-LAST:event_btnCancelActionPerformed
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_btnLoginActionPerformed
+
+    public void PreviousFrame(MainForm mainform) {
+        this.mainform = mainform;
+    }
 
     /**
      * @param args the command line arguments
@@ -129,21 +178,35 @@ public class LOGIN extends javax.swing.JFrame {
         }
         //</editor-fold>
 
+        LOGIN log = new LOGIN();
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new LOGIN().setVisible(true);
             }
         });
+
+        //Run the clock
+        int interval = 1000; // 1000 ms
+
+        new Timer(interval, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                jtfTime.setText(new Date().toString() + "");
+            }
+        }).start();
     }
 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnFgtPw;
+    private javax.swing.JButton btnLogin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPasswordField jpfPassword;
     private javax.swing.JTextField jtfEmail;
+    public static javax.swing.JTextField jtfTime;
     private javax.swing.JLabel lblPassword;
+    private javax.swing.JLabel lblTime;
     // End of variables declaration//GEN-END:variables
 }
