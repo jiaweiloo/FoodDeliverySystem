@@ -100,7 +100,7 @@ public class Cart extends JFrame {
         oc.setTitle("Cart");
         oc.setSize(800, 500);
         oc.setLocationRelativeTo(null);
-        oc.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        oc.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         oc.setVisible(true);
     }
 
@@ -109,7 +109,7 @@ public class Cart extends JFrame {
         cart.setTitle("Cart");
         cart.setSize(1200, 600);
         cart.setLocationRelativeTo(null);
-        cart.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        cart.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         cart.setVisible(true);
     }
 }

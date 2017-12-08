@@ -88,7 +88,7 @@ public class OrderConfirmation extends JFrame {
         
         ct.setSize(1200, 600);
         ct.setLocationRelativeTo(null);
-        ct.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ct.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         ct.setVisible(true);
     }
 
@@ -97,7 +97,7 @@ public class OrderConfirmation extends JFrame {
         frm.setTitle("Order Details");
         frm.setSize(800, 500);
         frm.setLocationRelativeTo(null);
-        frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frm.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frm.setVisible(true);
     }
 
