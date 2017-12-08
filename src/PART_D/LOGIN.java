@@ -5,10 +5,13 @@
  */
 package PART_D;
 
+import adt.ListInterface;
+import entity.employee;
 import fooddeliverysystem.MainForm;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
 /**
@@ -17,7 +20,9 @@ import javax.swing.Timer;
  */
 public class LOGIN extends javax.swing.JFrame {
 
+    ListInterface<employee> mylist;
     MainForm mainform;
+    employee emp;
 
     /**
      * Creates new form LOGIN
@@ -149,6 +154,15 @@ public class LOGIN extends javax.swing.JFrame {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
+        //Loop and get everything in mylist and compare the object in the list with the textbox field
+        for (int a = 1; a < mylist.getNumberOfEntries(); a++) {
+            emp = mylist.getEntry(a);
+            //verified email and password
+            if(emp.getEmail().equals(jtfEmail.getText())&&emp.getPassword().equals(jpfPassword.getText())){
+                JOptionPane.showMessageDialog(null, "User success verified! "+emp.getEmail());
+                break;
+            }
+        }
 
     }//GEN-LAST:event_btnLoginActionPerformed
 
@@ -159,6 +173,10 @@ public class LOGIN extends javax.swing.JFrame {
 
     public void PreviousFrame(MainForm mainform) {
         this.mainform = mainform;
+    }
+
+    public void updateEmployee(ListInterface<employee> mylist) {
+        this.mylist = mylist;
     }
 
     /**
