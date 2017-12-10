@@ -156,7 +156,7 @@ public class MainForm extends javax.swing.JFrame {
         login.setVisible(true);
         this.setVisible(false);
         login.PreviousFrame(this);
-        login.updateEmployee(empList);
+        login.updateEmployee(empList,attdList);
     }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
@@ -204,10 +204,10 @@ public class MainForm extends javax.swing.JFrame {
         emp4 = new employee(100004, "marie@mail.com", "abcd1234", "delivering", "990731-08-4492", "A-2-2 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-1231221");
         emp5 = new employee(100005, "lucas@mail.com", "abcd1234", "available", "790821-05-4492", "A-6-5 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-4990621");
         att1 = new Attendance(600001, 100001,"21/07/2017", "08:00:21", "17:03:21" , "13:10:52" ,  "13:55:13");
-        att2 = new Attendance(600001, 100002,"21/07/2017", "08:01:11", "17:13:31" , "13:05:51" ,  "14:02:11");
-        att3 = new Attendance(600001, 100001,"22/07/2017", "08:11:31", "17:23:41" , "13:12:25" ,  "14:01:12");
-        att4 = new Attendance(600001, 100002,"22/07/2017", "08:05:41", "17:02:51" , "13:13:15" ,  "14:11:33");
-        att5 = new Attendance(600001, 100001,"23/07/2017", "07:59:51", "17:01:01" , "13:11:25" ,  "14:02:23");
+        att2 = new Attendance(600002, 100002,"21/07/2017", "08:01:11", "17:13:31" , "13:05:51" ,  "14:02:11");
+        att3 = new Attendance(600003, 100001,"22/07/2017", "08:11:31", "17:23:41" , "13:12:25" ,  "14:01:12");
+        att4 = new Attendance(600004, 100002,"22/07/2017", "08:05:41", "17:02:51" , "13:13:15" ,  "14:11:33");
+        att5 = new Attendance(600005, 100001,"23/07/2017", "07:59:51", "17:01:01" , "13:11:25" ,  "14:02:23");
         empList.add(emp1);
         empList.add(emp2);
         empList.add(emp3);
