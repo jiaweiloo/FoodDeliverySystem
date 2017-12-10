@@ -4,9 +4,10 @@
  * and open the template in the editor.
  */
 package fooddeliverysystem;
+
 import PART_B.Update_Delivery_Men;
 import PART_C.SelectRestaurant;
-import PART_D.*; 
+import PART_D.*;
 import adt.*;
 import entity.*;
 
@@ -15,7 +16,14 @@ import entity.*;
  * @author jiawe
  */
 public class MainForm extends javax.swing.JFrame {
-    ListInterface<employee> mylist= new LList<employee>();
+
+    ListInterface<employee> mylist = new LList<employee>();
+    employee emp1;
+    employee emp2;
+    employee emp3;
+    employee emp4;
+    employee emp5;
+
     /**
      * Creates new form MainForm
      */
@@ -144,8 +152,8 @@ public class MainForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         // New_Delivery_Man newD;
         //newD = new New_Delivery_Man();
-       // newD.setVisible(true);
-       // this.dispose();
+        // newD.setVisible(true);
+        // this.dispose();
         Update_Delivery_Men.main(null);
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -191,11 +199,18 @@ public class MainForm extends javax.swing.JFrame {
                 mainform.setVisible(true);
             }
         });
-        
+
         //new MainForm().setVisible(true);
     }
 
-    
+    private void updateList() {
+        emp1 = new employee();
+        emp2 = new employee();
+        emp3 = new employee();
+        emp4 = new employee();
+        emp5 = new employee();
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnRegister;
