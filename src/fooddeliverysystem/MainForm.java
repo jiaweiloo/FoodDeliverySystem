@@ -6,18 +6,15 @@ import PART_D.*;
 import adt.*;
 import entity.*;
 
-/** 
+/**
  * @author jiaweiloo
  */
-
 public class MainForm extends javax.swing.JFrame {
 
-    ListInterface<employee> mylist = new LList<employee>();
-    employee emp1;
-    employee emp2;
-    employee emp3;
-    employee emp4;
-    employee emp5;
+    ListInterface<employee> empList = new LList<employee>();
+    ListInterface<Attendance> attdList = new LList<Attendance>();
+    employee emp1, emp2, emp3, emp4, emp5;
+    Attendance att1, att2, att3, att4, att5;
 
     /**
      * Creates new form MainForm
@@ -132,8 +129,8 @@ public class MainForm extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        Attendance attendance = new Attendance();
-        attendance.setVisible(true);
+        //Attendance attendance = new Attendance();
+        //attendance.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -159,7 +156,7 @@ public class MainForm extends javax.swing.JFrame {
         login.setVisible(true);
         this.setVisible(false);
         login.PreviousFrame(this);
-        login.updateEmployee(mylist);
+        login.updateEmployee(empList);
     }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
@@ -201,16 +198,26 @@ public class MainForm extends javax.swing.JFrame {
     }
 
     private void updateList() {
-        emp1 = new employee("emp00001", "jason@mail.com",  "abcd1234", "available" ,  "890831-05-4492", "A-4-2 Sri Pelangi, Jln Genting Klang, 53300 KL" ,  "012-4441221");
-        emp2 = new employee("emp00002", "jack@mail.com",  "abcd1234", "offline" ,  "890731-05-4492", "A-7-4 Sri Pelangi, Jln Genting Klang, 53300 KL" ,  "012-4661321");
-        emp3 = new employee("emp00003", "annabelle@mail.com",  "abcd1234", "available" ,  "800831-05-4592", "A-3-6 Sri Pelangi, Jln Genting Klang, 53300 KL" ,  "012-8535221");
-        emp4 = new employee("emp00004", "marie@mail.com",  "abcd1234", "delivering" ,  "990731-08-4492", "A-2-2 Sri Pelangi, Jln Genting Klang, 53300 KL" ,  "012-1231221");
-        emp5 = new employee("emp00005", "lucas@mail.com",  "abcd1234", "available" ,  "790821-05-4492", "A-6-5 Sri Pelangi, Jln Genting Klang, 53300 KL" ,  "012-4990621");
-        mylist.add(emp1);
-        mylist.add(emp2);
-        mylist.add(emp3);
-        mylist.add(emp4);
-        mylist.add(emp5);
+        emp1 = new employee(100001, "jason@mail.com", "abcd1234", "available", "890831-05-4492", "A-4-2 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-4441221");
+        emp2 = new employee(100002, "jack@mail.com", "abcd1234", "offline", "890731-05-4492", "A-7-4 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-4661321");
+        emp3 = new employee(100003, "annabelle@mail.com", "abcd1234", "available", "800831-05-4592", "A-3-6 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-8535221");
+        emp4 = new employee(100004, "marie@mail.com", "abcd1234", "delivering", "990731-08-4492", "A-2-2 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-1231221");
+        emp5 = new employee(100005, "lucas@mail.com", "abcd1234", "available", "790821-05-4492", "A-6-5 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-4990621");
+        att1 = new Attendance(600001, 100001,"21/07/2017", "08:00:21", "17:03:21" , "13:10:52" ,  "13:55:13");
+        att2 = new Attendance(600001, 100002,"21/07/2017", "08:01:11", "17:13:31" , "13:05:51" ,  "14:02:11");
+        att3 = new Attendance(600001, 100001,"22/07/2017", "08:11:31", "17:23:41" , "13:12:25" ,  "14:01:12");
+        att4 = new Attendance(600001, 100002,"22/07/2017", "08:05:41", "17:02:51" , "13:13:15" ,  "14:11:33");
+        att5 = new Attendance(600001, 100001,"23/07/2017", "07:59:51", "17:01:01" , "13:11:25" ,  "14:02:23");
+        empList.add(emp1);
+        empList.add(emp2);
+        empList.add(emp3);
+        empList.add(emp4);
+        empList.add(emp5);
+        attdList.add(att1);
+        attdList.add(att2);
+        attdList.add(att3);
+        attdList.add(att4);
+        attdList.add(att5);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
