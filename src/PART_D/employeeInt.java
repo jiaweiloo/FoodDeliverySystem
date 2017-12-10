@@ -1,16 +1,28 @@
 package PART_D;
 
+import adt.LList;
+import adt.ListInterface;
+import entity.Attendance;
+import entity.employee;
+import fooddeliverysystem.MainForm;
+
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author jiaweiloo
  */
 public class employeeInt extends javax.swing.JFrame {
 
+    MainForm mainform;
+    ListInterface<employee> empList ;
+    ListInterface<Attendance> attdList ;
     /**
      * Creates new form employeeInt
      */
     public employeeInt() {
         initComponents();
+        updateTable();
     }
 
     /**
@@ -23,30 +35,88 @@ public class employeeInt extends javax.swing.JFrame {
     private void initComponents() {
 
         btnLogout = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        attdTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btnLogout.setText("Logout");
 
+        attdTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Date", "Clockin", "Clockout", "lunch_clockout", "lunch_clockin"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(attdTable);
+        if (attdTable.getColumnModel().getColumnCount() > 0) {
+            attdTable.getColumnModel().getColumn(0).setHeaderValue("ID");
+            attdTable.getColumnModel().getColumn(1).setHeaderValue("Date");
+            attdTable.getColumnModel().getColumn(2).setHeaderValue("Clockin");
+            attdTable.getColumnModel().getColumn(3).setHeaderValue("Clockout");
+            attdTable.getColumnModel().getColumn(4).setHeaderValue("lunch_clockout");
+            attdTable.getColumnModel().getColumn(5).setHeaderValue("lunch_clockin");
+        }
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(604, Short.MAX_VALUE)
-                .addComponent(btnLogout)
-                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(619, Short.MAX_VALUE)
+                .addComponent(btnLogout))
+            .addComponent(jScrollPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(305, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
                 .addComponent(btnLogout)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void updateTable() {
+        //for (int count = 1; count <= 10; count++) {
+            DefaultTableModel DTM = new DefaultTableModel();
+            DTM.addColumn("ID");
+            DTM.addColumn("Date");
+            DTM.addColumn("ClockIn");
+            DTM.addColumn("Clockout");
+            DTM.addColumn("lunch_out");
+            DTM.addColumn("lunch_in");
+
+            for (int a = 1; a <= attdList.getNumberOfEntries(); a++) {
+                DTM.addRow(new Object[]{
+                    attdList.getEntry(a).getAttendance_id(),
+                    attdList.getEntry(a).getDate(),
+                    attdList.getEntry(a).getTime_checkin(),
+                    attdList.getEntry(a).getTime_checkout(),
+                    attdList.getEntry(a).getLunch_checkout(),
+                    attdList.getEntry(a).getLunch_checkin()
+                });
+            }
+            //DTM.addRow(row);
+            attdTable.setModel(DTM);
+        //}
+
+    }
 
     /**
      * @param args the command line arguments
@@ -83,7 +153,18 @@ public class employeeInt extends javax.swing.JFrame {
         });
     }
 
+    public void PreviousFrame(MainForm mainform) {
+        this.mainform = mainform;
+    }
+
+    public void updateList(ListInterface<employee> empList, ListInterface<Attendance> attdList) {
+        this.empList = empList;
+        this.attdList = attdList;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable attdTable;
     private javax.swing.JButton btnLogout;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

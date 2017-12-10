@@ -20,9 +20,11 @@ import javax.swing.Timer;
  * @author jiawe
  */
 public class LOGIN extends javax.swing.JFrame {
+
     SimpleDateFormat timeOnly = new SimpleDateFormat("hh:mm:ss");
+    SimpleDateFormat dateOnly = new SimpleDateFormat("dd/MM/yyyy");
     ListInterface<employee> empList;
-    ListInterface<Attendance> attdList ;
+    ListInterface<Attendance> attdList;
     MainForm mainform;
     employee emp;
 
@@ -66,6 +68,10 @@ public class LOGIN extends javax.swing.JFrame {
 
         lblPassword.setLabelFor(jpfPassword);
         lblPassword.setText("Password:");
+
+        jtfEmail.setText("jason@mail.com");
+
+        jpfPassword.setText("abcd1234");
 
         btnLogin.setText("Login");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -162,10 +168,20 @@ public class LOGIN extends javax.swing.JFrame {
             //verified email and password
             if (emp.getEmail().equals(jtfEmail.getText()) && emp.getPassword().equals(jpfPassword.getText())) {
                 JOptionPane.showMessageDialog(null, "User success verified! " + emp.getEmail());
-                Attendance att = new Attendance(attdList.getEntry(attdList.getNumberOfEntries()).getAttendance_id()+1, 100001,"23/07/2017", "07:59:51", "17:01:01" , "13:11:25" ,  "14:02:23");
+                Attendance att = new Attendance(attdList.getEntry(attdList.getNumberOfEntries()).getAttendance_id() + 1, emp.getEmp_id(), dateOnly.format(new Date()), "07:59:51", "17:01:01", "13:11:25", "14:02:23");
                 attdList.add(att);
-                int attiddd = attdList.getEntry(attdList.getNumberOfEntries()).getAttendance_id();
-                JOptionPane.showMessageDialog(null, "User success verified! " + Integer.toString(attiddd));
+                //int attiddd = attdList.getEntry(attdList.getNumberOfEntries()).getAttendance_id();
+                //JOptionPane.showMessageDialog(null, "Attendance updated!" + Integer.toString(attiddd) + "date: " + att.getDate());
+
+                //open employee interface
+                employeeInt empInt = new employeeInt();
+                empInt.setVisible(true);
+
+                empInt.PreviousFrame(mainform);
+                empInt.updateList(empList, attdList);
+                this.setVisible(false);
+                this.dispose();
+
                 break;
             }
         }
@@ -181,7 +197,7 @@ public class LOGIN extends javax.swing.JFrame {
         this.mainform = mainform;
     }
 
-    public void updateEmployee(ListInterface<employee> empList,ListInterface<Attendance> attdList) {
+    public void updateEmployee(ListInterface<employee> empList, ListInterface<Attendance> attdList) {
         this.empList = empList;
         this.attdList = attdList;
     }

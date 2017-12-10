@@ -111,8 +111,14 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jtfEmail">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jason@mail.com"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JPasswordField" name="jpfPassword">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="abcd1234"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnLogin">
       <Properties>
