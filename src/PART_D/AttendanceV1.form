@@ -416,7 +416,6 @@
             </Container>
             <Component class="javax.swing.JButton" name="btnExit">
               <Properties>
-                <Property name="actionCommand" type="java.lang.String" value=""/>
                 <Property name="label" type="java.lang.String" value="Exit"/>
               </Properties>
               <Events>

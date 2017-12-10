@@ -10,6 +10,7 @@ import entity.employee;
 import fooddeliverysystem.MainForm;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
@@ -19,7 +20,7 @@ import javax.swing.Timer;
  * @author jiawe
  */
 public class LOGIN extends javax.swing.JFrame {
-
+    SimpleDateFormat timeOnly = new SimpleDateFormat("hh:mm:ss");
     ListInterface<employee> mylist;
     MainForm mainform;
     employee emp;
@@ -113,7 +114,7 @@ public class LOGIN extends javax.swing.JFrame {
                         .addComponent(lblTime)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jtfTime, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(130, Short.MAX_VALUE))
+                .addContainerGap(116, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnCancel, btnFgtPw, btnLogin});
@@ -138,7 +139,7 @@ public class LOGIN extends javax.swing.JFrame {
                     .addComponent(btnLogin)
                     .addComponent(btnFgtPw)
                     .addComponent(btnCancel))
-                .addContainerGap(121, Short.MAX_VALUE))
+                .addContainerGap(147, Short.MAX_VALUE))
         );
 
         jLabel1.getAccessibleContext().setAccessibleName("Email: ");
@@ -158,8 +159,8 @@ public class LOGIN extends javax.swing.JFrame {
         for (int a = 1; a < mylist.getNumberOfEntries(); a++) {
             emp = mylist.getEntry(a);
             //verified email and password
-            if(emp.getEmail().equals(jtfEmail.getText())&&emp.getPassword().equals(jpfPassword.getText())){
-                JOptionPane.showMessageDialog(null, "User success verified! "+emp.getEmail());
+            if (emp.getEmail().equals(jtfEmail.getText()) && emp.getPassword().equals(jpfPassword.getText())) {
+                JOptionPane.showMessageDialog(null, "User success verified! " + emp.getEmail());
                 break;
             }
         }
@@ -215,11 +216,11 @@ public class LOGIN extends javax.swing.JFrame {
         });
 
         //Run the clock
-        int interval = 1000; // 1000 ms
-
+        int interval = 1000; // 1000 ms        
         new Timer(interval, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                //jtfTime.setText(ft.format(new Date()) + "");
                 jtfTime.setText(new Date().toString() + "");
             }
         }).start();
