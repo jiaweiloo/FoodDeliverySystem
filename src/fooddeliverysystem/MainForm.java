@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package fooddeliverysystem;
 
 import PART_B.Update_Delivery_Men;
@@ -11,10 +6,10 @@ import PART_D.*;
 import adt.*;
 import entity.*;
 
-/**
- *
- * @author jiawe
+/** 
+ * @author jiaweiloo
  */
+
 public class MainForm extends javax.swing.JFrame {
 
     ListInterface<employee> mylist = new LList<employee>();
@@ -29,6 +24,7 @@ public class MainForm extends javax.swing.JFrame {
      */
     public MainForm() {
         initComponents();
+        updateList();
     }
 
     /**
@@ -163,6 +159,7 @@ public class MainForm extends javax.swing.JFrame {
         login.setVisible(true);
         this.setVisible(false);
         login.PreviousFrame(this);
+        login.updateEmployee(mylist);
     }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
@@ -204,11 +201,16 @@ public class MainForm extends javax.swing.JFrame {
     }
 
     private void updateList() {
-        emp1 = new employee();
-        emp2 = new employee();
-        emp3 = new employee();
-        emp4 = new employee();
-        emp5 = new employee();
+        emp1 = new employee("emp00001", "jason@mail.com",  "abcd1234", "available" ,  "890831-05-4492", "A-4-2 Sri Pelangi, Jln Genting Klang, 53300 KL" ,  "012-4441221");
+        emp2 = new employee("emp00002", "jack@mail.com",  "abcd1234", "offline" ,  "890731-05-4492", "A-7-4 Sri Pelangi, Jln Genting Klang, 53300 KL" ,  "012-4661321");
+        emp3 = new employee("emp00003", "annabelle@mail.com",  "abcd1234", "available" ,  "800831-05-4592", "A-3-6 Sri Pelangi, Jln Genting Klang, 53300 KL" ,  "012-8535221");
+        emp4 = new employee("emp00004", "marie@mail.com",  "abcd1234", "delivering" ,  "990731-08-4492", "A-2-2 Sri Pelangi, Jln Genting Klang, 53300 KL" ,  "012-1231221");
+        emp5 = new employee("emp00005", "lucas@mail.com",  "abcd1234", "available" ,  "790821-05-4492", "A-6-5 Sri Pelangi, Jln Genting Klang, 53300 KL" ,  "012-4990621");
+        mylist.add(emp1);
+        mylist.add(emp2);
+        mylist.add(emp3);
+        mylist.add(emp4);
+        mylist.add(emp5);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
