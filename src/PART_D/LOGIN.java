@@ -6,7 +6,7 @@
 package PART_D;
 
 import adt.ListInterface;
-import entity.employee;
+import entity.*;
 import fooddeliverysystem.MainForm;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,7 +21,8 @@ import javax.swing.Timer;
  */
 public class LOGIN extends javax.swing.JFrame {
     SimpleDateFormat timeOnly = new SimpleDateFormat("hh:mm:ss");
-    ListInterface<employee> mylist;
+    ListInterface<employee> empList;
+    ListInterface<Attendance> attdList ;
     MainForm mainform;
     employee emp;
 
@@ -156,11 +157,15 @@ public class LOGIN extends javax.swing.JFrame {
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
         //Loop and get everything in mylist and compare the object in the list with the textbox field
-        for (int a = 1; a < mylist.getNumberOfEntries(); a++) {
-            emp = mylist.getEntry(a);
+        for (int a = 1; a < empList.getNumberOfEntries(); a++) {
+            emp = empList.getEntry(a);
             //verified email and password
             if (emp.getEmail().equals(jtfEmail.getText()) && emp.getPassword().equals(jpfPassword.getText())) {
                 JOptionPane.showMessageDialog(null, "User success verified! " + emp.getEmail());
+                Attendance att = new Attendance(attdList.getEntry(attdList.getNumberOfEntries()).getAttendance_id()+1, 100001,"23/07/2017", "07:59:51", "17:01:01" , "13:11:25" ,  "14:02:23");
+                attdList.add(att);
+                int attiddd = attdList.getEntry(attdList.getNumberOfEntries()).getAttendance_id();
+                JOptionPane.showMessageDialog(null, "User success verified! " + Integer.toString(attiddd));
                 break;
             }
         }
@@ -176,8 +181,9 @@ public class LOGIN extends javax.swing.JFrame {
         this.mainform = mainform;
     }
 
-    public void updateEmployee(ListInterface<employee> mylist) {
-        this.mylist = mylist;
+    public void updateEmployee(ListInterface<employee> empList,ListInterface<Attendance> attdList) {
+        this.empList = empList;
+        this.attdList = attdList;
     }
 
     /**
