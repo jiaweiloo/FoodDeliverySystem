@@ -9,14 +9,14 @@ package entity;
  *
  * @author Loi Kah Hou
  */
-public class Menu {
+public class Item {
 
     String item_id;
     String item_name;
     String item_price;
     String rest_id;
 
-    public Menu(String item_id, String item_name, String item_price, String rest_id) {
+    public Item(String item_id, String item_name, String item_price, String rest_id) {
         this.item_id = item_id;
         this.item_name = item_name;
         this.item_price = item_price;

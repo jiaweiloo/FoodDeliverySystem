@@ -16,14 +16,17 @@ public class Order {
     String total_amount;
     String total_item;
     String current_status;
+    String cust_id;
 
-    public Order(String order_id, String restaurant_id, String total_amount, String total_item, String current_status) {
+    public Order(String order_id, String restaurant_id, String total_amount, String total_item, String current_status, String cust_id) {
         this.order_id = order_id;
         this.restaurant_id = restaurant_id;
         this.total_amount = total_amount;
         this.total_item = total_item;
         this.current_status = current_status;
+        this.cust_id = cust_id;
     }
+
 
     public String getOrder_id() {
         return order_id;
