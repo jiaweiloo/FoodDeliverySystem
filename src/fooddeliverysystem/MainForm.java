@@ -294,7 +294,7 @@ public class MainForm extends javax.swing.JFrame {
         this.setVisible(false);
         login.PreviousFrame(this);
         login.updateEmployee(empList, attdList);
-        */
+         */
 
         startEmployeeInterface();
         this.setVisible(false);
@@ -316,11 +316,11 @@ public class MainForm extends javax.swing.JFrame {
         //int yesorno=JOptionPane.showConfirmDialog(null,"Are Your Confirm To Add the Delivery Men","Clear TextView",JOptionPane.YES_NO_OPTION);
         //if(yesorno==0){
 
-            // System.exit(0);
-            //}
+        // System.exit(0);
+        //}
         //else{
-            JOptionPane.showMessageDialog(this,"This Delivery Man Successfully Added!");
-            //}
+        JOptionPane.showMessageDialog(this, "This Delivery Man Successfully Added!");
+        //}
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton8ActionPerformed
 
@@ -371,11 +371,11 @@ public class MainForm extends javax.swing.JFrame {
     }
 
     private void updateList() {
-        emp1 = new employee(100001, "jason@mail.com", "abcd1234", "available", "890831-05-4492", "A-4-2 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-4441221");
-        emp2 = new employee(100002, "jack@mail.com", "abcd1234", "offline", "890731-05-4492", "A-7-4 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-4661321");
-        emp3 = new employee(100003, "annabelle@mail.com", "abcd1234", "available", "800831-05-4592", "A-3-6 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-8535221");
-        emp4 = new employee(100004, "marie@mail.com", "abcd1234", "delivering", "990731-08-4492", "A-2-2 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-1231221");
-        emp5 = new employee(100005, "lucas@mail.com", "abcd1234", "available", "790821-05-4492", "A-6-5 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-4990621");
+        emp1 = new employee(100001, "jason@mail.com", "abcd1234", "available", "890831-05-4492", "A-4-2 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-4441221", "DM");
+        emp2 = new employee(100002, "jack@mail.com", "abcd1234", "offline", "890731-05-4492", "A-7-4 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-4661321", "EXEC");
+        emp3 = new employee(100003, "annabelle@mail.com", "abcd1234", "available", "800831-05-4592", "A-3-6 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-8535221", "DM");
+        emp4 = new employee(100004, "marie@mail.com", "abcd1234", "delivering", "990731-08-4492", "A-2-2 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-1231221", "DM");
+        emp5 = new employee(100005, "lucas@mail.com", "abcd1234", "other", "790821-05-4492", "A-6-5 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-4990621", "AFFT");
         att1 = new Attendance(600001, 100001, "21/07/2017", "08:00:21", "17:03:21", "13:10:52", "13:55:13");
         att2 = new Attendance(600002, 100002, "21/07/2017", "08:01:11", "17:13:31", "13:05:51", "14:02:11");
         att3 = new Attendance(600003, 100001, "22/07/2017", "08:11:31", "17:23:41", "13:12:25", "14:01:12");
@@ -394,7 +394,7 @@ public class MainForm extends javax.swing.JFrame {
     }
 
     public void startEmployeeInterface() {
-        employeeInt empInt = new employeeInt(empList,attdList);
+        employeeInt empInt = new employeeInt(empList, attdList);
         empInt.setVisible(true);
         empInt.PreviousFrame(this);
         //empInt.updateList(empList, attdList);
