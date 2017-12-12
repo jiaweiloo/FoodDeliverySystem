@@ -22,16 +22,6 @@ public class employee {
 
     public employee() {
     }
-/*
-    public employee(int emp_id, String email, String password, String status, String ic_number, String address, String phone_num) {
-        this.emp_id = emp_id;
-        this.email = email;
-        this.password = password;
-        this.status = status;
-        this.ic_number = ic_number;
-        this.address = address;
-        this.phone_num = phone_num;
-    } */
 
     public employee(int emp_id, String email, String password, String status, String ic_number, String address, String phone_num, String rank) {
         this.emp_id = emp_id;
