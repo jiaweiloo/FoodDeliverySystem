@@ -15,6 +15,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.*;
+import adt.*;
+import entity.*;
 
 public class OrderConfirmation extends JFrame {
 
@@ -26,15 +28,28 @@ public class OrderConfirmation extends JFrame {
     JLabel jlblAddress = new JLabel("123, Taman Sri Rampai, 53300 Setapak, Kuala Lumpur");
     JTable table;
     String[] columnNames = {"Item Name", "Quantity", "Amount (RM)"};
-    String[][] data = new Order().getOrderItem();
     JScrollPane scrollPane;
     JButton jbtBack = new JButton("Back");
     int totalPrice = 0;
+    LList<OrderList> orderList;
+    LList<Item> itemList;
 
-    public OrderConfirmation() {
-        for(int a=0;a<3;a++){
-            int amount = Integer.parseInt(data[a][2]);
-            totalPrice += amount;
+    public OrderConfirmation(LList<OrderList> orderList, LList<Item> itemList) {
+        this.orderList = orderList;
+        this.itemList = itemList;
+        String[][] data = new String[orderList.getNumberOfEntries()][3];
+        for(int a=1;a<=orderList.getNumberOfEntries();a++){
+            System.out.println(orderList.getEntry(a).getSubTotal());
+        }
+        for (int a = 1; a <= orderList.getNumberOfEntries(); a++) {
+            for (int b = 1; b <= itemList.getNumberOfEntries(); b++) {
+                if (orderList.getEntry(a).getItem_id().equals(itemList.getEntry(b).getItem_id())) {
+                    data[a - 1][0] = itemList.getEntry(b).getItem_name();
+                    data[a - 1][1] = orderList.getEntry(a).getQuantity();
+                    data[a - 1][2] = orderList.getEntry(a).getSubTotal();
+                    totalPrice += Integer.parseInt(orderList.getEntry(a).getSubTotal());
+                }
+            }
         }
         table = new JTable(data, columnNames);
 
@@ -57,48 +72,47 @@ public class OrderConfirmation extends JFrame {
         add(jlblAddress);
         add(jbtBack);
         add(jbConfirm);
-        
-        jbConfirm.addActionListener(new ActionListener(){
+
+        jbConfirm.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 jbConfirm(e);
             }
         });
-        
-        jbtBack.addActionListener(new ActionListener(){
+
+        jbtBack.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                jbBack(e);
+                jbBack(e,orderList,itemList);
             }
         });
 
     }
-    
-    private void jbConfirm(ActionEvent e) {                                         
+
+    private void jbConfirm(ActionEvent e) {
         // TODO add your handling code here:
-        int result = JOptionPane.showConfirmDialog (null, "Make Delivery?","Warning",JOptionPane.YES_NO_OPTION);
-        if(result==JOptionPane.YES_OPTION){
-            JOptionPane.showMessageDialog(null, "Your order is on its way!"); 
+        int result = JOptionPane.showConfirmDialog(null, "Make Delivery?", "Warning", JOptionPane.YES_NO_OPTION);
+        if (result == JOptionPane.YES_OPTION) {
+            JOptionPane.showMessageDialog(null, "Your order is on its way!");
         }
     }
-    
-    private void jbBack(ActionEvent e) {                                         
+
+    private void jbBack(ActionEvent e,LList<OrderList>orderList,LList<Item>itemList) {
         // TODO add your handling code here:
         this.setVisible(false);
         Cart ct = new Cart();
         ct.setTitle("Cart");
-        
+
         ct.setSize(1200, 600);
         ct.setLocationRelativeTo(null);
         ct.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         ct.setVisible(true);
     }
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         OrderConfirmation frm = new OrderConfirmation();
         frm.setTitle("Order Details");
         frm.setSize(800, 500);
         frm.setLocationRelativeTo(null);
         frm.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frm.setVisible(true);
-    }
-
+    }*/
 }
