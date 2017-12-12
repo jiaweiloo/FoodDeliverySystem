@@ -12,7 +12,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author jiaweiloo
  */
-public class employeeInt extends javax.swing.JFrame {
+public class deliveryManInterface extends javax.swing.JFrame {
 
     MainForm mainform;
     //ListInterface<employee> empList = new LList<employee>();
@@ -25,13 +25,13 @@ public class employeeInt extends javax.swing.JFrame {
     /**
      * Creates new form employeeInt
      */
-    public employeeInt() {
+    public deliveryManInterface() {
         initComponents();
         //porpulateData();
         updateTable();
     }
 
-    public employeeInt(ListInterface<employee> empList,ListInterface<Attendance> attdList) {
+    public deliveryManInterface(ListInterface<employee> empList,ListInterface<Attendance> attdList) {
         this.empList = empList;
         this.attdList = attdList;
         initComponents();
@@ -110,8 +110,8 @@ public class employeeInt extends javax.swing.JFrame {
                     .addComponent(btnLogout)
                     .addComponent(btnTest))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(203, Short.MAX_VALUE))
         );
 
         pack();
@@ -191,20 +191,21 @@ public class employeeInt extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(employeeInt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(deliveryManInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(employeeInt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(deliveryManInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(employeeInt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(deliveryManInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(employeeInt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(deliveryManInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new employeeInt().setVisible(true);
+                new deliveryManInterface().setVisible(true);
             }
         });
     }
