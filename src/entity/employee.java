@@ -18,10 +18,11 @@ public class employee {
     String ic_number;
     String address;
     String phone_num;
+    String rank;
 
     public employee() {
     }
-
+/*
     public employee(int emp_id, String email, String password, String status, String ic_number, String address, String phone_num) {
         this.emp_id = emp_id;
         this.email = email;
@@ -30,6 +31,25 @@ public class employee {
         this.ic_number = ic_number;
         this.address = address;
         this.phone_num = phone_num;
+    } */
+
+    public employee(int emp_id, String email, String password, String status, String ic_number, String address, String phone_num, String rank) {
+        this.emp_id = emp_id;
+        this.email = email;
+        this.password = password;
+        this.status = status;
+        this.ic_number = ic_number;
+        this.address = address;
+        this.phone_num = phone_num;
+        this.rank = rank;
+    }
+
+    public String getRank() {
+        return rank;
+    }
+
+    public void setRank(String rank) {
+        this.rank = rank;
     }
 
     public int getEmp_id() {
