@@ -5,6 +5,8 @@ import adt.ListInterface;
 import entity.Attendance;
 import entity.employee;
 import fooddeliverysystem.MainForm;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.table.DefaultTableModel;
 
@@ -17,10 +19,11 @@ public class deliveryManInterface extends javax.swing.JFrame {
     MainForm mainform;
     //ListInterface<employee> empList = new LList<employee>();
     //ListInterface<Attendance> attdList = new LList<Attendance>();
-    ListInterface<employee> empList ;
+    ListInterface<employee> empList;
     ListInterface<Attendance> attdList;
-    employee emp1, emp2, emp3, emp4, emp5;
-    Attendance att1, att2, att3, att4, att5;
+    employee emp, emp1, emp2, emp3, emp4, emp5;
+    Attendance att, att1, att2, att3, att4, att5;
+    SimpleDateFormat timeOnly = new SimpleDateFormat("hh:mm:ss");
 
     /**
      * Creates new form employeeInt
@@ -31,13 +34,15 @@ public class deliveryManInterface extends javax.swing.JFrame {
         updateTable();
     }
 
-    public deliveryManInterface(ListInterface<employee> empList,ListInterface<Attendance> attdList) {
+    public deliveryManInterface(ListInterface<employee> empList, ListInterface<Attendance> attdList, employee emp) {
         this.empList = empList;
         this.attdList = attdList;
+        this.emp = emp;
         initComponents();
         //porpulateData();
         updateTable();
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -50,11 +55,32 @@ public class deliveryManInterface extends javax.swing.JFrame {
         btnLogout = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         attdTable = new javax.swing.JTable();
-        btnTest = new javax.swing.JButton();
+        btnLunchOut = new javax.swing.JButton();
+        lblZone = new javax.swing.JLabel();
+        CBoxZone = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jtfDelAdd = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jtfRest = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
+        btnAccept = new javax.swing.JButton();
+        btnDecline = new javax.swing.JButton();
+        btnLunchIn = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jtfStatus = new javax.swing.JTextField();
+        btnCancel = new javax.swing.JButton();
+        btnComplete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btnLogout.setText("Logout");
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogoutActionPerformed(evt);
+            }
+        });
 
         attdTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -85,43 +111,175 @@ public class deliveryManInterface extends javax.swing.JFrame {
             attdTable.getColumnModel().getColumn(5).setHeaderValue("lunch_clockin");
         }
 
-        btnTest.setText("test");
-        btnTest.addActionListener(new java.awt.event.ActionListener() {
+        btnLunchOut.setText("Lunch Out");
+        btnLunchOut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTestActionPerformed(evt);
+                btnLunchOutActionPerformed(evt);
             }
         });
+
+        lblZone.setText("Current Zone");
+
+        CBoxZone.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AA1", "AA2", "AA3", "AA4", "AA5" }));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setText("Next Job");
+
+        jLabel2.setText("Delivery Address");
+
+        jtfDelAdd.setEditable(false);
+        jtfDelAdd.setText("none");
+
+        jLabel3.setText("Pick-up Restaurant");
+
+        jtfRest.setEditable(false);
+        jtfRest.setText("none");
+
+        jLabel4.setText("Finished Job");
+
+        jTextField3.setEditable(false);
+        jTextField3.setText("0");
+
+        btnAccept.setText("Accept");
+
+        btnDecline.setText("Decline");
+
+        btnLunchIn.setText("Lunch In");
+        btnLunchIn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLunchInActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("Current Status");
+
+        jtfStatus.setEditable(false);
+        jtfStatus.setText("offline");
+
+        btnCancel.setText("Cancel");
+
+        btnComplete.setText("Complete Delivery");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1)
             .addGroup(layout.createSequentialGroup()
-                .addGap(136, 136, 136)
-                .addComponent(btnTest)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnLogout))
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 684, Short.MAX_VALUE)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnLunchOut)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnLunchIn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnLogout))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(lblZone)
+                                        .addComponent(jLabel2))
+                                    .addGap(28, 28, 28)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(CBoxZone, 0, 100, Short.MAX_VALUE)
+                                        .addComponent(jtfDelAdd)
+                                        .addComponent(jtfStatus)))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(jLabel3)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jtfRest)))
+                            .addComponent(jLabel5))
+                        .addGap(116, 116, 116)
+                        .addComponent(jLabel4)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(88, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnAccept, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnDecline, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnComplete)))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnAccept, btnDecline});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLogout)
-                    .addComponent(btnTest))
+                    .addComponent(btnLunchOut)
+                    .addComponent(btnLunchIn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(203, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblZone)
+                            .addComponent(CBoxZone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(jtfStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(3, 3, 3)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jtfDelAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(jtfRest, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(55, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnDecline)
+                            .addComponent(btnAccept)
+                            .addComponent(btnCancel)
+                            .addComponent(btnComplete))
+                        .addContainerGap())))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTestActionPerformed
+    private void btnLunchOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLunchOutActionPerformed
         // TODO add your handling code here:
-        System.out.println(attdList.getEntry(1).getAttendance_id()+" " + attdList.getEntry(1).getDate() + attdList.getEntry(1).getLunch_checkin());
-       System.out.println( attdList.getNumberOfEntries());
-    }//GEN-LAST:event_btnTestActionPerformed
+        System.out.println(attdList.getEntry(1).getAttendance_id() + " " + attdList.getEntry(1).getDate() + attdList.getEntry(1).getLunch_checkin());
+        System.out.println(attdList.getNumberOfEntries());
+    }//GEN-LAST:event_btnLunchOutActionPerformed
+
+    private void btnLunchInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLunchInActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLunchInActionPerformed
+
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        // TODO add your handling code here:
+        att.setTime_checkout(timeOnly.format(new Date()));
+        mainform.returnAtt(att);
+        mainform.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void updateTable() {
         //for (int count = 1; count <= 10; count++) {
@@ -134,14 +292,16 @@ public class deliveryManInterface extends javax.swing.JFrame {
         DTM.addColumn("lunch_in");
 
         for (int a = 1; a <= attdList.getNumberOfEntries(); a++) {
-            DTM.addRow(new Object[]{
-                attdList.getEntry(a).getAttendance_id(),
-                attdList.getEntry(a).getDate(),
-                attdList.getEntry(a).getTime_checkin(),
-                attdList.getEntry(a).getTime_checkout(),
-                attdList.getEntry(a).getLunch_checkout(),
-                attdList.getEntry(a).getLunch_checkin()
-            });
+            if (attdList.getEntry(a).getEmp_id() == emp.getEmp_id()) {
+                DTM.addRow(new Object[]{
+                    attdList.getEntry(a).getAttendance_id(),
+                    attdList.getEntry(a).getDate(),
+                    attdList.getEntry(a).getTime_checkin(),
+                    attdList.getEntry(a).getTime_checkout(),
+                    attdList.getEntry(a).getLunch_checkout(),
+                    attdList.getEntry(a).getLunch_checkin()
+                });
+            }
         }
         //DTM.addRow(row);
         attdTable.setModel(DTM);
@@ -149,34 +309,6 @@ public class deliveryManInterface extends javax.swing.JFrame {
 
     }
 
-    private void porpulateData() {
-        empList = new LList<employee>();
-        attdList = new LList<Attendance>();
-        emp1 = new employee(100001, "jason@mail.com", "abcd1234", "available", "890831-05-4492", "A-4-2 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-4441221","DM");
-        emp2 = new employee(100002, "jack@mail.com", "abcd1234", "offline", "890731-05-4492", "A-7-4 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-4661321","EXEC");
-        emp3 = new employee(100003, "annabelle@mail.com", "abcd1234", "available", "800831-05-4592", "A-3-6 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-8535221","DM");
-        emp4 = new employee(100004, "marie@mail.com", "abcd1234", "delivering", "990731-08-4492", "A-2-2 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-1231221","DM");
-        emp5 = new employee(100005, "lucas@mail.com", "abcd1234", "other", "790821-05-4492", "A-6-5 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-4990621","AFFT");
-        att1 = new Attendance(600001, 100001, "21/07/2017", "08:00:21", "17:03:21", "13:10:52", "13:55:13");
-        att2 = new Attendance(600002, 100002, "21/07/2017", "08:01:11", "17:13:31", "13:05:51", "14:02:11");
-        att3 = new Attendance(600003, 100001, "22/07/2017", "08:11:31", "17:23:41", "13:12:25", "14:01:12");
-        att4 = new Attendance(600004, 100002, "22/07/2017", "08:05:41", "17:02:51", "13:13:15", "14:11:33");
-        att5 = new Attendance(600005, 100001, "23/07/2017", "07:59:51", "17:01:01", "13:11:25", "14:02:23");
-        empList.add(emp1);
-        empList.add(emp2);
-        empList.add(emp3);
-        empList.add(emp4);
-        empList.add(emp5);
-        attdList.add(att1);
-        attdList.add(att2);
-        attdList.add(att3);
-        attdList.add(att4);
-        attdList.add(att5);
-    }
-
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -219,13 +351,37 @@ public class deliveryManInterface extends javax.swing.JFrame {
         this.attdList = attdList;
     }
 
-    public void testrun(){
-        
+    public void updateAttendance(Attendance att) {
+        this.att = att;
+    }
+
+    public void updateEmp(employee emp) {
+        this.emp = emp;
+    }
+    
+    public void testrun() {
+
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> CBoxZone;
     private javax.swing.JTable attdTable;
+    private javax.swing.JButton btnAccept;
+    private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnComplete;
+    private javax.swing.JButton btnDecline;
     private javax.swing.JButton btnLogout;
-    private javax.swing.JButton btnTest;
+    private javax.swing.JButton btnLunchIn;
+    private javax.swing.JButton btnLunchOut;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jtfDelAdd;
+    private javax.swing.JTextField jtfRest;
+    private javax.swing.JTextField jtfStatus;
+    private javax.swing.JLabel lblZone;
     // End of variables declaration//GEN-END:variables
 }
