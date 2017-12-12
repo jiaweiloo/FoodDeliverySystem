@@ -329,6 +329,11 @@ public class MainForm extends javax.swing.JFrame {
         attdList.add(att3);
         attdList.add(att4);
         attdList.add(att5);
+        orderList.enqueue(ord1);
+        orderList.enqueue(ord2);
+        orderList.enqueue(ord3);
+        orderList.enqueue(ord4);
+        orderList.enqueue(ord5);
     }
 
     public void startEmployeeInterface() {
