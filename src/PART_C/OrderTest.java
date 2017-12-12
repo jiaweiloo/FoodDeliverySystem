@@ -12,7 +12,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Loi Kah Hou
  */
-public class Order {
+public class OrderTest {
     String[][] data = {{"Curry Chicken", "2", "10"}, {"Curry Fish Head", "1", "20"}, {"Thai Fried Rice", "1", "10"}};
     
     public String[][] getOrderItem(){

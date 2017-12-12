@@ -90,18 +90,19 @@ public class DeleteItem extends JFrame{
     private void deleteItem(ActionEvent evt) {
             if(input.getText()==null){
                 JOptionPane.showMessageDialog(null, "Input field is required!!", "InfoBox: " + "Error!!", JOptionPane.ERROR_MESSAGE);
-            }else if(input.getText().equals("Curry Chicken")||input.getText().equals("Curry Fish Head")||input.getText().equals("Thai Fried Rice")){
+            }else if(input.getText().equals(data[0][0])||input.getText().equals(data[1][0])||input.getText().equals(data[2][0])){
                 JOptionPane.showMessageDialog(null, "Item Deleted!!", "InfoBox: " + "Item Saved!!", JOptionPane.INFORMATION_MESSAGE);
-                String[][] result=new String[data.length-1][];
+               // String[][] result=new String[data.length-1][];
                 for(int i=0;i<data.length-1;i++){
                     if(data[i][0]!=input.getText()){
-                        result[i][0]=data[i][0];
-                        result[i][1]=data[i][1];
-                        result[i][2]=data[i][2];
+                        data[i][0]=null;
+                        data[i][1]=null;
+                        data[i][2]=null;
                     }
+                    System.exit(0);
                 }
-                data=null;
-                data=result;
+               // data=null;
+               //data=result;
                 
                 
             }else{

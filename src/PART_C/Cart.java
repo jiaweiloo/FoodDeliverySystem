@@ -13,6 +13,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import entity.*;
+import adt.*;
 
 /**
  *
@@ -20,10 +22,18 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Cart extends JFrame {
 
-    Order order = new Order();
-    String[][] orderItem = order.getOrderItem();
+    OrderList ol = new OrderList("OL1", "O1", "I1", "10", "50");
+    OrderList ol1 = new OrderList("OL1", "O1", "I2", "12", "60");
+    OrderList ol2 = new OrderList("OL1", "O1", "I3", "14", "70");
+    OrderList ol3 = new OrderList("OL1", "O1", "I4", "16", "80");
+
+    Item item = new Item("I1", "Curry Laksa", "5", "R1");
+    Item item1 = new Item("I2", "Curry Ayam", "5", "R1");
+    Item item2 = new Item("I3", "Curry Ikan", "5", "R1");
+    Item item3 = new Item("I4", "Curry Manis", "5", "R1");
+
     JTable table = new JTable();
-    String[] columns = {"Item Name", "Quantity", "Amount (RM)"};
+    String[] columns = {"Item Name", "Quantity", "Unit Price (RM)", "Total (RM)"};
     JLabel jlblItemName = new JLabel();
     JLabel jlblQuantity = new JLabel();
     JLabel jlblAmount = new JLabel();
@@ -34,30 +44,53 @@ public class Cart extends JFrame {
     JPanel jpane2 = new JPanel();
     JButton jbCheckOut = new JButton("Check Out");
 
+    LList<OrderList> orderList = new LList();
+   // LinkedQueue<OrderList> backupOrderListQueue = new LinkedQueue();
+   // LinkedQueue<Item> backupItemQueue = new LinkedQueue();
+    LList<Item> itemList = new LList();
+
     public Cart() {
         setLayout(new GridLayout(2, 1));
         table = new JTable();
         model.setColumnIdentifiers(columns);
         table.setModel(model);
 
-        table.setBackground(Color.pink);
-        table.setForeground(Color.WHITE);
         Font font = new Font("Arial", Font.PLAIN, 25);
         Font btnfont = new Font("Helvetica", Font.ITALIC, 30);
         table.setFont(font);
         table.setRowHeight(30);
 
         pane = new JScrollPane(table);
-        
-     //   jpane1.setSize(new Dimension(1200,500));
-      //  jpane2.setPreferredSize(new Dimension(1200,100));
-        pane.setPreferredSize(new Dimension(1100,200));
 
-        Object[] row = new Object[3];
-        for (int i = 0; i < orderItem.length; i++) {
-            row[0] = orderItem[i][0];
-            row[1] = orderItem[i][1];
-            row[2] = orderItem[i][2];
+        //   jpane1.setSize(new Dimension(1200,500));
+        //  jpane2.setPreferredSize(new Dimension(1200,100));
+        pane.setPreferredSize(new Dimension(1100, 200));
+
+        orderList.add(ol);
+        orderList.add(ol1);
+        orderList.add(ol2);
+        orderList.add(ol3);
+        itemList.add(item);
+        itemList.add(item1);
+        itemList.add(item2);
+        itemList.add(item3);
+
+        Object[] row = new Object[4];
+
+        /* for(int a=0;a<orderListQueue.size();a++){
+            orderListQueue.dequeue();
+            orderListQueue.dequeue();
+            System.out.println(orderListQueue.dequeue().getSubTotal());
+        }*/
+        for (int a = 1; a <= orderList.getNumberOfEntries(); a++) {
+            for (int b = 1; b <= itemList.getNumberOfEntries(); b++) {
+                if (orderList.getEntry(a).getItem_id().equals(itemList.getEntry(b).getItem_id())) {
+                    row[0] = itemList.getEntry(b).getItem_name();
+                    row[1] = orderList.getEntry(a).getQuantity();
+                    row[2] = itemList.getEntry(b).getItem_price();
+                    row[3] = orderList.getEntry(a).getSubTotal();
+                }
+            }
             model.addRow(row);
         }
 
@@ -86,7 +119,7 @@ public class Cart extends JFrame {
 
         if (a >= 0) {
             model.removeRow(a);
-            String[][] newOrderItem = order.getTableData(table);
+            orderList.remove(a);
         } else {
             JOptionPane.showMessageDialog(null, "No more record!!!");
             //System.out.println(a);
@@ -96,9 +129,9 @@ public class Cart extends JFrame {
 
     private void jbtCheckOut(ActionEvent evt) {
         this.setVisible(false);
-        OrderConfirmation oc = new OrderConfirmation();
+       OrderConfirmation oc = new OrderConfirmation(orderList,itemList);
         oc.setTitle("Cart");
-        oc.setSize(800, 500);
+        oc.setSize(1200, 600);
         oc.setLocationRelativeTo(null);
         oc.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         oc.setVisible(true);
