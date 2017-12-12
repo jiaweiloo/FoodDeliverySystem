@@ -325,9 +325,9 @@ public class MainForm extends javax.swing.JFrame {
     }
 
     public void startEmployeeInterface() {
-        employeeInt empInt = new employeeInt(empList, attdList);
-        empInt.setVisible(true);
-        empInt.PreviousFrame(this);
+        deliveryManInterface DMI = new deliveryManInterface(empList, attdList);
+        DMI.setVisible(true);
+        DMI.PreviousFrame(this);
         //empInt.updateList(empList, attdList);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
