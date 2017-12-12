@@ -57,7 +57,7 @@
                       <Component id="jtfTime" min="-2" pref="230" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="116" max="32767" attributes="0"/>
+              <EmptySpace pref="130" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -85,7 +85,7 @@
                   <Component id="btnFgtPw" alignment="2" min="-2" max="-2" attributes="0"/>
                   <Component id="btnCancel" alignment="2" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="147" max="32767" attributes="0"/>
+              <EmptySpace pref="171" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

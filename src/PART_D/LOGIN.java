@@ -121,7 +121,7 @@ public class LOGIN extends javax.swing.JFrame {
                         .addComponent(lblTime)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jtfTime, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(116, Short.MAX_VALUE))
+                .addContainerGap(130, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnCancel, btnFgtPw, btnLogin});
@@ -146,7 +146,7 @@ public class LOGIN extends javax.swing.JFrame {
                     .addComponent(btnLogin)
                     .addComponent(btnFgtPw)
                     .addComponent(btnCancel))
-                .addContainerGap(147, Short.MAX_VALUE))
+                .addContainerGap(171, Short.MAX_VALUE))
         );
 
         jLabel1.getAccessibleContext().setAccessibleName("Email: ");
@@ -174,14 +174,9 @@ public class LOGIN extends javax.swing.JFrame {
                 //JOptionPane.showMessageDialog(null, "Attendance updated!" + Integer.toString(attiddd) + "date: " + att.getDate());
 
                 //open employee interface
-                employeeInt empInt = new employeeInt();
-                empInt.setVisible(true);
-
-                empInt.PreviousFrame(mainform);
-                empInt.updateList(empList, attdList);
+                mainform.startEmployeeInterface();
                 this.setVisible(false);
                 this.dispose();
-
                 break;
             }
         }
