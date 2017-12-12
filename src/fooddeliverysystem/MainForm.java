@@ -16,8 +16,10 @@ public class MainForm extends javax.swing.JFrame {
 
     ListInterface<employee> empList = new LList<employee>();
     ListInterface<Attendance> attdList = new LList<Attendance>();
+    LinkedQueue<Order> orderList = new LinkedQueue<Order>();
     employee emp, emp1, emp2, emp3, emp4, emp5;
     Attendance att, att1, att2, att3, att4, att5;
+    Order ord, ord1, ord2, ord3, ord4, ord5;
     SimpleDateFormat timeOnly = new SimpleDateFormat("hh:mm:ss");
     SimpleDateFormat dateOnly = new SimpleDateFormat("dd/MM/yyyy");
 
@@ -232,8 +234,8 @@ public class MainForm extends javax.swing.JFrame {
             emp = empList.getEntry(a);
             //verified email and password
             if (emp.getEmail().equals(jtfEmail.getText()) && emp.getPassword().equals(jpfPassword.getText())) {
-                Attendance att = new Attendance(attdList.getEntry(attdList.getNumberOfEntries()).getAttendance_id() + 1,
-                        emp.getEmp_id(), dateOnly.format(new Date()), "07:59:51", "17:01:01", "13:11:25", "14:02:23");
+                att = new Attendance(attdList.getEntry(attdList.getNumberOfEntries()).getAttendance_id() + 1,
+                        emp.getEmp_id(), dateOnly.format(new Date()), timeOnly.format(new Date()), "00:00:00", "00:00:00", "00:00:00");
                 attdList.add(att);
 
                 success = true;
@@ -242,7 +244,7 @@ public class MainForm extends javax.swing.JFrame {
                 success = false;
             }
         }
-        
+
         if (!success) {
             JOptionPane.showMessageDialog(null, "Verified fail! Please try again");
         } else {
@@ -312,6 +314,11 @@ public class MainForm extends javax.swing.JFrame {
         att3 = new Attendance(600003, 100001, "22/07/2017", "08:11:31", "17:23:41", "13:12:25", "14:01:12");
         att4 = new Attendance(600004, 100002, "22/07/2017", "08:05:41", "17:02:51", "13:13:15", "14:11:33");
         att5 = new Attendance(600005, 100001, "23/07/2017", "07:59:51", "17:01:01", "13:11:25", "14:02:23");
+        ord1 = new Order();
+        ord2 = new Order();
+        ord3 = new Order();
+        ord4 = new Order();
+        ord5 = new Order();
         empList.add(emp1);
         empList.add(emp2);
         empList.add(emp3);
@@ -325,11 +332,19 @@ public class MainForm extends javax.swing.JFrame {
     }
 
     public void startEmployeeInterface() {
-        deliveryManInterface DMI = new deliveryManInterface(empList, attdList);
+        deliveryManInterface DMI = new deliveryManInterface(empList, attdList, emp);
+        DMI.updateAttendance(att);
+        //DMI.updateEmp(emp);
         DMI.setVisible(true);
         DMI.PreviousFrame(this);
         //empInt.updateList(empList, attdList);
     }
+
+    public void returnAtt(Attendance att) {
+        this.att = att;
+        attdList.replace(attdList.getNumberOfEntries(), att);
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnFgtPw;
