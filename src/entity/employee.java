@@ -11,7 +11,7 @@ package entity;
  */
 public class employee {
 
-    String emp_id;
+    int emp_id;
     String email;
     String password;
     String status;
@@ -20,16 +20,9 @@ public class employee {
     String phone_num;
 
     public employee() {
-        this.emp_id = null;
-        this.email = null;
-        this.password = null;
-        this.status = null;
-        this.ic_number = null;
-        this.address = null;
-        this.phone_num = null;
     }
 
-    public employee(String emp_id, String email, String password, String status, String ic_number, String address, String phone_num) {
+    public employee(int emp_id, String email, String password, String status, String ic_number, String address, String phone_num) {
         this.emp_id = emp_id;
         this.email = email;
         this.password = password;
@@ -39,11 +32,11 @@ public class employee {
         this.phone_num = phone_num;
     }
 
-    public String getEmp_id() {
+    public int getEmp_id() {
         return emp_id;
     }
 
-    public void setEmp_id(String emp_id) {
+    public void setEmp_id(int emp_id) {
         this.emp_id = emp_id;
     }
 
@@ -95,4 +88,5 @@ public class employee {
         this.phone_num = phone_num;
     }
 
+    
 }

@@ -5,10 +5,14 @@
  */
 package PART_D;
 
+import adt.ListInterface;
+import entity.*;
 import fooddeliverysystem.MainForm;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
 /**
@@ -17,7 +21,12 @@ import javax.swing.Timer;
  */
 public class LOGIN extends javax.swing.JFrame {
 
+    SimpleDateFormat timeOnly = new SimpleDateFormat("hh:mm:ss");
+    SimpleDateFormat dateOnly = new SimpleDateFormat("dd/MM/yyyy");
+    ListInterface<employee> empList;
+    ListInterface<Attendance> attdList;
     MainForm mainform;
+    employee emp;
 
     /**
      * Creates new form LOGIN
@@ -59,6 +68,10 @@ public class LOGIN extends javax.swing.JFrame {
 
         lblPassword.setLabelFor(jpfPassword);
         lblPassword.setText("Password:");
+
+        jtfEmail.setText("jason@mail.com");
+
+        jpfPassword.setText("abcd1234");
 
         btnLogin.setText("Login");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -108,7 +121,7 @@ public class LOGIN extends javax.swing.JFrame {
                         .addComponent(lblTime)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jtfTime, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(130, Short.MAX_VALUE))
+                .addContainerGap(116, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnCancel, btnFgtPw, btnLogin});
@@ -133,7 +146,7 @@ public class LOGIN extends javax.swing.JFrame {
                     .addComponent(btnLogin)
                     .addComponent(btnFgtPw)
                     .addComponent(btnCancel))
-                .addContainerGap(121, Short.MAX_VALUE))
+                .addContainerGap(147, Short.MAX_VALUE))
         );
 
         jLabel1.getAccessibleContext().setAccessibleName("Email: ");
@@ -149,6 +162,29 @@ public class LOGIN extends javax.swing.JFrame {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
+        //Loop and get everything in mylist and compare the object in the list with the textbox field
+        for (int a = 1; a < empList.getNumberOfEntries(); a++) {
+            emp = empList.getEntry(a);
+            //verified email and password
+            if (emp.getEmail().equals(jtfEmail.getText()) && emp.getPassword().equals(jpfPassword.getText())) {
+                JOptionPane.showMessageDialog(null, "User success verified! " + emp.getEmail());
+                Attendance att = new Attendance(attdList.getEntry(attdList.getNumberOfEntries()).getAttendance_id() + 1, emp.getEmp_id(), dateOnly.format(new Date()), "07:59:51", "17:01:01", "13:11:25", "14:02:23");
+                attdList.add(att);
+                //int attiddd = attdList.getEntry(attdList.getNumberOfEntries()).getAttendance_id();
+                //JOptionPane.showMessageDialog(null, "Attendance updated!" + Integer.toString(attiddd) + "date: " + att.getDate());
+
+                //open employee interface
+                employeeInt empInt = new employeeInt();
+                empInt.setVisible(true);
+
+                empInt.PreviousFrame(mainform);
+                empInt.updateList(empList, attdList);
+                this.setVisible(false);
+                this.dispose();
+
+                break;
+            }
+        }
 
     }//GEN-LAST:event_btnLoginActionPerformed
 
@@ -159,6 +195,11 @@ public class LOGIN extends javax.swing.JFrame {
 
     public void PreviousFrame(MainForm mainform) {
         this.mainform = mainform;
+    }
+
+    public void updateEmployee(ListInterface<employee> empList, ListInterface<Attendance> attdList) {
+        this.empList = empList;
+        this.attdList = attdList;
     }
 
     /**
@@ -197,11 +238,11 @@ public class LOGIN extends javax.swing.JFrame {
         });
 
         //Run the clock
-        int interval = 1000; // 1000 ms
-
+        int interval = 1000; // 1000 ms        
         new Timer(interval, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                //jtfTime.setText(ft.format(new Date()) + "");
                 jtfTime.setText(new Date().toString() + "");
             }
         }).start();

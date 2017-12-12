@@ -19,15 +19,15 @@ import javax.swing.Timer;
  *
  * @author jiaweiloo
  */
-public class Attendance extends javax.swing.JFrame {
+public class AttendanceV1 extends javax.swing.JFrame {
 
     /**
-     * Creates new form Attendance
+     * Creates new form AttendanceV1
      */
     public String currentEMP = "";
     public boolean status = false;
 
-    public Attendance() {
+    public AttendanceV1() {
         initComponents();
     }
 
@@ -184,7 +184,6 @@ public class Attendance extends javax.swing.JFrame {
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
-        btnExit.setActionCommand("");
         btnExit.setLabel("Exit");
         btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -363,17 +362,17 @@ public class Attendance extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Attendance.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AttendanceV1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Attendance.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AttendanceV1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Attendance.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AttendanceV1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Attendance.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AttendanceV1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
-        Attendance att = new Attendance();
+        AttendanceV1 att = new AttendanceV1();
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
 
