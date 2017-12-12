@@ -15,13 +15,17 @@ import javax.swing.table.DefaultTableModel;
 public class employeeInt extends javax.swing.JFrame {
 
     MainForm mainform;
-    ListInterface<employee> empList ;
-    ListInterface<Attendance> attdList ;
+    ListInterface<employee> empList;
+    ListInterface<Attendance> attdList;
+    employee emp1, emp2, emp3, emp4, emp5;
+    Attendance att1, att2, att3, att4, att5;
+
     /**
      * Creates new form employeeInt
      */
     public employeeInt() {
         initComponents();
+        //porpulateData();
         updateTable();
     }
 
@@ -37,6 +41,7 @@ public class employeeInt extends javax.swing.JFrame {
         btnLogout = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         attdTable = new javax.swing.JTable();
+        btnTest = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,19 +76,30 @@ public class employeeInt extends javax.swing.JFrame {
             attdTable.getColumnModel().getColumn(5).setHeaderValue("lunch_clockin");
         }
 
+        btnTest.setText("test");
+        btnTest.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTestActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(619, Short.MAX_VALUE)
+                .addGap(136, 136, 136)
+                .addComponent(btnTest)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnLogout))
-            .addComponent(jScrollPane1)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 684, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(btnLogout)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnLogout)
+                    .addComponent(btnTest))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
                 .addContainerGap())
@@ -92,30 +108,60 @@ public class employeeInt extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTestActionPerformed
+        // TODO add your handling code here:
+        System.out.println(attdList.getEntry(1).getAttendance_id());
+    }//GEN-LAST:event_btnTestActionPerformed
+
     private void updateTable() {
         //for (int count = 1; count <= 10; count++) {
-            DefaultTableModel DTM = new DefaultTableModel();
-            DTM.addColumn("ID");
-            DTM.addColumn("Date");
-            DTM.addColumn("ClockIn");
-            DTM.addColumn("Clockout");
-            DTM.addColumn("lunch_out");
-            DTM.addColumn("lunch_in");
+        DefaultTableModel DTM = new DefaultTableModel();
+        DTM.addColumn("ID");
+        DTM.addColumn("Date");
+        DTM.addColumn("ClockIn");
+        DTM.addColumn("Clockout");
+        DTM.addColumn("lunch_out");
+        DTM.addColumn("lunch_in");
 
-            for (int a = 1; a <= attdList.getNumberOfEntries(); a++) {
-                DTM.addRow(new Object[]{
-                    attdList.getEntry(a).getAttendance_id(),
-                    attdList.getEntry(a).getDate(),
-                    attdList.getEntry(a).getTime_checkin(),
-                    attdList.getEntry(a).getTime_checkout(),
-                    attdList.getEntry(a).getLunch_checkout(),
-                    attdList.getEntry(a).getLunch_checkin()
-                });
-            }
-            //DTM.addRow(row);
-            attdTable.setModel(DTM);
+        for (int a = 1; a <= attdList.getNumberOfEntries(); a++) {
+            DTM.addRow(new Object[]{
+                attdList.getEntry(a).getAttendance_id(),
+                attdList.getEntry(a).getDate(),
+                attdList.getEntry(a).getTime_checkin(),
+                attdList.getEntry(a).getTime_checkout(),
+                attdList.getEntry(a).getLunch_checkout(),
+                attdList.getEntry(a).getLunch_checkin()
+            });
+        }
+        //DTM.addRow(row);
+        attdTable.setModel(DTM);
         //}
 
+    }
+
+    private void porpulateData() {
+        empList = new LList<employee>();
+        attdList = new LList<Attendance>();
+        emp1 = new employee(100001, "jason@mail.com", "abcd1234", "available", "890831-05-4492", "A-4-2 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-4441221");
+        emp2 = new employee(100002, "jack@mail.com", "abcd1234", "offline", "890731-05-4492", "A-7-4 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-4661321");
+        emp3 = new employee(100003, "annabelle@mail.com", "abcd1234", "available", "800831-05-4592", "A-3-6 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-8535221");
+        emp4 = new employee(100004, "marie@mail.com", "abcd1234", "delivering", "990731-08-4492", "A-2-2 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-1231221");
+        emp5 = new employee(100005, "lucas@mail.com", "abcd1234", "available", "790821-05-4492", "A-6-5 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-4990621");
+        att1 = new Attendance(600001, 100001, "21/07/2017", "08:00:21", "17:03:21", "13:10:52", "13:55:13");
+        att2 = new Attendance(600002, 100002, "21/07/2017", "08:01:11", "17:13:31", "13:05:51", "14:02:11");
+        att3 = new Attendance(600003, 100001, "22/07/2017", "08:11:31", "17:23:41", "13:12:25", "14:01:12");
+        att4 = new Attendance(600004, 100002, "22/07/2017", "08:05:41", "17:02:51", "13:13:15", "14:11:33");
+        att5 = new Attendance(600005, 100001, "23/07/2017", "07:59:51", "17:01:01", "13:11:25", "14:02:23");
+        empList.add(emp1);
+        empList.add(emp2);
+        empList.add(emp3);
+        empList.add(emp4);
+        empList.add(emp5);
+        attdList.add(att1);
+        attdList.add(att2);
+        attdList.add(att3);
+        attdList.add(att4);
+        attdList.add(att5);
     }
 
     /**
@@ -165,6 +211,7 @@ public class employeeInt extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable attdTable;
     private javax.swing.JButton btnLogout;
+    private javax.swing.JButton btnTest;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
