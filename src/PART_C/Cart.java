@@ -22,15 +22,15 @@ import adt.*;
  */
 public class Cart extends JFrame {
 
-    OrderList ol = new OrderList("OL1", "O1", "I1", "10", "50");
-    OrderList ol1 = new OrderList("OL1", "O1", "I2", "12", "60");
-    OrderList ol2 = new OrderList("OL1", "O1", "I3", "14", "70");
-    OrderList ol3 = new OrderList("OL1", "O1", "I4", "16", "80");
+    OrderList ol = new OrderList(401, 301, 201, "10", "50");
+    OrderList ol1 = new OrderList(402, 301, 202, "12", "60");
+    OrderList ol2 = new OrderList(403, 301, 203, "14", "70");
+    OrderList ol3 = new OrderList(404, 301, 204, "16", "80");
 
-    Item item = new Item("I1", "Curry Laksa", "5", "R1");
-    Item item1 = new Item("I2", "Curry Ayam", "5", "R1");
-    Item item2 = new Item("I3", "Curry Ikan", "5", "R1");
-    Item item3 = new Item("I4", "Curry Manis", "5", "R1");
+    Item item = new Item(201, "Curry Laksa", "5", 101);
+    Item item1 = new Item(202, "Curry Ayam", "5", 101);
+    Item item2 = new Item(203, "Curry Ikan", "5", 101);
+    Item item3 = new Item(204, "Curry Manis", "5", 101);
 
     JTable table = new JTable();
     String[] columns = {"Item Name", "Quantity", "Unit Price (RM)", "Total (RM)"};
@@ -84,7 +84,7 @@ public class Cart extends JFrame {
         }*/
         for (int a = 1; a <= orderList.getNumberOfEntries(); a++) {
             for (int b = 1; b <= itemList.getNumberOfEntries(); b++) {
-                if (orderList.getEntry(a).getItem_id().equals(itemList.getEntry(b).getItem_id())) {
+                if (orderList.getEntry(a).getItem_id()==itemList.getEntry(b).getItem_id()) {
                     row[0] = itemList.getEntry(b).getItem_name();
                     row[1] = orderList.getEntry(a).getQuantity();
                     row[2] = itemList.getEntry(b).getItem_price();
@@ -119,7 +119,7 @@ public class Cart extends JFrame {
 
         if (a >= 0) {
             model.removeRow(a);
-            orderList.remove(a);
+            orderList.remove(a+1);
         } else {
             JOptionPane.showMessageDialog(null, "No more record!!!");
             //System.out.println(a);

@@ -17,17 +17,17 @@ import java.awt.event.*;
 
 public class SelectRestaurant2 extends JFrame {
 
-    Affiliate aff0 = new Affiliate("R1", "Thai Boy Restaurant", "123, Jalan Genting Klang, 53300 setapak, Kuala Lumpur", "Loo Jia Wei", "0123456789", "Genting Klang");
-    Affiliate aff1 = new Affiliate("R2", "Curry Chicken", "123, Jalan Genting Klang, 53300 setapak, Kuala Lumpur", "Loo Jia Wei", "0123456789", "Genting Klang");
-    Affiliate aff2 = new Affiliate("R3", "The Taste", "123, Jalan Genting Klang, 53300 setapak, Kuala Lumpur", "Loo Jia Wei", "0123456789", "Genting Klang");
-    Affiliate aff3 = new Affiliate("R4", "Nasi Putih", "123, Jalan Genting Klang, 53300 setapak, Kuala Lumpur", "Loo Jia Wei", "0123456789", "Genting Klang");
-    
-    Item item0 = new Item("I1","Curry Laksa","5","R1");
-    Item item1 = new Item("I2","Curry Ayam","5","R1");
-    Item item2 = new Item("I3","Curry Ikan","5","R1");
-    Item item3 = new Item("I4","Curry Babi","5","R2");
-    Item item4 = new Item("I5","Curry Kosong","5","R2");
-    Item item5 = new Item("I6","Curry Manis","5","R2");
+    Affiliate aff0 = new Affiliate(101, "Thai Boy Restaurant", "123, Jalan Genting Klang, 53300 setapak, Kuala Lumpur", "Loo Jia Wei", "0123456789", "Genting Klang");
+    Affiliate aff1 = new Affiliate(102, "Curry Chicken", "123, Jalan Genting Klang, 53300 setapak, Kuala Lumpur", "Loo Jia Wei", "0123456789", "Genting Klang");
+    Affiliate aff2 = new Affiliate(103, "The Taste", "123, Jalan Genting Klang, 53300 setapak, Kuala Lumpur", "Loo Jia Wei", "0123456789", "Genting Klang");
+    Affiliate aff3 = new Affiliate(104, "Nasi Putih", "123, Jalan Genting Klang, 53300 setapak, Kuala Lumpur", "Loo Jia Wei", "0123456789", "Genting Klang");
+
+    Item item0 = new Item(201, "Curry Laksa", "5", 101);
+    Item item1 = new Item(202, "Curry Ayam", "5", 101);
+    Item item2 = new Item(203, "Curry Ikan", "5", 101);
+    Item item3 = new Item(204, "Curry Babi", "5", 102);
+    Item item4 = new Item(205, "Curry Kosong", "5", 102);
+    Item item5 = new Item(206, "Curry Manis", "5", 102);
 
     LinkedQueue<Affiliate> restQueue = new LinkedQueue();
     LinkedQueue<Affiliate> backupRestQueue = new LinkedQueue();
@@ -51,7 +51,13 @@ public class SelectRestaurant2 extends JFrame {
         itemQueue.enqueue(item3);
         itemQueue.enqueue(item4);
         itemQueue.enqueue(item5);
-        
+
+        /*System.out.println(restQueue.size());
+        for(int a=0;a<restQueue.size();a++){
+        System.out.println(restQueue.dequeue().getAffiliate_id());
+        a--;
+        }*/
+
         setTitle("Select Restaurant");
         jPanel = new JPanel(new GridLayout(restQueue.size(), 1));
         //jScrollPane.setPreferredSize(new Dimension(1200,600));
@@ -59,7 +65,6 @@ public class SelectRestaurant2 extends JFrame {
         // setLayout(new GridLayout(restQueue.size(), 1));
         for (int a = 0; a < restQueue.size(); a++) {
             Affiliate b = (Affiliate) restQueue.getFront();
-            backupRestQueue.enqueue(restQueue.dequeue());
             jbtRest = new JButton(b.getRest_name());
             jbtRest.setPreferredSize(new Dimension(0, 100));
 
@@ -70,6 +75,8 @@ public class SelectRestaurant2 extends JFrame {
             });
 
             jPanel.add(jbtRest);
+            backupRestQueue.enqueue(restQueue.dequeue());
+            a--;
         }
         jScrollPane = new JScrollPane(jPanel);
         add(jScrollPane);
@@ -78,14 +85,14 @@ public class SelectRestaurant2 extends JFrame {
         }
     }
 
-    private void jbtRest(ActionEvent e,String restID) {
+    private void jbtRest(ActionEvent e,int restID) {
         // TODO add your handling code here:
         LinkedQueue<Item> correctMenuItem = new LinkedQueue();
         this.dispose();
         for(int a=0;a<itemQueue.size();a++){
             Item tempItem = itemQueue.getFront();
             backupItemQueue.enqueue(itemQueue.dequeue());
-            if(tempItem.getRest_id().equals(restID)){
+            if(tempItem.getRest_id()==restID){
                 correctMenuItem.enqueue(tempItem);
             }
         }

@@ -17,9 +17,10 @@ public class OrderList {
     String quantity;
     String subTotal;
 
+
+
     public OrderList() {
     }
-
     public OrderList(int orderList_id, int order_id, int item_id, String quantity, String subTotal) {
         this.orderList_id = orderList_id;
         this.order_id = order_id;
