@@ -20,12 +20,12 @@ public class arrangementCtrl {
             ord = orderQueue.getFront();
 
             for (int count = 1; count < orderQueue.size(); count++) {
-                if (ord.getRestaurant_id().equals(orderQueue.getFront().getRestaurant_id())) {
+                if (ord.getRestaurant_id() == orderQueue.getFront().getRestaurant_id()) {
                     orderQueue2.enqueue(orderQueue.dequeue());
                 } else {
                     orderQueue.enqueue(orderQueue.dequeue());
                 }
-                
+
             } //end of for loop
         }//end of while loop
         //put everything in orderQueue

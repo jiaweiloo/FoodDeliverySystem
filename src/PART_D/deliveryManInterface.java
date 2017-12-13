@@ -293,8 +293,8 @@ public class deliveryManInterface extends javax.swing.JFrame {
 
     private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
         // TODO add your handling code here:
-        if(CBoxZone.getSelectedItem().toString().equals("AA1")){
-            
+        if (CBoxZone.getSelectedItem().toString().equals("AA1")) {
+
         }
     }//GEN-LAST:event_btnRefreshActionPerformed
 
@@ -355,7 +355,7 @@ public class deliveryManInterface extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new deliveryManInterface().setVisible(true);
-                
+
             }
         });
     }
@@ -376,12 +376,14 @@ public class deliveryManInterface extends javax.swing.JFrame {
     public void updateEmp(employee emp) {
         this.emp = emp;
     }
-    
+
     public void reSorting() {
         ord = orderQueue.dequeue();
-        if(ord.getRestaurant_id().equals("AA1")){
+        /*
+        if(ord.getRestaurant_id() == 000001)){
             orderList.add(ord);
         }
+         */
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> CBoxZone;
