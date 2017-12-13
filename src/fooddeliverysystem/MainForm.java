@@ -340,7 +340,7 @@ public class MainForm extends javax.swing.JFrame {
     }
 
     public void startEmployeeInterface() {
-        deliveryManInterface DMI = new deliveryManInterface(empList, attdList, emp);
+        deliveryManInterface DMI = new deliveryManInterface(empList, attdList, emp, orderList);
         DMI.updateAttendance(att);
         //DMI.updateEmp(emp);
         DMI.setVisible(true);
