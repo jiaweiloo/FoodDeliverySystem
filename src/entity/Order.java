@@ -16,7 +16,7 @@ public class Order {
     String cust_phone;
     String cust_email;
     String cust_deliveryAddress;
-    String restaurant_id;
+    int restaurant_id;
     String total_amount;
     String total_item;
     String current_status;
@@ -24,7 +24,7 @@ public class Order {
     public Order() {
     }
 
-    public Order(int order_id, String cust_name, String cust_phone, String cust_email, String cust_deliveryAddress, String restaurant_id, String total_amount, String total_item, String current_status) {
+    public Order(int order_id, String cust_name, String cust_phone, String cust_email, String cust_deliveryAddress, int restaurant_id, String total_amount, String total_item, String current_status) {
         this.order_id = order_id;
         this.cust_name = cust_name;
         this.cust_phone = cust_phone;
@@ -76,11 +76,11 @@ public class Order {
         this.cust_deliveryAddress = cust_deliveryAddress;
     }
 
-    public String getRestaurant_id() {
+    public int getRestaurant_id() {
         return restaurant_id;
     }
 
-    public void setRestaurant_id(String restaurant_id) {
+    public void setRestaurant_id(int restaurant_id) {
         this.restaurant_id = restaurant_id;
     }
 
