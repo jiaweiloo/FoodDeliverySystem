@@ -11,13 +11,16 @@ package entity;
  */
 public class OrderList {
 
-    String orderList_id;
-    String order_id;
-    String item_id;
+    int orderList_id;
+    int order_id;
+    int item_id;
     String quantity;
     String subTotal;
 
-    public OrderList(String orderList_id, String order_id, String item_id, String quantity, String subTotal) {
+    public OrderList() {
+    }
+
+    public OrderList(int orderList_id, int order_id, int item_id, String quantity, String subTotal) {
         this.orderList_id = orderList_id;
         this.order_id = order_id;
         this.item_id = item_id;
@@ -25,27 +28,27 @@ public class OrderList {
         this.subTotal = subTotal;
     }
 
-    public String getOrderList_id() {
+    public int getOrderList_id() {
         return orderList_id;
     }
 
-    public void setOrderList_id(String orderList_id) {
+    public void setOrderList_id(int orderList_id) {
         this.orderList_id = orderList_id;
     }
 
-    public String getOrder_id() {
+    public int getOrder_id() {
         return order_id;
     }
 
-    public void setOrder_id(String order_id) {
+    public void setOrder_id(int order_id) {
         this.order_id = order_id;
     }
 
-    public String getItem_id() {
+    public int getItem_id() {
         return item_id;
     }
 
-    public void setItem_id(String item_id) {
+    public void setItem_id(int item_id) {
         this.item_id = item_id;
     }
 
@@ -64,5 +67,7 @@ public class OrderList {
     public void setSubTotal(String subTotal) {
         this.subTotal = subTotal;
     }
+
+    
 
 }
