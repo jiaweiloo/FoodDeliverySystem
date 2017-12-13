@@ -17,14 +17,14 @@ public class Order {
     String cust_email;
     String cust_deliveryAddress;
     int restaurant_id;
-    String total_amount;
-    String total_item;
+    double total_amount;
+    int total_item;
     String current_status;
 
     public Order() {
     }
 
-    public Order(int order_id, String cust_name, String cust_phone, String cust_email, String cust_deliveryAddress, int restaurant_id, String total_amount, String total_item, String current_status) {
+    public Order(int order_id, String cust_name, String cust_phone, String cust_email, String cust_deliveryAddress, int restaurant_id, double total_amount, int total_item, String current_status) {
         this.order_id = order_id;
         this.cust_name = cust_name;
         this.cust_phone = cust_phone;
@@ -84,19 +84,19 @@ public class Order {
         this.restaurant_id = restaurant_id;
     }
 
-    public String getTotal_amount() {
+    public double getTotal_amount() {
         return total_amount;
     }
 
-    public void setTotal_amount(String total_amount) {
+    public void setTotal_amount(double total_amount) {
         this.total_amount = total_amount;
     }
 
-    public String getTotal_item() {
+    public int getTotal_item() {
         return total_item;
     }
 
-    public void setTotal_item(String total_item) {
+    public void setTotal_item(int total_item) {
         this.total_item = total_item;
     }
 
@@ -109,7 +109,4 @@ public class Order {
     }
     
     
-    
-    
-
 }
