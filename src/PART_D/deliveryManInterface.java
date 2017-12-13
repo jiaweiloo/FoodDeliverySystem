@@ -5,7 +5,7 @@ import entity.*;
 import fooddeliverysystem.MainForm;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -25,7 +25,9 @@ public class deliveryManInterface extends javax.swing.JFrame {
     Attendance att, att1, att2, att3, att4, att5;
     Order ord;
     SimpleDateFormat timeOnly = new SimpleDateFormat("hh:mm:ss");
-int complete = 0;
+    boolean cont = true;
+    int complete = 0;
+
     /**
      * Creates new form employeeInt
      */
@@ -59,7 +61,7 @@ int complete = 0;
         attdTable = new javax.swing.JTable();
         btnLunchOut = new javax.swing.JButton();
         lblZone = new javax.swing.JLabel();
-        CBoxZone = new javax.swing.JComboBox<String>();
+        CBoxZone = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jtfDelAdd = new javax.swing.JTextField();
@@ -77,6 +79,8 @@ int complete = 0;
         btnRefresh = new javax.swing.JButton();
         lblName = new javax.swing.JLabel();
         jtfCustName = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jtfContinueStatus = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -125,7 +129,7 @@ int complete = 0;
 
         lblZone.setText("Current Zone :");
 
-        CBoxZone.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AA1", "AA2", "AA3", "AA4", "AA5" }));
+        CBoxZone.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AA1", "AA2", "AA3", "AA4", "AA5" }));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Next Job");
@@ -172,7 +176,7 @@ int complete = 0;
         jLabel5.setText("Current Status :");
 
         jtfStatus.setEditable(false);
-        jtfStatus.setText("offline");
+        jtfStatus.setText("BREAK");
 
         btnCancel.setText("Cancel");
 
@@ -196,6 +200,11 @@ int complete = 0;
         jtfCustName.setEditable(false);
         jtfCustName.setText("None");
 
+        jLabel6.setText("Continue Status:");
+
+        jtfContinueStatus.setEditable(false);
+        jtfContinueStatus.setText("true");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -213,23 +222,10 @@ int complete = 0;
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblZone)
-                                .addGap(55, 55, 55)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(CBoxZone, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-                                        .addComponent(btnRefresh))
-                                    .addComponent(jtfStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(jtfFinish, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel2)
                                     .addComponent(jLabel3))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jtfRestrt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jtfDelAdd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -240,17 +236,36 @@ int complete = 0;
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jtfCustName))
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnAccept, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnBreak, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(17, 17, 17)
+                                .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnComplete)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btnAccept, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btnBreak, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(17, 17, 17)
-                                        .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btnComplete)))
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                        .addComponent(lblZone)
+                                        .addGap(55, 55, 55)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(CBoxZone, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
+                                                .addComponent(btnRefresh))
+                                            .addComponent(jtfStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel5)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jtfFinish, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                                    .addComponent(jtfContinueStatus))))
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -273,9 +288,14 @@ int complete = 0;
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
                             .addComponent(jtfStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jtfFinish, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel4)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jtfFinish, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(jtfContinueStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(3, 3, 3)
@@ -317,10 +337,14 @@ int complete = 0;
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         // TODO add your handling code here:
-        att.setTime_checkout(timeOnly.format(new Date()));
-        mainform.returnAtt(att);
-        mainform.setVisible(true);
-        this.dispose();
+        if (jtfStatus.getText().equals("BREAK")) {
+            att.setTime_checkout(timeOnly.format(new Date()));
+            mainform.returnAtt(att);
+            mainform.setVisible(true);
+            this.dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "LOGOUT FAIL PLEASE CHANGE STATUS TO BREAK AND COMPLETE DELIVERY BEFORE LOGGING OUT");
+        }
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
@@ -336,9 +360,12 @@ int complete = 0;
 
     private void btnBreakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBreakActionPerformed
         // TODO add your handling code here:
-        
-        btnCancel.setEnabled(true);
+
+        //btnCancel.setEnabled(true);
+        cont = false;
         btnAccept.setEnabled(true);
+        jtfContinueStatus.setText(Boolean.toString(cont));
+        /*
         orderQueue.enqueue(ord);
         orderQueue.dequeue();
         if (!orderQueue.isEmpty()) {
@@ -347,37 +374,57 @@ int complete = 0;
             jtfCustName.setText(ord.getCust_name());
             jtfDelAdd.setText(ord.getCust_deliveryAddress());
             jtfRestrt.setText(Integer.toString(ord.getRestaurant_id()));
-        }else{
+        } else {
             jtfStatus.setText("ACTIVE");
             jtfCustName.setText("NOT AVAILABLE! ");
             jtfDelAdd.setText("NONE");
             jtfRestrt.setText("NONE");
         }
+         */
     }//GEN-LAST:event_btnBreakActionPerformed
 
     private void btnAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptActionPerformed
         // TODO add your handling code here:
-        orderQueue.dequeue();
+        cont = true;
+        //orderQueue.dequeue();
         btnCancel.setEnabled(false);
         btnAccept.setEnabled(false);
+        btnComplete.setEnabled(true);
+        btnBreak.setEnabled(true);
+        mainform.employeeID.enqueue(emp.getEmp_id());
+        jtfContinueStatus.setText(Boolean.toString(cont));
     }//GEN-LAST:event_btnAcceptActionPerformed
 
     private void btnCompleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteActionPerformed
         // TODO add your handling code here:
-        btnCancel.setEnabled(true);
-        btnAccept.setEnabled(true);        
+        //btnCancel.setEnabled(true);
+        //btnAccept.setEnabled(true);
+        if (cont == true) {
+            mainform.employeeID.enqueue(emp.getEmp_id());
+            jtfStatus.setText("ACTIVE");
+            jtfCustName.setText("CHANGE STATUS TO AVAILABLE TO ACCEPT CUSTOMER!");
+            jtfDelAdd.setText("NOT AVAILABLE");
+            jtfRestrt.setText("NOT AVAILABLE");
+        } else {
+            jtfStatus.setText("BREAK");
+            jtfCustName.setText("CHANGE STATUS TO AVAILABLE TO ACCEPT CUSTOMER!");
+            jtfDelAdd.setText("NOT AVAILABLE");
+            jtfRestrt.setText("NOT AVAILABLE");
+        }
+        /*
         if (!orderQueue.isEmpty()) {
             ord = orderQueue.dequeue();
             jtfStatus.setText("ACTIVE");
             jtfCustName.setText(ord.getCust_name());
             jtfDelAdd.setText(ord.getCust_deliveryAddress());
             jtfRestrt.setText(Integer.toString(ord.getRestaurant_id()));
-        }else{
+        } else {
             jtfStatus.setText("ACTIVE");
             jtfCustName.setText("NOT AVAILABLE! ");
             jtfDelAdd.setText("NONE");
             jtfRestrt.setText("NONE");
         }
+         */
         complete++;
         jtfFinish.setText(Integer.toString(complete));
     }//GEN-LAST:event_btnCompleteActionPerformed
@@ -461,6 +508,14 @@ int complete = 0;
         this.emp = emp;
     }
 
+    public void nextOrder(Order ord) {
+        this.ord = ord;
+        jtfStatus.setText("ACTIVE");
+        jtfCustName.setText(ord.getCust_name());
+        jtfDelAdd.setText(ord.getCust_deliveryAddress());
+        jtfRestrt.setText(Integer.toString(ord.getRestaurant_id()));
+    }
+
     public void reSorting() {
         ord = orderQueue.dequeue();
         /*
@@ -485,7 +540,9 @@ int complete = 0;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jtfContinueStatus;
     private javax.swing.JTextField jtfCustName;
     private javax.swing.JTextField jtfDelAdd;
     private javax.swing.JTextField jtfFinish;
