@@ -23,18 +23,27 @@ public class deliverymanCtrl {
     ListInterface<emp_handled_list> ehlList;
     emp_handled_list ehl;
 
-    public deliverymanCtrl(QueueInterface<Integer> employeeID) {
-        this.employeeID = employeeID;
+    public deliverymanCtrl() {
+
     }
 
-    public boolean arrange() {
+    public deliverymanCtrl(QueueInterface<Integer> employeeID, LinkedQueue<Order> orderList, ListInterface<emp_handled_list> ehlList) {
+        this.employeeID = employeeID;
+        this.orderList = orderList;
+        this.ehlList = ehlList;
+    }
 
+    public ListInterface arrange() {
+        int handle_id = 000001;
         if (!employeeID.isEmpty() && !orderList.isEmpty()) {
-            ehl = new emp_handled_list(000001, employeeID.getFront(), orderList.getFront().getOrder_id(), dateOnly.format(new Date()), timeOnly.format(new Date()), "HANDLED", "NONE");
+            if (!ehlList.isEmpty()) {
+                handle_id = ehlList.getEntry(ehlList.getNumberOfEntries()).getHandle_id();
+            }
+            ehl = new emp_handled_list(handle_id, employeeID.getFront(), orderList.getFront().getOrder_id(), dateOnly.format(new Date()), timeOnly.format(new Date()), "HANDLED", "NONE");
             ehlList.add(ehl);
-            return true;
+            return ehlList;
         } else {
-            return false;
+            return ehlList;
         }
     }
 
