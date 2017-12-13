@@ -253,6 +253,9 @@ public class MainForm extends javax.swing.JFrame {
                 startEmployeeInterface();
                 this.setVisible(false);
             }
+            else{
+                JOptionPane.showMessageDialog(null, "Login success, application under construction! ");
+            }
 
         }
     }//GEN-LAST:event_btnLoginActionPerformed
@@ -314,11 +317,11 @@ public class MainForm extends javax.swing.JFrame {
         att3 = new Attendance(600003, 100001, "22/07/2017", "08:11:31", "17:23:41", "13:12:25", "14:01:12");
         att4 = new Attendance(600004, 100002, "22/07/2017", "08:05:41", "17:02:51", "13:13:15", "14:11:33");
         att5 = new Attendance(600005, 100001, "23/07/2017", "07:59:51", "17:01:01", "13:11:25", "14:02:23");
-        ord1 = new Order();
-        ord2 = new Order();
-        ord3 = new Order();
-        ord4 = new Order();
-        ord5 = new Order();
+        ord1 = new Order(200001,  "LOI KAH HOU", "014-2233445" , "loikh-wa15@student.tarc.edu.my" ,  "A-6-5 Sri Pelangi, Jln Genting Klang, 53300 KL",  300001, 25.50 , 2 , "PENDING" );
+        ord2 = new Order(200002,  "LIM JUN KIT ", "012-3311221" , "limjk-wa15@student.tarc.edu.my" ,  "A-9-5 Teratai Residency, Jln Genting Klang, 53300 KL",  300002, 35.50 , 4 , "PENDING" );
+        ord3 = new Order(200003,  "MAH HONG WAI", "014-3311311" , "mahhw-wa15@student.tarc.edu.my" ,  "A-6-5 Sri Pelangi, Jln Genting Klang, 53300 KL",  300001, 30.50 , 2 , "PENDING" );
+        ord4 = new Order(200004,  " LIM NAN FUNG", "014-1235437" , "limnf-wa15@student.tarc.edu.my" ,  "B-6-5 Teratai Residency, Jln Genting Klang, 53300 KL",  300002, 17.50 , 1 , "PENDING" );
+        ord5 = new Order(200005,  "LIM PENG LEN", "013-22211122" , "limpl-wa15@student.tarc.edu.my" ,  "C-6-5 Sri Pelangi, Jln Genting Klang, 53300 KL",  300002, 22.50 , 3 , "PENDING" );
         empList.add(emp1);
         empList.add(emp2);
         empList.add(emp3);
