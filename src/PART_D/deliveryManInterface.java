@@ -35,10 +35,11 @@ public class deliveryManInterface extends javax.swing.JFrame {
         updateTable();
     }
 
-    public deliveryManInterface(ListInterface<employee> empList, ListInterface<Attendance> attdList, employee emp) {
+    public deliveryManInterface(ListInterface<employee> empList, ListInterface<Attendance> attdList, employee emp, LinkedQueue<Order> orderQueue) {
         this.empList = empList;
         this.attdList = attdList;
         this.emp = emp;
+        this.orderQueue = orderQueue;
         initComponents();
         //porpulateData();
         updateTable();
@@ -63,7 +64,7 @@ public class deliveryManInterface extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jtfDelAdd = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jtfRest = new javax.swing.JTextField();
+        jtfRestrt = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
         btnAccept = new javax.swing.JButton();
@@ -134,8 +135,8 @@ public class deliveryManInterface extends javax.swing.JFrame {
 
         jLabel3.setText("Pick-up Restaurant :");
 
-        jtfRest.setEditable(false);
-        jtfRest.setText("none");
+        jtfRestrt.setEditable(false);
+        jtfRestrt.setText("none");
 
         jLabel4.setText("Finished Job");
 
@@ -189,24 +190,24 @@ public class deliveryManInterface extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblZone)
                                     .addComponent(jLabel2))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(36, 36, 36)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jtfRest, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
-                                            .addComponent(jtfDelAdd)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(38, 38, 38)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addComponent(CBoxZone, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                                                 .addComponent(btnRefresh))
-                                            .addComponent(jtfStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(jtfStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
+                                        .addComponent(jLabel4)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(36, 36, 36)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jtfRestrt, javax.swing.GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE)
+                                            .addComponent(jtfDelAdd)))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
@@ -260,7 +261,7 @@ public class deliveryManInterface extends javax.swing.JFrame {
                             .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jtfRest, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jtfRestrt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnDecline)
@@ -294,7 +295,10 @@ public class deliveryManInterface extends javax.swing.JFrame {
     private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
         // TODO add your handling code here:
         if (CBoxZone.getSelectedItem().toString().equals("AA1")) {
-
+            ord=orderQueue.dequeue();
+            jtfStatus.setText("ACTIVE");
+            jtfDelAdd.setText(ord.getCust_deliveryAddress());
+            jtfRestrt.setText(Integer.toString(ord.getRestaurant_id()));
         }
     }//GEN-LAST:event_btnRefreshActionPerformed
 
@@ -404,7 +408,7 @@ public class deliveryManInterface extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jtfDelAdd;
-    private javax.swing.JTextField jtfRest;
+    private javax.swing.JTextField jtfRestrt;
     private javax.swing.JTextField jtfStatus;
     private javax.swing.JLabel lblZone;
     // End of variables declaration//GEN-END:variables

@@ -41,30 +41,30 @@
                                   <Component id="lblZone" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="jtfRest" pref="198" max="32767" attributes="0"/>
-                                          <Component id="jtfDelAdd" max="32767" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" attributes="0">
                                               <Component id="CBoxZone" min="-2" pref="100" max="-2" attributes="0"/>
-                                              <EmptySpace pref="25" max="32767" attributes="0"/>
+                                              <EmptySpace pref="15" max="32767" attributes="0"/>
                                               <Component id="btnRefresh" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <Component id="jtfStatus" min="-2" pref="100" max="-2" attributes="0"/>
                                       </Group>
+                                      <EmptySpace pref="91" max="32767" attributes="0"/>
+                                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="jTextField3" min="-2" pref="100" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="jtfRestrt" pref="452" max="32767" attributes="0"/>
+                                          <Component id="jtfDelAdd" max="32767" attributes="0"/>
+                                      </Group>
                                   </Group>
                               </Group>
-                              <EmptySpace pref="81" max="32767" attributes="0"/>
-                              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jTextField3" min="-2" pref="100" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -130,7 +130,7 @@
                           <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jtfRest" min="-2" max="-2" attributes="0"/>
+                      <Component id="jtfRestrt" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="btnDecline" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -267,7 +267,7 @@
         <Property name="text" type="java.lang.String" value="Pick-up Restaurant :"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jtfRest">
+    <Component class="javax.swing.JTextField" name="jtfRestrt">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
         <Property name="text" type="java.lang.String" value="none"/>
