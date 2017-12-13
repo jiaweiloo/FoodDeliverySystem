@@ -341,7 +341,7 @@ int complete = 0;
         orderQueue.enqueue(ord);
         orderQueue.dequeue();
         if (!orderQueue.isEmpty()) {
-            ord = orderQueue.dequeue();
+            ord = orderQueue.getFront();
             jtfStatus.setText("ACTIVE");
             jtfCustName.setText(ord.getCust_name());
             jtfDelAdd.setText(ord.getCust_deliveryAddress());
