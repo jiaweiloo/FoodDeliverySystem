@@ -25,7 +25,7 @@ public class deliveryManInterface extends javax.swing.JFrame {
     Attendance att, att1, att2, att3, att4, att5;
     Order ord;
     SimpleDateFormat timeOnly = new SimpleDateFormat("hh:mm:ss");
-
+int complete = 0;
     /**
      * Creates new form employeeInt
      */
@@ -59,14 +59,14 @@ public class deliveryManInterface extends javax.swing.JFrame {
         attdTable = new javax.swing.JTable();
         btnLunchOut = new javax.swing.JButton();
         lblZone = new javax.swing.JLabel();
-        CBoxZone = new javax.swing.JComboBox<>();
+        CBoxZone = new javax.swing.JComboBox<String>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jtfDelAdd = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jtfRestrt = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        jtfFinish = new javax.swing.JTextField();
         btnAccept = new javax.swing.JButton();
         btnDecline = new javax.swing.JButton();
         btnLunchIn = new javax.swing.JButton();
@@ -75,6 +75,8 @@ public class deliveryManInterface extends javax.swing.JFrame {
         btnCancel = new javax.swing.JButton();
         btnComplete = new javax.swing.JButton();
         btnRefresh = new javax.swing.JButton();
+        lblName = new javax.swing.JLabel();
+        jtfCustName = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -123,7 +125,7 @@ public class deliveryManInterface extends javax.swing.JFrame {
 
         lblZone.setText("Current Zone :");
 
-        CBoxZone.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AA1", "AA2", "AA3", "AA4", "AA5" }));
+        CBoxZone.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AA1", "AA2", "AA3", "AA4", "AA5" }));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Next Job");
@@ -140,12 +142,22 @@ public class deliveryManInterface extends javax.swing.JFrame {
 
         jLabel4.setText("Finished Job");
 
-        jTextField3.setEditable(false);
-        jTextField3.setText("0");
+        jtfFinish.setEditable(false);
+        jtfFinish.setText("0");
 
         btnAccept.setText("Accept");
+        btnAccept.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAcceptActionPerformed(evt);
+            }
+        });
 
         btnDecline.setText("Decline");
+        btnDecline.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeclineActionPerformed(evt);
+            }
+        });
 
         btnLunchIn.setText("Lunch In");
         btnLunchIn.addActionListener(new java.awt.event.ActionListener() {
@@ -162,6 +174,11 @@ public class deliveryManInterface extends javax.swing.JFrame {
         btnCancel.setText("Cancel");
 
         btnComplete.setText("Complete Delivery");
+        btnComplete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCompleteActionPerformed(evt);
+            }
+        });
 
         btnRefresh.setText("Refresh");
         btnRefresh.addActionListener(new java.awt.event.ActionListener() {
@@ -169,6 +186,11 @@ public class deliveryManInterface extends javax.swing.JFrame {
                 btnRefreshActionPerformed(evt);
             }
         });
+
+        lblName.setText("Customer Name : ");
+
+        jtfCustName.setEditable(false);
+        jtfCustName.setText("None");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -187,31 +209,20 @@ public class deliveryManInterface extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblZone)
-                                    .addComponent(jLabel2))
+                                .addComponent(lblZone)
+                                .addGap(55, 55, 55)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(38, 38, 38)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(CBoxZone, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-                                                .addComponent(btnRefresh))
-                                            .addComponent(jtfStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
-                                        .addComponent(jLabel4)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(36, 36, 36)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jtfRestrt, javax.swing.GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE)
-                                            .addComponent(jtfDelAdd)))))
+                                        .addComponent(CBoxZone, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                                        .addComponent(btnRefresh))
+                                    .addComponent(jtfStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addComponent(jtfFinish, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel1)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(btnAccept, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -221,7 +232,21 @@ public class deliveryManInterface extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(btnComplete))
                                     .addComponent(jLabel5))
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jtfRestrt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jtfDelAdd, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(64, 64, 64)
+                                .addComponent(lblName)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jtfCustName)))
                         .addContainerGap())))
         );
 
@@ -246,28 +271,33 @@ public class deliveryManInterface extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(jtfStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jtfStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jtfFinish, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel4)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(3, 3, 3)
-                        .addComponent(jLabel1)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jtfDelAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel3)
-                        .addGap(0, 48, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jtfRestrt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnDecline)
-                            .addComponent(btnAccept)
-                            .addComponent(btnCancel)
-                            .addComponent(btnComplete))))
+                            .addComponent(lblName)
+                            .addComponent(jtfCustName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(11, 11, 11)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jtfDelAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jtfRestrt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnDecline)
+                    .addComponent(btnAccept)
+                    .addComponent(btnCancel)
+                    .addComponent(btnComplete))
                 .addContainerGap())
         );
 
@@ -295,12 +325,61 @@ public class deliveryManInterface extends javax.swing.JFrame {
     private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
         // TODO add your handling code here:
         if (CBoxZone.getSelectedItem().toString().equals("AA1")) {
-            ord=orderQueue.dequeue();
+            ord = orderQueue.getFront();
             jtfStatus.setText("ACTIVE");
+            jtfCustName.setText(ord.getCust_name());
             jtfDelAdd.setText(ord.getCust_deliveryAddress());
             jtfRestrt.setText(Integer.toString(ord.getRestaurant_id()));
         }
     }//GEN-LAST:event_btnRefreshActionPerformed
+
+    private void btnDeclineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeclineActionPerformed
+        // TODO add your handling code here:
+        
+        btnCancel.setEnabled(true);
+        btnAccept.setEnabled(true);
+        orderQueue.enqueue(ord);
+        orderQueue.dequeue();
+        if (!orderQueue.isEmpty()) {
+            ord = orderQueue.dequeue();
+            jtfStatus.setText("ACTIVE");
+            jtfCustName.setText(ord.getCust_name());
+            jtfDelAdd.setText(ord.getCust_deliveryAddress());
+            jtfRestrt.setText(Integer.toString(ord.getRestaurant_id()));
+        }else{
+            jtfStatus.setText("ACTIVE");
+            jtfCustName.setText("NOT AVAILABLE! ");
+            jtfDelAdd.setText("NONE");
+            jtfRestrt.setText("NONE");
+        }
+    }//GEN-LAST:event_btnDeclineActionPerformed
+
+    private void btnAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptActionPerformed
+        // TODO add your handling code here:
+        orderQueue.dequeue();
+        btnCancel.setEnabled(false);
+        btnAccept.setEnabled(false);
+    }//GEN-LAST:event_btnAcceptActionPerformed
+
+    private void btnCompleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompleteActionPerformed
+        // TODO add your handling code here:
+        btnCancel.setEnabled(true);
+        btnAccept.setEnabled(true);        
+        if (!orderQueue.isEmpty()) {
+            ord = orderQueue.dequeue();
+            jtfStatus.setText("ACTIVE");
+            jtfCustName.setText(ord.getCust_name());
+            jtfDelAdd.setText(ord.getCust_deliveryAddress());
+            jtfRestrt.setText(Integer.toString(ord.getRestaurant_id()));
+        }else{
+            jtfStatus.setText("ACTIVE");
+            jtfCustName.setText("NOT AVAILABLE! ");
+            jtfDelAdd.setText("NONE");
+            jtfRestrt.setText("NONE");
+        }
+        complete++;
+        jtfFinish.setText(Integer.toString(complete));
+    }//GEN-LAST:event_btnCompleteActionPerformed
 
     private void updateTable() {
         //for (int count = 1; count <= 10; count++) {
@@ -384,9 +463,9 @@ public class deliveryManInterface extends javax.swing.JFrame {
     public void reSorting() {
         ord = orderQueue.dequeue();
         /*
-        if(ord.getRestaurant_id() == 000001)){
-            orderList.add(ord);
-        }
+         if(ord.getRestaurant_id() == 000001)){
+         orderList.add(ord);
+         }
          */
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -406,10 +485,12 @@ public class deliveryManInterface extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jtfCustName;
     private javax.swing.JTextField jtfDelAdd;
+    private javax.swing.JTextField jtfFinish;
     private javax.swing.JTextField jtfRestrt;
     private javax.swing.JTextField jtfStatus;
+    private javax.swing.JLabel lblName;
     private javax.swing.JLabel lblZone;
     // End of variables declaration//GEN-END:variables
 }

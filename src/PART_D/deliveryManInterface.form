@@ -37,39 +37,23 @@
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
+                              <Component id="lblZone" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lblZone" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <Component id="CBoxZone" min="-2" pref="100" max="-2" attributes="0"/>
-                                              <EmptySpace pref="15" max="32767" attributes="0"/>
-                                              <Component id="btnRefresh" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Component id="jtfStatus" min="-2" pref="100" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace pref="91" max="32767" attributes="0"/>
-                                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="jTextField3" min="-2" pref="100" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Component id="CBoxZone" min="-2" pref="100" max="-2" attributes="0"/>
+                                      <EmptySpace pref="15" max="32767" attributes="0"/>
+                                      <Component id="btnRefresh" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="jtfRestrt" pref="452" max="32767" attributes="0"/>
-                                          <Component id="jtfDelAdd" max="32767" attributes="0"/>
-                                      </Group>
-                                  </Group>
+                                  <Component id="jtfStatus" min="-2" pref="100" max="-2" attributes="0"/>
                               </Group>
+                              <EmptySpace pref="91" max="32767" attributes="0"/>
+                              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jtfFinish" min="-2" pref="100" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="btnAccept" linkSize="1" min="-2" pref="100" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -82,6 +66,24 @@
                                   <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jtfRestrt" alignment="1" min="-2" pref="452" max="-2" attributes="0"/>
+                                  <Component id="jtfDelAdd" alignment="1" min="-2" pref="452" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
+                              <Component id="lblName" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jtfCustName" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -102,7 +104,7 @@
               <Component id="jScrollPane1" min="-2" pref="129" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lblZone" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="CBoxZone" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -113,32 +115,41 @@
                           <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jtfStatus" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
+                  </Group>
+                  <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                      <Component id="jtfFinish" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jtfDelAdd" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="48" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jTextField3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jtfRestrt" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnDecline" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnAccept" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnCancel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnComplete" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblName" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jtfCustName" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
+              </Group>
+              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jtfDelAdd" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jtfRestrt" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnDecline" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnAccept" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnCancel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnComplete" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -278,7 +289,7 @@
         <Property name="text" type="java.lang.String" value="Finished Job"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField3">
+    <Component class="javax.swing.JTextField" name="jtfFinish">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
         <Property name="text" type="java.lang.String" value="0"/>
@@ -288,11 +299,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Accept"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAcceptActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnDecline">
       <Properties>
         <Property name="text" type="java.lang.String" value="Decline"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeclineActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnLunchIn">
       <Properties>
@@ -322,6 +339,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Complete Delivery"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCompleteActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnRefresh">
       <Properties>
@@ -330,6 +350,17 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRefreshActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblName">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Customer Name : "/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jtfCustName">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="text" type="java.lang.String" value="None"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
