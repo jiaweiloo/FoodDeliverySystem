@@ -43,7 +43,7 @@ public class OrderConfirmation extends JFrame {
         }
         for (int a = 1; a <= orderList.getNumberOfEntries(); a++) {
             for (int b = 1; b <= itemList.getNumberOfEntries(); b++) {
-                if (orderList.getEntry(a).getItem_id().equals(itemList.getEntry(b).getItem_id())) {
+                if (orderList.getEntry(a).getItem_id()==itemList.getEntry(b).getItem_id()) {
                     data[a - 1][0] = itemList.getEntry(b).getItem_name();
                     data[a - 1][1] = orderList.getEntry(a).getQuantity();
                     data[a - 1][2] = orderList.getEntry(a).getSubTotal();

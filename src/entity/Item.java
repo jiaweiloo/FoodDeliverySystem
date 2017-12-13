@@ -14,12 +14,9 @@ public class Item {
     int item_id;
     String item_name;
     String item_price;
-    String rest_id;
+    int rest_id;
 
-    public Item() {
-    }
-
-    public Item(int item_id, String item_name, String item_price, String rest_id) {
+    public Item(int item_id, String item_name, String item_price, int rest_id) {
         this.item_id = item_id;
         this.item_name = item_name;
         this.item_price = item_price;
@@ -50,13 +47,14 @@ public class Item {
         this.item_price = item_price;
     }
 
-    public String getRest_id() {
+    public int getRest_id() {
         return rest_id;
     }
 
-    public void setRest_id(String rest_id) {
+    public void setRest_id(int rest_id) {
         this.rest_id = rest_id;
     }
 
+    
     
 }
