@@ -11,31 +11,69 @@ package entity;
  */
 public class Order {
 
-    String order_id;
+    int order_id;
+    String cust_name;
+    String cust_phone;
+    String cust_email;
+    String cust_deliveryAddress;
     String restaurant_id;
     String total_amount;
     String total_item;
     String current_status;
-    String cust_id;
 
     public Order() {
     }
-    
-    public Order(String order_id, String restaurant_id, String total_amount, String total_item, String current_status, String cust_id) {
+
+    public Order(int order_id, String cust_name, String cust_phone, String cust_email, String cust_deliveryAddress, String restaurant_id, String total_amount, String total_item, String current_status) {
         this.order_id = order_id;
+        this.cust_name = cust_name;
+        this.cust_phone = cust_phone;
+        this.cust_email = cust_email;
+        this.cust_deliveryAddress = cust_deliveryAddress;
         this.restaurant_id = restaurant_id;
         this.total_amount = total_amount;
         this.total_item = total_item;
         this.current_status = current_status;
-        this.cust_id = cust_id;
-    } 
+    }
 
-    public String getOrder_id() {
+    public int getOrder_id() {
         return order_id;
     }
 
-    public void setOrder_id(String order_id) {
+    public void setOrder_id(int order_id) {
         this.order_id = order_id;
+    }
+
+    public String getCust_name() {
+        return cust_name;
+    }
+
+    public void setCust_name(String cust_name) {
+        this.cust_name = cust_name;
+    }
+
+    public String getCust_phone() {
+        return cust_phone;
+    }
+
+    public void setCust_phone(String cust_phone) {
+        this.cust_phone = cust_phone;
+    }
+
+    public String getCust_email() {
+        return cust_email;
+    }
+
+    public void setCust_email(String cust_email) {
+        this.cust_email = cust_email;
+    }
+
+    public String getCust_deliveryAddress() {
+        return cust_deliveryAddress;
+    }
+
+    public void setCust_deliveryAddress(String cust_deliveryAddress) {
+        this.cust_deliveryAddress = cust_deliveryAddress;
     }
 
     public String getRestaurant_id() {
@@ -69,5 +107,9 @@ public class Order {
     public void setCurrent_status(String current_status) {
         this.current_status = current_status;
     }
+    
+    
+    
+    
 
 }
