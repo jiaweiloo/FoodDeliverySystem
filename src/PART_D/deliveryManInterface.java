@@ -68,7 +68,7 @@ int complete = 0;
         jLabel4 = new javax.swing.JLabel();
         jtfFinish = new javax.swing.JTextField();
         btnAccept = new javax.swing.JButton();
-        btnDecline = new javax.swing.JButton();
+        btnBreak = new javax.swing.JButton();
         btnLunchIn = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jtfStatus = new javax.swing.JTextField();
@@ -145,21 +145,24 @@ int complete = 0;
         jtfFinish.setEditable(false);
         jtfFinish.setText("0");
 
-        btnAccept.setText("Accept");
+        btnAccept.setText("Open to Accept");
+        btnAccept.setActionCommand("");
         btnAccept.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAcceptActionPerformed(evt);
             }
         });
 
-        btnDecline.setText("Decline");
-        btnDecline.addActionListener(new java.awt.event.ActionListener() {
+        btnBreak.setText("Break");
+        btnBreak.setEnabled(false);
+        btnBreak.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeclineActionPerformed(evt);
+                btnBreakActionPerformed(evt);
             }
         });
 
         btnLunchIn.setText("Lunch In");
+        btnLunchIn.setEnabled(false);
         btnLunchIn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLunchInActionPerformed(evt);
@@ -174,6 +177,7 @@ int complete = 0;
         btnCancel.setText("Cancel");
 
         btnComplete.setText("Complete Delivery");
+        btnComplete.setEnabled(false);
         btnComplete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCompleteActionPerformed(evt);
@@ -222,18 +226,6 @@ int complete = 0;
                                 .addGap(18, 18, 18)
                                 .addComponent(jtfFinish, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btnAccept, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(btnDecline, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(btnComplete))
-                                    .addComponent(jLabel5))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel2)
                                     .addComponent(jLabel3))
@@ -246,12 +238,21 @@ int complete = 0;
                                 .addGap(64, 64, 64)
                                 .addComponent(lblName)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jtfCustName)))
+                                .addComponent(jtfCustName))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnAccept, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnBreak, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(17, 17, 17)
+                                        .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnComplete)))
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())))
         );
-
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnAccept, btnDecline});
-
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -294,7 +295,7 @@ int complete = 0;
                     .addComponent(jtfRestrt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(7, 7, 7)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnDecline)
+                    .addComponent(btnBreak)
                     .addComponent(btnAccept)
                     .addComponent(btnCancel)
                     .addComponent(btnComplete))
@@ -333,7 +334,7 @@ int complete = 0;
         }
     }//GEN-LAST:event_btnRefreshActionPerformed
 
-    private void btnDeclineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeclineActionPerformed
+    private void btnBreakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBreakActionPerformed
         // TODO add your handling code here:
         
         btnCancel.setEnabled(true);
@@ -352,7 +353,7 @@ int complete = 0;
             jtfDelAdd.setText("NONE");
             jtfRestrt.setText("NONE");
         }
-    }//GEN-LAST:event_btnDeclineActionPerformed
+    }//GEN-LAST:event_btnBreakActionPerformed
 
     private void btnAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptActionPerformed
         // TODO add your handling code here:
@@ -472,9 +473,9 @@ int complete = 0;
     private javax.swing.JComboBox<String> CBoxZone;
     private javax.swing.JTable attdTable;
     private javax.swing.JButton btnAccept;
+    private javax.swing.JButton btnBreak;
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnComplete;
-    private javax.swing.JButton btnDecline;
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnLunchIn;
     private javax.swing.JButton btnLunchOut;
