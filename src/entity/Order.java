@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package entity;
+import adt.*;
+import java.util.*;
 
 /**
  *
@@ -20,6 +22,17 @@ public class Order {
     double total_amount;
     int total_item;
     String current_status;
+    String orderDate;
+    LList<OrderList> orderList;
+    Customer cust;
+
+    public Customer getCust() {
+        return cust;
+    }
+
+    public void setCust(Customer cust) {
+        this.cust = cust;
+    }
 
     public Order() {
     }
@@ -34,6 +47,27 @@ public class Order {
         this.total_amount = total_amount;
         this.total_item = total_item;
         this.current_status = current_status;
+        this.orderDate = orderDate;
+        this.orderList = orderList;
+    }
+
+    
+    
+
+    public String getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(String orderDate) {
+        this.orderDate = orderDate;
+    }
+
+    public LList<OrderList> getOrderList() {
+        return orderList;
+    }
+
+    public void setOrderList(LList<OrderList> orderList) {
+        this.orderList = orderList;
     }
 
     public int getOrder_id() {

@@ -16,12 +16,6 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class SelectRestaurant2 extends JFrame {
-
-    Affiliate aff0 = new Affiliate(101, "Thai Boy Restaurant", "123, Jalan Genting Klang, 53300 setapak, Kuala Lumpur", "Loo Jia Wei", "0123456789", "Genting Klang");
-    Affiliate aff1 = new Affiliate(102, "Curry Chicken", "123, Jalan Genting Klang, 53300 setapak, Kuala Lumpur", "Loo Jia Wei", "0123456789", "Genting Klang");
-    Affiliate aff2 = new Affiliate(103, "The Taste", "123, Jalan Genting Klang, 53300 setapak, Kuala Lumpur", "Loo Jia Wei", "0123456789", "Genting Klang");
-    Affiliate aff3 = new Affiliate(104, "Nasi Putih", "123, Jalan Genting Klang, 53300 setapak, Kuala Lumpur", "Loo Jia Wei", "0123456789", "Genting Klang");
-
     Item item0 = new Item(201, "Curry Laksa", "5", 101);
     Item item1 = new Item(202, "Curry Ayam", "5", 101);
     Item item2 = new Item(203, "Curry Ikan", "5", 101);
@@ -29,10 +23,17 @@ public class SelectRestaurant2 extends JFrame {
     Item item4 = new Item(205, "Curry Kosong", "5", 102);
     Item item5 = new Item(206, "Curry Manis", "5", 102);
 
+    Affiliate aff0 = new Affiliate(101, "Thai Boy Restaurant", "123, Jalan Genting Klang, 53300 setapak, Kuala Lumpur", "Loo Jia Wei", "0123456789", "Genting Klang");
+    Affiliate aff1 = new Affiliate(102, "Curry Chicken", "123, Jalan Genting Klang, 53300 setapak, Kuala Lumpur", "Loo Jia Wei", "0123456789", "Genting Klang");
+    Affiliate aff2 = new Affiliate(103, "The Taste", "123, Jalan Genting Klang, 53300 setapak, Kuala Lumpur", "Loo Jia Wei", "0123456789", "Genting Klang");
+    Affiliate aff3 = new Affiliate(104, "Nasi Putih", "123, Jalan Genting Klang, 53300 setapak, Kuala Lumpur", "Loo Jia Wei", "0123456789", "Genting Klang");
+
+
     LinkedQueue<Affiliate> restQueue = new LinkedQueue();
     LinkedQueue<Affiliate> backupRestQueue = new LinkedQueue();
-    LinkedQueue<Item> itemQueue = new LinkedQueue();
-    LinkedQueue<Item> backupItemQueue = new LinkedQueue();
+    LList<Item> itemList = new LList();
+    LList<Item> itemList2 = new LList();
+    //LinkedQueue<Item> backupItemQueue = new LinkedQueue();
 
     JScrollPane jScrollPane;
     JPanel jPanel;
@@ -40,17 +41,22 @@ public class SelectRestaurant2 extends JFrame {
     JButton jbtRest;
 
     public SelectRestaurant2() {
+        
+        itemList.add(item0);
+        itemList.add(item1);
+        itemList.add(item2);
+        itemList2.add(item3);
+        itemList2.add(item4);
+        itemList2.add(item5);
+        
+        aff0.setItemList(itemList);
+        aff1.setItemList(itemList2);
+        
         restQueue.enqueue(aff0);
         restQueue.enqueue(aff1);
         restQueue.enqueue(aff2);
         restQueue.enqueue(aff3);
 
-        itemQueue.enqueue(item0);
-        itemQueue.enqueue(item1);
-        itemQueue.enqueue(item2);
-        itemQueue.enqueue(item3);
-        itemQueue.enqueue(item4);
-        itemQueue.enqueue(item5);
 
         /*System.out.println(restQueue.size());
         for(int a=0;a<restQueue.size();a++){
@@ -70,7 +76,7 @@ public class SelectRestaurant2 extends JFrame {
 
             jbtRest.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    jbtRest(e,b.getAffiliate_id());
+                    jbtRest(e,b);
                 }
             });
 
@@ -85,19 +91,10 @@ public class SelectRestaurant2 extends JFrame {
         }
     }
 
-    private void jbtRest(ActionEvent e,int restID) {
+    private void jbtRest(ActionEvent e,Affiliate aff) {
         // TODO add your handling code here:
-        LinkedQueue<Item> correctMenuItem = new LinkedQueue();
         this.dispose();
-        for(int a=0;a<itemQueue.size();a++){
-            Item tempItem = itemQueue.getFront();
-            backupItemQueue.enqueue(itemQueue.dequeue());
-            if(tempItem.getRest_id()==restID){
-                correctMenuItem.enqueue(tempItem);
-            }
-        }
-        
-        SelectMenuItem2 menu = new SelectMenuItem2(correctMenuItem);
+        SelectMenuItem2 menu = new SelectMenuItem2(aff);
     }
 
     public static void main(String[] args) {

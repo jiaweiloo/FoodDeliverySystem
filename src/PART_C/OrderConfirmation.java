@@ -34,7 +34,7 @@ public class OrderConfirmation extends JFrame {
     LList<OrderList> orderList;
     LList<Item> itemList;
 
-    public OrderConfirmation(LList<OrderList> orderList, LList<Item> itemList) {
+    public OrderConfirmation(LList<OrderList> orderList, LList<Item> itemList,Order order) {
         this.orderList = orderList;
         this.itemList = itemList;
         String[][] data = new String[orderList.getNumberOfEntries()][3];
