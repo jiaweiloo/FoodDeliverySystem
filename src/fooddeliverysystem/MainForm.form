@@ -234,6 +234,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Track My Order"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTrackActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

@@ -19,7 +19,7 @@ public class MainForm extends javax.swing.JFrame {
 
     ListInterface<employee> empList = new LList<employee>();
     ListInterface<Attendance> attdList = new LList<Attendance>();
-    LinkedQueue<Order> orderList = new LinkedQueue<Order>();
+    public LinkedQueue<Order> orderList = new LinkedQueue<Order>();
     public LinkedQueue<Integer> employeeID = new LinkedQueue<Integer>();
     ListInterface<emp_handled_list> ehlList = new LList<emp_handled_list>();
     employee emp, emp1, emp2, emp3, emp4, emp5;
@@ -116,6 +116,11 @@ public class MainForm extends javax.swing.JFrame {
         btnBrowse.setText("Browse");
 
         btnTrack.setText("Track My Order");
+        btnTrack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTrackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -228,9 +233,13 @@ public class MainForm extends javax.swing.JFrame {
         if (!success) {
             JOptionPane.showMessageDialog(null, "Verified fail! Please try again");
         } else {
+            //see login rank is deliveryman ,executive manager, or affiliates
             switch (emp.getRank()) {
                 case "DM":
-                    startEmployeeInterface();
+                    DMI = new deliveryManInterface(empList, attdList, emp, orderList);
+                    DMI.updateAttendance(att);
+                    DMI.setVisible(true);
+                    DMI.PreviousFrame(this);
                     this.setVisible(false);
                     break;
                 case "EXEC":
@@ -245,6 +254,14 @@ public class MainForm extends javax.swing.JFrame {
             } //switch case for login interface
         }
     }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void btnTrackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTrackActionPerformed
+        // TODO add your handling code here:
+        TrackMyOrder TMO = new TrackMyOrder();
+        TMO.setMainForm(this);
+        TMO.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnTrackActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -331,11 +348,11 @@ public class MainForm extends javax.swing.JFrame {
         att3 = new Attendance(600003, 100001, "22/07/2017", "08:11:31", "17:23:41", "13:12:25", "14:01:12");
         att4 = new Attendance(600004, 100002, "22/07/2017", "08:05:41", "17:02:51", "13:13:15", "14:11:33");
         att5 = new Attendance(600005, 100001, "23/07/2017", "07:59:51", "17:01:01", "13:11:25", "14:02:23");
-        ord1 = new Order(200001, "LOI KAH HOU", "014-2233445", "loikh-wa15@student.tarc.edu.my", "A-6-5 Sri Pelangi, Jln Genting Klang, 53300 KL", 300001, 25.50, 2, "PENDING");
-        ord2 = new Order(200002, "LIM JUN KIT ", "012-3311221", "limjk-wa15@student.tarc.edu.my", "A-9-5 Teratai Residency, Jln Genting Klang, 53300 KL", 300002, 35.50, 4, "PENDING");
-        ord3 = new Order(200003, "MAH HONG WAI", "014-3311311", "mahhw-wa15@student.tarc.edu.my", "A-6-5 Sri Pelangi, Jln Genting Klang, 53300 KL", 300001, 30.50, 2, "PENDING");
-        ord4 = new Order(200004, " LIM NAN FUNG", "014-1235437", "limnf-wa15@student.tarc.edu.my", "B-6-5 Teratai Residency, Jln Genting Klang, 53300 KL", 300002, 17.50, 1, "PENDING");
-        ord5 = new Order(200005, "LIM PENG LEN", "013-22211122", "limpl-wa15@student.tarc.edu.my", "C-6-5 Sri Pelangi, Jln Genting Klang, 53300 KL", 300002, 22.50, 3, "PENDING");
+        ord1 = new Order(200001, "LOI KAH HOU", "014-2233445", "loikh-wa15@student.tarc.edu.my", "A-6-5 Sri Pelangi, Jln Genting Klang, 53300 KL", 300001, 25.50, 2, "PENDING", "13:59:51");
+        ord2 = new Order(200002, "LIM JUN KIT ", "012-3311221", "limjk-wa15@student.tarc.edu.my", "A-9-5 Teratai Residency, Jln Genting Klang, 53300 KL", 300002, 35.50, 4, "PENDING", "17:59:51");
+        ord3 = new Order(200003, "MAH HONG WAI", "014-3311311", "mahhw-wa15@student.tarc.edu.my", "A-6-5 Sri Pelangi, Jln Genting Klang, 53300 KL", 300001, 30.50, 2, "PENDING", "18:59:51");
+        ord4 = new Order(200004, " LIM NAN FUNG", "014-1235437", "limnf-wa15@student.tarc.edu.my", "B-6-5 Teratai Residency, Jln Genting Klang, 53300 KL", 300002, 17.50, 1, "PENDING", "20:35:51");
+        ord5 = new Order(200005, "LIM PENG LEN", "013-22211122", "limpl-wa15@student.tarc.edu.my", "C-6-5 Sri Pelangi, Jln Genting Klang, 53300 KL", 300002, 22.50, 3, "PENDING", "20:37:51");
         empList.add(emp1);
         empList.add(emp2);
         empList.add(emp3);
@@ -351,15 +368,6 @@ public class MainForm extends javax.swing.JFrame {
         orderList.enqueue(ord3);
         orderList.enqueue(ord4);
         orderList.enqueue(ord5);
-    }
-
-    public void startEmployeeInterface() {
-        DMI = new deliveryManInterface(empList, attdList, emp, orderList);
-        DMI.updateAttendance(att);
-        //DMI.updateEmp(emp);
-        DMI.setVisible(true);
-        DMI.PreviousFrame(this);
-        //empInt.updateList(empList, attdList);
     }
 
     public void returnAtt(Attendance att) {
