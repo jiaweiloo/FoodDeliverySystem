@@ -34,7 +34,13 @@ public class TrackMyOrder extends javax.swing.JFrame {
      */
     public TrackMyOrder() {
         initComponents();
-        timerrun();
+        try {
+            //Thread.sleep(1000);
+            timerrun();
+        } catch (Exception e) {
+
+        }
+
     }
 
     /**
@@ -82,6 +88,11 @@ public class TrackMyOrder extends javax.swing.JFrame {
         });
 
         btnCancel.setText("Cancel");
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
 
         jtfPurchaseTime.setText("00:00:00");
 
@@ -212,11 +223,17 @@ public class TrackMyOrder extends javax.swing.JFrame {
             purchasetime = order.getPurchase_time();
             countRemainingTime();
             //jtfPurchaseTime.setText(Integer.toString(orderID));
-            
+
             jtfPurchaseTime.setText(purchasetime);
             jtaAddress.setText(order.getCust_deliveryAddress());
         }
     }//GEN-LAST:event_btnCheckActionPerformed
+
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        // TODO add your handling code here:
+        mainform.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnCancelActionPerformed
 
     public void timerrun() {
         //timer function every 1000ms
@@ -227,6 +244,7 @@ public class TrackMyOrder extends javax.swing.JFrame {
                     String datenow = timein24hrs.format(new Date());
                     Date dtnow = timein24hrs.parse(datenow);
                     jtfTime.setText(timein24hrs.format(dtnow));
+                    countRemainingTime();
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -237,29 +255,31 @@ public class TrackMyOrder extends javax.swing.JFrame {
 
     public void countRemainingTime() {
         try {
-            Date date = timein24hrs.parse(purchasetime);
-            String datenow = timein24hrs.format(new Date());
-            Date dtnow = timein24hrs.parse(datenow);
+            if (purchasetime != null) {
+                Date date = timein24hrs.parse(purchasetime);
+                String datenow = timein24hrs.format(new Date());
+                Date dtnow = timein24hrs.parse(datenow);
 
-            long millis = date.getTime();
-            Date deliveredTime = new Date(millis + (30 * ONE_MINUTE_IN_MILLIS));
+                long millis = date.getTime();
+                Date deliveredTime = new Date(millis + (30 * ONE_MINUTE_IN_MILLIS));
 
-            jtfETA.setText(timein24hrs.format(deliveredTime));
+                jtfETA.setText(timein24hrs.format(deliveredTime));
 
-            long diff = deliveredTime.getTime() - dtnow.getTime();
+                long diff = deliveredTime.getTime() - dtnow.getTime();
 
-            long diffSeconds = diff / 1000 % 60;
-            long diffMinutes = diff / (60 * 1000) % 60;
-            long diffHours = diff / (60 * 60 * 1000) % 24;
-            long diffDays = diff / (24 * 60 * 60 * 1000);
-            String difference;
-            if (diffMinutes < 0 ) {
-                difference = "00:00:00 Delivery completed!";
-                //difference = Long.toString(diffHours) + ":" + Long.toString(diffMinutes) + ":" + Long.toString(diffSeconds);
-            } else {
-                difference = "00:" + Long.toString(diffMinutes) + ":" + Long.toString(diffSeconds);
+                long diffSeconds = diff / 1000 % 60;
+                long diffMinutes = diff / (60 * 1000) % 60;
+                long diffHours = diff / (60 * 60 * 1000) % 24;
+                long diffDays = diff / (24 * 60 * 60 * 1000);
+                String difference;
+                if (diffMinutes < 0) {
+                    difference = "00:00:00 Delivery completed!";
+                    //difference = Long.toString(diffHours) + ":" + Long.toString(diffMinutes) + ":" + Long.toString(diffSeconds);
+                } else {
+                    difference = "00:" + Long.toString(diffMinutes) + ":" + Long.toString(diffSeconds);
+                }
+                jtfRemainingTime.setText(difference);
             }
-            jtfRemainingTime.setText(difference);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
