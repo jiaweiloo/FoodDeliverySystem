@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package entity;
+import adt.*;
 
 /**
  *
@@ -16,6 +17,7 @@ public class Affiliate {
     String owner_name;
     String contact_no;
     String restrt_zone;
+    LList<Item> itemList;
    
     public Affiliate() {
     }
@@ -28,6 +30,15 @@ public class Affiliate {
         this.contact_no = contact_no;
         this.restrt_zone = restrt_zone;
     }
+
+    public LList<Item> getItemList() {
+        return itemList;
+    }
+
+    public void setItemList(LList<Item> itemList) {
+        this.itemList = itemList;
+    }
+
 
     public int getAffiliate_id() {
         return affiliate_id;
