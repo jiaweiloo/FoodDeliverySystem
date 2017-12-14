@@ -23,6 +23,7 @@ public class Order {
     int total_item;
     String current_status;
     String orderDate;
+    String purchase_time;
     LList<OrderList> orderList;
     Customer cust;
 
