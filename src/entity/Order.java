@@ -25,6 +25,10 @@ public class Order {
     String orderDate;
     String purchase_time;
 
+    public Order() {
+    }
+
+    
     public Order(int order_id, String cust_name, String cust_phone, String cust_email, String cust_deliveryAddress, int restaurant_id, double total_amount, int total_item, String current_status, String orderDate, String purchase_time) {
         this.order_id = order_id;
         this.cust_name = cust_name;
