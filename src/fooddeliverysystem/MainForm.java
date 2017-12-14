@@ -307,14 +307,14 @@ public class MainForm extends javax.swing.JFrame {
         Timer timer = new Timer(1000, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 //jtfTime.setText(new Date().toString());
-                mainform.runThis();
+                mainform.refreshWaitingList();
             }
         });
         timer.start();
         //new MainForm().setVisible(true);
     }
 
-    private void runThis() {
+    private void refreshWaitingList() {
         jtfTime.setText(new Date().toString());
         //loadAvailableEmployee();
         int handle_id = 000001;
@@ -348,11 +348,11 @@ public class MainForm extends javax.swing.JFrame {
         att3 = new Attendance(600003, 100001, "22/07/2017", "08:11:31", "17:23:41", "13:12:25", "14:01:12");
         att4 = new Attendance(600004, 100002, "22/07/2017", "08:05:41", "17:02:51", "13:13:15", "14:11:33");
         att5 = new Attendance(600005, 100001, "23/07/2017", "07:59:51", "17:01:01", "13:11:25", "14:02:23");
-        ord1 = new Order(200001, "LOI KAH HOU", "014-2233445", "loikh-wa15@student.tarc.edu.my", "A-6-5 Sri Pelangi, Jln Genting Klang, 53300 KL", 300001, 25.50, 2, "PENDING", "13:59:51");
-        ord2 = new Order(200002, "LIM JUN KIT ", "012-3311221", "limjk-wa15@student.tarc.edu.my", "A-9-5 Teratai Residency, Jln Genting Klang, 53300 KL", 300002, 35.50, 4, "PENDING", "17:59:51");
-        ord3 = new Order(200003, "MAH HONG WAI", "014-3311311", "mahhw-wa15@student.tarc.edu.my", "A-6-5 Sri Pelangi, Jln Genting Klang, 53300 KL", 300001, 30.50, 2, "PENDING", "18:59:51");
-        ord4 = new Order(200004, " LIM NAN FUNG", "014-1235437", "limnf-wa15@student.tarc.edu.my", "B-6-5 Teratai Residency, Jln Genting Klang, 53300 KL", 300002, 17.50, 1, "PENDING", "20:35:51");
-        ord5 = new Order(200005, "LIM PENG LEN", "013-22211122", "limpl-wa15@student.tarc.edu.my", "C-6-5 Sri Pelangi, Jln Genting Klang, 53300 KL", 300002, 22.50, 3, "PENDING", "20:37:51");
+        ord1 = new Order(200001, "LOI KAH HOU", "014-2233445", "loikh-wa15@student.tarc.edu.my", "A-6-5 Sri Pelangi, Jln Genting Klang, "+"\n 53300 KL", 300001, 25.50, 2, "PENDING","14/12/2017", "19:16:51");
+        ord2 = new Order(200002, "LIM JUN KIT ", "012-3311221", "limjk-wa15@student.tarc.edu.my", "A-9-5 Teratai Residency, Jln Genting Klang, 53300 KL", 300002, 35.50, 4, "PENDING","10/12/2017",  "18:59:51");
+        ord3 = new Order(200003, "MAH HONG WAI", "014-3311311", "mahhw-wa15@student.tarc.edu.my", "A-6-5 Sri Pelangi, Jln Genting Klang, 53300 KL", 300001, 30.50, 2, "PENDING","11/12/2017",  "17:59:51");
+        ord4 = new Order(200004, " LIM NAN FUNG", "014-1235437", "limnf-wa15@student.tarc.edu.my", "B-6-5 Teratai Residency, Jln Genting Klang, 53300 KL", 300002, 17.50, 1, "PENDING","12/12/2017",  "16:35:51");
+        ord5 = new Order(200005, "LIM PENG LEN", "013-22211122", "limpl-wa15@student.tarc.edu.my", "C-6-5 Sri Pelangi, Jln Genting Klang, 53300 KL", 300002, 22.50, 3, "PENDING","13/12/2017",  "15:37:51");
         empList.add(emp1);
         empList.add(emp2);
         empList.add(emp3);

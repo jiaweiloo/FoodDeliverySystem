@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package entity;
+import adt.*;
+import java.util.*;
 
 /**
  *
@@ -20,12 +22,10 @@ public class Order {
     double total_amount;
     int total_item;
     String current_status;
+    String orderDate;
     String purchase_time;
 
-    public Order() {
-    }
-
-    public Order(int order_id, String cust_name, String cust_phone, String cust_email, String cust_deliveryAddress, int restaurant_id, double total_amount, int total_item, String current_status, String purchase_time) {
+    public Order(int order_id, String cust_name, String cust_phone, String cust_email, String cust_deliveryAddress, int restaurant_id, double total_amount, int total_item, String current_status, String orderDate, String purchase_time) {
         this.order_id = order_id;
         this.cust_name = cust_name;
         this.cust_phone = cust_phone;
@@ -35,16 +35,9 @@ public class Order {
         this.total_amount = total_amount;
         this.total_item = total_item;
         this.current_status = current_status;
+        this.orderDate = orderDate;
         this.purchase_time = purchase_time;
-    }   
-
-    public String getPurchase_time() {
-        return purchase_time;
     }
-
-    public void setPurchase_time(String purchase_time) {
-        this.purchase_time = purchase_time;
-    }   
 
     public int getOrder_id() {
         return order_id;
@@ -117,6 +110,22 @@ public class Order {
     public void setCurrent_status(String current_status) {
         this.current_status = current_status;
     }
-    
+
+    public String getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(String orderDate) {
+        this.orderDate = orderDate;
+    }
+
+    public String getPurchase_time() {
+        return purchase_time;
+    }
+
+    public void setPurchase_time(String purchase_time) {
+        this.purchase_time = purchase_time;
+    }
+      
     
 }
