@@ -36,7 +36,7 @@ public class SelectMenuItem2 extends JFrame {
 
         order.setOrder_id(301);
         order.setRestaurant_id(aff.getAffiliate_id());
-        order.setCust(cust);
+        //order.setCust(cust);
         order.setOrderDate(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date()));
 
         itemList = aff.getItemList();

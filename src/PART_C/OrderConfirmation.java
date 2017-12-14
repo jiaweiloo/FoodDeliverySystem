@@ -98,6 +98,7 @@ public class OrderConfirmation extends JFrame {
     private void jbBack(ActionEvent e,LList<OrderList>orderList,LList<Item>itemList) {
         // TODO add your handling code here:
         this.setVisible(false);
+        /*
         Cart ct = new Cart();
         ct.setTitle("Cart");
 
@@ -105,6 +106,7 @@ public class OrderConfirmation extends JFrame {
         ct.setLocationRelativeTo(null);
         ct.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         ct.setVisible(true);
+        */
     }
 
     /*public static void main(String[] args) {
