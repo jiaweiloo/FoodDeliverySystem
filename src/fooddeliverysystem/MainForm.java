@@ -307,14 +307,14 @@ public class MainForm extends javax.swing.JFrame {
         Timer timer = new Timer(1000, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 //jtfTime.setText(new Date().toString());
-                mainform.runThis();
+                mainform.refreshWaitingList();
             }
         });
         timer.start();
         //new MainForm().setVisible(true);
     }
 
-    private void runThis() {
+    private void refreshWaitingList() {
         jtfTime.setText(new Date().toString());
         //loadAvailableEmployee();
         int handle_id = 000001;
