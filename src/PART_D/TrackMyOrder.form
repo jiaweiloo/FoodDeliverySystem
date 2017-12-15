@@ -6,7 +6,7 @@
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
-    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="true"/>
   </SyntheticProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -39,24 +39,15 @@
                   </Group>
               </Group>
               <EmptySpace min="53" pref="53" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="jScrollPane1" pref="218" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" pref="125" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="jtfOrderID" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jtfPurchaseTime" max="32767" attributes="0"/>
-                              <Component id="jtfETA" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jtfRemainingTime" alignment="0" pref="249" max="32767" attributes="0"/>
-                          </Group>
-                          <Component id="jtfTime" alignment="0" min="-2" pref="230" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="32767" attributes="0"/>
-                  </Group>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="jtfOrderID" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jtfPurchaseTime" alignment="1" max="32767" attributes="0"/>
+                  <Component id="jtfETA" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jtfRemainingTime" alignment="0" pref="249" max="32767" attributes="0"/>
+                  <Component id="jtfTime" alignment="0" min="-2" pref="230" max="-2" attributes="0"/>
+                  <Component id="jScrollPane1" max="32767" attributes="0"/>
               </Group>
+              <EmptySpace pref="94" max="32767" attributes="0"/>
           </Group>
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
