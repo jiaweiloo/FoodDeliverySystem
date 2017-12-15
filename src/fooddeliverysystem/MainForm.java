@@ -1,6 +1,7 @@
 package fooddeliverysystem;
 
 import PART_B.Update_Delivery_Men;
+import PART_C.CustFillInForm;
 import PART_C.SelectRestaurant;
 import PART_D.*;
 import adt.*;
@@ -114,6 +115,11 @@ public class MainForm extends javax.swing.JFrame {
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
         btnBrowse.setText("Browse");
+        btnBrowse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBrowseActionPerformed(evt);
+            }
+        });
 
         btnTrack.setText("Track My Order");
         btnTrack.addActionListener(new java.awt.event.ActionListener() {
@@ -265,6 +271,15 @@ public class MainForm extends javax.swing.JFrame {
         TMO.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnTrackActionPerformed
+
+    private void btnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrowseActionPerformed
+        // TODO add your handling code here:
+        CustFillInForm custForm = new CustFillInForm();
+        custForm.PreviousFrame(this);
+        custForm.setVisible(true);
+        custForm.setLocationRelativeTo(null);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnBrowseActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
