@@ -231,7 +231,7 @@ public class Register extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         affiliate.add(a);
         for(int i=1;i<affiliate.getNumberOfEntries()+1;i++){
-            if(affiliate.getEntry(i).getRest_name())
+            if(!affiliate.getEntry(i).getRest_name().isEmpty())
             if(jTextField1.getText().isEmpty()||jTextField2.getText().isEmpty()||jTextField3.getText().isEmpty()||jTextField4.getText().isEmpty()||jTextField5.getText().isEmpty()||jPasswordField1.getPassword().length==0||jPasswordField2.getPassword().length==0){
                 JOptionPane.showMessageDialog(null, "All Fields are Required!", "Error!!", JOptionPane.ERROR_MESSAGE);
             }else if(!jPasswordField1.getPassword().equals(jPasswordField2.getPassword())){
