@@ -19,11 +19,13 @@ public class employee {
     String address;
     String phone_num;
     String rank;
+    int year_joined;
+    int total_handled;
 
     public employee() {
     }
 
-    public employee(int emp_id, String email, String password, String status, String ic_number, String address, String phone_num, String rank) {
+    public employee(int emp_id, String email, String password, String status, String ic_number, String address, String phone_num, String rank, int year_joined, int total_handled) {
         this.emp_id = emp_id;
         this.email = email;
         this.password = password;
@@ -32,14 +34,8 @@ public class employee {
         this.address = address;
         this.phone_num = phone_num;
         this.rank = rank;
-    }
-
-    public String getRank() {
-        return rank;
-    }
-
-    public void setRank(String rank) {
-        this.rank = rank;
+        this.year_joined = year_joined;
+        this.total_handled = total_handled;
     }
 
     public int getEmp_id() {
@@ -98,5 +94,29 @@ public class employee {
         this.phone_num = phone_num;
     }
 
+    public String getRank() {
+        return rank;
+    }
+
+    public void setRank(String rank) {
+        this.rank = rank;
+    }
+
+    public int getYear_joined() {
+        return year_joined;
+    }
+
+    public void setYear_joined(int year_joined) {
+        this.year_joined = year_joined;
+    }
+
+    public int getTotal_handled() {
+        return total_handled;
+    }
+
+    public void setTotal_handled(int total_handled) {
+        this.total_handled = total_handled;
+    }
+    
     
 }
