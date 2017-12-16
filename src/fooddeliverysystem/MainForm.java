@@ -1,8 +1,7 @@
 package fooddeliverysystem;
 
 import PART_B.Update_Delivery_Men;
-import PART_C.CustFillInForm;
-import PART_C.SelectRestaurant;
+import PART_C.*;
 import PART_D.*;
 import adt.*;
 import entity.*;
@@ -31,7 +30,9 @@ public class MainForm extends javax.swing.JFrame {
     SimpleDateFormat timeOnly = new SimpleDateFormat("hh:mm:ss");
     SimpleDateFormat dateOnly = new SimpleDateFormat("dd/MM/yyyy");
     deliveryManInterface DMI;
-    public Order order  = new Order();
+    public Order order = new Order();
+    public LList<Order> custList = new LList<Order>();
+    String phoneNo;
 
     /**
      * Creates new form MainForm
@@ -66,6 +67,7 @@ public class MainForm extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         btnBrowse = new javax.swing.JButton();
         btnTrack = new javax.swing.JButton();
+        jbtGetCustomer = new javax.swing.JButton();
 
         jButton6.setText("jButton6");
 
@@ -130,6 +132,13 @@ public class MainForm extends javax.swing.JFrame {
             }
         });
 
+        jbtGetCustomer.setText("Get Customer Info");
+        jbtGetCustomer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtGetCustomerActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -143,7 +152,8 @@ public class MainForm extends javax.swing.JFrame {
                         .addGap(65, 65, 65)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnBrowse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnTrack, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(btnTrack, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jbtGetCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -209,6 +219,8 @@ public class MainForm extends javax.swing.JFrame {
                 .addComponent(btnBrowse)
                 .addGap(43, 43, 43)
                 .addComponent(btnTrack)
+                .addGap(41, 41, 41)
+                .addComponent(jbtGetCustomer)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -276,12 +288,21 @@ public class MainForm extends javax.swing.JFrame {
 
     private void btnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrowseActionPerformed
         // TODO add your handling code here:
-        CustFillInForm custForm = new CustFillInForm(order,orderList);
-        custForm.PreviousFrame(this);
-        custForm.setVisible(true);
-        custForm.setLocationRelativeTo(null);
-        this.setVisible(false);
+        if (!phoneNo.equals("")) {
+            SelectRestaurant2 sr2 = new SelectRestaurant2(order, orderList);
+        } else {
+            CustFillInForm custForm = new CustFillInForm(order, orderList);
+            custForm.PreviousFrame(this);
+            custForm.setVisible(true);
+            custForm.setLocationRelativeTo(null);
+            this.setVisible(false);
+        }
     }//GEN-LAST:event_btnBrowseActionPerformed
+
+    private void jbtGetCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtGetCustomerActionPerformed
+        // TODO add your handling code here:
+        GetCustInfo getCust = new GetCustInfo(order, custList, phoneNo);
+    }//GEN-LAST:event_jbtGetCustomerActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -338,7 +359,7 @@ public class MainForm extends javax.swing.JFrame {
         jtfTime.setText(new Date().toString());
         //loadAvailableEmployee();
         if (emp != null) {
-            
+
             emp_handled_list temp = ehlList.searchID(emp.getEmp_id());
             if (temp != null) {
                 Order ordtemp = finishedOrder.searchOrderID(temp.getOrder_id());
@@ -354,7 +375,7 @@ public class MainForm extends javax.swing.JFrame {
                 handle_id = ehlList.getEntry(ehlList.getNumberOfEntries()).getHandle_id() + 1;
             }
             ehl = new emp_handled_list(handle_id, empWaitingList.getFront().getEmp_id(), orderList.getFront().getOrder_id(), dateOnly.format(new Date()), timeOnly.format(new Date()), "HANDLED", "NONE");
-            System.out.println(handle_id+" : "+ Integer.toString(ehl.getOrder_id()) +" : "+ Integer.toString(ehl.getEmp_id()) );
+            System.out.println(handle_id + " : " + Integer.toString(ehl.getOrder_id()) + " : " + Integer.toString(ehl.getEmp_id()));
             ehlList.add(ehl);
 
             finishedOrder.add(orderList.dequeue());
@@ -422,6 +443,7 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JButton jbtGetCustomer;
     private javax.swing.JPasswordField jpfPassword;
     private javax.swing.JTextField jtfEmail;
     public static javax.swing.JTextField jtfTime;

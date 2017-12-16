@@ -31,7 +31,7 @@ public class SelectMenuItem2 extends JFrame {
     // JLabel jlblItem;
     //JLabel jlblPrice;
     //JButton jbtAdd = new JButton("Add");
-    Customer cust = new Customer(001, "Loi Kah Hou", "lkh@mail.com", "abc123", "0123456789", "123, Condo Satu, Jalan Dua, 53300 Setapak, KL", 0);
+    //Customer cust = new Customer(001, "Loi Kah Hou", "lkh@mail.com", "abc123", "0123456789", "123, Condo Satu, Jalan Dua, 53300 Setapak, KL", 0);
 
     public SelectMenuItem2(Affiliate aff, Order order, LinkedQueue<Order> orderList) {
         this.order = order;

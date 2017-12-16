@@ -4,16 +4,11 @@
  * and open the template in the editor.
  */
 package adt;
-import adt.*;
-import entity.*;
 
 /**
  *
  * @author Loi Kah Hou
  */
-public class AffiliateADT {
+public class OrderADT {
     
-    public AffiliateADT( ){
-        
-    }
 }

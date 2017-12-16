@@ -22,7 +22,6 @@ public class CustFillInForm extends javax.swing.JFrame {
     MainForm mainform;
     Order order;
     LinkedQueue<Order> orderList;
-    
 
     public CustFillInForm(Order order, LinkedQueue<Order> orderList) {
         this.order = order;

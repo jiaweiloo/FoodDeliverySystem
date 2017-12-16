@@ -40,6 +40,10 @@ public class OrderConfirmation extends JFrame {
         this.itemList = itemList;
         this.orderList=orderList;
         this.order=order;
+        
+        
+            
+        
         String[][] data = new String[cartList.getNumberOfEntries()][3];
         for(int a=1;a<=cartList.getNumberOfEntries();a++){
             System.out.println(cartList.getEntry(a).getSubTotal());
@@ -82,7 +86,7 @@ public class OrderConfirmation extends JFrame {
 
         jbtBack.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                jbBack(e,cartList,itemList);
+                jbBack(e);
             }
         });
         
@@ -96,21 +100,20 @@ public class OrderConfirmation extends JFrame {
 
     private void jbConfirm(ActionEvent e) {
         // TODO add your handling code here:
-        Payment payment = new Payment();
+        Payment payment = new Payment(cartList,order,orderList);
     }
 
-    private void jbBack(ActionEvent e,LList<OrderList>orderList,LList<Item>itemList) {
+    private void jbBack(ActionEvent e) {
         // TODO add your handling code here:
-        this.setVisible(false);
-        /*
-        Cart ct = new Cart();
+        this.dispose();
+        Cart ct = new Cart(cartList,itemList,order,orderList);
         ct.setTitle("Cart");
 
         ct.setSize(1200, 600);
         ct.setLocationRelativeTo(null);
         ct.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         ct.setVisible(true);
-        */
+        
     }
 
     /*public static void main(String[] args) {

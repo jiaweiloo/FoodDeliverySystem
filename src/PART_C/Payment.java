@@ -5,8 +5,14 @@
  */
 package PART_C;
 
+import adt.LList;
+import adt.LinkedQueue;
+import entity.Item;
+import entity.Order;
+import entity.OrderList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import fooddeliverysystem.*;
 
 /**
  *
@@ -17,7 +23,15 @@ public class Payment extends javax.swing.JFrame {
     /**
      * Creates new form Payment
      */
-    public Payment() {
+    LList<OrderList> cartList;
+    Order order;
+    LinkedQueue<Order> orderList;
+    MainForm mainform;
+
+    public Payment(LList<OrderList> cartList, Order order, LinkedQueue<Order> orderList) {
+        this.cartList = cartList;
+        this.orderList = orderList;
+        this.order = order;
         initComponents();
         setTitle("Payment");
         setLocationRelativeTo(null);
@@ -125,14 +139,21 @@ public class Payment extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        if (jTextField1.getText().equals("") || jTextField2.getText().equals("") || jTextField3.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Please complete the credit card info");
-        } else {
-            int result = JOptionPane.showConfirmDialog(null, "Confirm Pay?", "Confirmation", JOptionPane.YES_NO_OPTION);
-            if (result == JOptionPane.YES_OPTION) {
-                JOptionPane.showMessageDialog(null, "Your order is on its way!");
-                orderList
+        if (order.getCurrent_status() != "PAID") {
+            if (jTextField1.getText().equals("") || jTextField2.getText().equals("") || jTextField3.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Please complete the credit card info");
+            } else {
+                int result = JOptionPane.showConfirmDialog(null, "Confirm Pay?", "Confirmation", JOptionPane.YES_NO_OPTION);
+                if (result == JOptionPane.YES_OPTION) {
+                    JOptionPane.showMessageDialog(null, "Your order is on its way!");
+                    mainform.custList.add(order);
+                    order.setOrderList(cartList);
+                    order.setCurrent_status("PAID");
+                    orderList.enqueue(order);
+                }
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "Order Paid");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -166,7 +187,7 @@ public class Payment extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Payment().setVisible(true);
+                //new Payment().setVisible(true);
             }
         });
     }
