@@ -196,6 +196,24 @@ public class LList<T> implements ListInterface<T> {
         return result;
     }
     
+    
+    public boolean replaceObject(T oldEntry, T newEntry) {
+        boolean found = false;
+        Node currentNode = firstNode;
+        Node newNode = new Node(newEntry,null);
+        
+        while (!found && (currentNode != null)) {
+            if (oldEntry.equals(currentNode.data)) {
+                found = true;
+                newNode.next = currentNode.next;
+                currentNode = newNode;
+            } else {
+                currentNode = currentNode.next;
+            }
+        }
+        return found;        
+    }
+    
     @Override
     public String toString() {
         String outputStr = "";

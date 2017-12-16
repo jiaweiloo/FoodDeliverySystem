@@ -217,6 +217,23 @@ public class EmployeeADT<T> implements EmployeeInterface<T> {
         return outputStr;
     }
 
+    public boolean replaceObject(T oldEntry, T newEntry) {
+        boolean found = false;
+        Node currentNode = firstNode;
+        Node newNode = new Node(newEntry,null);
+        
+        while (!found && (currentNode != null)) {
+            if (oldEntry.equals(currentNode.data)) {
+                found = true;
+                newNode.next = currentNode.next;
+                currentNode = newNode;
+            } else {
+                currentNode = currentNode.next;
+            }
+        }
+        return found;        
+    }
+    
     private class Node {
 
         private T data;
