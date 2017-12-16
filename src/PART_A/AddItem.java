@@ -92,7 +92,7 @@ public class AddItem extends JFrame {
     }
     
     private void SaveItem(ActionEvent evt) {
-        if(jtfName.getText().equals("")||jtfPrice.getText().equals("")||jtfDescription.getText().equals("")){
+        if(jtfName.getText().isEmpty()||jtfPrice.getText().isEmpty()||jtfDescription.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "All fields are required!!", "InfoBox: " + "Error!!", JOptionPane.ERROR_MESSAGE);
         }else{
             try{
