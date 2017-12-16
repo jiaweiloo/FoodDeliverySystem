@@ -71,31 +71,61 @@ public class WaitingQueueADT<T> implements WaitingInterface<T> {
     } // end clear
 
     public void enqueueAscTotalHandled(T newEntry) {
-        Node newNode = new Node(newEntry, null);
-        employee emp = (employee) newEntry;
-        
         boolean found = false;
+        Node newNode = new Node(newEntry, null);
+        employee newEmp = (employee) newEntry;
         Node currentNode = firstNode;
 
+        if (isEmpty()) {
+            firstNode = newNode;
+            found = true;
+        } else if (currentNode.next == null) {
+            currentNode.next = newNode;
+            found = true;
+        }
+        /*
+        else {
+            lastNode.next = newNode;
+        } */
         while (!found && (currentNode != null)) {
-            employee temp = (employee)currentNode.data;
-            if (emp.getTotal_handled() >= temp.getTotal_handled()) {
+            employee currentNodeEmp = ((employee) currentNode.data);
+            if (currentNode.next == null) {
+                currentNode.next = newNode;
                 found = true;
+            } else if (newEmp.getTotal_handled() == currentNodeEmp.getTotal_handled()
+                    && newEmp.getTotal_handled() < ((employee) currentNode.next.data).getTotal_handled()) {
+
+                newNode.next = currentNode.next;
+                currentNode.next = newNode;
+                found = true;
+
             } else {
                 currentNode = currentNode.next;
             }
-        
-        }
-        if (isEmpty()) {
-            firstNode = newNode;
-        } else {
-            lastNode.next = newNode;
-        }
+
+        }// end of while loop
 
         lastNode = newNode;
         size++;
     }
 
+    @Override
+    public employee searchID(int ID) {
+        boolean found = false;
+        employee result = null;
+        Node currentNode = firstNode;
+        employee emp;
+        while (!found && (currentNode != null)) {
+            emp = (employee) currentNode.data;
+            if (emp.getEmp_id() == ID) {
+                found = true;
+            } else {
+                currentNode = currentNode.next;
+            }
+        }
+        return result;
+    }
+    
     private class Node {
 
         private T data; // entry in queue

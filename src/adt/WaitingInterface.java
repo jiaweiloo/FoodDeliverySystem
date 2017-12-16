@@ -1,5 +1,7 @@
 package adt;
 
+import entity.employee;
+
 /**
  * WaitingInterface.java An interface for the ADT waiting queue.
  *
@@ -50,5 +52,12 @@ public interface WaitingInterface<T> {
      * Add to next node if handled task larger than the node
      */
     public void enqueueAscTotalHandled(T newEntry);
+    
+    /**
+   * Task: Search a specific employee with ID
+   *
+   * @return employee object if the ID exist else return null
+   */
+    public employee searchID(int ID) ;
 } // end WaitingInterface
 
