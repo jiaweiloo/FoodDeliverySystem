@@ -119,6 +119,7 @@ public class WaitingQueueADT<T> implements WaitingInterface<T> {
             emp = (employee) currentNode.data;
             if (emp.getEmp_id() == ID) {
                 found = true;
+                result = emp;
             } else {
                 currentNode = currentNode.next;
             }
