@@ -119,11 +119,11 @@ public class AddItem extends JFrame {
                          affiliate.getEntry(i).getItemList().add(newItem);
                      } 
                  }
-                 /*for(int i=1;i<affiliate.getNumberOfEntries()+1;i++){
+                /* for(int i=1;i<affiliate.getNumberOfEntries()+1;i++){
                      if(affiliate.getEntry(i).getAffiliate_id()==currentID){
                          for(int o =1;o<affiliate.getEntry(i).getItemList().getNumberOfEntries()+1;o++){
                              add(new JLabel(affiliate.getEntry(i).getItemList().getEntry(o).getItem_name()));
-                             JOptionPane.showMessageDialog(null,affiliate.getEntry(i).getRest_name()+""+affiliate.getEntry(i).getItemList().getNumberOfEntries()+""+affiliate.getEntry(i).getItemList().getEntry(affiliate.getEntry(i).getItemList().getNumberOfEntries()).getItem_name(), "InfoBox: " + "Successful!!", JOptionPane.INFORMATION_MESSAGE);
+                             JOptionPane.showMessageDialog(null,affiliate.getEntry(i).getRest_name()+" "+affiliate.getEntry(i).getItemList().getEntry(o).getItem_id()+" "+affiliate.getEntry(i).getItemList().getEntry(o).getItem_name(), "InfoBox: " + "Successful!!", JOptionPane.INFORMATION_MESSAGE);
                          }   
                      } 
                  }*/
