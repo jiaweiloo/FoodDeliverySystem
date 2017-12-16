@@ -188,12 +188,14 @@ public class UpdateItemDetail extends JFrame {
                               affiliate.getEntry(i).getItemList().getEntry(o).setItem_name(jtfNewName.getText());
                               affiliate.getEntry(i).getItemList().getEntry(o).setItem_price(Double.parseDouble(jtfNewPrice.getText()));
                               affiliate.getEntry(i).getItemList().getEntry(o).setDesc(jtfNewDesc.getText());
-                              
+                              JOptionPane.showMessageDialog(null, "Item Modified!!", "InfoBox: " + "Successful!!", JOptionPane.INFORMATION_MESSAGE);
                           }
                       }
                   }
             }
-            for (int i = 1; i < affiliate.getNumberOfEntries() + 1; i++) {
+            
+            
+            /*for (int i = 1; i < affiliate.getNumberOfEntries() + 1; i++) {
                  if (affiliate.getEntry(i).getAffiliate_id() == currentID) {
                       for (int o = 1; o < affiliate.getEntry(i).getItemList().getNumberOfEntries() + 1; o++) {
                           System.out.print(affiliate.getEntry(i).getItemList().getEntry(o).getItem_id()+" ");
@@ -202,7 +204,7 @@ public class UpdateItemDetail extends JFrame {
                           System.out.println(affiliate.getEntry(i).getItemList().getEntry(o).getDesc());
                           }
                       }
-                  }
+                  }*/
             }
             
         public static void main(String[] args) {
