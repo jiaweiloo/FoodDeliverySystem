@@ -24,7 +24,6 @@ public class Order {
     String current_status;
     String orderDate;
     String purchase_time;
-
     public Order() {
     }
 

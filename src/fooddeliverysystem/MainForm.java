@@ -30,6 +30,7 @@ public class MainForm extends javax.swing.JFrame {
     SimpleDateFormat timeOnly = new SimpleDateFormat("hh:mm:ss");
     SimpleDateFormat dateOnly = new SimpleDateFormat("dd/MM/yyyy");
     deliveryManInterface DMI;
+    public Order order  = new Order();
 
     /**
      * Creates new form MainForm
@@ -274,7 +275,7 @@ public class MainForm extends javax.swing.JFrame {
 
     private void btnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrowseActionPerformed
         // TODO add your handling code here:
-        CustFillInForm custForm = new CustFillInForm();
+        CustFillInForm custForm = new CustFillInForm(order,orderList);
         custForm.PreviousFrame(this);
         custForm.setVisible(true);
         custForm.setLocationRelativeTo(null);

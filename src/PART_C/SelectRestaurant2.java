@@ -16,12 +16,12 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class SelectRestaurant2 extends JFrame {
-    Item item0 = new Item(201, "Curry Laksa", "5", 101);
-    Item item1 = new Item(202, "Curry Ayam", "5", 101);
-    Item item2 = new Item(203, "Curry Ikan", "5", 101);
-    Item item3 = new Item(204, "Curry Babi", "5", 102);
-    Item item4 = new Item(205, "Curry Kosong", "5", 102);
-    Item item5 = new Item(206, "Curry Manis", "5", 102);
+    Item item0 = new Item(201, "Curry Laksa", 5, 101);
+    Item item1 = new Item(202, "Curry Ayam", 5, 101);
+    Item item2 = new Item(203, "Curry Ikan", 5, 101);
+    Item item3 = new Item(204, "Curry Babi", 5, 102);
+    Item item4 = new Item(205, "Curry Kosong", 5, 102);
+    Item item5 = new Item(206, "Curry Manis",5, 102);
 
     Affiliate aff0 = new Affiliate(101, "Thai Boy Restaurant", "123, Jalan Genting Klang, 53300 setapak, Kuala Lumpur", "Loo Jia Wei", "0123456789", "Genting Klang");
     Affiliate aff1 = new Affiliate(102, "Curry Chicken", "123, Jalan Genting Klang, 53300 setapak, Kuala Lumpur", "Loo Jia Wei", "0123456789", "Genting Klang");
@@ -34,14 +34,17 @@ public class SelectRestaurant2 extends JFrame {
     LList<Item> itemList = new LList();
     LList<Item> itemList2 = new LList();
     //LinkedQueue<Item> backupItemQueue = new LinkedQueue();
+    Order order;
+    LinkedQueue<Order> orderList;
 
     JScrollPane jScrollPane;
     JPanel jPanel;
 
     JButton jbtRest;
 
-    public SelectRestaurant2() {
-        
+    public SelectRestaurant2(Order order,LinkedQueue<Order> orderList) {
+        this.order=order;
+        this.orderList =orderList;
         itemList.add(item0);
         itemList.add(item1);
         itemList.add(item2);
@@ -89,22 +92,26 @@ public class SelectRestaurant2 extends JFrame {
         for (int a = 0; a < backupRestQueue.size(); a++) {
             restQueue.enqueue(backupRestQueue.dequeue());
         }
+        setSize(1200, 600);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setVisible(true);
     }
 
     private void jbtRest(ActionEvent e,Affiliate aff) {
         // TODO add your handling code here:
         this.dispose();
-        SelectMenuItem2 menu = new SelectMenuItem2(aff);
+        SelectMenuItem2 menu = new SelectMenuItem2(aff,order,orderList);
     }
 
     public static void main(String[] args) {
-
+/*
         SelectRestaurant2 sr2 = new SelectRestaurant2();
 
         sr2.setSize(1200, 600);
         sr2.setLocationRelativeTo(null);
         sr2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        sr2.setVisible(true);
+        sr2.setVisible(true);*/
 
         //Affiliate affTest = (Affiliate) restQueue.dequeue();
         //System.out.print(affTest.getAffiliate_id());

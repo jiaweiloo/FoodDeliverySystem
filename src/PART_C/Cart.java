@@ -44,17 +44,21 @@ public class Cart extends JFrame {
     JPanel jpane2 = new JPanel();
     JButton jbCheckOut = new JButton("Check Out");
 
-    LList<OrderList> orderList = new LList();
+    LList<OrderList> cartList = new LList();
     // LinkedQueue<OrderList> backupOrderListQueue = new LinkedQueue();
     // LinkedQueue<Item> backupItemQueue = new LinkedQueue();
     LList<Item> itemList = new LList();
+    LinkedQueue<Order> orderList;
+    Order order;
 
-    public Cart(LList<OrderList> orderList, LList<Item> itemList, Order order) {
-        this.orderList = orderList;
+    public Cart(LList<OrderList> cartList, LList<Item> itemList, Order order, LinkedQueue<Order> orderList) {
+        this.cartList = cartList;
         this.itemList = itemList;
-        for (int a = 1; a <= orderList.getNumberOfEntries(); a++) {
-            System.out.println(orderList.getEntry(a).getItem_id());
-        }
+        this.orderList=orderList;
+        this.order=order;
+        /*for (int a = 1; a <= cartList.getNumberOfEntries(); a++) {
+            System.out.println(cartList.getEntry(a).getItem_id());
+        }*/
         setLayout(new GridLayout(2, 1));
         table = new JTable();
         model.setColumnIdentifiers(columns);
@@ -71,10 +75,10 @@ public class Cart extends JFrame {
         //  jpane2.setPreferredSize(new Dimension(1200,100));
         pane.setPreferredSize(new Dimension(1100, 200));
 
-        /*orderList.add(ol);
-        orderList.add(ol1);
-        orderList.add(ol2);
-        orderList.add(ol3);
+        /*cartList.add(ol);
+        cartList.add(ol1);
+        cartList.add(ol2);
+        cartList.add(ol3);
         itemList.add(item);
         itemList.add(item1);
         itemList.add(item2);
@@ -87,25 +91,24 @@ public class Cart extends JFrame {
             System.out.println(orderListQueue.dequeue().getSubTotal());
         }*/
        
-        /*for (int a = 1; a <= orderList.getNumberOfEntries(); a++) {
-            for (int b = a + 1; b <= orderList.getNumberOfEntries(); b++) {
-                if (orderList.getEntry(a).getItem_id() == orderList.getEntry(b).getItem_id()) {
-                    orderList.getEntry(a).setQuantity(orderList.getEntry(a).getQuantity()+orderList.getEntry(b).getQuantity());
-                    orderList.getEntry(a).setSubTotal(orderList.getEntry(a).getSubTotal()+orderList.getEntry(b).getQuantity());
-                    orderList.remove(b);
+        /*for (int a = 1; a <= cartList.getNumberOfEntries(); a++) {
+            for (int b = a + 1; b <= cartList.getNumberOfEntries(); b++) {
+                if (cartList.getEntry(a).getItem_id() == cartList.getEntry(b).getItem_id()) {
+                    cartList.getEntry(a).setQuantity(cartList.getEntry(a).getQuantity()+cartList.getEntry(b).getQuantity());
+                    cartList.getEntry(a).setSubTotal(cartList.getEntry(a).getSubTotal()+cartList.getEntry(b).getQuantity());
+                    cartList.remove(b);
                 }
             }
         }*/  
         
         //merge order Item
-
-        for (int a = 1; a <= orderList.getNumberOfEntries(); a++) {
+        for (int a = 1; a <= cartList.getNumberOfEntries(); a++) {
             for (int b = 1; b <= itemList.getNumberOfEntries(); b++) {
-                if (orderList.getEntry(a).getItem_id() == itemList.getEntry(b).getItem_id()) {
+                if (cartList.getEntry(a).getItem_id() == itemList.getEntry(b).getItem_id()) {
                     row[0] = itemList.getEntry(b).getItem_name();
-                    row[1] = orderList.getEntry(a).getQuantity();
+                    row[1] = cartList.getEntry(a).getQuantity();
                     row[2] = itemList.getEntry(b).getItem_price();
-                    row[3] = orderList.getEntry(a).getSubTotal();
+                    row[3] = cartList.getEntry(a).getSubTotal();
                 }
             }
             model.addRow(row);
@@ -141,7 +144,7 @@ public class Cart extends JFrame {
 
         if (a >= 0) {
             model.removeRow(a);
-            orderList.remove(a + 1);
+            cartList.remove(a + 1);
         } else {
             JOptionPane.showMessageDialog(null, "No more record!!!");
             //System.out.println(a);
@@ -151,12 +154,12 @@ public class Cart extends JFrame {
 
     private void jbtCheckOut(ActionEvent evt) {
         this.setVisible(false);
-        /* OrderConfirmation oc = new OrderConfirmation(orderList,itemList);
+        OrderConfirmation oc = new OrderConfirmation(cartList,itemList,order,orderList);
         oc.setTitle("Cart");
         oc.setSize(1200, 600);
         oc.setLocationRelativeTo(null);
         oc.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        oc.setVisible(true);*/
+        oc.setVisible(true);
     }
 
     /*  public static void main(String[] args) {
