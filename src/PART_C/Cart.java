@@ -48,10 +48,10 @@ public class Cart extends JFrame {
     // LinkedQueue<OrderList> backupOrderListQueue = new LinkedQueue();
     // LinkedQueue<Item> backupItemQueue = new LinkedQueue();
     LList<Item> itemList = new LList();
-    LinkedQueue<Order> orderList;
+    OrderInterface<Order> orderList;
     Order order;
 
-    public Cart(LList<OrderList> cartList, LList<Item> itemList, Order order, LinkedQueue<Order> orderList) {
+    public Cart(LList<OrderList> cartList, LList<Item> itemList, Order order, OrderInterface<Order> orderList) {
         this.cartList = cartList;
         this.itemList = itemList;
         this.orderList=orderList;

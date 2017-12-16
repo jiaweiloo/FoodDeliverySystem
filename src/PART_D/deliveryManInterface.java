@@ -19,7 +19,7 @@ public class deliveryManInterface extends javax.swing.JFrame {
     //ListInterface<Attendance> attdList = new LList<Attendance>();
     EmployeeInterface<employee> empList;
     ListInterface<Attendance> attdList;
-    LinkedQueue<Order> orderQueue;
+    OrderInterface<Order> orderQueue;
     ListInterface<Order> orderList = new LList<Order>();
     employee emp, emp1, emp2, emp3, emp4, emp5;
     Attendance att, att1, att2, att3, att4, att5;
@@ -38,7 +38,7 @@ public class deliveryManInterface extends javax.swing.JFrame {
         updateTable();
     }
 
-    public deliveryManInterface(EmployeeInterface<employee> empList, ListInterface<Attendance> attdList, employee emp, LinkedQueue<Order> orderQueue) {
+    public deliveryManInterface(EmployeeInterface<employee> empList, ListInterface<Attendance> attdList, employee emp, OrderInterface<Order> orderQueue) {
         this.empList = empList;
         this.attdList = attdList;
         this.emp = emp;

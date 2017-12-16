@@ -22,7 +22,7 @@ public class SelectMenuItem2 extends JFrame {
     JScrollPane jScrollPane;
     JPanel jPanel;
     LList<OrderList> cartList = new LList();
-    LinkedQueue<Order> orderList;
+    OrderInterface<Order> orderList;
     Order order;
     OrderList ol;
     LList<Item> itemList;
@@ -33,7 +33,7 @@ public class SelectMenuItem2 extends JFrame {
     //JButton jbtAdd = new JButton("Add");
     //Customer cust = new Customer(001, "Loi Kah Hou", "lkh@mail.com", "abc123", "0123456789", "123, Condo Satu, Jalan Dua, 53300 Setapak, KL", 0);
 
-    public SelectMenuItem2(Affiliate aff, Order order, LinkedQueue<Order> orderList) {
+    public SelectMenuItem2(Affiliate aff, Order order, OrderInterface<Order> orderList) {
         this.order = order;
         this.orderList = orderList;
         System.out.println(order.getOrder_id());

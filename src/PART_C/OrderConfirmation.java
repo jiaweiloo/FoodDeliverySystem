@@ -32,10 +32,10 @@ public class OrderConfirmation extends JFrame {
     double totalPrice = 0;
     LList<OrderList> cartList;
     LList<Item> itemList;
-    LinkedQueue<Order> orderList;
+    OrderInterface<Order> orderList;
     Order order;
 
-    public OrderConfirmation(LList<OrderList> cartList, LList<Item> itemList,Order order, LinkedQueue<Order> orderList) {
+    public OrderConfirmation(LList<OrderList> cartList, LList<Item> itemList,Order order, OrderInterface<Order> orderList) {
         this.cartList = cartList;
         this.itemList = itemList;
         this.orderList=orderList;

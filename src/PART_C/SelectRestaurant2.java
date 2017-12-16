@@ -37,14 +37,14 @@ public class SelectRestaurant2 extends JFrame {
     LList<Item> itemList2 = new LList();
     //LinkedQueue<Item> backupItemQueue = new LinkedQueue();
     Order order;
-    LinkedQueue<Order> orderList;
+    OrderInterface<Order> orderList;
 
     JScrollPane jScrollPane;
     JPanel jPanel;
 
     JButton jbtRest;
 
-    public SelectRestaurant2(Order order, LinkedQueue<Order> orderList) {
+    public SelectRestaurant2(Order order, OrderInterface<Order> orderList) {
         this.order = order;
         this.orderList = orderList;
         itemList.add(item0);

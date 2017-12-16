@@ -21,9 +21,9 @@ public class CustFillInForm extends javax.swing.JFrame {
      */
     MainForm mainform;
     Order order;
-    LinkedQueue<Order> orderList;
+    OrderInterface<Order> orderList;
 
-    public CustFillInForm(Order order, LinkedQueue<Order> orderList) {
+    public CustFillInForm(Order order, OrderInterface<Order> orderList) {
         this.order = order;
         this.orderList=orderList;
         setTitle("Order Fill In Form");

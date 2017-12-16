@@ -7,6 +7,7 @@ package PART_C;
 
 import adt.LList;
 import adt.LinkedQueue;
+import adt.OrderInterface;
 import entity.Item;
 import entity.Order;
 import entity.OrderList;
@@ -25,10 +26,10 @@ public class Payment extends javax.swing.JFrame {
      */
     LList<OrderList> cartList;
     Order order;
-    LinkedQueue<Order> orderList;
+    OrderInterface<Order> orderList;
     MainForm mainform;
 
-    public Payment(LList<OrderList> cartList, Order order, LinkedQueue<Order> orderList) {
+    public Payment(LList<OrderList> cartList, Order order, OrderInterface<Order> orderList) {
         this.cartList = cartList;
         this.orderList = orderList;
         this.order = order;
