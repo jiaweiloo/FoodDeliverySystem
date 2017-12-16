@@ -58,7 +58,7 @@ public class AddItem extends JFrame {
         JButton jbtnSave = new JButton("Save Item");
         JButton jbtnBack = new JButton("Back");
         JPanel panel=new JPanel();
-        setLayout(new GridLayout(7, 2)); 
+        setLayout(new GridLayout(4, 2)); 
         jbtnSave.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 SaveItem(evt);
@@ -119,16 +119,10 @@ public class AddItem extends JFrame {
                          affiliate.getEntry(i).getItemList().add(newItem);
                      } 
                  }
-                /* for(int i=1;i<affiliate.getNumberOfEntries()+1;i++){
-                     if(affiliate.getEntry(i).getAffiliate_id()==currentID){
-                         for(int o =1;o<affiliate.getEntry(i).getItemList().getNumberOfEntries()+1;o++){
-                             add(new JLabel(affiliate.getEntry(i).getItemList().getEntry(o).getItem_name()));
-                             JOptionPane.showMessageDialog(null,affiliate.getEntry(i).getRest_name()+" "+affiliate.getEntry(i).getItemList().getEntry(o).getItem_id()+" "+affiliate.getEntry(i).getItemList().getEntry(o).getItem_name(), "InfoBox: " + "Successful!!", JOptionPane.INFORMATION_MESSAGE);
-                         }   
-                     } 
-                 }*/
+                
                  JOptionPane.showMessageDialog(null, "Item Added!!", "InfoBox: " + "Successful!!", JOptionPane.INFORMATION_MESSAGE);
-               }
+                 
+            }
                 catch (Exception e){
                     JOptionPane.showMessageDialog(null, "Price must be numeric!!", "InfoBox: " + "Error!!", JOptionPane.ERROR_MESSAGE);
                 }

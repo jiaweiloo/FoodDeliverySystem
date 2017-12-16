@@ -150,7 +150,6 @@ public class DeleteItem extends JFrame{
                  
                  JOptionPane.showMessageDialog(null, "Item Deleted!!", "InfoBox: " + "Successful!!", JOptionPane.INFORMATION_MESSAGE);
                  
-                 //+affiliate.getEntry(2).getItemList().getNumberOfEntries()
                }
                 catch (Exception e){
                     JOptionPane.showMessageDialog(null, "Invalid Input!!", "InfoBox: " + "Error!!", JOptionPane.ERROR_MESSAGE);

@@ -230,8 +230,8 @@ public class Register extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        //affiliate.add(a);
-        //affiliate.add(b);
+        affiliate.add(a);
+        affiliate.add(b);
         
         
         if((jTextField1.getText().isEmpty()||jTextField2.getText().isEmpty()||jTextField3.getText().isEmpty()||jTextField4.getText().isEmpty()||jTextField5.getText().isEmpty()||jPasswordField1.getPassword().length==0||jPasswordField2.getPassword().length==0)){
@@ -246,13 +246,6 @@ public class Register extends javax.swing.JFrame {
                         char[] pass = jPasswordField1.getPassword();
                          String passString = new String(pass);
                          newRest = new Affiliate(1000,jTextField1.getText(),jTextField2.getText(),jTextField3.getText(),jTextField4.getText(),jTextField5.getText(),passString);
-                         /*newRest.setAffiliate_id(1000);
-                         newRest.setRest_name(jTextField1.getText());
-                         newRest.setOwner_name(jTextField2.getText());
-                         newRest.setRest_address(jTextField3.getText());
-                         newRest.setContact_no(jTextField4.getText());
-                         newRest.setRestrt_zone(jTextField5.getText());
-                         newRest.setPassword(passString);*/
                          affiliate.add(newRest);
                          JOptionPane.showMessageDialog(null, "Register Successful!!", "InfoBox: " + "Successful!!", JOptionPane.INFORMATION_MESSAGE);
                       
@@ -267,17 +260,10 @@ public class Register extends javax.swing.JFrame {
                   char[] pass = jPasswordField1.getPassword();
                   String passString = new String(pass);
                   newRest = new Affiliate(affiliate.getEntry(affiliate.getNumberOfEntries()).getAffiliate_id()+1,jTextField1.getText(),jTextField2.getText(),jTextField3.getText(),jTextField4.getText(),jTextField5.getText(),passString);
-                  /*newRest.setAffiliate_id(affiliate.getEntry(affiliate.getNumberOfEntries()).getAffiliate_id()+1);
-                  newRest.setRest_name(jTextField1.getText());
-                  newRest.setOwner_name(jTextField2.getText());
-                  newRest.setRest_address(jTextField3.getText());
-                  newRest.setContact_no(jTextField4.getText());
-                  newRest.setRestrt_zone(jTextField5.getText());
-                  newRest.setPassword(passString);*/
                   affiliate.add(newRest);
-                  JOptionPane.showMessageDialog(null, "Register Successful!! "+affiliate.getEntry(affiliate.getNumberOfEntries()).getAffiliate_id(), "InfoBox: " + "Successful!!", JOptionPane.INFORMATION_MESSAGE);
+                  JOptionPane.showMessageDialog(null, "Register Successful!! ", "InfoBox: " + "Successful!!", JOptionPane.INFORMATION_MESSAGE);
                          
-                    } 
+                 } 
             }
                     catch (NumberFormatException e) {
                            JOptionPane.showMessageDialog(null, "Contact Number must be numeric!", "Error!!", JOptionPane.ERROR_MESSAGE);
