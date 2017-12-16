@@ -18,12 +18,12 @@ import javax.swing.Timer;
  */
 public class MainForm extends javax.swing.JFrame {
 
-    EmployeeInterface<employee> empList = new EmployeeADT<employee>();
+    public EmployeeInterface<employee> empList = new EmployeeADT<employee>();
     ListInterface<Attendance> attdList = new LList<Attendance>();
     public LinkedQueue<Order> orderList = new LinkedQueue<Order>();
     public WaitingInterface<employee> empWaitingList = new WaitingQueueADT<employee>();
     ListInterface<emp_handled_list> ehlList = new LList<emp_handled_list>();
-    ListInterface<Order> finishedOrder = new LList<Order>();
+    public ListInterface<Order> finishedOrder = new LList<Order>();
     employee emp, emp1, emp2, emp3, emp4, emp5;
     Attendance att, att1, att2, att3, att4, att5;
     Order ord, ord1, ord2, ord3, ord4, ord5;
