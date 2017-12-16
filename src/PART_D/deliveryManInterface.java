@@ -338,7 +338,7 @@ public class deliveryManInterface extends javax.swing.JFrame {
         btnBreak.setEnabled(false);
         jtfStatus.setText("BREAK");
         jtfContinueStatus.setText(Boolean.toString(cont));
-        
+
     }//GEN-LAST:event_btnLunchOutActionPerformed
 
     private void btnLunchInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLunchInActionPerformed
@@ -359,8 +359,8 @@ public class deliveryManInterface extends javax.swing.JFrame {
             mainform.returnAtt(att);
             mainform.setVisible(true);
             this.dispose();
-        }else{
-            JOptionPane.showMessageDialog(null, "PLEASE CHANGE STATUS TO BREAK AND"+"\nCOMPLETE DELIVERY BEFORE LOGGING OUT", "LOGOUT FAIL!", JOptionPane.ERROR_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "PLEASE CHANGE STATUS TO BREAK AND" + "\nCOMPLETE DELIVERY BEFORE LOGGING OUT", "LOGOUT FAIL!", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnLogoutActionPerformed
 
@@ -409,7 +409,7 @@ public class deliveryManInterface extends javax.swing.JFrame {
         btnComplete.setEnabled(true);
         btnBreak.setEnabled(true);
         jtfStatus.setText("DELIVERY");
-        mainform.empWaitingList.enqueue(emp.getEmp_id());
+        mainform.empWaitingList.enqueueAscTotalHandled(emp);
         jtfContinueStatus.setText(Boolean.toString(cont));
     }//GEN-LAST:event_btnAcceptActionPerformed
 
@@ -418,7 +418,7 @@ public class deliveryManInterface extends javax.swing.JFrame {
         //btnCancel.setEnabled(true);
         //btnAccept.setEnabled(true);
         if (cont == true) {
-            mainform.empWaitingList.enqueue(emp.getEmp_id());
+            mainform.empWaitingList.enqueueAscTotalHandled(emp);
             jtfStatus.setText("ACTIVE");
             jtfCustName.setText("CHANGE STATUS TO AVAILABLE TO ACCEPT CUSTOMER!");
             jtfDelAdd.setText("NOT AVAILABLE");
@@ -429,20 +429,7 @@ public class deliveryManInterface extends javax.swing.JFrame {
             jtfDelAdd.setText("NOT AVAILABLE");
             jtfRestrt.setText("NOT AVAILABLE");
         }
-        /*
-        if (!orderQueue.isEmpty()) {
-            ord = orderQueue.dequeue();
-            jtfStatus.setText("ACTIVE");
-            jtfCustName.setText(ord.getCust_name());
-            jtfDelAdd.setText(ord.getCust_deliveryAddress());
-            jtfRestrt.setText(Integer.toString(ord.getRestaurant_id()));
-        } else {
-            jtfStatus.setText("ACTIVE");
-            jtfCustName.setText("NOT AVAILABLE! ");
-            jtfDelAdd.setText("NONE");
-            jtfRestrt.setText("NONE");
-        }
-         */
+
         complete++;
         jtfFinish.setText(Integer.toString(complete));
     }//GEN-LAST:event_btnCompleteActionPerformed
@@ -527,11 +514,13 @@ public class deliveryManInterface extends javax.swing.JFrame {
     }
 
     public void nextOrder(Order ord) {
-        this.ord = ord;
-        jtfStatus.setText("ACTIVE");
-        jtfCustName.setText(ord.getCust_name());
-        jtfDelAdd.setText(ord.getCust_deliveryAddress());
-        jtfRestrt.setText(Integer.toString(ord.getRestaurant_id()));
+        if (ord != this.ord) {
+            this.ord = ord;
+            jtfStatus.setText("ACTIVE");
+            jtfCustName.setText(ord.getCust_name());
+            jtfDelAdd.setText(ord.getCust_deliveryAddress());
+            jtfRestrt.setText(Integer.toString(ord.getRestaurant_id()));
+        }
     }
 
     public void reSorting() {
