@@ -26,6 +26,7 @@ public class deliveryManInterface extends javax.swing.JFrame {
     Order ord;
     SimpleDateFormat timeOnly = new SimpleDateFormat("hh:mm:ss");
     boolean cont = true;
+    boolean pendingorder = false;
     int complete = 0;
 
     /**
@@ -338,7 +339,9 @@ public class deliveryManInterface extends javax.swing.JFrame {
         btnBreak.setEnabled(false);
         jtfStatus.setText("BREAK");
         jtfContinueStatus.setText(Boolean.toString(cont));
-        
+        emp.setStatus("BREAK");
+        mainform.empList.replaceObject(mainform.empList.searchID(emp.getEmp_id()), emp);
+
     }//GEN-LAST:event_btnLunchOutActionPerformed
 
     private void btnLunchInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLunchInActionPerformed
@@ -355,12 +358,14 @@ public class deliveryManInterface extends javax.swing.JFrame {
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         // TODO add your handling code here:
         if (jtfStatus.getText().equals("BREAK")) {
+            emp.setStatus("OFFLINE");
+            mainform.empList.replaceObject(mainform.empList.searchID(emp.getEmp_id()), emp);
             att.setTime_checkout(timeOnly.format(new Date()));
             mainform.returnAtt(att);
             mainform.setVisible(true);
             this.dispose();
-        }else{
-            JOptionPane.showMessageDialog(null, "PLEASE CHANGE STATUS TO BREAK AND"+"\nCOMPLETE DELIVERY BEFORE LOGGING OUT", "LOGOUT FAIL!", JOptionPane.ERROR_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "PLEASE CHANGE STATUS TO BREAK AND" + "\nCOMPLETE DELIVERY BEFORE LOGGING OUT", "LOGOUT FAIL!", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnLogoutActionPerformed
 
@@ -379,25 +384,17 @@ public class deliveryManInterface extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         //btnCancel.setEnabled(true);
-        cont = false;
-        btnAccept.setEnabled(true);
-        jtfContinueStatus.setText(Boolean.toString(cont));
-        /*
-        orderQueue.enqueue(ord);
-        orderQueue.dequeue();
-        if (!orderQueue.isEmpty()) {
-            ord = orderQueue.getFront();
-            jtfStatus.setText("ACTIVE");
-            jtfCustName.setText(ord.getCust_name());
-            jtfDelAdd.setText(ord.getCust_deliveryAddress());
-            jtfRestrt.setText(Integer.toString(ord.getRestaurant_id()));
+        if (!pendingorder) {
+            cont = false;
+            btnAccept.setEnabled(true);
+            btnComplete.setEnabled(false);
+            jtfContinueStatus.setText(Boolean.toString(cont));
+            jtfStatus.setText("BREAK");
+            emp.setStatus("BREAK");
+            mainform.empList.replaceObject(mainform.empList.searchID(emp.getEmp_id()), emp);
         } else {
-            jtfStatus.setText("ACTIVE");
-            jtfCustName.setText("NOT AVAILABLE! ");
-            jtfDelAdd.setText("NONE");
-            jtfRestrt.setText("NONE");
+            JOptionPane.showMessageDialog(null, "Complete Order Before Break from duty", "LOGOUT FAIL!", JOptionPane.ERROR_MESSAGE);
         }
-         */
     }//GEN-LAST:event_btnBreakActionPerformed
 
     private void btnAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptActionPerformed
@@ -406,10 +403,14 @@ public class deliveryManInterface extends javax.swing.JFrame {
         //orderQueue.dequeue();
         btnCancel.setEnabled(false);
         btnAccept.setEnabled(false);
-        btnComplete.setEnabled(true);
         btnBreak.setEnabled(true);
         jtfStatus.setText("DELIVERY");
-        mainform.empWaitingList.enqueue(emp.getEmp_id());
+        jtfCustName.setText("WAITING FOR NEXT ORDER!");
+        emp.setStatus("DELIVERY");
+        employee emmmp = mainform.empList.searchID(emp.getEmp_id());
+        emmmp.getEmp_id();
+        mainform.empList.replaceObject(emmmp, emp);
+        mainform.empWaitingList.enqueueAscTotalHandled(emp);
         jtfContinueStatus.setText(Boolean.toString(cont));
     }//GEN-LAST:event_btnAcceptActionPerformed
 
@@ -417,8 +418,14 @@ public class deliveryManInterface extends javax.swing.JFrame {
         // TODO add your handling code here:
         //btnCancel.setEnabled(true);
         //btnAccept.setEnabled(true);
+        cont = false;
+        btnAccept.setEnabled(true);
+        btnBreak.setEnabled(false);
+        btnComplete.setEnabled(false);
+        jtfContinueStatus.setText(Boolean.toString(cont));
+        pendingorder = false;
         if (cont == true) {
-            mainform.empWaitingList.enqueue(emp.getEmp_id());
+            mainform.empWaitingList.enqueueAscTotalHandled(emp);
             jtfStatus.setText("ACTIVE");
             jtfCustName.setText("CHANGE STATUS TO AVAILABLE TO ACCEPT CUSTOMER!");
             jtfDelAdd.setText("NOT AVAILABLE");
@@ -428,22 +435,13 @@ public class deliveryManInterface extends javax.swing.JFrame {
             jtfCustName.setText("CHANGE STATUS TO AVAILABLE TO ACCEPT CUSTOMER!");
             jtfDelAdd.setText("NOT AVAILABLE");
             jtfRestrt.setText("NOT AVAILABLE");
+            emp.setStatus("BREAK");
+            mainform.empList.replaceObject(mainform.empList.searchID(emp.getEmp_id()), emp);
         }
-        /*
-        if (!orderQueue.isEmpty()) {
-            ord = orderQueue.dequeue();
-            jtfStatus.setText("ACTIVE");
-            jtfCustName.setText(ord.getCust_name());
-            jtfDelAdd.setText(ord.getCust_deliveryAddress());
-            jtfRestrt.setText(Integer.toString(ord.getRestaurant_id()));
-        } else {
-            jtfStatus.setText("ACTIVE");
-            jtfCustName.setText("NOT AVAILABLE! ");
-            jtfDelAdd.setText("NONE");
-            jtfRestrt.setText("NONE");
-        }
-         */
+
         complete++;
+        ord.setCurrent_status("DELIVERED");
+        mainform.finishedOrder.replaceObject(mainform.finishedOrder.searchOrderID(ord.getOrder_id()), ord);
         jtfFinish.setText(Integer.toString(complete));
     }//GEN-LAST:event_btnCompleteActionPerformed
 
@@ -527,11 +525,15 @@ public class deliveryManInterface extends javax.swing.JFrame {
     }
 
     public void nextOrder(Order ord) {
-        this.ord = ord;
-        jtfStatus.setText("ACTIVE");
-        jtfCustName.setText(ord.getCust_name());
-        jtfDelAdd.setText(ord.getCust_deliveryAddress());
-        jtfRestrt.setText(Integer.toString(ord.getRestaurant_id()));
+        if (ord != this.ord) {
+            this.ord = ord;
+            jtfStatus.setText("ACTIVE");
+            jtfCustName.setText(ord.getCust_name());
+            jtfDelAdd.setText(ord.getCust_deliveryAddress());
+            jtfRestrt.setText(Integer.toString(ord.getRestaurant_id()));
+            pendingorder = true;
+            btnComplete.setEnabled(true);
+        }
     }
 
     public void reSorting() {

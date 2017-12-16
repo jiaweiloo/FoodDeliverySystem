@@ -206,22 +206,23 @@ public class TrackMyOrder extends javax.swing.JFrame {
     private void btnCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckActionPerformed
         // TODO add your handling code here:
         if (jtfOrderID.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Please enter valid login ID! ");
+            JOptionPane.showMessageDialog(null, "Please enter valid order ID! ");
         } else {
-            int orderID = Integer.valueOf(jtfOrderID.getText());
-            for (int count = 1; count <= mainform.orderList.size(); count++) {
-                temp = mainform.orderList.dequeue();
-                if (temp.getOrder_id() == orderID) {
-                    order = temp;
-                }
-                mainform.orderList.enqueue(temp);
-            }
-            purchasetime = order.getPurchase_time();
-            countRemainingTime();
-            //jtfPurchaseTime.setText(Integer.toString(orderID));
 
-            jtfPurchaseTime.setText(purchasetime);
-            jtaAddress.setText(order.getCust_deliveryAddress());
+            try {
+                int orderID = Integer.valueOf(jtfOrderID.getText());
+                order = mainform.finishedOrder.searchOrderID(orderID);
+                if (order == null) {
+                    JOptionPane.showMessageDialog(null, "Order not found !Please enter valid order ID! ", "Error!", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    purchasetime = order.getPurchase_time();
+                    countRemainingTime();
+                    jtfPurchaseTime.setText(purchasetime);
+                    jtaAddress.setText(order.getCust_deliveryAddress());
+                }
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "OrderID not in valid format! ", "Error!", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_btnCheckActionPerformed
 

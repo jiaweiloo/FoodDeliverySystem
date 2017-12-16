@@ -1,5 +1,8 @@
 package adt;
 
+import entity.Order;
+import entity.emp_handled_list;
+
 /**
  * LList.java A class that implements the ADT list by using a chain of nodes,
  * with the node implemented as an inner class.
@@ -8,7 +11,6 @@ public class LList<T> implements ListInterface<T> {
 
     private Node firstNode; // reference to first node
     private int numberOfEntries;  	// number of entries in list
-    private Seperator seperator;
 
     public LList() {
         clear();
@@ -23,12 +25,10 @@ public class LList<T> implements ListInterface<T> {
     @Override
     public boolean add(T newEntry) {
         Node newNode = new Node(newEntry);	// create the new node
-        
-        
+
         if (isEmpty()) // if empty list
         {
             firstNode = newNode;
-            seperator = new Seperator();
         } else {                        // add to end of nonempty list
             Node currentNode = firstNode;					// traverse linked list with p pointing to the current node
             while (currentNode.next != null) {		// while have not reached the last node
@@ -161,6 +161,59 @@ public class LList<T> implements ListInterface<T> {
         return false;
     }
 
+    public emp_handled_list searchID(int ID) {
+        boolean found = false;
+        emp_handled_list result = null;
+        
+        Node currentNode = firstNode;
+        emp_handled_list ehl;
+        while (!found && (currentNode != null)) {
+            ehl = (emp_handled_list) currentNode.data;
+            if (ehl.getEmp_id() == ID) {
+                result = ehl;
+                found = true;
+            } else {
+                currentNode = currentNode.next;
+            }
+        }
+        return result;
+    }
+
+    public Order searchOrderID(int ID) {
+        boolean found = false;
+        Order result = null;
+        Node currentNode = firstNode;
+        Order order;
+        while (!found && (currentNode != null)) {
+            order = (Order) currentNode.data;
+            if (order.getOrder_id()== ID) {
+                found = true;
+                result = order;
+            } else {
+                currentNode = currentNode.next;
+            }
+        }
+        return result;
+    }
+    
+    
+    public boolean replaceObject(T oldEntry, T newEntry) {
+        boolean found = false;
+        Node currentNode = firstNode;
+        Node newNode = new Node(newEntry,null);
+        
+        while (!found && (currentNode != null)) {
+            if (oldEntry.equals(currentNode.data)) {
+                found = true;
+                newNode.next = currentNode.next;
+                currentNode = newNode;
+            } else {
+                currentNode = currentNode.next;
+            }
+        }
+        return found;        
+    }
+    
     @Override
     public String toString() {
         String outputStr = "";
@@ -188,26 +241,5 @@ public class LList<T> implements ListInterface<T> {
         }
 
     } // end Node
-
-    private class Seperator {
-
-        private int seperateIndex;
-        private Seperator next;
-
-        private Seperator() {
-            this.seperateIndex = 1;
-            this.next = null;
-        }
-
-        private Seperator(int seperateIndex) {
-            this.seperateIndex = seperateIndex;
-            this.next = null;
-        }
-
-        private Seperator(int seperateIndex, Seperator next) {
-            this.seperateIndex = seperateIndex;
-            this.next = next;
-        }
-    } // end Seperator
 
 } // end LList

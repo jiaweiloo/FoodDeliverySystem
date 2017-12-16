@@ -135,6 +135,7 @@ public class EmployeeADT<T> implements EmployeeInterface<T> {
             emp = (employee) currentNode.data;
             if (emp.getEmp_id() == ID) {
                 found = true;
+                result = emp;
             } else {
                 currentNode = currentNode.next;
             }
@@ -152,15 +153,19 @@ public class EmployeeADT<T> implements EmployeeInterface<T> {
 
             if (input.equals(emp.getEmail())) {
                 found = true;
+                result = emp;
             } 
             else if (input.equals(emp.getIc_number())) {
                 found = true;
+                result = emp;
             } 
             else if (input.equals(emp.getPhone_num())) {
                 found = true;
+                result = emp;
             } 
             else if (input.equals(emp.getAddress())) {
                 found = true;
+                result = emp;
             } 
             else {
                 currentNode = currentNode.next;
@@ -217,6 +222,23 @@ public class EmployeeADT<T> implements EmployeeInterface<T> {
         return outputStr;
     }
 
+    public boolean replaceObject(T oldEntry, T newEntry) {
+        boolean found = false;
+        Node currentNode = firstNode;
+        Node newNode = new Node(newEntry,null);
+        
+        while (!found && (currentNode != null)) {
+            if (oldEntry.equals(currentNode.data)) {
+                found = true;
+                newNode.next = currentNode.next;
+                currentNode = newNode;
+            } else {
+                currentNode = currentNode.next;
+            }
+        }
+        return found;        
+    }
+    
     private class Node {
 
         private T data;
