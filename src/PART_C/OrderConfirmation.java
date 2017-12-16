@@ -25,29 +25,36 @@ public class OrderConfirmation extends JFrame {
     JLabel jlblOrder = new JLabel("Order Item");
     JButton jbConfirm = new JButton("Confirm");
     JLabel jlblAddressHeader = new JLabel("Delivery Address :");
-    JLabel jlblAddress = new JLabel("123, Taman Sri Rampai, 53300 Setapak, Kuala Lumpur");
     JTable table;
     String[] columnNames = {"Item Name", "Quantity", "Amount (RM)"};
     JScrollPane scrollPane;
     JButton jbtBack = new JButton("Back");
-    int totalPrice = 0;
-    LList<OrderList> orderList;
+    double totalPrice = 0;
+    LList<OrderList> cartList;
     LList<Item> itemList;
+    OrderInterface<Order> orderList;
+    Order order;
 
-    public OrderConfirmation(LList<OrderList> orderList, LList<Item> itemList,Order order) {
-        this.orderList = orderList;
+    public OrderConfirmation(LList<OrderList> cartList, LList<Item> itemList,Order order, OrderInterface<Order> orderList) {
+        this.cartList = cartList;
         this.itemList = itemList;
-        String[][] data = new String[orderList.getNumberOfEntries()][3];
-        for(int a=1;a<=orderList.getNumberOfEntries();a++){
-            System.out.println(orderList.getEntry(a).getSubTotal());
+        this.orderList=orderList;
+        this.order=order;
+        
+        
+            
+        
+        String[][] data = new String[cartList.getNumberOfEntries()][3];
+        for(int a=1;a<=cartList.getNumberOfEntries();a++){
+            System.out.println(cartList.getEntry(a).getSubTotal());
         }
-        for (int a = 1; a <= orderList.getNumberOfEntries(); a++) {
+        for (int a = 1; a <= cartList.getNumberOfEntries(); a++) {
             for (int b = 1; b <= itemList.getNumberOfEntries(); b++) {
-                if (orderList.getEntry(a).getItem_id()==itemList.getEntry(b).getItem_id()) {
+                if (cartList.getEntry(a).getItem_id()==itemList.getEntry(b).getItem_id()) {
                     data[a - 1][0] = itemList.getEntry(b).getItem_name();
-                    data[a - 1][1] = orderList.getEntry(a).getQuantity();
-                    data[a - 1][2] = orderList.getEntry(a).getSubTotal();
-                    totalPrice += Integer.parseInt(orderList.getEntry(a).getSubTotal());
+                    data[a - 1][1] = Integer.toString(cartList.getEntry(a).getQuantity());
+                    data[a - 1][2] = Double.toString(cartList.getEntry(a).getSubTotal());
+                    totalPrice += cartList.getEntry(a).getSubTotal();
                 }
             }
         }
@@ -56,20 +63,18 @@ public class OrderConfirmation extends JFrame {
         table.setPreferredScrollableViewportSize(new Dimension(500, 500));
         table.setFillsViewportHeight(true);
         scrollPane = new JScrollPane(table);
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        Date date = new Date();
         System.out.println();
         setLayout(new GridLayout(6, 2));
         add(jlblName);
-        add(new JLabel("James Bond"));
+        add(new JLabel(order.getCust_name()));
         add(jlblDate);
-        add(new JLabel(dateFormat.format(date)));
+        add(new JLabel(order.getOrderDate()));
         add(jlblOrder);
         add(scrollPane);
         add(new JLabel("Total Amount (RM) :"));
         add(new JLabel(String.valueOf(totalPrice)));
         add(jlblAddressHeader);
-        add(jlblAddress);
+        add(new JLabel(order.getCust_deliveryAddress()));
         add(jbtBack);
         add(jbConfirm);
 
@@ -81,32 +86,34 @@ public class OrderConfirmation extends JFrame {
 
         jbtBack.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                jbBack(e,orderList,itemList);
+                jbBack(e);
             }
         });
+        
+        setTitle("Order Confirmation");
+        setSize(1200, 600);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setVisible(true);
 
     }
 
     private void jbConfirm(ActionEvent e) {
         // TODO add your handling code here:
-        int result = JOptionPane.showConfirmDialog(null, "Make Delivery?", "Warning", JOptionPane.YES_NO_OPTION);
-        if (result == JOptionPane.YES_OPTION) {
-            JOptionPane.showMessageDialog(null, "Your order is on its way!");
-        }
+        Payment payment = new Payment(cartList,order,orderList);
     }
 
-    private void jbBack(ActionEvent e,LList<OrderList>orderList,LList<Item>itemList) {
+    private void jbBack(ActionEvent e) {
         // TODO add your handling code here:
-        this.setVisible(false);
-        /*
-        Cart ct = new Cart();
+        this.dispose();
+        Cart ct = new Cart(cartList,itemList,order,orderList);
         ct.setTitle("Cart");
 
         ct.setSize(1200, 600);
         ct.setLocationRelativeTo(null);
         ct.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         ct.setVisible(true);
-        */
+        
     }
 
     /*public static void main(String[] args) {

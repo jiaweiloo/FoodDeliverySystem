@@ -14,14 +14,14 @@ public class OrderList {
     int orderList_id;
     int order_id;
     int item_id;
-    String quantity;
-    String subTotal;
+    int quantity;
+    double subTotal;
 
 
 
     public OrderList() {
     }
-    public OrderList(int orderList_id, int order_id, int item_id, String quantity, String subTotal) {
+    public OrderList(int orderList_id, int order_id, int item_id, int quantity, double subTotal) {
         this.orderList_id = orderList_id;
         this.order_id = order_id;
         this.item_id = item_id;
@@ -53,19 +53,19 @@ public class OrderList {
         this.item_id = item_id;
     }
 
-    public String getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(String quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
-    public String getSubTotal() {
+    public double getSubTotal() {
         return subTotal;
     }
 
-    public void setSubTotal(String subTotal) {
+    public void setSubTotal(double subTotal) {
         this.subTotal = subTotal;
     }
 

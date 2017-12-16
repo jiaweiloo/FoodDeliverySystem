@@ -27,12 +27,12 @@ public class AddItem extends JFrame {
     Affiliate restB=new Affiliate(0001,"Rest B","Rest B address","Bli","0111111111","Zone B","123456789");
     LList<Item> item=new LList<Item>(); 
     LList<Item> Bitem=new LList<Item>(); 
-    Item itemA=new Item(6001,"Curry Chicken","12.30",0000,"Curry Chicken taste good");
-    Item itemB=new Item(6002,"Curry Fish","12.30",0000,"Curry Fish taste good");
-    Item itemC=new Item(6003,"Curry Duck","12.30",0000,"Curry Duck taste good");
-    Item BitemA=new Item(6001,"Curry BChicken","12.30",0001,"Curry Chicken taste good");
-    Item BitemB=new Item(6002,"Curry BFish","12.30",0001,"Curry Fish taste good");
-    Item BitemC=new Item(6003,"Curry BDuck","12.30",0001,"Curry Duck taste good");
+    Item itemA=new Item(6001,"Curry Chicken",12.30,0000,"Curry Chicken taste good");
+    Item itemB=new Item(6002,"Curry Fish",12.30,0000,"Curry Fish taste good");
+    Item itemC=new Item(6003,"Curry Duck",12.30,0000,"Curry Duck taste good");
+    Item BitemA=new Item(6001,"Curry BChicken",12.30,0001,"Curry Chicken taste good");
+    Item BitemB=new Item(6002,"Curry BFish",12.30,0001,"Curry Fish taste good");
+    Item BitemC=new Item(6003,"Curry BDuck",12.30,0001,"Curry Duck taste good");
     Item newItem;
     
     JTextField jtfName = new JTextField();
@@ -113,7 +113,7 @@ public class AddItem extends JFrame {
                          newID=affiliate.getEntry(i).getItemList().getEntry(affiliate.getEntry(i).getItemList().getNumberOfEntries()).getItem_id()+1;
                      }
                  }
-                 newItem = new Item(newID,jtfName.getText(),jtfPrice.getText(),currentID,jtfDescription.getText());
+                 newItem = new Item(newID,jtfName.getText(),Double.parseDouble(jtfPrice.getText()),currentID,jtfDescription.getText());
                  for(int i=1;i<affiliate.getNumberOfEntries()+1;i++){
                      if(affiliate.getEntry(i).getAffiliate_id()==currentID){
                          affiliate.getEntry(i).getItemList().add(newItem);

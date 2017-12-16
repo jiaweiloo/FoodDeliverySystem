@@ -33,12 +33,12 @@ public class DeleteItem extends JFrame{
     Affiliate restB=new Affiliate(1001,"Rest B","Rest B address","Bli","0111111111","Zone B","123456789");
     LList<Item> item=new LList<Item>(); 
     LList<Item> Bitem=new LList<Item>(); 
-    Item itemA=new Item(6001,"Curry Chicken","12.30",0000,"Curry Chicken taste good");
-    Item itemB=new Item(6002,"Curry Fish","12.30",0000,"Curry Fish taste good");
-    Item itemC=new Item(6003,"Curry Duck","12.30",0000,"Curry Duck taste good");
-    Item BitemA=new Item(6001,"Curry BChicken","12.30",0001,"Curry Chicken taste good");
-    Item BitemB=new Item(6002,"Curry BFish","12.30",0001,"Curry Fish taste good");
-    Item BitemC=new Item(6003,"Curry BDuck","12.30",0001,"Curry Duck taste good");
+    Item itemA=new Item(6001,"Curry Chicken",12.30,0000,"Curry Chicken taste good");
+    Item itemB=new Item(6002,"Curry Fish",12.30,0000,"Curry Fish taste good");
+    Item itemC=new Item(6003,"Curry Duck",12.30,0000,"Curry Duck taste good");
+    Item BitemA=new Item(6001,"Curry BChicken",12.30,0001,"Curry Chicken taste good");
+    Item BitemB=new Item(6002,"Curry BFish",12.30,0001,"Curry Fish taste good");
+    Item BitemC=new Item(6003,"Curry BDuck",12.30,0001,"Curry Duck taste good");
     
     
     
@@ -88,7 +88,7 @@ public class DeleteItem extends JFrame{
                 for(int o=1;o<affiliate.getEntry(i).getItemList().getNumberOfEntries()+1;o++){
                     add(new JLabel(String.valueOf(affiliate.getEntry(i).getItemList().getEntry(o).getItem_id())));
                     add(new JLabel(affiliate.getEntry(i).getItemList().getEntry(o).getItem_name()));
-                    add(new JLabel(affiliate.getEntry(i).getItemList().getEntry(o).getItem_price()));
+                    add(new JLabel(Double.toString(affiliate.getEntry(i).getItemList().getEntry(o).getItem_price())));
                     add(new JLabel(affiliate.getEntry(i).getItemList().getEntry(o).getDesc()));
                  } 
             } 
