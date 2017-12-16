@@ -18,17 +18,19 @@ public class Affiliate {
     String contact_no;
     String restrt_zone;
     LList<Item> itemList;
+    String password;
    
     public Affiliate() {
     }
 
-    public Affiliate(int affiliate_id, String rest_name, String rest_address, String owner_name, String contact_no, String restrt_zone) {
+    public Affiliate(int affiliate_id, String rest_name, String rest_address, String owner_name, String contact_no, String restrt_zone,String password) {
         this.affiliate_id = affiliate_id;
         this.rest_name = rest_name;
         this.rest_address = rest_address;
         this.owner_name = owner_name;
         this.contact_no = contact_no;
         this.restrt_zone = restrt_zone;
+        this.password = password;
     }
 
     public LList<Item> getItemList() {
@@ -67,7 +69,11 @@ public class Affiliate {
     public String getRest_address() {
         return rest_address;
     }
-
+    
+    public String getPassword(){
+        return password;
+    }
+    
     public void setRest_address(String rest_address) {
         this.rest_address = rest_address;
     }
@@ -86,6 +92,10 @@ public class Affiliate {
 
     public void setContact_no(String contact_no) {
         this.contact_no = contact_no;
+    }
+    
+    public void setPassword(String password) {
+        this.password=password;
     }
   
 }

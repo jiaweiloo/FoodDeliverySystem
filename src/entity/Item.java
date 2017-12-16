@@ -13,14 +13,16 @@ public class Item {
 
     int item_id;
     String item_name;
-    String item_price;
+    double item_price;
     int rest_id;
 
-    public Item(int item_id, String item_name, String item_price, int rest_id) {
+    String desc;
+    public Item(int item_id, String item_name, double item_price, int rest_id,String desc) {
         this.item_id = item_id;
         this.item_name = item_name;
         this.item_price = item_price;
         this.rest_id = rest_id;
+        this.desc=desc;
     }
 
     public int getItem_id() {
@@ -39,11 +41,11 @@ public class Item {
         this.item_name = item_name;
     }
 
-    public String getItem_price() {
+    public double getItem_price() {
         return item_price;
     }
 
-    public void setItem_price(String item_price) {
+    public void setItem_price(double item_price) {
         this.item_price = item_price;
     }
 
@@ -54,7 +56,14 @@ public class Item {
     public void setRest_id(int rest_id) {
         this.rest_id = rest_id;
     }
-
+    
+    public String getDesc(){
+        return desc;
+    }
+    
+    public void setDesc(String desc){
+        this.desc=desc;
+    }
     
     
 }
