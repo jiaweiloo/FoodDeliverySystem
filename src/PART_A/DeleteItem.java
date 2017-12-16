@@ -63,6 +63,23 @@ public class DeleteItem extends JFrame{
         JButton jtbDel = new JButton("Delete");
         JLabel lblInput = new JLabel("Enter Item ID");
         
+        try{
+                 for (int i = 1; i < affiliate.getNumberOfEntries() + 1; i++) {
+            if (affiliate.getEntry(i).getAffiliate_id() == currentID) {
+                if(affiliate.getEntry(i).getItemList().isEmpty()){
+                    
+                    
+                }
+            }
+        }
+                 
+            }
+                catch (Exception e){
+                    JOptionPane.showMessageDialog(null, "No Item", "InfoBox: " + "Error!!", JOptionPane.ERROR_MESSAGE);
+                    System.exit(0);
+                }
+        
+        
         //Calculate number of row
         for(int i=1;i<affiliate.getNumberOfEntries()+1;i++){
             if(affiliate.getEntry(i).getAffiliate_id()==currentID){

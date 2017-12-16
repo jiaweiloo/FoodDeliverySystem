@@ -28,17 +28,21 @@ public class UpdateItemDetail extends JFrame {
     Affiliate restB = new Affiliate(0001, "Rest B", "Rest B address", "Bli", "0111111111", "Zone B", "123456789");
     LList<Item> item = new LList<Item>();
     LList<Item> Bitem = new LList<Item>();
-    Item itemA = new Item(6001, "Curry Chicken", "12.30", 0000, "Curry Chicken taste good");
-    Item itemB = new Item(6002, "Curry Fish", "12.30", 0000, "Curry Fish taste good");
-    Item itemC = new Item(6003, "Curry Duck", "12.30", 0000, "Curry Duck taste good");
-    Item BitemA = new Item(6001, "Curry BChicken", "12.30", 0001, "Curry Chicken taste good");
-    Item BitemB = new Item(6002, "Curry BFish", "12.30", 0001, "Curry Fish taste good");
-    Item BitemC = new Item(6003, "Curry BDuck", "12.30", 0001, "Curry Duck taste good");
+    Item itemA = new Item(6001, "Curry Chicken", 12.30, 0000, "Curry Chicken taste good");
+    Item itemB = new Item(6002, "Curry Fish", 12.30, 0000, "Curry Fish taste good");
+    Item itemC = new Item(6003, "Curry Duck", 12.30, 0000, "Curry Duck taste good");
+    Item BitemA = new Item(6001, "Curry BChicken", 12.30, 0001, "Curry Chicken taste good");
+    Item BitemB = new Item(6002, "Curry BFish", 12.30, 0001, "Curry Fish taste good");
+    Item BitemC = new Item(6003, "Curry BDuck", 12.30, 0001, "Curry Duck taste good");
     Item newItem;
     JLabel lblSelectedID = new JLabel();
     JTextField jtfNewName = new JTextField();
     JTextField jtfNewPrice = new JTextField();
     JTextField jtfNewDesc = new JTextField();
+    String name;
+    double price;
+    String desc;
+    int id;
 
     public UpdateItemDetail() {
 
@@ -65,7 +69,26 @@ public class UpdateItemDetail extends JFrame {
         JLabel lblSDesc = new JLabel("Selected Desc");
         
         JButton btnUpdate = new JButton("Update");
-        JButton btnSelect = new JButton("Select");
+        
+        try{
+                 for (int i = 1; i < affiliate.getNumberOfEntries() + 1; i++) {
+            if (affiliate.getEntry(i).getAffiliate_id() == currentID) {
+                if(affiliate.getEntry(i).getItemList().isEmpty()){
+                    
+                    
+                }
+            }
+        }
+                 
+            }
+                catch (Exception e){
+                    JOptionPane.showMessageDialog(null, "No Item", "InfoBox: " + "Error!!", JOptionPane.ERROR_MESSAGE);
+                    System.exit(0);
+                }
+                
+            
+        
+        
 
         //Calculate number of row
         for (int i = 1; i < affiliate.getNumberOfEntries() + 1; i++) {
@@ -86,33 +109,35 @@ public class UpdateItemDetail extends JFrame {
         for (int i = 1; i < affiliate.getNumberOfEntries() + 1; i++) {
             if (affiliate.getEntry(i).getAffiliate_id() == currentID) {
                 for (int o = 1; o < affiliate.getEntry(i).getItemList().getNumberOfEntries() + 1; o++) {
+                    JButton btnSelect = new JButton("Select");
                     add(new JLabel(String.valueOf(affiliate.getEntry(i).getItemList().getEntry(o).getItem_id())));
                     add(new JLabel(affiliate.getEntry(i).getItemList().getEntry(o).getItem_name()));
-                    add(new JLabel(affiliate.getEntry(i).getItemList().getEntry(o).getItem_price()));
+                    add(new JLabel(Double.toString(affiliate.getEntry(i).getItemList().getEntry(o).getItem_price())));
                     add(new JLabel(affiliate.getEntry(i).getItemList().getEntry(o).getDesc()));
                     
-                    //add(btnSelect);
+                    add(btnSelect);
+                    
                     String SID =String.valueOf(affiliate.getEntry(i).getItemList().getEntry(o).getItem_id());
                     String SName=affiliate.getEntry(i).getItemList().getEntry(o).getItem_name();
-                    String SPrice=affiliate.getEntry(i).getItemList().getEntry(o).getItem_price();
+                    String SPrice=Double.toString(affiliate.getEntry(i).getItemList().getEntry(o).getItem_price());
                     String SDesc=affiliate.getEntry(i).getItemList().getEntry(o).getDesc();
-                    
-                    add(new JButton("Select").addActionListener(new ActionListener() {
+                    btnSelect.addActionListener(new ActionListener() {
                       public void actionPerformed(ActionEvent evt) {
                             SelectItem(evt,SID,SName,SPrice,SDesc);
                         }
                     });
-                    /*btnSelect.addActionListener(new ActionListener() {
-                      public void actionPerformed(ActionEvent evt) {
-                            SelectItem(evt,SID,SName,SPrice,SDesc);
-                        }
-                    });  */
+                    
+                    
                 }
             }
         }
         
         
-        
+        btnUpdate.addActionListener(new ActionListener() {
+                      public void actionPerformed(ActionEvent evt) {
+                            UpdateItem(evt,id,name,price,desc);
+                        }
+                    });
         lblSID.setForeground(Color.BLUE);
         lblSName.setForeground(Color.BLUE);
         lblSPrice.setForeground(Color.BLUE);
@@ -121,8 +146,8 @@ public class UpdateItemDetail extends JFrame {
         add(lblSName);
         add(lblSPrice);
         add(lblSDesc);
-        add(lblSelectedID);
         add(lblEmpty1);
+        add(lblSelectedID);
         add(jtfNewName);
         add(jtfNewPrice);
         add(jtfNewDesc);
@@ -140,10 +165,54 @@ public class UpdateItemDetail extends JFrame {
         jtfNewName.setText(Name);
         jtfNewPrice.setText(Price);
         jtfNewDesc.setText(Desc);
+        name=Name;
+        price=Double.parseDouble(Price);
+        id=Integer.parseInt(ID);
+        desc=Desc;
+        
     }
-    public static void main(String[] args) {
+    
+    private void UpdateItem(ActionEvent evt,int ID,String Name,double Price,String Desc){
+        if(lblSelectedID.getText().isEmpty()||jtfNewName.getText().isEmpty()||jtfNewPrice.getText().isEmpty()||jtfNewDesc.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Please select an item and enter new detail", "InfoBox: " + "Error!!", JOptionPane.ERROR_MESSAGE);
+            return;
+        }else if(lblSelectedID.getText().equals(String.valueOf(id))&&jtfNewName.getText().equals(name)&&jtfNewPrice.getText().equals(String.valueOf(price))&&jtfNewDesc.getText().equals(desc)){
+            JOptionPane.showMessageDialog(null, "Please key in at least one different detail", "InfoBox: " + "Error!!", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+            for (int i = 1; i < affiliate.getNumberOfEntries() + 1; i++) {
+                 if (affiliate.getEntry(i).getAffiliate_id() == currentID) {
+                      for (int o = 1; o < affiliate.getEntry(i).getItemList().getNumberOfEntries() + 1; o++) {
+                          if(id==affiliate.getEntry(i).getItemList().getEntry(o).getItem_id()){
+                              affiliate.getEntry(i).getItemList().getEntry(o).setItem_name(jtfNewName.getText());
+                              affiliate.getEntry(i).getItemList().getEntry(o).setItem_price(Double.parseDouble(jtfNewPrice.getText()));
+                              affiliate.getEntry(i).getItemList().getEntry(o).setDesc(jtfNewDesc.getText());
+                              
+                          }
+                      }
+                  }
+            }
+            for (int i = 1; i < affiliate.getNumberOfEntries() + 1; i++) {
+                 if (affiliate.getEntry(i).getAffiliate_id() == currentID) {
+                      for (int o = 1; o < affiliate.getEntry(i).getItemList().getNumberOfEntries() + 1; o++) {
+                          System.out.print(affiliate.getEntry(i).getItemList().getEntry(o).getItem_id()+" ");
+                          System.out.print(affiliate.getEntry(i).getItemList().getEntry(o).getItem_name()+" ");
+                          System.out.print(affiliate.getEntry(i).getItemList().getEntry(o).getItem_price()+" ");
+                          System.out.println(affiliate.getEntry(i).getItemList().getEntry(o).getDesc());
+                          }
+                      }
+                  }
+            }
+            
+        public static void main(String[] args) {
 
         UpdateItemDetail Update = new UpdateItemDetail();
 
     }
-}
+        
+    }
+
+    
+    
+
