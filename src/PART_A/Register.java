@@ -240,11 +240,26 @@ public class Register extends javax.swing.JFrame {
         else{
             try {
                   Integer.parseInt(jTextField4.getText());
-                  if(!affiliate.isEmpty()){
-                    for(int i=1;i<affiliate.getNumberOfEntries()+1;i++){
+                  if(affiliate.isEmpty()){
+                        char[] pass = jPasswordField1.getPassword();
+                         String passString = new String(pass);
+                         newRest = new Affiliate(1000,jTextField1.getText(),jTextField2.getText(),jTextField3.getText(),jTextField4.getText(),jTextField5.getText(),passString);
+                         /*newRest.setAffiliate_id(1000);
+                         newRest.setRest_name(jTextField1.getText());
+                         newRest.setOwner_name(jTextField2.getText());
+                         newRest.setRest_address(jTextField3.getText());
+                         newRest.setContact_no(jTextField4.getText());
+                         newRest.setRestrt_zone(jTextField5.getText());
+                         newRest.setPassword(passString);*/
+                         affiliate.add(newRest);
+                         JOptionPane.showMessageDialog(null, "Register Successful!!", "InfoBox: " + "Successful!!", JOptionPane.INFORMATION_MESSAGE);
+                      
+                  }
+                  else{
+                      for(int i=1;i<affiliate.getNumberOfEntries()+1;i++){
                        if(affiliate.getEntry(i).getRest_name().equals(jTextField1.getText())){
                            JOptionPane.showMessageDialog(null, "Restaurant Name Used!", "Error!!", JOptionPane.ERROR_MESSAGE);
-                            break;
+                           return; 
                         }                
                        }
                   char[] pass = jPasswordField1.getPassword();
@@ -259,21 +274,7 @@ public class Register extends javax.swing.JFrame {
                   newRest.setPassword(passString);*/
                   affiliate.add(newRest);
                   JOptionPane.showMessageDialog(null, "Register Successful!!", "InfoBox: " + "Successful!!", JOptionPane.INFORMATION_MESSAGE);
-                 }
-                  else{
-                      
-                         char[] pass = jPasswordField1.getPassword();
-                         String passString = new String(pass);
-                         newRest = new Affiliate(1000,jTextField1.getText(),jTextField2.getText(),jTextField3.getText(),jTextField4.getText(),jTextField5.getText(),passString);
-                         /*newRest.setAffiliate_id(1000);
-                         newRest.setRest_name(jTextField1.getText());
-                         newRest.setOwner_name(jTextField2.getText());
-                         newRest.setRest_address(jTextField3.getText());
-                         newRest.setContact_no(jTextField4.getText());
-                         newRest.setRestrt_zone(jTextField5.getText());
-                         newRest.setPassword(passString);*/
-                         affiliate.add(newRest);
-                  JOptionPane.showMessageDialog(null, "Register Successful!!", "InfoBox: " + "Successful!!", JOptionPane.INFORMATION_MESSAGE);
+                         
                     } 
             }
                     catch (NumberFormatException e) {
