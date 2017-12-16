@@ -21,8 +21,9 @@ public class MainForm extends javax.swing.JFrame {
     EmployeeInterface<employee> empList = new EmployeeADT<employee>();
     ListInterface<Attendance> attdList = new LList<Attendance>();
     public LinkedQueue<Order> orderList = new LinkedQueue<Order>();
-    public LinkedQueue<Integer> empWaitingList = new LinkedQueue<Integer>();
+    public WaitingInterface<employee> empWaitingList = new WaitingQueueADT<employee>();
     ListInterface<emp_handled_list> ehlList = new LList<emp_handled_list>();
+    ListInterface<Order> finishedOrder = new LList<Order>();
     employee emp, emp1, emp2, emp3, emp4, emp5;
     Attendance att, att1, att2, att3, att4, att5;
     Order ord, ord1, ord2, ord3, ord4, ord5;
@@ -221,15 +222,15 @@ public class MainForm extends javax.swing.JFrame {
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
         boolean success = false;
-        if(empList.searchString(jtfEmail.getText())!= null){
+        if (empList.searchString(jtfEmail.getText()) != null) {
             emp = empList.searchString(jtfEmail.getText());
             if (emp.getPassword().equals(jpfPassword.getText())) {
                 att = new Attendance(
                         attdList.getEntry(attdList.getNumberOfEntries()).getAttendance_id() + 1,
-                        emp.getEmp_id(), 
-                        dateOnly.format(new Date()), 
-                        timeOnly.format(new Date()), 
-                        "00:00:00", 
+                        emp.getEmp_id(),
+                        dateOnly.format(new Date()),
+                        timeOnly.format(new Date()),
+                        "00:00:00",
                         "00:00:00",
                         "00:00:00");
                 attdList.add(att);
@@ -238,7 +239,7 @@ public class MainForm extends javax.swing.JFrame {
                 success = false;
             }
         }
-        
+
         if (!success) {
             JOptionPane.showMessageDialog(null, "Verified fail! Please try again");
         } else {
@@ -335,42 +336,52 @@ public class MainForm extends javax.swing.JFrame {
     private void refreshWaitingList() {
         jtfTime.setText(new Date().toString());
         //loadAvailableEmployee();
+        if (emp != null) {
+            
+            emp_handled_list temp = ehlList.searchID(emp.getEmp_id());
+            if (temp != null) {
+                Order ordtemp = finishedOrder.searchOrderID(temp.getOrder_id());
+                //System.out.println(emp.getEmp_id());
+                DMI.nextOrder(ordtemp);
+            }
+        }
+
         int handle_id = 000001;
 
         if (!empWaitingList.isEmpty() && !orderList.isEmpty()) {
             if (!ehlList.isEmpty()) {
                 handle_id = ehlList.getEntry(ehlList.getNumberOfEntries()).getHandle_id() + 1;
             }
-            ehl = new emp_handled_list(handle_id, empWaitingList.getFront(), orderList.getFront().getOrder_id(), dateOnly.format(new Date()), timeOnly.format(new Date()), "HANDLED", "NONE");
+            ehl = new emp_handled_list(handle_id, empWaitingList.getFront().getEmp_id(), orderList.getFront().getOrder_id(), dateOnly.format(new Date()), timeOnly.format(new Date()), "HANDLED", "NONE");
+            System.out.println(handle_id+" : "+ Integer.toString(ehl.getOrder_id()) +" : "+ Integer.toString(ehl.getEmp_id()) );
             ehlList.add(ehl);
-            if (emp.getEmp_id() == empWaitingList.getFront()) {
-                DMI.nextOrder(orderList.getFront());
-            }
-            orderList.dequeue();
+
+            finishedOrder.add(orderList.dequeue());
             empWaitingList.dequeue();
         }
         try {
             Thread.sleep(100);
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
     private void updateList() {
-        emp1 = new employee(100001, "jason@mail.com", "abcd1234", "offline", "890831-05-4492", "A-4-2 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-4441221", "DM" , 2009, 0);
-        emp2 = new employee(100002, "jack@mail.com", "abcd1234", "other", "890731-05-4492", "A-7-4 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-4661321", "EXEC", 2010, 0);
-        emp3 = new employee(100003, "annabelle@mail.com", "abcd1234", "offline", "800831-05-4592", "A-3-6 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-8535221", "DM", 2016, 0);
-        emp4 = new employee(100004, "marie@mail.com", "abcd1234", "offline", "990731-08-4492", "A-2-2 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-1231221", "DM", 2012, 0);
-        emp5 = new employee(100005, "lucas@mail.com", "abcd1234", "other", "790821-05-4492", "A-6-5 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-4990621", "AFFT", 2014, 0);
+        emp1 = new employee(100001, "jason@mail.com", "abcd1234", "offline", "890831-05-4492", "A-4-2 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-4441221", "DM", 2009, 2);
+        emp2 = new employee(100002, "jack@mail.com", "abcd1234", "other", "890731-05-4492", "A-7-4 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-4661321", "EXEC", 2010, 1);
+        emp3 = new employee(100003, "annabelle@mail.com", "abcd1234", "offline", "800831-05-4592", "A-3-6 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-8535221", "DM", 2016, 2);
+        emp4 = new employee(100004, "marie@mail.com", "abcd1234", "offline", "990731-08-4492", "A-2-2 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-1231221", "DM", 2012, 3);
+        emp5 = new employee(100005, "lucas@mail.com", "abcd1234", "other", "790821-05-4492", "A-6-5 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-4990621", "AFFT", 2014, 3);
         att1 = new Attendance(600001, 100001, "21/07/2017", "08:00:21", "17:03:21", "13:10:52", "13:55:13");
         att2 = new Attendance(600002, 100002, "21/07/2017", "08:01:11", "17:13:31", "13:05:51", "14:02:11");
         att3 = new Attendance(600003, 100001, "22/07/2017", "08:11:31", "17:23:41", "13:12:25", "14:01:12");
         att4 = new Attendance(600004, 100002, "22/07/2017", "08:05:41", "17:02:51", "13:13:15", "14:11:33");
         att5 = new Attendance(600005, 100001, "23/07/2017", "07:59:51", "17:01:01", "13:11:25", "14:02:23");
-        ord1 = new Order(200001, "LOI KAH HOU", "014-2233445", "loikh-wa15@student.tarc.edu.my", "A-6-5 Sri Pelangi, Jln Genting Klang, "+"\n 53300 KL", 300001, 25.50, 2, "PENDING","14/12/2017", "19:16:51");
-        ord2 = new Order(200002, "LIM JUN KIT ", "012-3311221", "limjk-wa15@student.tarc.edu.my", "A-9-5 Teratai Residency, Jln Genting Klang, 53300 KL", 300002, 35.50, 4, "PENDING","10/12/2017",  "18:59:51");
-        ord3 = new Order(200003, "MAH HONG WAI", "014-3311311", "mahhw-wa15@student.tarc.edu.my", "A-6-5 Sri Pelangi, Jln Genting Klang, 53300 KL", 300001, 30.50, 2, "PENDING","11/12/2017",  "17:59:51");
-        ord4 = new Order(200004, " LIM NAN FUNG", "014-1235437", "limnf-wa15@student.tarc.edu.my", "B-6-5 Teratai Residency, Jln Genting Klang, 53300 KL", 300002, 17.50, 1, "PENDING","12/12/2017",  "16:35:51");
-        ord5 = new Order(200005, "LIM PENG LEN", "013-22211122", "limpl-wa15@student.tarc.edu.my", "C-6-5 Sri Pelangi, Jln Genting Klang, 53300 KL", 300002, 22.50, 3, "PENDING","13/12/2017",  "15:37:51");
+        ord1 = new Order(200001, "LOI KAH HOU", "014-2233445", "loikh-wa15@student.tarc.edu.my", "A-6-5 Sri Pelangi, Jln Genting Klang, " + "\n 53300 KL", 300001, 25.50, 2, "PENDING", "14/12/2017", "19:16:51");
+        ord2 = new Order(200002, "LIM JUN KIT ", "012-3311221", "limjk-wa15@student.tarc.edu.my", "A-9-5 Teratai Residency, Jln Genting Klang, 53300 KL", 300002, 35.50, 4, "PENDING", "10/12/2017", "18:59:51");
+        ord3 = new Order(200003, "MAH HONG WAI", "014-3311311", "mahhw-wa15@student.tarc.edu.my", "A-6-5 Sri Pelangi, Jln Genting Klang, 53300 KL", 300001, 30.50, 2, "PENDING", "11/12/2017", "17:59:51");
+        ord4 = new Order(200004, " LIM NAN FUNG", "014-1235437", "limnf-wa15@student.tarc.edu.my", "B-6-5 Teratai Residency, Jln Genting Klang, 53300 KL", 300002, 17.50, 1, "PENDING", "12/12/2017", "16:35:51");
+        ord5 = new Order(200005, "LIM PENG LEN", "013-22211122", "limpl-wa15@student.tarc.edu.my", "C-6-5 Sri Pelangi, Jln Genting Klang, 53300 KL", 300002, 22.50, 3, "PENDING", "13/12/2017", "15:37:51");
         empList.add(emp1);
         empList.add(emp2);
         empList.add(emp3);
@@ -386,6 +397,11 @@ public class MainForm extends javax.swing.JFrame {
         orderList.enqueue(ord3);
         orderList.enqueue(ord4);
         orderList.enqueue(ord5);
+        empWaitingList.enqueueAscTotalHandled(emp5);
+        //empWaitingList.enqueueAscTotalHandled(emp1);
+        empWaitingList.enqueueAscTotalHandled(emp2);
+        empWaitingList.enqueueAscTotalHandled(emp3);
+        empWaitingList.enqueueAscTotalHandled(emp4);
     }
 
     public void returnAtt(Attendance att) {
