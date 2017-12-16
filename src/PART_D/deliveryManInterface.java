@@ -338,6 +338,8 @@ public class deliveryManInterface extends javax.swing.JFrame {
         btnBreak.setEnabled(false);
         jtfStatus.setText("BREAK");
         jtfContinueStatus.setText(Boolean.toString(cont));
+        emp.setStatus("BREAK");
+        mainform.empList.replaceObject(mainform.empList.searchID(emp.getEmp_id()), emp);
 
     }//GEN-LAST:event_btnLunchOutActionPerformed
 
@@ -355,6 +357,8 @@ public class deliveryManInterface extends javax.swing.JFrame {
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         // TODO add your handling code here:
         if (jtfStatus.getText().equals("BREAK")) {
+            emp.setStatus("OFFLINE");
+            mainform.empList.replaceObject(mainform.empList.searchID(emp.getEmp_id()), emp);
             att.setTime_checkout(timeOnly.format(new Date()));
             mainform.returnAtt(att);
             mainform.setVisible(true);
@@ -409,6 +413,8 @@ public class deliveryManInterface extends javax.swing.JFrame {
         btnComplete.setEnabled(true);
         btnBreak.setEnabled(true);
         jtfStatus.setText("DELIVERY");
+        emp.setStatus("DELIVERY");
+        mainform.empList.replaceObject(mainform.empList.searchID(emp.getEmp_id()), emp);
         mainform.empWaitingList.enqueueAscTotalHandled(emp);
         jtfContinueStatus.setText(Boolean.toString(cont));
     }//GEN-LAST:event_btnAcceptActionPerformed
@@ -417,6 +423,11 @@ public class deliveryManInterface extends javax.swing.JFrame {
         // TODO add your handling code here:
         //btnCancel.setEnabled(true);
         //btnAccept.setEnabled(true);
+        cont = false;
+        cont = false;
+        btnAccept.setEnabled(true);
+        jtfContinueStatus.setText(Boolean.toString(cont));
+
         if (cont == true) {
             mainform.empWaitingList.enqueueAscTotalHandled(emp);
             jtfStatus.setText("ACTIVE");
@@ -428,9 +439,13 @@ public class deliveryManInterface extends javax.swing.JFrame {
             jtfCustName.setText("CHANGE STATUS TO AVAILABLE TO ACCEPT CUSTOMER!");
             jtfDelAdd.setText("NOT AVAILABLE");
             jtfRestrt.setText("NOT AVAILABLE");
+            emp.setStatus("BREAK");
+            mainform.empList.replaceObject(mainform.empList.searchID(emp.getEmp_id()), emp);
         }
 
         complete++;
+        ord.setCurrent_status("DELIVERED");
+        mainform.finishedOrder.replaceObject(mainform.finishedOrder.searchOrderID(ord.getOrder_id()), ord);
         jtfFinish.setText(Integer.toString(complete));
     }//GEN-LAST:event_btnCompleteActionPerformed
 
