@@ -8,6 +8,8 @@ package PART_B;
 import adt.EmployeeADT;
 import adt.EmployeeInterface;
 import entity.employee;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -21,10 +23,12 @@ public class Delete extends javax.swing.JFrame {
     /**
      * Creates new form Delete
      */
-     EmployeeInterface<employee> empList = new EmployeeADT<employee>();
+    static EmployeeInterface<employee> empList = new EmployeeADT<employee>();
+
     public Delete() {
         initComponents();
         report();
+        showDate();
     }
 
     /**
@@ -76,6 +80,7 @@ public class Delete extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -205,7 +210,15 @@ public class Delete extends javax.swing.JFrame {
             new String [] {
                 "ID", "Email", "IC Number", "Address", "Year Joined", "Task Completed"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane3.setViewportView(jTable2);
 
         jButtonShow.setText("Show");
@@ -258,7 +271,15 @@ public class Delete extends javax.swing.JFrame {
             new String [] {
                 "ID", "Email", "Phone Number", "Address"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTable3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable3MouseClicked(evt);
@@ -326,8 +347,7 @@ public class Delete extends javax.swing.JFrame {
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel9)
                                 .addGap(84, 84, 84)
-                                .addComponent(jScrollPane5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                                .addComponent(jScrollPane5))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(jPanel3Layout.createSequentialGroup()
@@ -392,13 +412,30 @@ public class Delete extends javax.swing.JFrame {
             new String [] {
                 "Delivery Men ID", "Phone Number", "Status", "Task Complete Today"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane2.setViewportView(jTable1);
 
         jButton1.setText("Refresh");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        jTextField1.setFont(new java.awt.Font("Eras Bold ITC", 2, 18)); // NOI18N
+        jTextField1.setForeground(new java.awt.Color(0, 204, 153));
+        jTextField1.setText("jTextField1");
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
             }
         });
 
@@ -414,12 +451,17 @@ public class Delete extends javax.swing.JFrame {
                         .addComponent(jButton1)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(299, 299, 299)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addComponent(jButton1)
                 .addContainerGap(94, Short.MAX_VALUE))
@@ -448,138 +490,153 @@ public class Delete extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfirmActionPerformed
-         int a = 0;
+        int a = 0;
         int year = Calendar.getInstance().get(Calendar.YEAR);
         if (empList.isEmpty()) {
             a = 100001;
+        } else {
+            a = empList.getEntry(empList.getNumberOfEntries()).getEmp_id() + 1;
         }
-        else{
-            a=empList.getEntry(empList.getNumberOfEntries()).getEmp_id()+1;
+        for (int b = 0; b < empList.getNumberOfEntries(); b++) {
+            if (jIC.getText().equals(empList.getEntry(b).getIc_number())&&jEmail.getText().equals(empList.getEntry(b).getEmail())) {
+                employee em = new employee(a, jEmail.getText(), jPassword.getText(), "Available", jIC.getText(), jAddress.getText(), jPhoneNumber.getText(), "Rank", year, 0);
+               empList.add(em);
+                JOptionPane.showMessageDialog(this, "This Delivery Man Successfully Added!");
+            } else {
+                JOptionPane.showMessageDialog(this, "Please Used Another Email Or IC Number For Registration");
+            }
         }
-        employee em = new employee(a,jEmail.getText(),jPassword.getText(),"Available",jIC.getText(),jAddress.getText(),jPhoneNumber.getText(),"Rank",year,0);
-        empList.add(em);
-        JOptionPane.showMessageDialog(this, "This Delivery Man Successfully Added!");
     }//GEN-LAST:event_jButtonConfirmActionPerformed
 
     private void jButtonExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExitActionPerformed
-        JOptionPane.showMessageDialog(this, empList.getEntry(2).getYear_joined());
+        JOptionPane.showMessageDialog(this, empList.getEntry(1).getYear_joined());
         //System.exit(0); 
     }//GEN-LAST:event_jButtonExitActionPerformed
 
+    private void showDate() {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate localDate = LocalDate.now();
+        jTextField1.setText(dtf.format(localDate));
+    }
+
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-          DefaultTableModel dm = (DefaultTableModel) jTable1.getModel();
-          dm.setRowCount(0);
-      Object [] rowdata = new Object[4];
-      for(int a=1;a<=empList.getNumberOfEntries();a++){
-          rowdata[0]=empList.getEntry(a).getEmp_id();
-          rowdata[1]=empList.getEntry(a).getPhone_num();
-          rowdata[2]=empList.getEntry(a).getStatus();
-          rowdata[3]=empList.getEntry(a).getTotal_handled();
-          dm.addRow(rowdata);
-      }
-      
+        DefaultTableModel dm = (DefaultTableModel) jTable1.getModel();
+        dm.setRowCount(0);
+        Object[] rowdata = new Object[4];
+        for (int a = 1; a <= empList.getNumberOfEntries(); a++) {
+            rowdata[0] = empList.getEntry(a).getEmp_id();
+            rowdata[1] = empList.getEntry(a).getPhone_num();
+            rowdata[2] = empList.getEntry(a).getStatus();
+            rowdata[3] = empList.getEntry(a).getTotal_handled();
+            dm.addRow(rowdata);
+        }
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButtonShowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonShowActionPerformed
-         DefaultTableModel dm2 = (DefaultTableModel) jTable2.getModel();
-         dm2.setRowCount(0);
-      Object [] rowdata2 = new Object[6];
-      for(int a=1;a<=empList.getNumberOfEntries();a++){
-          rowdata2[0]=empList.getEntry(a).getEmp_id();
-          rowdata2[1]=empList.getEntry(a).getEmail();
-          rowdata2[2]=empList.getEntry(a).getIc_number();
-          rowdata2[3]=empList.getEntry(a).getAddress();
-          rowdata2[4]=empList.getEntry(a).getYear_joined();
-          rowdata2[5]=empList.getEntry(a).getTotal_handled();
-          dm2.addRow(rowdata2);
-      }
+        DefaultTableModel dm2 = (DefaultTableModel) jTable2.getModel();
+        dm2.setRowCount(0);
+        Object[] rowdata2 = new Object[6];
+        for (int a = 1; a <= empList.getNumberOfEntries(); a++) {
+            rowdata2[0] = empList.getEntry(a).getEmp_id();
+            rowdata2[1] = empList.getEntry(a).getEmail();
+            rowdata2[2] = empList.getEntry(a).getIc_number();
+            rowdata2[3] = empList.getEntry(a).getAddress();
+            rowdata2[4] = empList.getEntry(a).getYear_joined();
+            rowdata2[5] = empList.getEntry(a).getTotal_handled();
+            dm2.addRow(rowdata2);
+        }
     }//GEN-LAST:event_jButtonShowActionPerformed
 
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
-        int b = jTable2.getSelectedRow()+1;
-        if(b>=1){
-        empList.remove(b);
-        DefaultTableModel dm2 = (DefaultTableModel) jTable2.getModel();
-         dm2.setRowCount(0);
-      Object [] rowdata2 = new Object[6];
-      for(int a=1;a<=empList.getNumberOfEntries();a++){
-          rowdata2[0]=empList.getEntry(a).getEmp_id();
-          rowdata2[1]=empList.getEntry(a).getEmail();
-          rowdata2[2]=empList.getEntry(a).getIc_number();
-          rowdata2[3]=empList.getEntry(a).getAddress();
-          rowdata2[4]=empList.getEntry(a).getYear_joined();
-          rowdata2[5]=empList.getEntry(a).getTotal_handled();
-          dm2.addRow(rowdata2);
-      }
+        int b = jTable2.getSelectedRow() + 1;
+        if (b >= 1) {
+            empList.remove(b);
+            DefaultTableModel dm2 = (DefaultTableModel) jTable2.getModel();
+            dm2.setRowCount(0);
+            Object[] rowdata2 = new Object[6];
+            for (int a = 1; a <= empList.getNumberOfEntries(); a++) {
+                rowdata2[0] = empList.getEntry(a).getEmp_id();
+                rowdata2[1] = empList.getEntry(a).getEmail();
+                rowdata2[2] = empList.getEntry(a).getIc_number();
+                rowdata2[3] = empList.getEntry(a).getAddress();
+                rowdata2[4] = empList.getEntry(a).getYear_joined();
+                rowdata2[5] = empList.getEntry(a).getTotal_handled();
+                dm2.addRow(rowdata2);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Selec a Delivery Man");
         }
-        else{
-            JOptionPane.showMessageDialog(null, "Selec a Delivery Man");      }
     }//GEN-LAST:event_jButtonDeleteActionPerformed
 
     private void txtPhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPhoneActionPerformed
-        int c = jTable3.getSelectedRow()+1;
+        int c = jTable3.getSelectedRow() + 1;
         txtPhone.setText(empList.getEntry(c).getPhone_num());
     }//GEN-LAST:event_txtPhoneActionPerformed
 
     private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
-        int c = jTable3.getSelectedRow()+1;
+        int c = jTable3.getSelectedRow() + 1;
         txtEmail.setText(empList.getEntry(c).getEmail());
     }//GEN-LAST:event_txtEmailActionPerformed
 
     private void txtAddressInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_txtAddressInputMethodTextChanged
-         int c = jTable3.getSelectedRow()+1;
+        int c = jTable3.getSelectedRow() + 1;
         txtAddress.setText(empList.getEntry(c).getAddress());
     }//GEN-LAST:event_txtAddressInputMethodTextChanged
 
     private void btnShowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowActionPerformed
-        int b = jTable3.getSelectedRow()+1;
-        
+        int b = jTable3.getSelectedRow() + 1;
+
         DefaultTableModel dm2 = (DefaultTableModel) jTable3.getModel();
-         dm2.setRowCount(0);
-      Object [] rowdata2 = new Object[4];
-      for(int a=1;a<=empList.getNumberOfEntries();a++){
-          rowdata2[0]=empList.getEntry(a).getEmp_id();
-          rowdata2[1]=empList.getEntry(a).getEmail();
-          rowdata2[2]=empList.getEntry(a).getPhone_num();
-          rowdata2[3]=empList.getEntry(a).getAddress();
-         
-          dm2.addRow(rowdata2);
-      }
+        dm2.setRowCount(0);
+        Object[] rowdata2 = new Object[4];
+        for (int a = 1; a <= empList.getNumberOfEntries(); a++) {
+            rowdata2[0] = empList.getEntry(a).getEmp_id();
+            rowdata2[1] = empList.getEntry(a).getEmail();
+            rowdata2[2] = empList.getEntry(a).getPhone_num();
+            rowdata2[3] = empList.getEntry(a).getAddress();
+
+            dm2.addRow(rowdata2);
+        }
     }//GEN-LAST:event_btnShowActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-       int c = jTable3.getSelectedRow()+1;
-       if(c>=1){
-       employee em2=new employee(empList.getEntry(c).getEmp_id(),txtEmail.getText(),empList.getEntry(c).getPassword(),empList.getEntry(c).getStatus(),empList.getEntry(c).getIc_number(),txtAddress.getText(),txtPhone.getText(),empList.getEntry(c).getRank(),empList.getEntry(c).getYear_joined(),empList.getEntry(c).getTotal_handled());
-       empList.replace(c, em2);
-        DefaultTableModel dm2 = (DefaultTableModel) jTable3.getModel();
-         dm2.setRowCount(0);
-      Object [] rowdata2 = new Object[4];
-      for(int a=1;a<=empList.getNumberOfEntries();a++){
-         rowdata2[0]=empList.getEntry(a).getEmp_id();
-          rowdata2[1]=empList.getEntry(a).getEmail();
-          rowdata2[2]=empList.getEntry(a).getPhone_num();
-          rowdata2[3]=empList.getEntry(a).getAddress();
-          dm2.addRow(rowdata2);
-      }
-       }
-       else{
-           JOptionPane.showMessageDialog(null, "Select a Delivery Men");
-       }
+        int c = jTable3.getSelectedRow() + 1;
+        if (c >= 1) {
+            employee em2 = new employee(empList.getEntry(c).getEmp_id(), txtEmail.getText(), empList.getEntry(c).getPassword(), empList.getEntry(c).getStatus(), empList.getEntry(c).getIc_number(), txtAddress.getText(), txtPhone.getText(), empList.getEntry(c).getRank(), empList.getEntry(c).getYear_joined(), empList.getEntry(c).getTotal_handled());
+            empList.replace(c, em2);
+            DefaultTableModel dm2 = (DefaultTableModel) jTable3.getModel();
+            dm2.setRowCount(0);
+            Object[] rowdata2 = new Object[4];
+            for (int a = 1; a <= empList.getNumberOfEntries(); a++) {
+                rowdata2[0] = empList.getEntry(a).getEmp_id();
+                rowdata2[1] = empList.getEntry(a).getEmail();
+                rowdata2[2] = empList.getEntry(a).getPhone_num();
+                rowdata2[3] = empList.getEntry(a).getAddress();
+                dm2.addRow(rowdata2);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Select a Delivery Men");
+        }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void jTable3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable3MouseClicked
-       int c = jTable3.getSelectedRow()+1;
-       txtEmail.setText(empList.getEntry(c).getEmail());
-       txtAddress.setText(empList.getEntry(c).getAddress());
-       txtPhone.setText(empList.getEntry(c).getPhone_num());
+        int c = jTable3.getSelectedRow() + 1;
+        txtEmail.setText(empList.getEntry(c).getEmail());
+        txtAddress.setText(empList.getEntry(c).getAddress());
+        txtPhone.setText(empList.getEntry(c).getPhone_num());
     }//GEN-LAST:event_jTable3MouseClicked
 
-  public void report(){
-    
-      
-  }
-    
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    public void report() {
+
+    }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -603,7 +660,8 @@ public class Delete extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Delete.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        employee em2 = new employee(100001, "JJzaii96@gmail.com", "12345678", "Available", "12345678", "Jalan 88", "1234", "Rank", 2017, 0);
+        empList.add(em2);
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -650,6 +708,7 @@ public class Delete extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextArea txtAddress;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtPhone;
