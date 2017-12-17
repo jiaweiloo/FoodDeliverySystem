@@ -366,8 +366,8 @@ public class MainForm extends javax.swing.JFrame {
         });
         //timer function every 1000ms
         //Timer timer = new Timer();
-        int time = 100;
-        Timer timer = new Timer(time, new ActionListener() {
+        int delay = 200;
+        Timer timer = new Timer(delay, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 jtfTime.setText(new Date().toString());
                 mainform.refreshWaitingList();
