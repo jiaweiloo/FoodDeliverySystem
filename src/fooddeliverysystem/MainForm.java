@@ -69,6 +69,7 @@ public class MainForm extends javax.swing.JFrame {
         btnTrack = new javax.swing.JButton();
         jbtGetCustomer = new javax.swing.JButton();
         jbClearCust = new javax.swing.JButton();
+        btnAfftLogin = new javax.swing.JButton();
 
         jButton6.setText("jButton6");
 
@@ -147,6 +148,8 @@ public class MainForm extends javax.swing.JFrame {
             }
         });
 
+        btnAfftLogin.setText("Affiliate Login");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -168,16 +171,6 @@ public class MainForm extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
-                                .addComponent(btnFgtPw, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblTime))
@@ -186,9 +179,19 @@ public class MainForm extends javax.swing.JFrame {
                             .addComponent(jpfPassword)
                             .addComponent(jtfEmail)
                             .addComponent(jtfTime, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                                .addComponent(btnFgtPw, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(btnAfftLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnRegister, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -232,7 +235,9 @@ public class MainForm extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnRegister)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                                .addComponent(btnExit)))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(btnExit)
+                                    .addComponent(btnAfftLogin))))))
                 .addContainerGap())
         );
 
@@ -250,18 +255,22 @@ public class MainForm extends javax.swing.JFrame {
         if (empList.searchString(jtfEmail.getText()) != null) {
             emp = empList.searchString(jtfEmail.getText());
             if (emp.getPassword().equals(jpfPassword.getText())) {
-                att = new Attendance(
-                        attdList.getEntry(attdList.getNumberOfEntries()).getAttendance_id() + 1,
-                        emp.getEmp_id(),
-                        dateOnly.format(new Date()),
-                        timeOnly.format(new Date()),
-                        "00:00:00",
-                        "00:00:00",
-                        "00:00:00");
-                attdList.add(att);
+                Attendance atd = attdList.getEntry(attdList.getNumberOfEntries());
+                if (!atd.getDate().equals(dateOnly.format(new Date()))) {
+                    att = new Attendance(
+                            attdList.getEntry(attdList.getNumberOfEntries()).getAttendance_id() + 1,
+                            emp.getEmp_id(),
+                            dateOnly.format(new Date()),
+                            timeOnly.format(new Date()),
+                            "00:00:00",
+                            "00:00:00",
+                            "00:00:00");
+                    attdList.add(att);
+                }
                 success = true;
             } else {
                 success = false;
+
             }
         }
 
@@ -360,23 +369,19 @@ public class MainForm extends javax.swing.JFrame {
                 mainform.setVisible(true);
             }
         });
-
-        mainform.startTimer();
-    }
-
-    private void startTimer() {
         //timer function every 1000ms
-
         //Timer timer = new Timer();
-        int time = 100;
-        Timer timer = new Timer(time, new ActionListener() {
+        int delay = 200;
+        Timer timer = new Timer(delay, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 jtfTime.setText(new Date().toString());
-                refreshWaitingList();
+                mainform.refreshWaitingList();
             }
         });
         timer.start();
     }
+
+
 
     private void refreshWaitingList() {
         //loadAvailableEmployee();
@@ -444,6 +449,7 @@ public class MainForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAfftLogin;
     private javax.swing.JButton btnBrowse;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnFgtPw;

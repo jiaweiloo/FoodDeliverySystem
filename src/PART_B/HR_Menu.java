@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package PART_B;
 
 import adt.EmployeeADT;
@@ -18,14 +13,14 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author JJzaii
  */
-public class Delete extends javax.swing.JFrame {
+public class HR_Menu extends javax.swing.JFrame {
 
     /**
-     * Creates new form Delete
+     * Creates new form HR_Menu
      */
     static EmployeeInterface<employee> empList = new EmployeeADT<employee>();
 
-    public Delete() {
+    public HR_Menu() {
         initComponents();
         report();
         showDate();
@@ -151,13 +146,13 @@ public class Delete extends javax.swing.JFrame {
                                 .addComponent(jIC, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jStatus, javax.swing.GroupLayout.Alignment.LEADING))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(109, 109, 109)
+                        .addGap(110, 110, 110)
                         .addComponent(jButtonExit)
-                        .addGap(184, 184, 184)
+                        .addGap(183, 183, 183)
                         .addComponent(jButtonConfirm)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButtonClear)))
-                .addContainerGap(150, Short.MAX_VALUE))
+                .addContainerGap(161, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -191,14 +186,11 @@ public class Delete extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButtonConfirm)
                         .addComponent(jButtonExit))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonConfirm)
-                            .addComponent(jButtonClear))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                    .addComponent(jButtonClear))
+                .addGap(0, 36, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Register Delivery Men", jPanel1);
@@ -324,10 +316,10 @@ public class Delete extends javax.swing.JFrame {
         txtAddress.setColumns(20);
         txtAddress.setRows(5);
         txtAddress.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 txtAddressInputMethodTextChanged(evt);
+            }
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
         jScrollPane5.setViewportView(txtAddress);
@@ -651,13 +643,13 @@ public class Delete extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Delete.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HR_Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Delete.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HR_Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Delete.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HR_Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Delete.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(HR_Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         employee em2 = new employee(100001, "JJzaii96@gmail.com", "12345678", "Available", "12345678", "Jalan 88", "1234", "Rank", 2017, 0);
@@ -665,7 +657,7 @@ public class Delete extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Delete().setVisible(true);
+                new HR_Menu().setVisible(true);
             }
         });
     }
