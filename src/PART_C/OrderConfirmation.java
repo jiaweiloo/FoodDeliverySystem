@@ -48,9 +48,6 @@ public class OrderConfirmation extends JFrame {
 
         String[][] data = new String[cartList.getNumberOfEntries()][3];
         for (int a = 1; a <= cartList.getNumberOfEntries(); a++) {
-            System.out.println(cartList.getEntry(a).getSubTotal());
-        }
-        for (int a = 1; a <= cartList.getNumberOfEntries(); a++) {
             for (int b = 1; b <= itemList.getNumberOfEntries(); b++) {
                 if (cartList.getEntry(a).getItem_id() == itemList.getEntry(b).getItem_id()) {
                     data[a - 1][0] = itemList.getEntry(b).getItem_name();
@@ -66,7 +63,6 @@ public class OrderConfirmation extends JFrame {
         table.setPreferredScrollableViewportSize(new Dimension(500, 500));
         table.setFillsViewportHeight(true);
         scrollPane = new JScrollPane(table);
-        System.out.println();
         setLayout(new GridLayout(6, 2));
         add(jlblName);
         add(new JLabel(order.getCust_name()));
