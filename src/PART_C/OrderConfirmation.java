@@ -57,6 +57,7 @@ public class OrderConfirmation extends JFrame {
                     data[a - 1][1] = Integer.toString(cartList.getEntry(a).getQuantity());
                     data[a - 1][2] = Double.toString(cartList.getEntry(a).getSubTotal());
                     totalPrice += cartList.getEntry(a).getSubTotal();
+                    order.setTotal_amount(totalPrice);
                 }
             }
         }

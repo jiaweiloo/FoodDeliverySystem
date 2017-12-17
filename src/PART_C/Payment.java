@@ -167,6 +167,8 @@ public class Payment extends javax.swing.JFrame {
                     order.setOrderList(cartList);
                     order.setCurrent_status("PAID");
                     orderList.enqueue(order);
+                    //orderList.arrangeQueue();
+                    System.out.println(order.getTotal_amount());
                     mainform.order = new Order();
                     oc.dispose();
                     this.dispose();

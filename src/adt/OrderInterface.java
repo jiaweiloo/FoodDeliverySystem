@@ -47,6 +47,8 @@ public interface OrderInterface<T> {
    */
   public void clear();
   
+  //Put highest total total amount in front
+  public void arrangeQueue();
 
   
 } // end QueueInterface
