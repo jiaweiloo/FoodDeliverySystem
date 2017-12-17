@@ -1,5 +1,6 @@
 package fooddeliverysystem;
 
+import PART_B.HR_Menu;
 import PART_B.Update_Delivery_Men;
 import PART_C.*;
 import PART_D.*;
@@ -287,7 +288,10 @@ public class MainForm extends javax.swing.JFrame {
                     this.setVisible(false);
                     break;
                 case "EXEC":
-                    JOptionPane.showMessageDialog(null, "Login success, application under construction! ");
+                    HR_Menu HRM = new HR_Menu(this);
+                    HRM.setVisible(true);
+                    this.setVisible(false);
+                    //JOptionPane.showMessageDialog(null, "Login success, application under construction! ");
                     break;
                 case "AFFT":
                     JOptionPane.showMessageDialog(null, "Login success, application under construction! ");
@@ -407,7 +411,7 @@ public class MainForm extends javax.swing.JFrame {
 
     private void updateList() {
         emp1 = new employee(100001, "jason@mail.com", "abcd1234", "offline", "890831-05-4492", "A-4-2 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-4441221", "DM", 2009, 1);
-        emp2 = new employee(100002, "jack@mail.com", "abcd1234", "other", "890731-05-4492", "A-7-4 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-4661321", "EXEC", 2010, 5);
+        emp2 = new employee(100002, "manager@mail.com", "abcd1234", "other", "890731-05-4492", "A-7-4 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-4661321", "EXEC", 2010, 0);
         emp3 = new employee(100003, "annabelle@mail.com", "abcd1234", "offline", "800831-05-4592", "A-3-6 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-8535221", "DM", 2016, 3);
         emp4 = new employee(100004, "marie@mail.com", "abcd1234", "offline", "990731-08-4492", "A-2-2 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-1231221", "DM", 2012, 2);
         emp5 = new employee(100005, "lucas@mail.com", "abcd1234", "other", "790821-05-4492", "A-6-5 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-4990621", "AFFT", 2014, 2);
