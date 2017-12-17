@@ -506,17 +506,17 @@ public class HR_Menu extends javax.swing.JFrame {
         String address = jtfAddress.getText();
         employee em;
 
-        if (empList.isEmpty()) {
+        if (mainform.empList.isEmpty()) {
             //System.out.println("Employee list empty");
             emp_id = 100001;
         } else {
-            emp_id = empList.getEntry(empList.getNumberOfEntries()).getEmp_id() + 1;
+            emp_id = mainform.empList.getEntry(mainform.empList.getNumberOfEntries()).getEmp_id() + 1;
             //System.out.println("Employee list not empty : " + emp_id);
         }
 
-        if (empList.searchString(ic_number) == null && empList.searchString(email) == null) {
+        if (mainform.empList.searchString(ic_number) == null && mainform.empList.searchString(email) == null) {
             em = new employee(emp_id, email, password, status, ic_number, address, phone_num, "DM", year, 0);
-            empList.add(em);
+            mainform.empList.add(em);
             JOptionPane.showMessageDialog(null, "This Delivery Man Successfully Added!");
         } else {
             JOptionPane.showMessageDialog(null, "Please Used Another Email Or IC Number For Registration");
@@ -682,8 +682,8 @@ public class HR_Menu extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(HR_Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        employee em2 = new employee(100001, "JJzaii96@gmail.com", "12345678", "Available", "12345678", "Jalan 88", "1234", "Rank", 2017, 0);
-        empList.add(em2);
+        //employee em2 = new employee(100001, "JJzaii96@gmail.com", "12345678", "Available", "12345678", "Jalan 88", "1234", "Rank", 2017, 0);
+        //empList.add(em2);
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
