@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -39,7 +40,7 @@ public class DeleteItem extends JFrame{
     Item BitemA=new Item(6001,"Curry BChicken",12.30,0001,"Curry Chicken taste good");
     Item BitemB=new Item(6002,"Curry BFish",12.30,0001,"Curry Fish taste good");
     Item BitemC=new Item(6003,"Curry BDuck",12.30,0001,"Curry Duck taste good");
-    
+    Font font = new Font("SansSerif",Font.PLAIN,14);
     
     
     public DeleteItem(){
@@ -94,19 +95,24 @@ public class DeleteItem extends JFrame{
             }
         });
        
-       add(lblID);
-       add(lblName);
-       add(lblPrice);
-       add(lblDesc);
+       lblID.setForeground(Color.MAGENTA);
+        lblName.setForeground(Color.MAGENTA);
+        lblPrice.setForeground(Color.MAGENTA);
+        lblDesc.setForeground(Color.MAGENTA);
+       
+       add(lblID).setFont(font);
+       add(lblName).setFont(font);
+       add(lblPrice).setFont(font);
+       add(lblDesc).setFont(font);
        
        //Add all Item of Rest
        for(int i=1;i<affiliate.getNumberOfEntries()+1;i++){
            if(affiliate.getEntry(i).getAffiliate_id()==currentID){
                 for(int o=1;o<affiliate.getEntry(i).getItemList().getNumberOfEntries()+1;o++){
-                    add(new JLabel(String.valueOf(affiliate.getEntry(i).getItemList().getEntry(o).getItem_id())));
-                    add(new JLabel(affiliate.getEntry(i).getItemList().getEntry(o).getItem_name()));
-                    add(new JLabel(Double.toString(affiliate.getEntry(i).getItemList().getEntry(o).getItem_price())));
-                    add(new JLabel(affiliate.getEntry(i).getItemList().getEntry(o).getDesc()));
+                    add(new JLabel(String.valueOf(affiliate.getEntry(i).getItemList().getEntry(o).getItem_id()))).setFont(font);
+                    add(new JLabel(affiliate.getEntry(i).getItemList().getEntry(o).getItem_name())).setFont(font);
+                    add(new JLabel(Double.toString(affiliate.getEntry(i).getItemList().getEntry(o).getItem_price()))).setFont(font);
+                    add(new JLabel(affiliate.getEntry(i).getItemList().getEntry(o).getDesc())).setFont(font);
                  } 
             } 
         }
@@ -117,7 +123,7 @@ public class DeleteItem extends JFrame{
         
         
         setTitle("Delete Item");
-        setSize(500, 250);  
+        setSize(800, 300);  
         setLocationRelativeTo(null);   
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    
         setVisible(true);
