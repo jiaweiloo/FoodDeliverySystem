@@ -86,26 +86,25 @@ public class WaitingQueueADT<T> implements WaitingInterface<T> {
         else {
             lastNode.next = newNode;
         } */
-        System.out.println("New Employee : "+ newEmp.getEmp_id()+" with total handled of: "+newEmp.getTotal_handled());
+        System.out.println("New Employee : " + newEmp.getEmp_id() + " with total handled of: " + newEmp.getTotal_handled());
         while (!found && (currentNode != null)) {
             employee currentNodeEmp = ((employee) currentNode.data);
-            
+
             //System.out.println("Current Node : "+currentNodeEmp.getTotal_handled());
             //check currentNode total handled equals to new total handled
-            if (newEmp.getTotal_handled() >= currentNodeEmp.getTotal_handled()  ) {
+            if (newEmp.getTotal_handled() >= currentNodeEmp.getTotal_handled()) {
                 if (currentNode.next == null) {
-                    currentNode.next =newNode;
+                    currentNode.next = newNode;
                     lastNode = newNode;
                     found = true;
                     //System.out.println("Condition 1 "+found);
-                } else if (((employee) currentNode.next.data).getTotal_handled() > newEmp.getTotal_handled()){
+                } else if (((employee) currentNode.next.data).getTotal_handled() > newEmp.getTotal_handled()) {
                     //employee nextEmp = (employee) currentNode.next.data;
                     newNode.next = currentNode.next;
                     currentNode.next = newNode;
                     found = true;
                     //System.out.println("Condition 2 "+found);
-                }
-                else{
+                } else {
                     currentNode = currentNode.next;
                 }
             } else {
@@ -116,7 +115,7 @@ public class WaitingQueueADT<T> implements WaitingInterface<T> {
                 found = true;
                 //System.out.println("Condition 3 "+found);
             } // end of first if-else check same value with current node
-            
+
         }// end of while loop
 
         size++;
@@ -138,6 +137,34 @@ public class WaitingQueueADT<T> implements WaitingInterface<T> {
             }
         }
         return result;
+    }
+
+    public boolean remove(T anEntry) {
+        boolean found = false;
+        Node currentNode = firstNode;
+        Node nodeBefore = firstNode;
+        int currentPosition = 1;
+        while (!found && (currentNode != null)) {
+
+            if (anEntry.equals(currentNode.data)) {
+                if (currentPosition == 1) {      // case 1: remove first entry               
+                    firstNode = firstNode.next;
+                } else {                         // case : givenPosition > 1
+                    nodeBefore.next = currentNode.next.next;	// make node before point to node after the
+                }
+
+                found = true;
+                System.out.println("remove result: " + found);
+                size--;
+            } else {
+                currentNode = currentNode.next;
+                if (currentPosition > 1) {
+                    nodeBefore = nodeBefore.next;
+                }
+            }
+        }
+
+        return found;
     }
 
     private class Node {
