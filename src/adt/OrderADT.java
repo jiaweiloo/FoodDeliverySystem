@@ -5,6 +5,8 @@
  */
 package adt;
 
+import entity.Order;
+
 /**
  *
  * @author Loi Kah Hou
@@ -73,7 +75,28 @@ public class OrderADT<T> implements OrderInterface<T> {
         lastNode = null;
     } // end clear
 
-    
+    public void arrangeQueue() {
+        if (!isEmpty()) {
+            Node currentOrder = firstNode;
+            Node afterCurrent = currentOrder.next;
+            for (int a = 0; a <= size; a++) {
+                while (afterCurrent != null) {
+                    Order tempOrder = (Order) currentOrder.data;
+                    Order tempOrder2 = (Order) afterCurrent.data;
+                    double currentTotal = tempOrder.getTotal_amount();
+                    double currentTotal2 = tempOrder2.getTotal_amount();
+                    if (currentTotal < currentTotal2) {
+                        currentOrder.next = afterCurrent.next;
+                        afterCurrent.next = currentOrder;
+                    }
+
+                    currentOrder = currentOrder.next;
+                    afterCurrent = currentOrder.next;
+                }
+            }
+        }
+    }
+
 
     private class Node {
 

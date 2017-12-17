@@ -25,12 +25,13 @@ public class SelectRestaurant2 extends JFrame {
     Item item4 = new Item(205, "Curry Kosong", 5, 102, "asdasd");
     Item item5 = new Item(206, "Curry Manis", 5, 102, "asdasd");
 
-    /* Affiliate aff0 = new Affiliate(101, "Thai Boy Restaurant", "123, Jalan Genting Klang, 53300 setapak, Kuala Lumpur", "Loo Jia Wei", "0123456789", "Genting Klang");
-    Affiliate aff1 = new Affiliate(102, "Curry Chicken", "123, Jalan Genting Klang, 53300 setapak, Kuala Lumpur", "Loo Jia Wei", "0123456789", "Genting Klang");
-    Affiliate aff2 = new Affiliate(103, "The Taste", "123, Jalan Genting Klang, 53300 setapak, Kuala Lumpur", "Loo Jia Wei", "0123456789", "Genting Klang");
-    Affiliate aff3 = new Affiliate(104, "Nasi Putih", "123, Jalan Genting Klang, 53300 setapak, Kuala Lumpur", "Loo Jia Wei", "0123456789", "Genting Klang");
-     */
+    Affiliate aff0 = new Affiliate(101, "Thai Boy Restaurant", "123, Jalan Genting Klang, 53300 setapak, Kuala Lumpur", "Loo Jia Wei", "0123456789", "Genting Klang", "123");
+    Affiliate aff1 = new Affiliate(102, "Curry Chicken", "123, Jalan Genting Klang, 53300 setapak, Kuala Lumpur", "Loo Jia Wei", "0123456789", "Genting Klang", "123");
+    Affiliate aff2 = new Affiliate(103, "The Taste", "123, Jalan Genting Klang, 53300 setapak, Kuala Lumpur", "Loo Jia Wei", "0123456789", "Genting Klang", "123");
+    Affiliate aff3 = new Affiliate(104, "Nasi Putih", "123, Jalan Genting Klang, 53300 setapak, Kuala Lumpur", "Loo Jia Wei", "0123456789", "Genting Klang", "123");
+
     MainForm mainform;
+    SelectRestaurant2 sr2;
     LinkedQueue<Affiliate> restQueue = new LinkedQueue();
     LinkedQueue<Affiliate> backupRestQueue = new LinkedQueue();
     LList<Item> itemList = new LList();
@@ -44,9 +45,11 @@ public class SelectRestaurant2 extends JFrame {
 
     JButton jbtRest;
 
-    public SelectRestaurant2(Order order, OrderInterface<Order> orderList) {
+    public SelectRestaurant2(Order order, OrderInterface<Order> orderList, MainForm mainform) {
         this.order = order;
+        this.mainform = mainform;
         this.orderList = orderList;
+        sr2=this;
         itemList.add(item0);
         itemList.add(item1);
         itemList.add(item2);
@@ -54,14 +57,14 @@ public class SelectRestaurant2 extends JFrame {
         itemList2.add(item4);
         itemList2.add(item5);
 
-        /*aff0.setItemList(itemList);
+        aff0.setItemList(itemList);
         aff1.setItemList(itemList2);
-        
+
         restQueue.enqueue(aff0);
         restQueue.enqueue(aff1);
         restQueue.enqueue(aff2);
-        restQueue.enqueue(aff3);*/
- /*System.out.println(restQueue.size());
+        restQueue.enqueue(aff3);
+        /*System.out.println(restQueue.size());
         for(int a=0;a<restQueue.size();a++){
         System.out.println(restQueue.dequeue().getAffiliate_id());
         a--;
@@ -93,15 +96,28 @@ public class SelectRestaurant2 extends JFrame {
         }
         setSize(1200, 600);
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setVisible(true);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                if (JOptionPane.showConfirmDialog(sr2,
+                        "Return to Main Menu?", "Really Closing?",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
+                    sr2.dispose();
+                    mainform.setVisible(true);
+                }
+            }
+        });
     }
 
     private void jbtRest(ActionEvent e, Affiliate aff) {
         // TODO add your handling code here:
         this.dispose();
-        SelectMenuItem2 menu = new SelectMenuItem2(aff, order, orderList);
+        SelectMenuItem2 menu = new SelectMenuItem2(aff, order, orderList,mainform);
     }
+
     public static void main(String[] args) {
         /*
         SelectRestaurant2 sr2 = new SelectRestaurant2();

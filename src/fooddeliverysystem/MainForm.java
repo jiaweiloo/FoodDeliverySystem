@@ -18,21 +18,21 @@ import javax.swing.Timer;
 public class MainForm extends javax.swing.JFrame {
 
     public EmployeeInterface<employee> empList = new EmployeeADT<employee>();
-    ListInterface<Attendance> attdList = new LList<Attendance>();
+    public ListInterface<Attendance> attdList = new LList<Attendance>();
     public OrderInterface<Order> orderList = new OrderADT<Order>();
     public WaitingInterface<employee> empWaitingList = new WaitingQueueADT<employee>();
     ListInterface<emp_handled_list> ehlList = new LList<emp_handled_list>();
     public ListInterface<Order> finishedOrder = new LList<Order>();
-    employee emp, emp1, emp2, emp3, emp4, emp5;
+    employee emp, emp1, emp2, emp3, emp4, emp5, tempEmp;
     Attendance att, att1, att2, att3, att4, att5;
-    Order ord, ord1, ord2, ord3, ord4, ord5;
+    Order ord, ord1, ord2, ord3, ord4, ord5, tempOrd;
     emp_handled_list ehl;
     SimpleDateFormat timeOnly = new SimpleDateFormat("hh:mm:ss");
     SimpleDateFormat dateOnly = new SimpleDateFormat("dd/MM/yyyy");
     deliveryManInterface DMI;
     public Order order = new Order();
     public LList<Order> custList = new LList<Order>();
-    String phoneNo;
+    public String phoneNo;
 
     /**
      * Creates new form MainForm
@@ -68,6 +68,7 @@ public class MainForm extends javax.swing.JFrame {
         btnBrowse = new javax.swing.JButton();
         btnTrack = new javax.swing.JButton();
         jbtGetCustomer = new javax.swing.JButton();
+        jbClearCust = new javax.swing.JButton();
 
         jButton6.setText("jButton6");
 
@@ -139,89 +140,100 @@ public class MainForm extends javax.swing.JFrame {
             }
         });
 
+        jbClearCust.setText("Clear Customer Info");
+        jbClearCust.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbClearCustActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(65, 65, 65)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnBrowse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnTrack, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jbtGetCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(18, 18, 18)
+                .addGap(41, 41, 41)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnBrowse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnTrack, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbtGetCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbClearCust, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(33, 33, 33)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(btnFgtPw)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jtfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(lblTime)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jtfTime, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jpfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                                .addComponent(btnFgtPw, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblTime))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jpfPassword)
+                            .addComponent(jtfEmail)
+                            .addComponent(jtfTime, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jSeparator1))
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel3)
+                        .addGap(40, 40, 40)
+                        .addComponent(btnBrowse)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnTrack)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jbtGetCustomer)
+                        .addGap(18, 18, 18)
+                        .addComponent(jbClearCust)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblTime)
-                            .addComponent(jtfTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(jtfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblPassword)
-                            .addComponent(jpfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnLogin)
-                            .addComponent(btnFgtPw)
-                            .addComponent(btnRegister))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
-                        .addComponent(btnExit)))
+                            .addComponent(jSeparator1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(28, 28, 28)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lblTime)
+                                    .addComponent(jtfTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(8, 8, 8)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jtfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jpfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblPassword))
+                                .addGap(23, 23, 23)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(btnLogin)
+                                    .addComponent(btnFgtPw))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnRegister)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                                .addComponent(btnExit)))))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addComponent(jLabel3)
-                .addGap(31, 31, 31)
-                .addComponent(btnBrowse)
-                .addGap(43, 43, 43)
-                .addComponent(btnTrack)
-                .addGap(41, 41, 41)
-                .addComponent(jbtGetCustomer)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -238,18 +250,22 @@ public class MainForm extends javax.swing.JFrame {
         if (empList.searchString(jtfEmail.getText()) != null) {
             emp = empList.searchString(jtfEmail.getText());
             if (emp.getPassword().equals(jpfPassword.getText())) {
-                att = new Attendance(
-                        attdList.getEntry(attdList.getNumberOfEntries()).getAttendance_id() + 1,
-                        emp.getEmp_id(),
-                        dateOnly.format(new Date()),
-                        timeOnly.format(new Date()),
-                        "00:00:00",
-                        "00:00:00",
-                        "00:00:00");
-                attdList.add(att);
+                Attendance atd = attdList.getEntry(attdList.getNumberOfEntries());
+                if (!atd.getDate().equals(dateOnly.format(new Date()))) {
+                    att = new Attendance(
+                            attdList.getEntry(attdList.getNumberOfEntries()).getAttendance_id() + 1,
+                            emp.getEmp_id(),
+                            dateOnly.format(new Date()),
+                            timeOnly.format(new Date()),
+                            "00:00:00",
+                            "00:00:00",
+                            "00:00:00");
+                    attdList.add(att);
+                }
                 success = true;
             } else {
                 success = false;
+
             }
         }
 
@@ -259,7 +275,7 @@ public class MainForm extends javax.swing.JFrame {
             //see login rank is deliveryman ,executive manager, or affiliates
             switch (emp.getRank()) {
                 case "DM":
-                    DMI = new deliveryManInterface(empList, attdList, emp, orderList);
+                    DMI = new deliveryManInterface(empList, attdList, emp, orderList, this);
                     DMI.updateAttendance(att);
                     DMI.setVisible(true);
                     DMI.PreviousFrame(this);
@@ -288,10 +304,10 @@ public class MainForm extends javax.swing.JFrame {
 
     private void btnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrowseActionPerformed
         // TODO add your handling code here:
-        if (!phoneNo.equals("")) {
-            SelectRestaurant2 sr2 = new SelectRestaurant2(order, orderList);
+        if (phoneNo != null) {
+            SelectRestaurant2 sr2 = new SelectRestaurant2(order, orderList, this);
         } else {
-            CustFillInForm custForm = new CustFillInForm(order, orderList);
+            CustFillInForm custForm = new CustFillInForm(order, orderList, this);
             custForm.PreviousFrame(this);
             custForm.setVisible(true);
             custForm.setLocationRelativeTo(null);
@@ -301,8 +317,13 @@ public class MainForm extends javax.swing.JFrame {
 
     private void jbtGetCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtGetCustomerActionPerformed
         // TODO add your handling code here:
-        GetCustInfo getCust = new GetCustInfo(order, custList, phoneNo);
+        GetCustInfo getCust = new GetCustInfo(order, custList, this);
     }//GEN-LAST:event_jbtGetCustomerActionPerformed
+
+    private void jbClearCustActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbClearCustActionPerformed
+        // TODO add your handling code here:
+        phoneNo = null;
+    }//GEN-LAST:event_jbClearCustActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -343,57 +364,48 @@ public class MainForm extends javax.swing.JFrame {
                 mainform.setVisible(true);
             }
         });
-
         //timer function every 1000ms
-        Timer timer = new Timer(1000, new ActionListener() {
+        //Timer timer = new Timer();
+        int delay = 200;
+        Timer timer = new Timer(delay, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //jtfTime.setText(new Date().toString());
+                jtfTime.setText(new Date().toString());
                 mainform.refreshWaitingList();
             }
         });
         timer.start();
-        //new MainForm().setVisible(true);
     }
 
+
+
     private void refreshWaitingList() {
-        jtfTime.setText(new Date().toString());
         //loadAvailableEmployee();
-        if (emp != null) {
-
-            emp_handled_list temp = ehlList.searchID(emp.getEmp_id());
-            if (temp != null) {
-                Order ordtemp = finishedOrder.searchOrderID(temp.getOrder_id());
-                //System.out.println(emp.getEmp_id());
-                DMI.nextOrder(ordtemp);
-            }
-        }
-
-        int handle_id = 000001;
-
+        int handle_id = 900001;
         if (!empWaitingList.isEmpty() && !orderList.isEmpty()) {
+            tempEmp = empWaitingList.dequeue();
+            tempOrd = orderList.dequeue();
+            finishedOrder.add(tempOrd);
+
             if (!ehlList.isEmpty()) {
                 handle_id = ehlList.getEntry(ehlList.getNumberOfEntries()).getHandle_id() + 1;
             }
-            ehl = new emp_handled_list(handle_id, empWaitingList.getFront().getEmp_id(), orderList.getFront().getOrder_id(), dateOnly.format(new Date()), timeOnly.format(new Date()), "HANDLED", "NONE");
-            System.out.println(handle_id + " : " + Integer.toString(ehl.getOrder_id()) + " : " + Integer.toString(ehl.getEmp_id()));
+            ehl = new emp_handled_list(handle_id, tempEmp.getEmp_id(), tempOrd.getOrder_id(), dateOnly.format(new Date()), timeOnly.format(new Date()), "HANDLED", "NONE");
             ehlList.add(ehl);
-
-            finishedOrder.add(orderList.dequeue());
-            empWaitingList.dequeue();
-        }
-        try {
-            Thread.sleep(100);
-        } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(handle_id + ";Order id : " + Integer.toString(ehl.getOrder_id()) + ",handled by employee : " + Integer.toString(ehl.getEmp_id()));
+            if (emp != null) {
+                if (tempEmp.getEmp_id() == emp.getEmp_id()) {
+                    DMI.nextOrder(tempOrd);
+                }
+            }
         }
     }
 
     private void updateList() {
-        emp1 = new employee(100001, "jason@mail.com", "abcd1234", "offline", "890831-05-4492", "A-4-2 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-4441221", "DM", 2009, 2);
-        emp2 = new employee(100002, "jack@mail.com", "abcd1234", "other", "890731-05-4492", "A-7-4 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-4661321", "EXEC", 2010, 1);
-        emp3 = new employee(100003, "annabelle@mail.com", "abcd1234", "offline", "800831-05-4592", "A-3-6 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-8535221", "DM", 2016, 2);
-        emp4 = new employee(100004, "marie@mail.com", "abcd1234", "offline", "990731-08-4492", "A-2-2 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-1231221", "DM", 2012, 3);
-        emp5 = new employee(100005, "lucas@mail.com", "abcd1234", "other", "790821-05-4492", "A-6-5 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-4990621", "AFFT", 2014, 3);
+        emp1 = new employee(100001, "jason@mail.com", "abcd1234", "offline", "890831-05-4492", "A-4-2 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-4441221", "DM", 2009, 1);
+        emp2 = new employee(100002, "jack@mail.com", "abcd1234", "other", "890731-05-4492", "A-7-4 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-4661321", "EXEC", 2010, 5);
+        emp3 = new employee(100003, "annabelle@mail.com", "abcd1234", "offline", "800831-05-4592", "A-3-6 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-8535221", "DM", 2016, 3);
+        emp4 = new employee(100004, "marie@mail.com", "abcd1234", "offline", "990731-08-4492", "A-2-2 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-1231221", "DM", 2012, 2);
+        emp5 = new employee(100005, "lucas@mail.com", "abcd1234", "other", "790821-05-4492", "A-6-5 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-4990621", "AFFT", 2014, 2);
         att1 = new Attendance(600001, 100001, "21/07/2017", "08:00:21", "17:03:21", "13:10:52", "13:55:13");
         att2 = new Attendance(600002, 100002, "21/07/2017", "08:01:11", "17:13:31", "13:05:51", "14:02:11");
         att3 = new Attendance(600003, 100001, "22/07/2017", "08:11:31", "17:23:41", "13:12:25", "14:01:12");
@@ -419,11 +431,11 @@ public class MainForm extends javax.swing.JFrame {
         orderList.enqueue(ord3);
         orderList.enqueue(ord4);
         orderList.enqueue(ord5);
-        empWaitingList.enqueueAscTotalHandled(emp5);
         //empWaitingList.enqueueAscTotalHandled(emp1);
-        empWaitingList.enqueueAscTotalHandled(emp2);
+        //empWaitingList.enqueueAscTotalHandled(emp2);        
         empWaitingList.enqueueAscTotalHandled(emp3);
         empWaitingList.enqueueAscTotalHandled(emp4);
+        empWaitingList.enqueueAscTotalHandled(emp5);
     }
 
     public void returnAtt(Attendance att) {
@@ -443,6 +455,7 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JButton jbClearCust;
     private javax.swing.JButton jbtGetCustomer;
     private javax.swing.JPasswordField jpfPassword;
     private javax.swing.JTextField jtfEmail;
