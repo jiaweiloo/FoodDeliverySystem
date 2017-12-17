@@ -152,10 +152,12 @@ public class EmployeeADT<T> implements EmployeeInterface<T> {
             emp = (employee) currentNode.data;
 
             if (input.equals(emp.getEmail())) {
+                System.out.println("EmployeeADT.java : Email correct");
                 found = true;
                 result = emp;
             } 
             else if (input.equals(emp.getIc_number())) {
+                System.out.println("EmployeeADT.java : IC Found!");
                 found = true;
                 result = emp;
             } 
@@ -169,8 +171,7 @@ public class EmployeeADT<T> implements EmployeeInterface<T> {
             } 
             else {
                 currentNode = currentNode.next;
-            }
-            result = emp;
+            }            
         }
 
         return result;
