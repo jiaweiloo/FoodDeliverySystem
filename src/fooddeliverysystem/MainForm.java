@@ -18,7 +18,7 @@ import javax.swing.Timer;
 public class MainForm extends javax.swing.JFrame {
 
     public EmployeeInterface<employee> empList = new EmployeeADT<employee>();
-    ListInterface<Attendance> attdList = new LList<Attendance>();
+    public ListInterface<Attendance> attdList = new LList<Attendance>();
     public OrderInterface<Order> orderList = new OrderADT<Order>();
     public WaitingInterface<employee> empWaitingList = new WaitingQueueADT<employee>();
     ListInterface<emp_handled_list> ehlList = new LList<emp_handled_list>();
@@ -271,7 +271,7 @@ public class MainForm extends javax.swing.JFrame {
             //see login rank is deliveryman ,executive manager, or affiliates
             switch (emp.getRank()) {
                 case "DM":
-                    DMI = new deliveryManInterface(empList, attdList, emp, orderList);
+                    DMI = new deliveryManInterface(empList, attdList, emp, orderList, this);
                     DMI.updateAttendance(att);
                     DMI.setVisible(true);
                     DMI.PreviousFrame(this);
@@ -300,10 +300,10 @@ public class MainForm extends javax.swing.JFrame {
 
     private void btnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrowseActionPerformed
         // TODO add your handling code here:
-        if (phoneNo!=null) {
-            SelectRestaurant2 sr2 = new SelectRestaurant2(order, orderList,this);
+        if (phoneNo != null) {
+            SelectRestaurant2 sr2 = new SelectRestaurant2(order, orderList, this);
         } else {
-            CustFillInForm custForm = new CustFillInForm(order, orderList,this);
+            CustFillInForm custForm = new CustFillInForm(order, orderList, this);
             custForm.PreviousFrame(this);
             custForm.setVisible(true);
             custForm.setLocationRelativeTo(null);
@@ -318,7 +318,7 @@ public class MainForm extends javax.swing.JFrame {
 
     private void jbClearCustActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbClearCustActionPerformed
         // TODO add your handling code here:
-        phoneNo=null;
+        phoneNo = null;
     }//GEN-LAST:event_jbClearCustActionPerformed
 
     public static void main(String args[]) {
@@ -361,40 +361,43 @@ public class MainForm extends javax.swing.JFrame {
             }
         });
 
+        mainform.startTimer();
+    }
+
+    private void startTimer() {
         //timer function every 1000ms
-        Timer timer = new Timer(1000, new ActionListener() {
+
+        //Timer timer = new Timer();
+        int time = 100;
+        Timer timer = new Timer(time, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //jtfTime.setText(new Date().toString());
-                mainform.refreshWaitingList();
+                jtfTime.setText(new Date().toString());
+                refreshWaitingList();
             }
         });
         timer.start();
-        //new MainForm().setVisible(true);
     }
 
     private void refreshWaitingList() {
-        jtfTime.setText(new Date().toString());
         //loadAvailableEmployee();
         int handle_id = 900001;
-
         if (!empWaitingList.isEmpty() && !orderList.isEmpty()) {
+            tempEmp = empWaitingList.dequeue();
+            tempOrd = orderList.dequeue();
+            finishedOrder.add(tempOrd);
+
             if (!ehlList.isEmpty()) {
                 handle_id = ehlList.getEntry(ehlList.getNumberOfEntries()).getHandle_id() + 1;
             }
-            ehl = new emp_handled_list(handle_id, empWaitingList.getFront().getEmp_id(), orderList.getFront().getOrder_id(), dateOnly.format(new Date()), timeOnly.format(new Date()), "HANDLED", "NONE");
+            ehl = new emp_handled_list(handle_id, tempEmp.getEmp_id(), tempOrd.getOrder_id(), dateOnly.format(new Date()), timeOnly.format(new Date()), "HANDLED", "NONE");
             ehlList.add(ehl);
             System.out.println(handle_id + ";Order id : " + Integer.toString(ehl.getOrder_id()) + ",handled by employee : " + Integer.toString(ehl.getEmp_id()));
-
-            tempOrd = orderList.dequeue();
-            finishedOrder.add(tempOrd);
-            tempEmp = empWaitingList.dequeue();
             if (emp != null) {
                 if (tempEmp.getEmp_id() == emp.getEmp_id()) {
                     DMI.nextOrder(tempOrd);
                 }
             }
         }
-        
     }
 
     private void updateList() {
