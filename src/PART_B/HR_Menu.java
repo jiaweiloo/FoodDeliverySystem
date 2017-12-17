@@ -146,13 +146,13 @@ public class HR_Menu extends javax.swing.JFrame {
                                 .addComponent(jIC, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jStatus, javax.swing.GroupLayout.Alignment.LEADING))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(109, 109, 109)
+                        .addGap(110, 110, 110)
                         .addComponent(jButtonExit)
-                        .addGap(184, 184, 184)
+                        .addGap(183, 183, 183)
                         .addComponent(jButtonConfirm)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButtonClear)))
-                .addContainerGap(150, Short.MAX_VALUE))
+                .addContainerGap(161, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,14 +186,11 @@ public class HR_Menu extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButtonConfirm)
                         .addComponent(jButtonExit))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonConfirm)
-                            .addComponent(jButtonClear))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                    .addComponent(jButtonClear))
+                .addGap(0, 36, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Register Delivery Men", jPanel1);
