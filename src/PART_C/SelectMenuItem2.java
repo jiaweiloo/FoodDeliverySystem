@@ -8,6 +8,7 @@ package PART_C;
 import javax.swing.*;
 import adt.*;
 import entity.*;
+import fooddeliverysystem.MainForm;
 import java.awt.*;
 import java.awt.event.*;
 import java.text.SimpleDateFormat;
@@ -19,6 +20,7 @@ import java.util.Date;
  */
 public class SelectMenuItem2 extends JFrame {
 
+    MainForm mainform;
     JScrollPane jScrollPane;
     JPanel jPanel;
     LList<OrderList> cartList = new LList();
@@ -27,16 +29,17 @@ public class SelectMenuItem2 extends JFrame {
     OrderList ol;
     LList<Item> itemList;
     JButton cart = new JButton("Go to Cart");
+    SelectMenuItem2 sm2;
 
     // JLabel jlblItem;
     //JLabel jlblPrice;
     //JButton jbtAdd = new JButton("Add");
     //Customer cust = new Customer(001, "Loi Kah Hou", "lkh@mail.com", "abc123", "0123456789", "123, Condo Satu, Jalan Dua, 53300 Setapak, KL", 0);
-
-    public SelectMenuItem2(Affiliate aff, Order order, OrderInterface<Order> orderList) {
+    public SelectMenuItem2(Affiliate aff, Order order, OrderInterface<Order> orderList, MainForm mainform) {
         this.order = order;
         this.orderList = orderList;
-        System.out.println(order.getOrder_id());
+        this.mainform = mainform;
+        sm2 = this;
         //order.setOrder_id(301);
         order.setRestaurant_id(aff.getAffiliate_id());
         //order.setCust(cust);
@@ -64,18 +67,32 @@ public class SelectMenuItem2 extends JFrame {
             jbtAdd.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     if ((Integer) jsQuantity.getValue() != 0) {
+                        int count = 0;
                         ol = new OrderList(cartList.getNumberOfEntries() + 401, order.getOrder_id(), tempItem.getItem_id(), (int) jsQuantity.getValue(), (int) jsQuantity.getValue() * tempItem.getItem_price());
 
-                        for (int a = 1; a <= cartList.getNumberOfEntries(); a++) {
-                            if (cartList.getEntry(a).getItem_id() == tempItem.getItem_id()) {
-                                ol.setQuantity((int) jsQuantity.getValue() + cartList.getEntry(a).getQuantity());
-                                ol.setSubTotal(ol.getQuantity() * tempItem.getItem_price());
-                                cartList.replace(a, ol);
+                        if (cartList.getNumberOfEntries() != 0) {
+                            for (int a = 1; a <= cartList.getNumberOfEntries(); a++) {
+                                if (tempItem.getItem_id() == cartList.getEntry(a).getItem_id()) {
+                                    count++;
+                                }
                             }
+
+                            if (count > 0) {
+                                for (int a = 1; a <= cartList.getNumberOfEntries(); a++) {
+                                    if (cartList.getEntry(a).getItem_id() == tempItem.getItem_id()) {
+                                        ol.setQuantity((int) jsQuantity.getValue() + cartList.getEntry(a).getQuantity());
+                                        ol.setSubTotal(ol.getQuantity() * tempItem.getItem_price());
+                                        cartList.replace(a, ol);
+                                    }
+                                }
+                            } else {
+                                cartList.add(ol);
+                            }
+
+                        } else {
+                            cartList.add(ol);
                         }
 
-                        System.out.println("asdasdasd");
-                        cartList.add(ol);
                         JOptionPane.showMessageDialog(null, "Item is added to cart");
                     } else {
                         JOptionPane.showMessageDialog(null, "Quantity cannot be 0");
@@ -88,17 +105,9 @@ public class SelectMenuItem2 extends JFrame {
         }
         cart.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-
-                /*for (int a = 1; a <= cartList.getNumberOfEntries(); a++) {
-                    for (int b = a + 1; b <= cartList.getNumberOfEntries(); b++) {
-                        if (cartList.getEntry(a).getItem_id() == cartList.getEntry(b).getItem_id()) {
-                            cartList.getEntry(a).setQuantity(Integer.toString(Integer.parseInt(cartList.getEntry(a).getQuantity())+Integer.parseInt(cartList.getEntry(b).getQuantity())));
-                            cartList.getEntry(a).setSubTotal(Integer.toString(Integer.parseInt(cartList.getEntry(a).getSubTotal())+Integer.parseInt(cartList.getEntry(b).getSubTotal())));
-                            cartList.remove(b);
-                        }
-                    }
-                }*/
-                Cart ct = new Cart(cartList, itemList, order, orderList);
+                setVisible(false);
+                Cart ct = new Cart(cartList, itemList, order, orderList, mainform);
+                ct.previousFrame(sm2);
             }
         });
         jPanel.add(cart);
@@ -109,8 +118,20 @@ public class SelectMenuItem2 extends JFrame {
         setTitle("Menu");
         setSize(1300, 600);
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setVisible(true);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                if (JOptionPane.showConfirmDialog(sm2,
+                        "Return to Main Menu?", "Really Closing?",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
+                    sm2.dispose();
+                    mainform.setVisible(true);
+                }
+            }
+        });
     }
 
     /*private void jbtAdd(ActionEvent e) {

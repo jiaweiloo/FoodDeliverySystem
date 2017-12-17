@@ -22,10 +22,11 @@ public class CustFillInForm extends javax.swing.JFrame {
     MainForm mainform;
     Order order;
     OrderInterface<Order> orderList;
-
-    public CustFillInForm(Order order, OrderInterface<Order> orderList) {
+    
+    public CustFillInForm(Order order, OrderInterface<Order> orderList,MainForm mf) {
         this.order = order;
         this.orderList=orderList;
+        this.mainform=mf;
         setTitle("Order Fill In Form");
         initComponents();
     }
@@ -187,7 +188,7 @@ public class CustFillInForm extends javax.swing.JFrame {
             order.setCust_email(custEmail.getText());
             order.setCust_phone(custPhone.getText());
             order.setCust_deliveryAddress(custAddress.getText());
-            SelectRestaurant2 sr2 = new SelectRestaurant2(order,orderList);
+            SelectRestaurant2 sr2 = new SelectRestaurant2(order,orderList,mainform);
             this.dispose();
         }
     }//GEN-LAST:event_jButton1ActionPerformed

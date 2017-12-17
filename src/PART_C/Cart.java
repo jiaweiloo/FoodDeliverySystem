@@ -15,6 +15,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import entity.*;
 import adt.*;
+import fooddeliverysystem.MainForm;
 
 /**
  *
@@ -32,6 +33,7 @@ public class Cart extends JFrame {
     Item item2 = new Item(203, "Curry Ikan", "5", 101);
     Item item3 = new Item(204, "Curry Manis", "5", 101);
      */
+    MainForm mainform;
     JTable table = new JTable();
     String[] columns = {"Item Name", "Quantity", "Unit Price (RM)", "Total (RM)"};
     JLabel jlblItemName = new JLabel();
@@ -43,6 +45,7 @@ public class Cart extends JFrame {
     JPanel jpane1 = new JPanel();
     JPanel jpane2 = new JPanel();
     JButton jbCheckOut = new JButton("Check Out");
+    JButton jbBack = new JButton("Back to Menu");
 
     LList<OrderList> cartList = new LList();
     // LinkedQueue<OrderList> backupOrderListQueue = new LinkedQueue();
@@ -50,12 +53,14 @@ public class Cart extends JFrame {
     LList<Item> itemList = new LList();
     OrderInterface<Order> orderList;
     Order order;
+    SelectMenuItem2 sm;
 
-    public Cart(LList<OrderList> cartList, LList<Item> itemList, Order order, OrderInterface<Order> orderList) {
+    public Cart(LList<OrderList> cartList, LList<Item> itemList, Order order, OrderInterface<Order> orderList,MainForm mainform) {
         this.cartList = cartList;
         this.itemList = itemList;
         this.orderList=orderList;
         this.order=order;
+        this.mainform = mainform;
         /*for (int a = 1; a <= cartList.getNumberOfEntries(); a++) {
             System.out.println(cartList.getEntry(a).getItem_id());
         }*/
@@ -125,8 +130,15 @@ public class Cart extends JFrame {
                 jbtCheckOut(evt);
             }
         });
+        jbBack.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                jbtBack(evt);
+            }
+        });
+        
 
         jpane1.add(pane);
+        jpane2.add(jbBack);
         jpane2.add(jbDelete);
         jpane2.add(jbCheckOut);
         add(jpane1);
@@ -153,15 +165,23 @@ public class Cart extends JFrame {
     }
 
     private void jbtCheckOut(ActionEvent evt) {
-        this.setVisible(false);
-        OrderConfirmation oc = new OrderConfirmation(cartList,itemList,order,orderList);
+        this.dispose();
+        OrderConfirmation oc = new OrderConfirmation(cartList,itemList,order,orderList,mainform,sm);
         oc.setTitle("Cart");
         oc.setSize(1200, 600);
         oc.setLocationRelativeTo(null);
         oc.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         oc.setVisible(true);
     }
+    private void jbtBack(ActionEvent evt) {
+        this.dispose();
+        sm.setVisible(true);
+    }
 
+    
+    public void previousFrame(SelectMenuItem2 sm){
+        this.sm=sm;
+    }
     /*  public static void main(String[] args) {
         Cart cart = new Cart();
         cart.setTitle("Cart");

@@ -17,9 +17,11 @@ import java.util.Date;
 import javax.swing.*;
 import adt.*;
 import entity.*;
+import fooddeliverysystem.MainForm;
 
 public class OrderConfirmation extends JFrame {
 
+    MainForm mainform;
     JLabel jlblName = new JLabel("Name :");
     JLabel jlblDate = new JLabel("Date :");
     JLabel jlblOrder = new JLabel("Order Item");
@@ -34,23 +36,23 @@ public class OrderConfirmation extends JFrame {
     LList<Item> itemList;
     OrderInterface<Order> orderList;
     Order order;
+    SelectMenuItem2 sm;
 
-    public OrderConfirmation(LList<OrderList> cartList, LList<Item> itemList,Order order, OrderInterface<Order> orderList) {
+    public OrderConfirmation(LList<OrderList> cartList, LList<Item> itemList, Order order, OrderInterface<Order> orderList, MainForm mainform, SelectMenuItem2 sm) {
         this.cartList = cartList;
         this.itemList = itemList;
-        this.orderList=orderList;
-        this.order=order;
-        
-        
-            
-        
+        this.orderList = orderList;
+        this.order = order;
+        this.mainform = mainform;
+        this.sm=sm;
+
         String[][] data = new String[cartList.getNumberOfEntries()][3];
-        for(int a=1;a<=cartList.getNumberOfEntries();a++){
+        for (int a = 1; a <= cartList.getNumberOfEntries(); a++) {
             System.out.println(cartList.getEntry(a).getSubTotal());
         }
         for (int a = 1; a <= cartList.getNumberOfEntries(); a++) {
             for (int b = 1; b <= itemList.getNumberOfEntries(); b++) {
-                if (cartList.getEntry(a).getItem_id()==itemList.getEntry(b).getItem_id()) {
+                if (cartList.getEntry(a).getItem_id() == itemList.getEntry(b).getItem_id()) {
                     data[a - 1][0] = itemList.getEntry(b).getItem_name();
                     data[a - 1][1] = Integer.toString(cartList.getEntry(a).getQuantity());
                     data[a - 1][2] = Double.toString(cartList.getEntry(a).getSubTotal());
@@ -89,7 +91,7 @@ public class OrderConfirmation extends JFrame {
                 jbBack(e);
             }
         });
-        
+
         setTitle("Order Confirmation");
         setSize(1200, 600);
         setLocationRelativeTo(null);
@@ -100,20 +102,21 @@ public class OrderConfirmation extends JFrame {
 
     private void jbConfirm(ActionEvent e) {
         // TODO add your handling code here:
-        Payment payment = new Payment(cartList,order,orderList);
+        this.setVisible(false);
+        Payment payment = new Payment(cartList, order, orderList, this, mainform);
     }
 
     private void jbBack(ActionEvent e) {
         // TODO add your handling code here:
         this.dispose();
-        Cart ct = new Cart(cartList,itemList,order,orderList);
+        Cart ct = new Cart(cartList, itemList, order, orderList, mainform);
         ct.setTitle("Cart");
-
+ct.previousFrame(sm);
         ct.setSize(1200, 600);
         ct.setLocationRelativeTo(null);
         ct.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         ct.setVisible(true);
-        
+
     }
 
     /*public static void main(String[] args) {
