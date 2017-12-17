@@ -43,16 +43,16 @@ public class HR_Menu extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jEmail = new javax.swing.JTextField();
-        jPassword = new javax.swing.JPasswordField();
+        jtfEmail = new javax.swing.JTextField();
         jPhoneNumber = new javax.swing.JTextField();
-        jIC = new javax.swing.JTextField();
-        jStatus = new javax.swing.JTextField();
+        jtfIC_Number = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jAddress = new javax.swing.JTextArea();
-        jButtonExit = new javax.swing.JButton();
-        jButtonConfirm = new javax.swing.JButton();
+        jtfAddress = new javax.swing.JTextArea();
+        btnExit = new javax.swing.JButton();
+        btnRegister = new javax.swing.JButton();
         jButtonClear = new javax.swing.JButton();
+        jcbStatus = new javax.swing.JComboBox<>();
+        jPass = new javax.swing.JPasswordField();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
@@ -87,72 +87,72 @@ public class HR_Menu extends javax.swing.JFrame {
 
         jLabel4.setText("IC Number");
 
-        jLabel5.setText("Status");
+        jLabel5.setText("DeliveryMan status:");
 
         jLabel6.setText("Address");
 
-        jEmail.setText("jTextField1");
+        jtfEmail.setText("deliveryman1@mail.com");
 
-        jPassword.setText("jPasswordField1");
+        jPhoneNumber.setText("0123456789");
 
-        jPhoneNumber.setText("jTextField2");
+        jtfIC_Number.setText("881012-11-2222");
 
-        jIC.setText("jTextField3");
+        jtfAddress.setColumns(20);
+        jtfAddress.setRows(5);
+        jtfAddress.setText("88, Jln Sample, Taman Contoh, 53300 WM Kuala Lumpur");
+        jScrollPane1.setViewportView(jtfAddress);
 
-        jStatus.setText("jTextField4");
-
-        jAddress.setColumns(20);
-        jAddress.setRows(5);
-        jScrollPane1.setViewportView(jAddress);
-
-        jButtonExit.setText("Exit");
-        jButtonExit.addActionListener(new java.awt.event.ActionListener() {
+        btnExit.setText("Exit");
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonExitActionPerformed(evt);
+                btnExitActionPerformed(evt);
             }
         });
 
-        jButtonConfirm.setText("Confirm Register");
-        jButtonConfirm.addActionListener(new java.awt.event.ActionListener() {
+        btnRegister.setText("Confirm Register");
+        btnRegister.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonConfirmActionPerformed(evt);
+                btnRegisterActionPerformed(evt);
             }
         });
 
         jButtonClear.setText("Clear");
+
+        jcbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Offline", "Available", "Pending", "other" }));
+
+        jPass.setText("abcd1234");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(96, 96, 96)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1))
-                        .addGap(45, 45, 45)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jEmail, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jPassword, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
-                                .addComponent(jPhoneNumber, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jIC, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jStatus, javax.swing.GroupLayout.Alignment.LEADING))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(110, 110, 110)
-                        .addComponent(jButtonExit)
-                        .addGap(183, 183, 183)
-                        .addComponent(jButtonConfirm)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonClear)))
-                .addContainerGap(161, Short.MAX_VALUE))
+                .addGap(96, 96, 96)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1))
+                .addGap(45, 45, 45)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jPass, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jcbStatus, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jtfEmail, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
+                        .addComponent(jPhoneNumber, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jtfIC_Number, javax.swing.GroupLayout.Alignment.LEADING)))
+                .addContainerGap(90, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(47, 47, 47)
+                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnRegister)
+                .addGap(160, 160, 160)
+                .addComponent(jButtonClear, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,37 +160,40 @@ public class HR_Menu extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jtfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
+                    .addComponent(jPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(jPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jIC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfIC_Number, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(39, 39, 39)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jcbStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addComponent(jLabel6))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(52, 52, 52)
+                                .addComponent(jLabel6))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(85, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButtonConfirm)
-                        .addComponent(jButtonExit))
-                    .addComponent(jButtonClear))
-                .addGap(0, 36, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonClear)
+                            .addComponent(btnRegister)
+                            .addComponent(btnExit))
+                        .addGap(29, 29, 29))))
         );
 
         jTabbedPane1.addTab("Register Delivery Men", jPanel1);
@@ -234,7 +237,7 @@ public class HR_Menu extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 828, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addComponent(jButtonShow)
@@ -251,7 +254,7 @@ public class HR_Menu extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonShow)
                     .addComponent(jButtonDelete))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Delete Delivery Men", jPanel2);
@@ -345,7 +348,7 @@ public class HR_Menu extends javax.swing.JFrame {
                                     .addGroup(jPanel3Layout.createSequentialGroup()
                                         .addComponent(jLabel8)
                                         .addGap(40, 40, 40)
-                                        .addComponent(txtPhone, javax.swing.GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE))
+                                        .addComponent(txtPhone, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE))
                                     .addGroup(jPanel3Layout.createSequentialGroup()
                                         .addComponent(jLabel7)
                                         .addGap(93, 93, 93)
@@ -388,11 +391,11 @@ public class HR_Menu extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 864, Short.MAX_VALUE)
+            .addGap(0, 858, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 481, Short.MAX_VALUE)
+            .addGap(0, 499, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Nothing Now", jPanel4);
@@ -438,7 +441,7 @@ public class HR_Menu extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 840, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 828, Short.MAX_VALUE)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jButton1)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -456,7 +459,7 @@ public class HR_Menu extends javax.swing.JFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
                 .addComponent(jButton1)
-                .addContainerGap(94, Short.MAX_VALUE))
+                .addContainerGap(106, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Daily Report", jPanel5);
@@ -465,7 +468,7 @@ public class HR_Menu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jTabbedPane1)
                 .addContainerGap())
@@ -474,43 +477,60 @@ public class HR_Menu extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1)
-                .addContainerGap())
+                .addComponent(jTabbedPane1))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfirmActionPerformed
-        int a = 0;
+    private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
+        System.out.println("Registered press");
+        int emp_id = 0;
         int year = Calendar.getInstance().get(Calendar.YEAR);
-        if (empList.isEmpty()) {
-            a = 100001;
-        } else {
-            a = empList.getEntry(empList.getNumberOfEntries()).getEmp_id() + 1;
-        }
-        for (int b = 0; b < empList.getNumberOfEntries(); b++) {
-            if (jIC.getText().equals(empList.getEntry(b).getIc_number())&&jEmail.getText().equals(empList.getEntry(b).getEmail())) {
-                employee em = new employee(a, jEmail.getText(), jPassword.getText(), "Available", jIC.getText(), jAddress.getText(), jPhoneNumber.getText(), "Rank", year, 0);
-               empList.add(em);
-                JOptionPane.showMessageDialog(this, "This Delivery Man Successfully Added!");
-            } else {
-                JOptionPane.showMessageDialog(this, "Please Used Another Email Or IC Number For Registration");
-            }
-        }
-    }//GEN-LAST:event_jButtonConfirmActionPerformed
+        String email = jtfEmail.getText();
+        String password = jPass.getText();
+        String phone_num = jPhoneNumber.getText();
+        String ic_number = jtfIC_Number.getText();
+        String status = jcbStatus.getSelectedItem().toString();
+        String address = jtfAddress.getText();
+        employee em;
 
-    private void jButtonExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExitActionPerformed
+        if (empList.isEmpty()) {
+            //System.out.println("Employee list empty");
+            emp_id = 100001;
+            em = new employee(emp_id, email, password, status, ic_number, address, phone_num, "DM", year, 0);
+            empList.add(em);
+            JOptionPane.showMessageDialog(null, "This Delivery Man Successfully Added!");
+        } else {
+            emp_id = empList.getEntry(empList.getNumberOfEntries()).getEmp_id() + 1;
+            //System.out.println("Employee list not empty : " + emp_id);
+        }
+        
+        if (empList.searchString(ic_number) == null && empList.searchString(email) == null) {
+            em = new employee(emp_id, email, password, status, ic_number, address, phone_num, "DM", year, 0);
+            empList.add(em);
+            JOptionPane.showMessageDialog(null, "This Delivery Man Successfully Added!");
+        } else {
+            JOptionPane.showMessageDialog(null, "Please Used Another Email Or IC Number For Registration");
+        }
+
+        /*   for (int b = 1; b <= empList.getNumberOfEntries() ; b++) {
+            //System.out.println("Employee list number : " + b);
+            //System.out.println(ic_number+ " list ic : " + empList.getEntry(b).getIc_number());
+        } */
+
+    }//GEN-LAST:event_btnRegisterActionPerformed
+
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
         JOptionPane.showMessageDialog(this, empList.getEntry(1).getYear_joined());
         //System.exit(0); 
-    }//GEN-LAST:event_jButtonExitActionPerformed
+    }//GEN-LAST:event_btnExitActionPerformed
 
     private void showDate() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate localDate = LocalDate.now();
         jTextField1.setText(dtf.format(localDate));
     }
-
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         DefaultTableModel dm = (DefaultTableModel) jTable1.getModel();
@@ -663,17 +683,14 @@ public class HR_Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnExit;
+    private javax.swing.JButton btnRegister;
     private javax.swing.JButton btnShow;
     private javax.swing.JButton btnUpdate;
-    private javax.swing.JTextArea jAddress;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonClear;
-    private javax.swing.JButton jButtonConfirm;
     private javax.swing.JButton jButtonDelete;
-    private javax.swing.JButton jButtonExit;
     private javax.swing.JButton jButtonShow;
-    private javax.swing.JTextField jEmail;
-    private javax.swing.JTextField jIC;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -688,19 +705,22 @@ public class HR_Menu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPasswordField jPassword;
+    private javax.swing.JPasswordField jPass;
     private javax.swing.JTextField jPhoneNumber;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JTextField jStatus;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JComboBox<String> jcbStatus;
+    private javax.swing.JTextArea jtfAddress;
+    private javax.swing.JTextField jtfEmail;
+    private javax.swing.JTextField jtfIC_Number;
     private javax.swing.JTextArea txtAddress;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtPhone;
