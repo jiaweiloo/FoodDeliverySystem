@@ -28,11 +28,14 @@ public class Payment extends javax.swing.JFrame {
     Order order;
     OrderInterface<Order> orderList;
     MainForm mainform;
+    OrderConfirmation oc;
 
-    public Payment(LList<OrderList> cartList, Order order, OrderInterface<Order> orderList) {
+    public Payment(LList<OrderList> cartList, Order order, OrderInterface<Order> orderList,OrderConfirmation oc,MainForm mainform) {
         this.cartList = cartList;
         this.orderList = orderList;
         this.order = order;
+        this.oc=oc;
+        this.mainform=mainform;
         initComponents();
         setTitle("Payment");
         setLocationRelativeTo(null);
@@ -57,6 +60,7 @@ public class Payment extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -77,10 +81,17 @@ public class Payment extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Payment");
 
-        jButton1.setText("jButton1");
+        jButton1.setText("Pay");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        jBack.setText("Back");
+        jBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBackActionPerformed(evt);
             }
         });
 
@@ -95,8 +106,11 @@ public class Payment extends javax.swing.JFrame {
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(39, 39, 39)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton1)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jBack)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton1))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -127,7 +141,9 @@ public class Payment extends javax.swing.JFrame {
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(59, 59, 59)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jBack))
                 .addGap(5, 5, 5))
         );
 
@@ -140,7 +156,7 @@ public class Payment extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        if (order.getCurrent_status() != "PAID") {
+        if (order.getCurrent_status() ==null) {
             if (jTextField1.getText().equals("") || jTextField2.getText().equals("") || jTextField3.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Please complete the credit card info");
             } else {
@@ -151,12 +167,24 @@ public class Payment extends javax.swing.JFrame {
                     order.setOrderList(cartList);
                     order.setCurrent_status("PAID");
                     orderList.enqueue(order);
+                    //orderList.arrangeQueue();
+                    System.out.println(order.getTotal_amount());
+                    mainform.order = new Order();
+                    oc.dispose();
+                    this.dispose();
+                    mainform.setVisible(true);
                 }
             }
         } else {
             JOptionPane.showMessageDialog(null, "Order Paid");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBackActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        oc.setVisible(true);
+    }//GEN-LAST:event_jBackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -194,6 +222,7 @@ public class Payment extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBack;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

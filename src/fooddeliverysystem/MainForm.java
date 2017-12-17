@@ -18,7 +18,7 @@ import javax.swing.Timer;
 public class MainForm extends javax.swing.JFrame {
 
     public EmployeeInterface<employee> empList = new EmployeeADT<employee>();
-    ListInterface<Attendance> attdList = new LList<Attendance>();
+    public ListInterface<Attendance> attdList = new LList<Attendance>();
     public OrderInterface<Order> orderList = new OrderADT<Order>();
     public WaitingInterface<employee> empWaitingList = new WaitingQueueADT<employee>();
     ListInterface<emp_handled_list> ehlList = new LList<emp_handled_list>();
@@ -32,7 +32,7 @@ public class MainForm extends javax.swing.JFrame {
     deliveryManInterface DMI;
     public Order order = new Order();
     public LList<Order> custList = new LList<Order>();
-    String phoneNo;
+    public String phoneNo;
 
     /**
      * Creates new form MainForm
@@ -68,6 +68,7 @@ public class MainForm extends javax.swing.JFrame {
         btnBrowse = new javax.swing.JButton();
         btnTrack = new javax.swing.JButton();
         jbtGetCustomer = new javax.swing.JButton();
+        jbClearCust = new javax.swing.JButton();
 
         jButton6.setText("jButton6");
 
@@ -139,6 +140,13 @@ public class MainForm extends javax.swing.JFrame {
             }
         });
 
+        jbClearCust.setText("Clear Customer Info");
+        jbClearCust.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbClearCustActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -149,7 +157,8 @@ public class MainForm extends javax.swing.JFrame {
                     .addComponent(btnBrowse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnTrack, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jbtGetCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbClearCust, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(33, 33, 33)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,7 +173,7 @@ public class MainForm extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                                 .addComponent(btnFgtPw, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -195,6 +204,8 @@ public class MainForm extends javax.swing.JFrame {
                         .addComponent(btnTrack)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jbtGetCustomer)
+                        .addGap(18, 18, 18)
+                        .addComponent(jbClearCust)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
@@ -260,7 +271,7 @@ public class MainForm extends javax.swing.JFrame {
             //see login rank is deliveryman ,executive manager, or affiliates
             switch (emp.getRank()) {
                 case "DM":
-                    DMI = new deliveryManInterface(empList, attdList, emp, orderList);
+                    DMI = new deliveryManInterface(empList, attdList, emp, orderList, this);
                     DMI.updateAttendance(att);
                     DMI.setVisible(true);
                     DMI.PreviousFrame(this);
@@ -289,10 +300,10 @@ public class MainForm extends javax.swing.JFrame {
 
     private void btnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrowseActionPerformed
         // TODO add your handling code here:
-        if (!phoneNo.equals("")) {
-            SelectRestaurant2 sr2 = new SelectRestaurant2(order, orderList);
+        if (phoneNo != null) {
+            SelectRestaurant2 sr2 = new SelectRestaurant2(order, orderList, this);
         } else {
-            CustFillInForm custForm = new CustFillInForm(order, orderList);
+            CustFillInForm custForm = new CustFillInForm(order, orderList, this);
             custForm.PreviousFrame(this);
             custForm.setVisible(true);
             custForm.setLocationRelativeTo(null);
@@ -302,8 +313,13 @@ public class MainForm extends javax.swing.JFrame {
 
     private void jbtGetCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtGetCustomerActionPerformed
         // TODO add your handling code here:
-        GetCustInfo getCust = new GetCustInfo(order, custList, phoneNo);
+        GetCustInfo getCust = new GetCustInfo(order, custList, this);
     }//GEN-LAST:event_jbtGetCustomerActionPerformed
+
+    private void jbClearCustActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbClearCustActionPerformed
+        // TODO add your handling code here:
+        phoneNo = null;
+    }//GEN-LAST:event_jbClearCustActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -345,40 +361,43 @@ public class MainForm extends javax.swing.JFrame {
             }
         });
 
+        mainform.startTimer();
+    }
+
+    private void startTimer() {
         //timer function every 1000ms
-        Timer timer = new Timer(1000, new ActionListener() {
+
+        //Timer timer = new Timer();
+        int time = 100;
+        Timer timer = new Timer(time, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //jtfTime.setText(new Date().toString());
-                mainform.refreshWaitingList();
+                jtfTime.setText(new Date().toString());
+                refreshWaitingList();
             }
         });
         timer.start();
-        //new MainForm().setVisible(true);
     }
 
     private void refreshWaitingList() {
-        jtfTime.setText(new Date().toString());
         //loadAvailableEmployee();
         int handle_id = 900001;
-
         if (!empWaitingList.isEmpty() && !orderList.isEmpty()) {
+            tempEmp = empWaitingList.dequeue();
+            tempOrd = orderList.dequeue();
+            finishedOrder.add(tempOrd);
+
             if (!ehlList.isEmpty()) {
                 handle_id = ehlList.getEntry(ehlList.getNumberOfEntries()).getHandle_id() + 1;
             }
-            ehl = new emp_handled_list(handle_id, empWaitingList.getFront().getEmp_id(), orderList.getFront().getOrder_id(), dateOnly.format(new Date()), timeOnly.format(new Date()), "HANDLED", "NONE");
+            ehl = new emp_handled_list(handle_id, tempEmp.getEmp_id(), tempOrd.getOrder_id(), dateOnly.format(new Date()), timeOnly.format(new Date()), "HANDLED", "NONE");
             ehlList.add(ehl);
             System.out.println(handle_id + ";Order id : " + Integer.toString(ehl.getOrder_id()) + ",handled by employee : " + Integer.toString(ehl.getEmp_id()));
-
-            tempOrd = orderList.dequeue();
-            finishedOrder.add(tempOrd);
-            tempEmp = empWaitingList.dequeue();
             if (emp != null) {
                 if (tempEmp.getEmp_id() == emp.getEmp_id()) {
                     DMI.nextOrder(tempOrd);
                 }
             }
         }
-        
     }
 
     private void updateList() {
@@ -436,6 +455,7 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JButton jbClearCust;
     private javax.swing.JButton jbtGetCustomer;
     private javax.swing.JPasswordField jpfPassword;
     private javax.swing.JTextField jtfEmail;

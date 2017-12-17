@@ -4,8 +4,12 @@
  * and open the template in the editor.
  */
 package PART_C;
+
 import entity.*;
 import adt.*;
+import fooddeliverysystem.MainForm;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -15,14 +19,20 @@ public class GetCustInfo extends javax.swing.JFrame {
 
     /**
      * Creates new form GetCustInfo
-     */Order order;
-     LList<Order> custList;
-     String phone;
-    public GetCustInfo(Order order,LList<Order> custList,String phone) {
-        this.order=order;
+     */
+    Order order;
+    ListInterface<Order> custList;
+    MainForm mainform;
+
+    public GetCustInfo(Order order, ListInterface<Order> custList, MainForm mainform) {
+        this.order = order;
         this.custList = custList;
-        this.phone=phone;
+        this.mainform = mainform;
         initComponents();
+
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setVisible(true);
     }
 
     /**
@@ -36,6 +46,7 @@ public class GetCustInfo extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         phoneNo = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,15 +59,27 @@ public class GetCustInfo extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Get");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(70, 70, 70)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(phoneNo)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(phoneNo)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(114, 114, 114)
+                        .addComponent(jButton1)))
                 .addContainerGap(63, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -66,7 +89,9 @@ public class GetCustInfo extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(phoneNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53))
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addGap(10, 10, 10))
         );
 
         pack();
@@ -74,15 +99,35 @@ public class GetCustInfo extends javax.swing.JFrame {
 
     private void phoneNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneNoActionPerformed
         // TODO add your handling code here:
-        for(int a=1;a<=custList.getNumberOfEntries();a++){
-            if(phoneNo.getText().equals(custList.getEntry(a).getCust_phone())){
-                order.setCust_email(custList.getEntry(a).getCust_email());
-                order.setCust_name(custList.getEntry(a).getCust_name());
-                order.setCust_deliveryAddress(custList.getEntry(a).getCust_deliveryAddress());
-                phone=phoneNo.getText();
-            }
-        }
+
     }//GEN-LAST:event_phoneNoActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+
+        mainform.phoneNo = phoneNo.getText();
+        if (!custList.isEmpty()) {
+            for (int a = 1; a <= custList.getNumberOfEntries(); a++) {
+                System.out.println("asd");
+                if (phoneNo.getText().equals(custList.getEntry(a).getCust_phone())) {
+                    System.out.println("nooob");
+                    order.setCust_email(custList.getEntry(a).getCust_email());
+                    order.setCust_name(custList.getEntry(a).getCust_name());
+                    order.setCust_deliveryAddress(custList.getEntry(a).getCust_deliveryAddress());
+                    JOptionPane.showMessageDialog(null, "Info Retrieved Succesfully");
+                    break;
+                } else {
+                    System.out.println("haha");
+                    mainform.phoneNo = null;
+                    JOptionPane.showMessageDialog(null, "Record Not Found");
+                    break;
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Record Not Found");
+        }
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -120,6 +165,7 @@ public class GetCustInfo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField phoneNo;
     // End of variables declaration//GEN-END:variables
