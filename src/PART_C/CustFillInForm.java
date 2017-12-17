@@ -24,6 +24,7 @@ public class CustFillInForm extends javax.swing.JFrame {
     OrderInterface<Order> orderList;
     
     public CustFillInForm(Order order, OrderInterface<Order> orderList,MainForm mf) {
+        
         this.order = order;
         this.orderList=orderList;
         this.mainform=mf;
@@ -182,7 +183,12 @@ public class CustFillInForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (custEmail.getText().equals("") || custAddress.getText().equals("") || custName.getText().equals("") || custPhone.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Please complete the fill in form");
-        } else {
+        } else if (!custName.getText().matches("^[a-zA-Z]+$")){
+            JOptionPane.showMessageDialog(null, "Please key in alphabet only for name");
+        }else if(!custPhone.getText().matches("[0-9]+")){
+            JOptionPane.showMessageDialog(null, "Please key in number only for phone no");
+        }
+        else{
             order.setOrder_id(orderList.size()+101);
             order.setCust_name(custName.getText());
             order.setCust_email(custEmail.getText());
