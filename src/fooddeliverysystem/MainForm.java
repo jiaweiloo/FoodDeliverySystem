@@ -364,23 +364,19 @@ public class MainForm extends javax.swing.JFrame {
                 mainform.setVisible(true);
             }
         });
-
-        mainform.startTimer();
-    }
-
-    private void startTimer() {
         //timer function every 1000ms
-
         //Timer timer = new Timer();
         int time = 100;
         Timer timer = new Timer(time, new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 jtfTime.setText(new Date().toString());
-                refreshWaitingList();
+                mainform.refreshWaitingList();
             }
         });
         timer.start();
     }
+
+
 
     private void refreshWaitingList() {
         //loadAvailableEmployee();
