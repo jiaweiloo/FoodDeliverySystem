@@ -1,5 +1,6 @@
 package adt;
 
+import entity.Attendance;
 import entity.Order;
 import entity.emp_handled_list;
 
@@ -179,6 +180,24 @@ public class LList<T> implements ListInterface<T> {
         return result;
     }
 
+    public Attendance searchAttdId(int ID) {
+        boolean found = false;
+        Attendance result = null;
+        
+        Node currentNode = firstNode;
+        Attendance atd;
+        while (!found && (currentNode != null)) {
+            atd = (Attendance) currentNode.data;
+            if (atd.getEmp_id() == ID) {
+                result = atd;
+                found = true;
+            } else {
+                currentNode = currentNode.next;
+            }
+        }
+        return result;
+    }
+    
     public Order searchOrderID(int ID) {
         boolean found = false;
         Order result = null;
@@ -207,6 +226,7 @@ public class LList<T> implements ListInterface<T> {
                 found = true;
                 newNode.next = currentNode.next;
                 currentNode = newNode;
+                System.out.println("Replace status : "+found);
             } else {
                 currentNode = currentNode.next;
             }
