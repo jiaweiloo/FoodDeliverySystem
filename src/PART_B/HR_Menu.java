@@ -27,13 +27,13 @@ public class HR_Menu extends javax.swing.JFrame {
         report();
         showDate();
     }
-    
+
     public HR_Menu(MainForm mainform) {
-        this.mainform= mainform;
+        this.mainform = mainform;
         initComponents();
         report();
         showDate();
-        
+
     }
 
     /**
@@ -509,14 +509,11 @@ public class HR_Menu extends javax.swing.JFrame {
         if (empList.isEmpty()) {
             //System.out.println("Employee list empty");
             emp_id = 100001;
-            em = new employee(emp_id, email, password, status, ic_number, address, phone_num, "DM", year, 0);
-            empList.add(em);
-            JOptionPane.showMessageDialog(null, "This Delivery Man Successfully Added!");
         } else {
             emp_id = empList.getEntry(empList.getNumberOfEntries()).getEmp_id() + 1;
             //System.out.println("Employee list not empty : " + emp_id);
         }
-        
+
         if (empList.searchString(ic_number) == null && empList.searchString(email) == null) {
             em = new employee(emp_id, email, password, status, ic_number, address, phone_num, "DM", year, 0);
             empList.add(em);
