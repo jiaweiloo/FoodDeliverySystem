@@ -3,6 +3,7 @@ package PART_B;
 import adt.EmployeeADT;
 import adt.EmployeeInterface;
 import entity.employee;
+import fooddeliverysystem.MainForm;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
@@ -18,12 +19,21 @@ public class HR_Menu extends javax.swing.JFrame {
     /**
      * Creates new form HR_Menu
      */
+    MainForm mainform;
     static EmployeeInterface<employee> empList = new EmployeeADT<employee>();
 
     public HR_Menu() {
         initComponents();
         report();
         showDate();
+    }
+    
+    public HR_Menu(MainForm mainform) {
+        this.mainform= mainform;
+        initComponents();
+        report();
+        showDate();
+        
     }
 
     /**
@@ -481,6 +491,7 @@ public class HR_Menu extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
@@ -522,8 +533,10 @@ public class HR_Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
-        JOptionPane.showMessageDialog(this, empList.getEntry(1).getYear_joined());
+        //JOptionPane.showMessageDialog(this, empList.getEntry(1).getYear_joined());
         //System.exit(0); 
+        this.dispose();
+        mainform.setVisible(true);
     }//GEN-LAST:event_btnExitActionPerformed
 
     private void showDate() {
