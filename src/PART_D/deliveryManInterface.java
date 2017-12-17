@@ -310,6 +310,7 @@ public class deliveryManInterface extends javax.swing.JFrame {
             Attendance atd2 = mainform.attdList.getEntry(mainform.attdList.getNumberOfEntries());
             atd2.setLunch_checkout(timeOnly.format(new Date()));
             mainform.attdList.replaceObject(atd, atd2);
+            updateTable();
         }
     }//GEN-LAST:event_btnLunchOutActionPerformed
 
@@ -322,6 +323,11 @@ public class deliveryManInterface extends javax.swing.JFrame {
         btnBreak.setEnabled(false);
         jtfStatus.setText("AVAILABLE");
         jtfContinueStatus.setText(Boolean.toString(cont));
+        Attendance atd = mainform.attdList.getEntry(mainform.attdList.getNumberOfEntries());
+        Attendance atd2 = mainform.attdList.getEntry(mainform.attdList.getNumberOfEntries());
+        atd2.setLunch_checkin(timeOnly.format(new Date()));
+        mainform.attdList.replaceObject(atd, atd2);
+        updateTable();
     }//GEN-LAST:event_btnLunchInActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
@@ -351,7 +357,7 @@ public class deliveryManInterface extends javax.swing.JFrame {
             emp.setStatus("BREAK");
             mainform.empList.replaceObject(mainform.empList.searchID(emp.getEmp_id()), emp);
             mainform.empWaitingList.remove(emp);
-            updateTable();
+
         } else {
             JOptionPane.showMessageDialog(null, "Complete Order Before Break from duty", "LOGOUT FAIL!", JOptionPane.ERROR_MESSAGE);
         }
