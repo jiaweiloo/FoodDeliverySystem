@@ -65,12 +65,12 @@ public class MnlyArrange extends JFrame{
         item.add(itemA);
         item.add(itemB);
         item.add(itemC);
-        restA.setItemList(item);
+        //restA.setItemList(item);
         affiliate.add(restA);
         Bitem.add(BitemA);
         Bitem.add(BitemB);
         Bitem.add(BitemC);
-        restB.setItemList(Bitem);
+        //restB.setItemList(Bitem);
         affiliate.add(restB);
         
         
@@ -92,6 +92,22 @@ public class MnlyArrange extends JFrame{
         JButton btnCon = new JButton("Confirm");
         JButton btnBack=new JButton("Back");
         int countP=1;
+        
+        try{
+                 for (int i = 1; i < affiliate.getNumberOfEntries() + 1; i++) {
+            if (affiliate.getEntry(i).getAffiliate_id() == CurrentID) {
+                if(affiliate.getEntry(i).getItemList().isEmpty()){
+                    
+                    
+                }
+            }
+        }
+                 
+            }
+                catch (Exception e){
+                    JOptionPane.showMessageDialog(null, "No Item", "InfoBox: " + "Error!!", JOptionPane.ERROR_MESSAGE);
+                    System.exit(0);
+                }
         
         jtfPosition.setEditable(false);
         jtfSName.setEditable(false);
