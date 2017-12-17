@@ -250,18 +250,22 @@ public class MainForm extends javax.swing.JFrame {
         if (empList.searchString(jtfEmail.getText()) != null) {
             emp = empList.searchString(jtfEmail.getText());
             if (emp.getPassword().equals(jpfPassword.getText())) {
-                att = new Attendance(
-                        attdList.getEntry(attdList.getNumberOfEntries()).getAttendance_id() + 1,
-                        emp.getEmp_id(),
-                        dateOnly.format(new Date()),
-                        timeOnly.format(new Date()),
-                        "00:00:00",
-                        "00:00:00",
-                        "00:00:00");
-                attdList.add(att);
+                Attendance atd = attdList.getEntry(attdList.getNumberOfEntries());
+                if (!atd.getDate().equals(dateOnly.format(new Date()))) {
+                    att = new Attendance(
+                            attdList.getEntry(attdList.getNumberOfEntries()).getAttendance_id() + 1,
+                            emp.getEmp_id(),
+                            dateOnly.format(new Date()),
+                            timeOnly.format(new Date()),
+                            "00:00:00",
+                            "00:00:00",
+                            "00:00:00");
+                    attdList.add(att);
+                }
                 success = true;
             } else {
                 success = false;
+
             }
         }
 
