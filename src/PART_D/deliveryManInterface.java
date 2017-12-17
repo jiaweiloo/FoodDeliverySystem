@@ -5,6 +5,7 @@ import entity.*;
 import fooddeliverysystem.MainForm;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -38,11 +39,12 @@ public class deliveryManInterface extends javax.swing.JFrame {
         updateTable();
     }
 
-    public deliveryManInterface(EmployeeInterface<employee> empList, ListInterface<Attendance> attdList, employee emp, OrderInterface<Order> orderQueue) {
+    public deliveryManInterface(EmployeeInterface<employee> empList, ListInterface<Attendance> attdList, employee emp, OrderInterface<Order> orderQueue, MainForm mainform) {
         this.empList = empList;
         this.attdList = attdList;
         this.emp = emp;
         this.orderQueue = orderQueue;
+        this.mainform = mainform;
         initComponents();
         //porpulateData();
         updateTable();
@@ -294,16 +296,21 @@ public class deliveryManInterface extends javax.swing.JFrame {
 
     private void btnLunchOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLunchOutActionPerformed
         // TODO add your handling code here:
-        cont = false;
-        btnAccept.setEnabled(false);
-        btnLunchOut.setEnabled(false);
-        btnLunchIn.setEnabled(true);
-        btnBreak.setEnabled(false);
-        jtfStatus.setText("BREAK");
-        jtfContinueStatus.setText(Boolean.toString(cont));
-        emp.setStatus("BREAK");
-        mainform.empList.replaceObject(mainform.empList.searchID(emp.getEmp_id()), emp);
-
+        if (!pendingorder) {
+            cont = false;
+            btnAccept.setEnabled(false);
+            btnLunchOut.setEnabled(false);
+            btnLunchIn.setEnabled(true);
+            btnBreak.setEnabled(false);
+            jtfStatus.setText("BREAK");
+            jtfContinueStatus.setText(Boolean.toString(cont));
+            emp.setStatus("BREAK");
+            mainform.empList.replaceObject(mainform.empList.searchID(emp.getEmp_id()), emp);
+            Attendance atd = mainform.attdList.getEntry(mainform.attdList.getNumberOfEntries());
+            Attendance atd2 = mainform.attdList.getEntry(mainform.attdList.getNumberOfEntries());
+            atd2.setLunch_checkout(timeOnly.format(new Date()));
+            mainform.attdList.replaceObject(atd, atd2);
+        }
     }//GEN-LAST:event_btnLunchOutActionPerformed
 
     private void btnLunchInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLunchInActionPerformed
@@ -319,7 +326,7 @@ public class deliveryManInterface extends javax.swing.JFrame {
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         // TODO add your handling code here:
-        if (jtfStatus.getText().equals("BREAK")) {
+        if (!pendingorder) {
             emp.setStatus("OFFLINE");
             mainform.empList.replaceObject(mainform.empList.searchID(emp.getEmp_id()), emp);
             att.setTime_checkout(timeOnly.format(new Date()));
@@ -327,25 +334,28 @@ public class deliveryManInterface extends javax.swing.JFrame {
             mainform.setVisible(true);
             this.dispose();
         } else {
-            JOptionPane.showMessageDialog(null, "PLEASE CHANGE STATUS TO BREAK AND" + "\nCOMPLETE DELIVERY BEFORE LOGGING OUT", "LOGOUT FAIL!", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Please Clear Pending Task" + "\nBefore Logging out! ", "LOGOUT FAIL!", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void btnBreakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBreakActionPerformed
         // TODO add your handling code here:
-
         //btnCancel.setEnabled(true);
         if (!pendingorder) {
             cont = false;
             btnAccept.setEnabled(true);
             btnComplete.setEnabled(false);
+            btnBreak.setEnabled(false);
             jtfContinueStatus.setText(Boolean.toString(cont));
             jtfStatus.setText("BREAK");
             emp.setStatus("BREAK");
             mainform.empList.replaceObject(mainform.empList.searchID(emp.getEmp_id()), emp);
+            mainform.empWaitingList.remove(emp);
+            updateTable();
         } else {
             JOptionPane.showMessageDialog(null, "Complete Order Before Break from duty", "LOGOUT FAIL!", JOptionPane.ERROR_MESSAGE);
         }
+
     }//GEN-LAST:event_btnBreakActionPerformed
 
     private void btnAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptActionPerformed
@@ -387,7 +397,7 @@ public class deliveryManInterface extends javax.swing.JFrame {
             jtfDelAdd.setText("NOT AVAILABLE");
             jtfRestrt.setText("NOT AVAILABLE");
             emp.setStatus("BREAK");
-            emp.setTotal_handled(emp.getTotal_handled()+1);
+            emp.setTotal_handled(emp.getTotal_handled() + 1);
             mainform.empList.replaceObject(mainform.empList.searchID(emp.getEmp_id()), emp);
         }
 
@@ -408,15 +418,15 @@ public class deliveryManInterface extends javax.swing.JFrame {
         DTM.addColumn("lunch_out");
         DTM.addColumn("lunch_in");
 
-        for (int a = 1; a <= attdList.getNumberOfEntries(); a++) {
-            if (attdList.getEntry(a).getEmp_id() == emp.getEmp_id()) {
+        for (int a = 1; a <= mainform.attdList.getNumberOfEntries(); a++) {
+            if (mainform.attdList.getEntry(a).getEmp_id() == emp.getEmp_id()) {
                 DTM.addRow(new Object[]{
-                    attdList.getEntry(a).getAttendance_id(),
-                    attdList.getEntry(a).getDate(),
-                    attdList.getEntry(a).getTime_checkin(),
-                    attdList.getEntry(a).getTime_checkout(),
-                    attdList.getEntry(a).getLunch_checkout(),
-                    attdList.getEntry(a).getLunch_checkin()
+                    mainform.attdList.getEntry(a).getAttendance_id(),
+                    mainform.attdList.getEntry(a).getDate(),
+                    mainform.attdList.getEntry(a).getTime_checkin(),
+                    mainform.attdList.getEntry(a).getTime_checkout(),
+                    mainform.attdList.getEntry(a).getLunch_checkout(),
+                    mainform.attdList.getEntry(a).getLunch_checkin()
                 });
             }
         }
@@ -477,15 +487,14 @@ public class deliveryManInterface extends javax.swing.JFrame {
         this.emp = emp;
     }
 
-    public void nextOrder(Order ord) {        
+    public void nextOrder(Order ord) {
         if (!mainform.finishedOrder.searchOrderID(ord.getOrder_id()).getCurrent_status().equals("DELIVERED")) {
             this.ord = ord;
             jtfStatus.setText("ACTIVE");
             updateTextField(ord.getCust_name(), ord.getCust_deliveryAddress(), Integer.toString(ord.getRestaurant_id()));
             pendingorder = true;
             btnComplete.setEnabled(true);
-        }
-        else{
+        } else {
             jtfStatus.setText(mainform.finishedOrder.searchOrderID(ord.getOrder_id()).getCurrent_status());
         }
     }
