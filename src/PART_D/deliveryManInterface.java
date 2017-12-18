@@ -29,6 +29,7 @@ public class deliveryManInterface extends javax.swing.JFrame {
     boolean cont = true;
     boolean pendingorder = false;
     int complete = 0;
+    emp_handled_list ehl;
 
     /**
      * Creates new form employeeInt
@@ -408,7 +409,10 @@ public class deliveryManInterface extends javax.swing.JFrame {
         }
 
         complete++;
+        emp_handled_list ehl_old = ehl;
         ord.setCurrent_status("DELIVERED");
+        ehl.setHandled_status("DELIVERED");
+        mainform.ehlList.replaceObject(ehl_old, ehl);
         mainform.finishedOrder.replaceObject(mainform.finishedOrder.searchOrderID(ord.getOrder_id()), ord);
         System.out.println(mainform.finishedOrder.searchOrderID(ord.getOrder_id()).getCurrent_status());
         jtfFinish.setText(Integer.toString(complete));
@@ -493,9 +497,10 @@ public class deliveryManInterface extends javax.swing.JFrame {
         this.emp = emp;
     }
 
-    public void nextOrder(Order ord) {
+    public void nextOrder(Order ord, emp_handled_list ehl) {
         if (!mainform.finishedOrder.searchOrderID(ord.getOrder_id()).getCurrent_status().equals("DELIVERED")) {
             this.ord = ord;
+            this.ehl = ehl;
             jtfStatus.setText("ACTIVE");
             updateTextField(ord.getCust_name(), ord.getCust_deliveryAddress(), Integer.toString(ord.getRestaurant_id()));
             pendingorder = true;
@@ -504,6 +509,8 @@ public class deliveryManInterface extends javax.swing.JFrame {
             jtfStatus.setText(mainform.finishedOrder.searchOrderID(ord.getOrder_id()).getCurrent_status());
         }
     }
+    
+ 
 
     public void updateTextField(String name, String address, String restaurant) {
         jtfCustName.setText(name);
