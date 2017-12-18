@@ -93,6 +93,7 @@ public class HR_Menu extends javax.swing.JFrame {
         jtPendingDelivery = new javax.swing.JTable();
         jButton5 = new javax.swing.JButton();
         btnRefresh = new javax.swing.JButton();
+        btnShowPending = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -442,6 +443,13 @@ public class HR_Menu extends javax.swing.JFrame {
             }
         });
 
+        btnShowPending.setText("Show Pending Only");
+        btnShowPending.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnShowPendingActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -449,6 +457,8 @@ public class HR_Menu extends javax.swing.JFrame {
             .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 602, Short.MAX_VALUE)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(160, 160, 160)
+                .addComponent(btnShowPending)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnRefresh))
         );
@@ -460,7 +470,8 @@ public class HR_Menu extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton5)
-                    .addComponent(btnRefresh))
+                    .addComponent(btnRefresh)
+                    .addComponent(btnShowPending))
                 .addContainerGap())
         );
 
@@ -773,6 +784,33 @@ public class HR_Menu extends javax.swing.JFrame {
         mainform.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void btnShowPendingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowPendingActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel dm2 = (DefaultTableModel) jtPendingDelivery.getModel();
+        dm2.setRowCount(0);
+        String STR = "PROCESSING";
+        //ListInterface<emp_handled_list> hl=mainform.ehlList.searchString("HANDLED");
+        Object[] rowdata3 = new Object[7];
+        boolean isEmpty = true;
+        for (int a = 1; a <= mainform.ehlList.getNumberOfEntries(); a++) {
+            if (STR.equals(mainform.ehlList.getEntry(a).getHandled_status())) {
+                rowdata3[0] = mainform.ehlList.getEntry(a).getHandle_id();
+                rowdata3[1] = mainform.ehlList.getEntry(a).getEmp_id();
+                rowdata3[2] = mainform.ehlList.getEntry(a).getOrder_id();
+                rowdata3[3] = mainform.ehlList.getEntry(a).getDate();
+                rowdata3[4] = mainform.ehlList.getEntry(a).getTime();
+                rowdata3[5] = mainform.ehlList.getEntry(a).getHandled_status();
+                rowdata3[6] = mainform.ehlList.getEntry(a).getMessage();
+                dm2.addRow(rowdata3);
+                isEmpty = false;
+            }
+        }
+        if (isEmpty) {
+            JOptionPane.showMessageDialog(null, "No records. All Delivery Men Very Hardworking");
+
+        }
+    }//GEN-LAST:event_btnShowPendingActionPerformed
+
     public void report() {
 
     }
@@ -815,6 +853,7 @@ public class HR_Menu extends javax.swing.JFrame {
     private javax.swing.JButton btnRefresh;
     private javax.swing.JButton btnRegister;
     private javax.swing.JButton btnShow;
+    private javax.swing.JButton btnShowPending;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
