@@ -546,11 +546,11 @@ public class HR_Menu extends javax.swing.JFrame {
         DefaultTableModel dm = (DefaultTableModel) jTable1.getModel();
         dm.setRowCount(0);
         Object[] rowdata = new Object[4];
-        for (int a = 1; a <= empList.getNumberOfEntries(); a++) {
-            rowdata[0] = empList.getEntry(a).getEmp_id();
-            rowdata[1] = empList.getEntry(a).getPhone_num();
-            rowdata[2] = empList.getEntry(a).getStatus();
-            rowdata[3] = empList.getEntry(a).getTotal_handled();
+        for (int a = 1; a <=  mainform.empList.getNumberOfEntries(); a++) {
+            rowdata[0] =  mainform.empList.getEntry(a).getEmp_id();
+            rowdata[1] =  mainform.empList.getEntry(a).getPhone_num();
+            rowdata[2] =  mainform.empList.getEntry(a).getStatus();
+            rowdata[3] =  mainform.empList.getEntry(a).getTotal_handled();
             dm.addRow(rowdata);
         }
 
@@ -561,13 +561,13 @@ public class HR_Menu extends javax.swing.JFrame {
         DefaultTableModel dm2 = (DefaultTableModel) jTable2.getModel();
         dm2.setRowCount(0);
         Object[] rowdata2 = new Object[6];
-        for (int a = 1; a <= empList.getNumberOfEntries(); a++) {
-            rowdata2[0] = empList.getEntry(a).getEmp_id();
-            rowdata2[1] = empList.getEntry(a).getEmail();
-            rowdata2[2] = empList.getEntry(a).getIc_number();
-            rowdata2[3] = empList.getEntry(a).getAddress();
-            rowdata2[4] = empList.getEntry(a).getYear_joined();
-            rowdata2[5] = empList.getEntry(a).getTotal_handled();
+        for (int a = 1; a <=  mainform.empList.getNumberOfEntries(); a++) {
+            rowdata2[0] =  mainform.empList.getEntry(a).getEmp_id();
+            rowdata2[1] =  mainform.empList.getEntry(a).getEmail();
+            rowdata2[2] =  mainform.empList.getEntry(a).getIc_number();
+            rowdata2[3] =  mainform.empList.getEntry(a).getAddress();
+            rowdata2[4] =  mainform.empList.getEntry(a).getYear_joined();
+            rowdata2[5] =  mainform.empList.getEntry(a).getTotal_handled();
             dm2.addRow(rowdata2);
         }
     }//GEN-LAST:event_jButtonShowActionPerformed
@@ -575,17 +575,17 @@ public class HR_Menu extends javax.swing.JFrame {
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
         int b = jTable2.getSelectedRow() + 1;
         if (b >= 1) {
-            empList.remove(b);
+             mainform.empList.remove(b);
             DefaultTableModel dm2 = (DefaultTableModel) jTable2.getModel();
             dm2.setRowCount(0);
             Object[] rowdata2 = new Object[6];
-            for (int a = 1; a <= empList.getNumberOfEntries(); a++) {
-                rowdata2[0] = empList.getEntry(a).getEmp_id();
-                rowdata2[1] = empList.getEntry(a).getEmail();
-                rowdata2[2] = empList.getEntry(a).getIc_number();
-                rowdata2[3] = empList.getEntry(a).getAddress();
-                rowdata2[4] = empList.getEntry(a).getYear_joined();
-                rowdata2[5] = empList.getEntry(a).getTotal_handled();
+            for (int a = 1; a <=  mainform.empList.getNumberOfEntries(); a++) {
+                rowdata2[0] =  mainform.empList.getEntry(a).getEmp_id();
+                rowdata2[1] =  mainform.empList.getEntry(a).getEmail();
+                rowdata2[2] =  mainform.empList.getEntry(a).getIc_number();
+                rowdata2[3] =  mainform.empList.getEntry(a).getAddress();
+                rowdata2[4] =  mainform.empList.getEntry(a).getYear_joined();
+                rowdata2[5] =  mainform.empList.getEntry(a).getTotal_handled();
                 dm2.addRow(rowdata2);
             }
         } else {
@@ -595,17 +595,17 @@ public class HR_Menu extends javax.swing.JFrame {
 
     private void txtPhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPhoneActionPerformed
         int c = jTable3.getSelectedRow() + 1;
-        txtPhone.setText(empList.getEntry(c).getPhone_num());
+        txtPhone.setText( mainform.empList.getEntry(c).getPhone_num());
     }//GEN-LAST:event_txtPhoneActionPerformed
 
     private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
         int c = jTable3.getSelectedRow() + 1;
-        txtEmail.setText(empList.getEntry(c).getEmail());
+        txtEmail.setText( mainform.empList.getEntry(c).getEmail());
     }//GEN-LAST:event_txtEmailActionPerformed
 
     private void txtAddressInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_txtAddressInputMethodTextChanged
         int c = jTable3.getSelectedRow() + 1;
-        txtAddress.setText(empList.getEntry(c).getAddress());
+        txtAddress.setText( mainform.empList.getEntry(c).getAddress());
     }//GEN-LAST:event_txtAddressInputMethodTextChanged
 
     private void btnShowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowActionPerformed
@@ -614,11 +614,11 @@ public class HR_Menu extends javax.swing.JFrame {
         DefaultTableModel dm2 = (DefaultTableModel) jTable3.getModel();
         dm2.setRowCount(0);
         Object[] rowdata2 = new Object[4];
-        for (int a = 1; a <= empList.getNumberOfEntries(); a++) {
-            rowdata2[0] = empList.getEntry(a).getEmp_id();
-            rowdata2[1] = empList.getEntry(a).getEmail();
-            rowdata2[2] = empList.getEntry(a).getPhone_num();
-            rowdata2[3] = empList.getEntry(a).getAddress();
+        for (int a = 1; a <=  mainform.empList.getNumberOfEntries(); a++) {
+            rowdata2[0] =  mainform.empList.getEntry(a).getEmp_id();
+            rowdata2[1] =  mainform.empList.getEntry(a).getEmail();
+            rowdata2[2] =  mainform.empList.getEntry(a).getPhone_num();
+            rowdata2[3] =  mainform.empList.getEntry(a).getAddress();
 
             dm2.addRow(rowdata2);
         }
@@ -627,16 +627,16 @@ public class HR_Menu extends javax.swing.JFrame {
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         int c = jTable3.getSelectedRow() + 1;
         if (c >= 1) {
-            employee em2 = new employee(empList.getEntry(c).getEmp_id(), txtEmail.getText(), empList.getEntry(c).getPassword(), empList.getEntry(c).getStatus(), empList.getEntry(c).getIc_number(), txtAddress.getText(), txtPhone.getText(), empList.getEntry(c).getRank(), empList.getEntry(c).getYear_joined(), empList.getEntry(c).getTotal_handled());
-            empList.replace(c, em2);
+            employee em2 = new employee( mainform.empList.getEntry(c).getEmp_id(), txtEmail.getText(),  mainform.empList.getEntry(c).getPassword(),  mainform.empList.getEntry(c).getStatus(),  mainform.empList.getEntry(c).getIc_number(), txtAddress.getText(), txtPhone.getText(),  mainform.empList.getEntry(c).getRank(),  mainform.empList.getEntry(c).getYear_joined(),  mainform.empList.getEntry(c).getTotal_handled());
+             mainform.empList.replace(c, em2);
             DefaultTableModel dm2 = (DefaultTableModel) jTable3.getModel();
             dm2.setRowCount(0);
             Object[] rowdata2 = new Object[4];
-            for (int a = 1; a <= empList.getNumberOfEntries(); a++) {
-                rowdata2[0] = empList.getEntry(a).getEmp_id();
-                rowdata2[1] = empList.getEntry(a).getEmail();
-                rowdata2[2] = empList.getEntry(a).getPhone_num();
-                rowdata2[3] = empList.getEntry(a).getAddress();
+            for (int a = 1; a <=  mainform.empList.getNumberOfEntries(); a++) {
+                rowdata2[0] =  mainform.empList.getEntry(a).getEmp_id();
+                rowdata2[1] =  mainform.empList.getEntry(a).getEmail();
+                rowdata2[2] =  mainform.empList.getEntry(a).getPhone_num();
+                rowdata2[3] =  mainform.empList.getEntry(a).getAddress();
                 dm2.addRow(rowdata2);
             }
         } else {
@@ -646,9 +646,9 @@ public class HR_Menu extends javax.swing.JFrame {
 
     private void jTable3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable3MouseClicked
         int c = jTable3.getSelectedRow() + 1;
-        txtEmail.setText(empList.getEntry(c).getEmail());
-        txtAddress.setText(empList.getEntry(c).getAddress());
-        txtPhone.setText(empList.getEntry(c).getPhone_num());
+        txtEmail.setText( mainform.empList.getEntry(c).getEmail());
+        txtAddress.setText( mainform.empList.getEntry(c).getAddress());
+        txtPhone.setText( mainform.empList.getEntry(c).getPhone_num());
     }//GEN-LAST:event_jTable3MouseClicked
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
