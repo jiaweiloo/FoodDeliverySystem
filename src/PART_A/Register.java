@@ -55,6 +55,7 @@ public class Register extends javax.swing.JFrame {
         jPasswordField2 = new javax.swing.JPasswordField();
         jLabel8 = new javax.swing.JLabel();
         jTextField5 = new javax.swing.JTextField();
+        btnBack = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -122,6 +123,14 @@ public class Register extends javax.swing.JFrame {
 
         jTextField5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
 
+        btnBack.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -153,6 +162,10 @@ public class Register extends javax.swing.JFrame {
                             .addComponent(jPasswordField2)
                             .addComponent(jTextField5))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnBack)
+                .addGap(169, 169, 169))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -192,7 +205,9 @@ public class Register extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnBack)
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
@@ -287,6 +302,14 @@ public class Register extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField4ActionPerformed
 
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        MainForm MainForm = new MainForm();
+        MainForm.setVisible(true);
+        MainForm.setLocationRelativeTo(null);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnBackActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -320,6 +343,7 @@ public class Register extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
