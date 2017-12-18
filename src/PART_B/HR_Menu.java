@@ -26,7 +26,7 @@ public class HR_Menu extends javax.swing.JFrame {
     MainForm mainform;
     static EmployeeInterface<employee> empList = new EmployeeADT<employee>();
     static ListInterface<emp_handled_list> ehlList = new LList<emp_handled_list>();
-     public ListInterface<Order> finishedOrder = new LList<Order>();
+    public ListInterface<Order> finishedOrder = new LList<Order>();
 
     public HR_Menu() {
         initComponents();
@@ -67,7 +67,7 @@ public class HR_Menu extends javax.swing.JFrame {
         btnExit = new javax.swing.JButton();
         btnRegister = new javax.swing.JButton();
         jButtonClear = new javax.swing.JButton();
-        jcbStatus = new javax.swing.JComboBox<String>();
+        jcbStatus = new javax.swing.JComboBox<>();
         jPass = new javax.swing.JPasswordField();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -90,9 +90,9 @@ public class HR_Menu extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
+        jtPendingDelivery = new javax.swing.JTable();
         jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        btnRefresh = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -146,7 +146,7 @@ public class HR_Menu extends javax.swing.JFrame {
             }
         });
 
-        jcbStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Offline", "Available", "Pending", "other" }));
+        jcbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Offline", "Available", "Pending", "other" }));
 
         jPass.setText("abcd1234");
 
@@ -358,10 +358,10 @@ public class HR_Menu extends javax.swing.JFrame {
         txtAddress.setColumns(20);
         txtAddress.setRows(5);
         txtAddress.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 txtAddressInputMethodTextChanged(evt);
-            }
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
         jScrollPane5.setViewportView(txtAddress);
@@ -440,7 +440,7 @@ public class HR_Menu extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Update Delivery Men", jPanel3);
 
-        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+        jtPendingDelivery.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -448,7 +448,7 @@ public class HR_Menu extends javax.swing.JFrame {
                 "Handle ID", "Employee ID", "Order ID", "Date", "Time", "Status", "Message"
             }
         ));
-        jScrollPane6.setViewportView(jTable4);
+        jScrollPane6.setViewportView(jtPendingDelivery);
 
         jButton5.setText("Exit");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -457,10 +457,10 @@ public class HR_Menu extends javax.swing.JFrame {
             }
         });
 
-        jButton6.setText("Refresh");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        btnRefresh.setText("Refresh");
+        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                btnRefreshActionPerformed(evt);
             }
         });
 
@@ -476,7 +476,7 @@ public class HR_Menu extends javax.swing.JFrame {
                 .addGap(109, 109, 109)
                 .addComponent(jButton5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton6)
+                .addComponent(btnRefresh)
                 .addGap(100, 100, 100))
         );
         jPanel4Layout.setVerticalGroup(
@@ -487,7 +487,7 @@ public class HR_Menu extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton5)
-                    .addComponent(jButton6))
+                    .addComponent(btnRefresh))
                 .addContainerGap(42, Short.MAX_VALUE))
         );
 
@@ -778,28 +778,28 @@ public class HR_Menu extends javax.swing.JFrame {
         mainform.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-       // this.dispose();
+    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
+        // this.dispose();
         //mainform.setVisible(true);
-        DefaultTableModel dm2 = (DefaultTableModel) jTable4.getModel();
+        DefaultTableModel dm2 = (DefaultTableModel) jtPendingDelivery.getModel();
         dm2.setRowCount(0);
         Object[] rowdata3 = new Object[7];
-        for(int a=0;a<mainform.ehlList.getNumberOfEntries();a++){
-        rowdata3[0]=mainform.ehlList.getEntry(a).getHandle_id();
-        rowdata3[1]=mainform.ehlList.getEntry(a).getEmp_id();
-        rowdata3[2]=mainform.ehlList.getEntry(a).getOrder_id();
-        rowdata3[3]=mainform.ehlList.getEntry(a).getDate();
-        rowdata3[4]=mainform.ehlList.getEntry(a).getTime();
-        rowdata3[5]=mainform.ehlList.getEntry(a).getHandled_status();
-        rowdata3[6]=mainform.ehlList.getEntry(a).getMessage();
-        dm2.addRow(rowdata3);
-    }
-        
-        
-    }//GEN-LAST:event_jButton6ActionPerformed
+        for (int a = 1; a < mainform.ehlList.getNumberOfEntries(); a++) {
+            rowdata3[0] = mainform.ehlList.getEntry(a).getHandle_id();
+            rowdata3[1] = mainform.ehlList.getEntry(a).getEmp_id();
+            rowdata3[2] = mainform.ehlList.getEntry(a).getOrder_id();
+            rowdata3[3] = mainform.ehlList.getEntry(a).getDate();
+            rowdata3[4] = mainform.ehlList.getEntry(a).getTime();
+            rowdata3[5] = mainform.ehlList.getEntry(a).getHandled_status();
+            rowdata3[6] = mainform.ehlList.getEntry(a).getMessage();
+            dm2.addRow(rowdata3);
+        }
+
+
+    }//GEN-LAST:event_btnRefreshActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-       this.dispose();
+        this.dispose();
         mainform.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -842,6 +842,7 @@ public class HR_Menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExit;
+    private javax.swing.JButton btnRefresh;
     private javax.swing.JButton btnRegister;
     private javax.swing.JButton btnShow;
     private javax.swing.JButton btnUpdate;
@@ -850,7 +851,6 @@ public class HR_Menu extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButtonClear;
     private javax.swing.JButton jButtonDelete;
     private javax.swing.JButton jButtonShow;
@@ -880,9 +880,9 @@ public class HR_Menu extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
-    private javax.swing.JTable jTable4;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JComboBox<String> jcbStatus;
+    private javax.swing.JTable jtPendingDelivery;
     private javax.swing.JTextArea jtfAddress;
     private javax.swing.JTextField jtfEmail;
     private javax.swing.JTextField jtfIC_Number;
