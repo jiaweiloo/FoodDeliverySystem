@@ -23,9 +23,9 @@ public class CustFillInForm extends javax.swing.JFrame {
     MainForm mainform;
     Order order;
     OrderInterface<Order> orderList;
-    ListInterface<Affiliate> aff;
+    AffiliateInterface<Affiliate> aff;
     
-    public CustFillInForm(Order order, OrderInterface<Order> orderList,ListInterface<Affiliate> aff,MainForm mf) {
+    public CustFillInForm(Order order, OrderInterface<Order> orderList,AffiliateInterface<Affiliate> aff,MainForm mf) {
         
         this.order = order;
         this.orderList=orderList;

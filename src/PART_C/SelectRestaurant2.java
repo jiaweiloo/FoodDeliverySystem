@@ -22,7 +22,7 @@ public class SelectRestaurant2 extends JFrame {
     SelectRestaurant2 sr2;
     LinkedQueue<Affiliate> restQueue = new LinkedQueue();
     LinkedQueue<Affiliate> backupRestQueue = new LinkedQueue();
-    ListInterface<Affiliate> aff = new LList<Affiliate>();
+    AffiliateInterface<Affiliate> aff ;
     //LinkedQueue<Item> backupItemQueue = new LinkedQueue();
     Order order;
     OrderInterface<Order> orderList;
@@ -32,7 +32,7 @@ public class SelectRestaurant2 extends JFrame {
 
     JButton jbtRest;
 
-    public SelectRestaurant2(Order order, OrderInterface<Order> orderList,ListInterface<Affiliate> aff, MainForm mainform) {
+    public SelectRestaurant2(Order order, OrderInterface<Order> orderList,AffiliateInterface<Affiliate> aff, MainForm mainform) {
         this.order = order;
         this.mainform = mainform;
         this.orderList = orderList;
