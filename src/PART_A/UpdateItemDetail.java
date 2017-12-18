@@ -21,10 +21,10 @@ import javax.swing.*;
  */
 public class UpdateItemDetail extends JFrame {
 
-    int currentID = 0000;
-    int newID;
-    AffiliateADT<Affiliate> affiliate = new AffiliateADT<Affiliate>();
-    Affiliate restA = new Affiliate(0000, "Rest A", "Rest A address", "Ali", "0111111111", "Zone A", "123456789");
+    int currentID ;
+    AffiliateInterface<Affiliate> affiliate ;
+    UpdateItemDetail UI;
+    /*Affiliate restA = new Affiliate(0000, "Rest A", "Rest A address", "Ali", "0111111111", "Zone A", "123456789");
     Affiliate restB = new Affiliate(0001, "Rest B", "Rest B address", "Bli", "0111111111", "Zone B", "123456789");
     LList<Item> item = new LList<Item>();
     LList<Item> Bitem = new LList<Item>();
@@ -33,21 +33,36 @@ public class UpdateItemDetail extends JFrame {
     Item itemC = new Item(6003, "Curry Duck", 12.30, 0000, "Curry Duck taste good");
     Item BitemA = new Item(6001, "Curry BChicken", 12.30, 0001, "Curry Chicken taste good");
     Item BitemB = new Item(6002, "Curry BFish", 12.30, 0001, "Curry Fish taste good");
-    Item BitemC = new Item(6003, "Curry BDuck", 12.30, 0001, "Curry Duck taste good");
+    Item BitemC = new Item(6003, "Curry BDuck", 12.30, 0001, "Curry Duck taste good");*/
     Font font = new Font("SansSerif",Font.PLAIN,14);
     Item newItem;
+    JLabel lblEmpty = new JLabel("");
+    JLabel lblEmpty1 = new JLabel("");
+    JLabel lblID = new JLabel("ID");
+    JLabel lblName = new JLabel("Name");
+    JLabel lblPrice = new JLabel("Price(RM)");
+    JLabel lblDesc = new JLabel("Description");
+    JPanel jpInfo = new JPanel();
     JLabel lblSelectedID = new JLabel();
     JTextField jtfNewName = new JTextField();
     JTextField jtfNewPrice = new JTextField();
     JTextField jtfNewDesc = new JTextField();
+    JLabel lblSID = new JLabel("Selected ID");
+        JLabel lblSName = new JLabel("Selected Name");
+        JLabel lblSPrice = new JLabel("Selected Price");
+        JLabel lblSDesc = new JLabel("Selected Desc");
+        JButton btnUpdate = new JButton("Update");
+        JButton btnBack = new JButton("Back");
     String name;
     double price;
     String desc;
     int id;
 
-    public UpdateItemDetail() {
-
-        item.add(itemA);
+    public UpdateItemDetail(int CurrentID,AffiliateInterface AFF) {
+        currentID=CurrentID;
+        affiliate=AFF;
+        UI=this;
+        /*item.add(itemA);
         item.add(itemB);
         item.add(itemC);
         restA.setItemList(item);
@@ -56,68 +71,97 @@ public class UpdateItemDetail extends JFrame {
         Bitem.add(BitemB);
         Bitem.add(BitemC);
         restB.setItemList(Bitem);
-        affiliate.add(restB);
+        affiliate.add(restB);*/
 
-        JLabel lblEmpty = new JLabel("");
-        JLabel lblEmpty1 = new JLabel("");
-        JLabel lblID = new JLabel("ID");
-        JLabel lblName = new JLabel("Name");
-        JLabel lblPrice = new JLabel("Price(RM)");
-        JLabel lblDesc = new JLabel("Description");
-        JLabel lblSID = new JLabel("Selected ID");
-        JLabel lblSName = new JLabel("Selected Name");
-        JLabel lblSPrice = new JLabel("Selected Price");
-        JLabel lblSDesc = new JLabel("Selected Desc");
-        
-        JButton btnUpdate = new JButton("Update");
-        
+
+
+
+
+
         try{
                  for (int i = 1; i < affiliate.getNumberOfEntries() + 1; i++) {
             if (affiliate.getEntry(i).getAffiliate_id() == currentID) {
                 if(affiliate.getEntry(i).getItemList().isEmpty()){
-                    
-                    
+
+
                 }
             }
         }
-                 
+
             }
                 catch (Exception e){
                     JOptionPane.showMessageDialog(null, "No Item", "InfoBox: " + "Error!!", JOptionPane.ERROR_MESSAGE);
                     System.exit(0);
                 }
-                
-            
-        
-        
 
-        //Calculate number of row
-        for (int i = 1; i < affiliate.getNumberOfEntries() + 1; i++) {
-            if (affiliate.getEntry(i).getAffiliate_id() == currentID) {
-                setLayout(new GridLayout(affiliate.getEntry(i).getItemList().getNumberOfEntries() + 3, 5));
-            }
-        }
+
+
+
+
+
+
         lblID.setForeground(Color.MAGENTA);
         lblName.setForeground(Color.MAGENTA);
         lblPrice.setForeground(Color.MAGENTA);
         lblDesc.setForeground(Color.MAGENTA);
-        add(lblID).setFont(font);
-        add(lblName).setFont(font);
-        add(lblPrice).setFont(font);
-        add(lblDesc).setFont(font);
-        add(lblEmpty).setFont(font);
+
+
+
+        btnUpdate.addActionListener(new ActionListener() {
+                      public void actionPerformed(ActionEvent evt) {
+                            UpdateItem(evt,id,name,price,desc);
+                        }
+                    });
+        btnBack.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                AffMainMenu AFF=new AffMainMenu(currentID,affiliate);
+                    AFF.setVisible(true);
+                    AFF.setLocationRelativeTo(null);
+                    UI.setVisible(false);
+            }
+        });
+        
+        lblSID.setForeground(Color.BLUE);
+        lblSName.setForeground(Color.BLUE);
+        lblSPrice.setForeground(Color.BLUE);
+        lblSDesc.setForeground(Color.BLUE);
+        DisplayLayout();
+
+
+        setTitle("Update Item");
+        setSize(800, 250);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
+    }
+
+    private void DisplayLayout() {
+
+        jpInfo.removeAll();
+
+        for (int i = 1; i < affiliate.getNumberOfEntries() + 1; i++) {
+            if (affiliate.getEntry(i).getAffiliate_id() == currentID) {
+                jpInfo.setLayout(new GridLayout(affiliate.getEntry(i).getItemList().getNumberOfEntries() + 4, 5));
+            }
+        }
+
+        jpInfo.add(lblID).setFont(font);
+        jpInfo.add(lblName).setFont(font);
+        jpInfo.add(lblPrice).setFont(font);
+        jpInfo.add(lblDesc).setFont(font);
+        jpInfo.add(lblEmpty).setFont(font);
 
         for (int i = 1; i < affiliate.getNumberOfEntries() + 1; i++) {
             if (affiliate.getEntry(i).getAffiliate_id() == currentID) {
                 for (int o = 1; o < affiliate.getEntry(i).getItemList().getNumberOfEntries() + 1; o++) {
                     JButton btnSelect = new JButton("Select");
-                    add(new JLabel(String.valueOf(affiliate.getEntry(i).getItemList().getEntry(o).getItem_id()))).setFont(font);
-                    add(new JLabel(affiliate.getEntry(i).getItemList().getEntry(o).getItem_name())).setFont(font);
-                    add(new JLabel(Double.toString(affiliate.getEntry(i).getItemList().getEntry(o).getItem_price()))).setFont(font);
-                    add(new JLabel(affiliate.getEntry(i).getItemList().getEntry(o).getDesc())).setFont(font);
+                    jpInfo.add(new JLabel(String.valueOf(affiliate.getEntry(i).getItemList().getEntry(o).getItem_id()))).setFont(font);
+                    jpInfo.add(new JLabel(affiliate.getEntry(i).getItemList().getEntry(o).getItem_name())).setFont(font);
+                    jpInfo.add(new JLabel(Double.toString(affiliate.getEntry(i).getItemList().getEntry(o).getItem_price()))).setFont(font);
+                    jpInfo.add(new JLabel(affiliate.getEntry(i).getItemList().getEntry(o).getDesc())).setFont(font);
                     
-                    add(btnSelect);
-                    
+                    jpInfo.add(btnSelect);
+
                     String SID =String.valueOf(affiliate.getEntry(i).getItemList().getEntry(o).getItem_id());
                     String SName=affiliate.getEntry(i).getItemList().getEntry(o).getItem_name();
                     String SPrice=Double.toString(affiliate.getEntry(i).getItemList().getEntry(o).getItem_price());
@@ -127,39 +171,27 @@ public class UpdateItemDetail extends JFrame {
                             SelectItem(evt,SID,SName,SPrice,SDesc);
                         }
                     });
-                    
-                    
+
+
                 }
             }
         }
-        
-        
-        btnUpdate.addActionListener(new ActionListener() {
-                      public void actionPerformed(ActionEvent evt) {
-                            UpdateItem(evt,id,name,price,desc);
-                        }
-                    });
-        lblSID.setForeground(Color.BLUE);
-        lblSName.setForeground(Color.BLUE);
-        lblSPrice.setForeground(Color.BLUE);
-        lblSDesc.setForeground(Color.BLUE);
-        add(lblSID);
-        add(lblSName);
-        add(lblSPrice);
-        add(lblSDesc);
-        add(lblEmpty1);
-        add(lblSelectedID);
-        add(jtfNewName);
-        add(jtfNewPrice);
-        add(jtfNewDesc);
-        add(btnUpdate);
-
-        setTitle("Update Item");
-        setSize(800, 250);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true);
+        jpInfo.add(lblSID);
+        jpInfo.add(lblSName);
+        jpInfo.add(lblSPrice);
+        jpInfo.add(lblSDesc);
+        jpInfo.add(lblEmpty1);
+        jpInfo.add(lblSelectedID);
+        jpInfo.add(jtfNewName);
+        jpInfo.add(jtfNewPrice);
+        jpInfo.add(jtfNewDesc);
+        jpInfo.add(btnUpdate);
+        jpInfo.add(btnBack);
+        jpInfo.revalidate();
+        jpInfo.repaint();
+        add(jpInfo);
     }
+
 
     private void SelectItem(ActionEvent evt,String ID,String Name,String Price,String Desc) {
         lblSelectedID.setText(ID);
@@ -170,9 +202,9 @@ public class UpdateItemDetail extends JFrame {
         price=Double.parseDouble(Price);
         id=Integer.parseInt(ID);
         desc=Desc;
-        
+
     }
-    
+
     private void UpdateItem(ActionEvent evt,int ID,String Name,double Price,String Desc){
         if(lblSelectedID.getText().isEmpty()||jtfNewName.getText().isEmpty()||jtfNewPrice.getText().isEmpty()||jtfNewDesc.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Please select an item and enter new detail", "InfoBox: " + "Error!!", JOptionPane.ERROR_MESSAGE);
@@ -181,20 +213,20 @@ public class UpdateItemDetail extends JFrame {
             JOptionPane.showMessageDialog(null, "Please key in at least one different detail", "InfoBox: " + "Error!!", JOptionPane.ERROR_MESSAGE);
             return;
         }else{
-        
+
             try {
                   Double.parseDouble(jtfNewPrice.getText());
-                         
+
                  } 
-            
+
                     catch (NumberFormatException e) {
                            JOptionPane.showMessageDialog(null, "Price must be numeric!", "Error!!", JOptionPane.ERROR_MESSAGE);
                            return;
                  }
-        
+
         }
-        
-        
+
+
             for (int i = 1; i < affiliate.getNumberOfEntries() + 1; i++) {
                  if (affiliate.getEntry(i).getAffiliate_id() == currentID) {
                       for (int o = 1; o < affiliate.getEntry(i).getItemList().getNumberOfEntries() + 1; o++) {
@@ -207,8 +239,12 @@ public class UpdateItemDetail extends JFrame {
                       }
                   }
             }
-            
-            
+            lblSelectedID.setText("");
+            jtfNewName.setText("");
+            jtfNewPrice.setText("");
+            jtfNewDesc.setText("");
+            DisplayLayout();
+
             /*for (int i = 1; i < affiliate.getNumberOfEntries() + 1; i++) {
                  if (affiliate.getEntry(i).getAffiliate_id() == currentID) {
                       for (int o = 1; o < affiliate.getEntry(i).getItemList().getNumberOfEntries() + 1; o++) {
@@ -220,15 +256,10 @@ public class UpdateItemDetail extends JFrame {
                       }
                   }*/
             }
-            
+
         public static void main(String[] args) {
 
-        UpdateItemDetail Update = new UpdateItemDetail();
 
     }
-        
+
     }
-
-    
-    
-

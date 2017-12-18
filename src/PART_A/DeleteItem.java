@@ -5,7 +5,7 @@
  */
 package PART_A;
 
-import adt.AffiliateADT;
+import adt.*;
 import adt.LList;
 import entity.Affiliate;
 import entity.*;
@@ -29,9 +29,9 @@ public class DeleteItem extends JFrame{
     
     
     JTextField jtfInput = new JTextField();
-    int currentID = 1001;
-    AffiliateADT<Affiliate> affiliate=new AffiliateADT<Affiliate>();
-    Affiliate restA=new Affiliate(1000,"Rest A","Rest A address","Ali","0111111111","Zone A","123456789");
+    int currentID ;
+    AffiliateInterface<Affiliate> aff;
+    /*Affiliate restA=new Affiliate(1000,"Rest A","Rest A address","Ali","0111111111","Zone A","123456789");
     Affiliate restB=new Affiliate(1001,"Rest B","Rest B address","Bli","0111111111","Zone B","123456789");
     LList<Item> item=new LList<Item>(); 
     LList<Item> Bitem=new LList<Item>(); 
@@ -40,13 +40,22 @@ public class DeleteItem extends JFrame{
     Item itemC=new Item(6003,"Curry Duck",12.30,0000,"Curry Duck taste good");
     Item BitemA=new Item(6001,"Curry BChicken",12.30,0001,"Curry Chicken taste good");
     Item BitemB=new Item(6002,"Curry BFish",12.30,0001,"Curry Fish taste good");
-    Item BitemC=new Item(6003,"Curry BDuck",12.30,0001,"Curry Duck taste good");
+    Item BitemC=new Item(6003,"Curry BDuck",12.30,0001,"Curry Duck taste good");*/
     Font font = new Font("SansSerif",Font.PLAIN,14);
+    JPanel jpInfo = new JPanel();
+    JLabel lblID = new JLabel("ID");
+        JLabel lblName = new JLabel("Item Name");
+        JLabel lblPrice = new JLabel("Price(RM)");
+        JLabel lblDesc = new JLabel("Desc");
+        JButton btnBack = new JButton("Back");
+        JButton jtbDel = new JButton("Delete");
+        JLabel lblInput = new JLabel("Enter Item ID");
+        DeleteItem DI;
     
     
-    public DeleteItem(){
+    public DeleteItem(int ID,AffiliateInterface AFF){
         
-        item.add(itemA);
+        /*item.add(itemA);
         item.add(itemB);
         item.add(itemC);
         restA.setItemList(item);
@@ -55,20 +64,16 @@ public class DeleteItem extends JFrame{
         Bitem.add(BitemB);
         Bitem.add(BitemC);
         restB.setItemList(Bitem);
-        affiliate.add(restB);
+        affiliate.add(restB);*/
+        currentID = ID;
+        aff=AFF;
+        DI=this;
         
-        
-        JLabel lblID = new JLabel("ID");
-        JLabel lblName = new JLabel("Item Name");
-        JLabel lblPrice = new JLabel("Price(RM)");
-        JLabel lblDesc = new JLabel("Desc");
-        JButton jtbDel = new JButton("Delete");
-        JLabel lblInput = new JLabel("Enter Item ID");
         
         try{
-                 for (int i = 1; i < affiliate.getNumberOfEntries() + 1; i++) {
-                        if (affiliate.getEntry(i).getAffiliate_id() == currentID) {
-                            if(affiliate.getEntry(i).getItemList().isEmpty()){
+                 for (int i = 1; i < aff.getNumberOfEntries() + 1; i++) {
+                        if (aff.getEntry(i).getAffiliate_id() == currentID) {
+                            if(aff.getEntry(i).getItemList().isEmpty()){
 
 
                             }
@@ -86,17 +91,20 @@ public class DeleteItem extends JFrame{
         
         
         
-        //Calculate number of row
-        for(int i=1;i<affiliate.getNumberOfEntries()+1;i++){
-            if(affiliate.getEntry(i).getAffiliate_id()==currentID){
-                setLayout(new GridLayout(affiliate.getEntry(i).getItemList().getNumberOfEntries()+2, 4));
-            }  
-        }
+        
         
        
        jtbDel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 deleteItem(evt);
+            }
+        });
+       btnBack.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                AffMainMenu AFF=new AffMainMenu(ID,aff);
+                    AFF.setVisible(true);
+                    AFF.setLocationRelativeTo(null);
+                    DI.setVisible(false);
             }
         });
        
@@ -110,22 +118,8 @@ public class DeleteItem extends JFrame{
        add(lblPrice).setFont(font);
        add(lblDesc).setFont(font);
        
-       //Add all Item of Rest
-       for(int i=1;i<affiliate.getNumberOfEntries()+1;i++){
-           if(affiliate.getEntry(i).getAffiliate_id()==currentID){
-                for(int o=1;o<affiliate.getEntry(i).getItemList().getNumberOfEntries()+1;o++){
-                    add(new JLabel(String.valueOf(affiliate.getEntry(i).getItemList().getEntry(o).getItem_id()))).setFont(font);
-                    add(new JLabel(affiliate.getEntry(i).getItemList().getEntry(o).getItem_name())).setFont(font);
-                    add(new JLabel(Double.toString(affiliate.getEntry(i).getItemList().getEntry(o).getItem_price()))).setFont(font);
-                    add(new JLabel(affiliate.getEntry(i).getItemList().getEntry(o).getDesc())).setFont(font);
-                 } 
-            } 
-        }
-        add(lblInput);
-        add(jtfInput);
-        add(jtbDel);
-        
-        
+       
+       DisplayLayout();
         
         setTitle("Delete Item");
         setSize(800, 300);  
@@ -133,6 +127,42 @@ public class DeleteItem extends JFrame{
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    
         setVisible(true);
     }
+    
+    private void DisplayLayout(){
+        jpInfo.removeAll();
+
+        //Calculate number of row
+        for(int i=1;i<aff.getNumberOfEntries()+1;i++){
+            if(aff.getEntry(i).getAffiliate_id()==currentID){
+                jpInfo.setLayout(new GridLayout(aff.getEntry(i).getItemList().getNumberOfEntries()+2, 4));
+            }  
+        }
+
+        jpInfo.add(lblID).setFont(font);
+        jpInfo.add(lblName).setFont(font);
+        jpInfo.add(lblPrice).setFont(font);
+        jpInfo.add(lblDesc).setFont(font);
+
+        for(int i=1;i<aff.getNumberOfEntries()+1;i++){
+           if(aff.getEntry(i).getAffiliate_id()==currentID){
+                for(int o=1;o<aff.getEntry(i).getItemList().getNumberOfEntries()+1;o++){
+                    jpInfo.add(new JLabel(String.valueOf(aff.getEntry(i).getItemList().getEntry(o).getItem_id()))).setFont(font);
+                    jpInfo.add(new JLabel(aff.getEntry(i).getItemList().getEntry(o).getItem_name())).setFont(font);
+                    jpInfo.add(new JLabel(Double.toString(aff.getEntry(i).getItemList().getEntry(o).getItem_price()))).setFont(font);
+                    jpInfo.add(new JLabel(aff.getEntry(i).getItemList().getEntry(o).getDesc())).setFont(font);
+                 } 
+            } 
+        }
+        
+        jpInfo.add(lblInput);
+        jpInfo.add(jtfInput);
+        jpInfo.add(jtbDel);
+        jpInfo.add(btnBack);
+        jpInfo.revalidate();
+        jpInfo.repaint();
+        add(jpInfo);
+    }
+    
     private void deleteItem(ActionEvent evt) {
             
             //Compare isEmpty
@@ -148,12 +178,12 @@ public class DeleteItem extends JFrame{
                  int position=1;
                  int counter=0;
                  int input_ID=Integer.parseInt(jtfInput.getText().toString());
-                 for(int i=1;i<affiliate.getNumberOfEntries()+1;i++){
-                     if(currentID==affiliate.getEntry(i).getAffiliate_id()){
-                         for(int o=1;o<affiliate.getEntry(i).getItemList().getNumberOfEntries()+1;o++){
-                             if(affiliate.getEntry(i).getItemList().getEntry(o).getItem_id()!=input_ID){
+                 for(int i=1;i<aff.getNumberOfEntries()+1;i++){
+                     if(currentID==aff.getEntry(i).getAffiliate_id()){
+                         for(int o=1;o<aff.getEntry(i).getItemList().getNumberOfEntries()+1;o++){
+                             if(aff.getEntry(i).getItemList().getEntry(o).getItem_id()!=input_ID){
                                  counter++; 
-                                 if(counter==affiliate.getEntry(i).getItemList().getNumberOfEntries()){
+                                 if(counter==aff.getEntry(i).getItemList().getNumberOfEntries()){
                                      JOptionPane.showMessageDialog(null, "Item ID incorrect!!", "InfoBox: " + "Error!!", JOptionPane.ERROR_MESSAGE);
                                      return;
                                  }
@@ -163,21 +193,21 @@ public class DeleteItem extends JFrame{
                  }
                  
                  //Delete item
-                 for(int i=1;i<affiliate.getNumberOfEntries()+1;i++){
-                     if(currentID==affiliate.getEntry(i).getAffiliate_id()){
-                         for(int o=1;o<affiliate.getEntry(i).getItemList().getNumberOfEntries()+1;o++){
-                             if(affiliate.getEntry(i).getItemList().getEntry(o).getItem_id()!=input_ID){
+                 for(int i=1;i<aff.getNumberOfEntries()+1;i++){
+                     if(currentID==aff.getEntry(i).getAffiliate_id()){
+                         for(int o=1;o<aff.getEntry(i).getItemList().getNumberOfEntries()+1;o++){
+                             if(aff.getEntry(i).getItemList().getEntry(o).getItem_id()!=input_ID){
                                  position++; 
                              }else{
                                  break;
                              } 
                          }
-                         affiliate.getEntry(i).getItemList().remove(position);
+                         aff.getEntry(i).getItemList().remove(position);
                      }
                  }
                  
                  JOptionPane.showMessageDialog(null, "Item Deleted!!", "InfoBox: " + "Successful!!", JOptionPane.INFORMATION_MESSAGE);
-                 
+                 DisplayLayout();
                }
                 catch (Exception e){
                     JOptionPane.showMessageDialog(null, "Invalid Input!!", "InfoBox: " + "Error!!", JOptionPane.ERROR_MESSAGE);
@@ -186,7 +216,6 @@ public class DeleteItem extends JFrame{
         }
     public static void main(String[] args){
         
-        DeleteItem DI=new DeleteItem();
        
     }
 }

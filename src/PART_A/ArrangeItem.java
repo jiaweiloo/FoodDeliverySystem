@@ -6,6 +6,7 @@
 package PART_A;
 
 import adt.AffiliateADT;
+import adt.AffiliateInterface;
 import adt.LList;
 import entity.Affiliate;
 import entity.*;
@@ -30,17 +31,23 @@ import javax.swing.table.DefaultTableModel;
 public class ArrangeItem extends JFrame{
     
    
-    int currentID = 1000;
-    AffiliateADT<Affiliate> affiliate=new AffiliateADT<Affiliate>();
-    Affiliate restA=new Affiliate(1000,"Rest A","Rest A address","Ali","0111111111","Zone A","123456789");
+    int currentID ;
+    ArrangeItem AI;
+    AffiliateInterface<Affiliate> affiliate;
+   // Affiliate restA=new Affiliate(1000,"Rest A","Rest A address","Ali","0111111111","Zone A","123456789");
     JButton btnMnly = new JButton("Manually");
     JButton btnAuto = new JButton("Automatically");
     JLabel lblTitle = new JLabel("Select the way to arrange");
     JPanel P = new JPanel();
-    JLabel lblEmpty = new JLabel("       ");
+    JButton btnBack=new JButton("Back");
+    JLabel lblEmpty = new JLabel("");
+    JLabel lblEmpty1 = new JLabel("");
     Font FontTitle = new Font("SansSerif",Font.BOLD,30);
-    public ArrangeItem(){
-        affiliate.add(restA);
+    public ArrangeItem(int CurrentID,AffiliateInterface aff){
+        currentID=CurrentID;
+        affiliate=aff;
+        AI=this;
+        //affiliate.add(restA);
         try{
                  for (int i = 1; i < affiliate.getNumberOfEntries() + 1; i++) {
                         if (affiliate.getEntry(i).getAffiliate_id() == currentID) {
@@ -54,8 +61,20 @@ public class ArrangeItem extends JFrame{
             }
                  catch (Exception e){
                      JOptionPane.showMessageDialog(null, "No Item", "InfoBox: " + "Error!!", JOptionPane.ERROR_MESSAGE);
-                     System.exit(0);
+                     AffMainMenu AFF=new AffMainMenu(currentID,affiliate);
+                    AFF.setVisible(true);
+                    AFF.setLocationRelativeTo(null);
+                    AI.setVisible(false);
                  }
+        
+        btnBack.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                AffMainMenu AFF=new AffMainMenu(currentID,affiliate);
+                    AFF.setVisible(true);
+                    AFF.setLocationRelativeTo(null);
+                    AI.setVisible(false);
+            }
+        });
         
         btnAuto.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -75,9 +94,12 @@ public class ArrangeItem extends JFrame{
         btnMnly.setFont(FontTitle);
         add(lblTitle);
         
-        setLayout(new FlowLayout(FlowLayout.CENTER,100,20));
+        setLayout(new GridLayout(2,3));
         add(btnAuto);
+        add(lblEmpty);
         add(btnMnly);
+        add(lblEmpty);
+        add(btnBack);
         setTitle("Arrange Item");
         setSize(500, 250);  
         setLocationRelativeTo(null);   
@@ -95,12 +117,15 @@ public class ArrangeItem extends JFrame{
     private void SelMnly(ActionEvent evt) {
             
             this.dispose();
+            MnlyArrange MnlyArrange=new MnlyArrange(currentID,affiliate);
+        MnlyArrange.setVisible(true);
+        MnlyArrange.setLocationRelativeTo(null);
+        this.setVisible(false);
         
         }
     
     public static void main(String[] args){
         
-        ArrangeItem AI=new ArrangeItem();
        
     }
 }
