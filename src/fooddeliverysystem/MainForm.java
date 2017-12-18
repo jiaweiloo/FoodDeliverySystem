@@ -370,6 +370,7 @@ public class MainForm extends javax.swing.JFrame {
 
     private void btnAffRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAffRegActionPerformed
         // TODO add your handling code here:
+        
         Register Register = new Register(this);
         Register.setVisible(true);
         Register.setLocationRelativeTo(null);
