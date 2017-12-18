@@ -24,7 +24,9 @@ public class Register extends javax.swing.JFrame {
     MainForm MainForm;    
     public Register(MainForm mainForm) {
         MainForm=mainForm;
-        
+        for(int i=1;i<MainForm.aff.getNumberOfEntries()+1;i++){
+        System.out.println(MainForm.aff.getEntry(i).getRest_name());
+        }
         
         initComponents();
     }
@@ -276,6 +278,9 @@ public class Register extends javax.swing.JFrame {
                   String passString = new String(pass);
                   newRest = new Affiliate(MainForm.aff.getEntry(MainForm.aff.getNumberOfEntries()).getAffiliate_id()+1,jTextField1.getText(),jTextField2.getText(),jTextField3.getText(),jTextField4.getText(),jTextField5.getText(),passString);
                   MainForm.aff.add(newRest);
+                  for(int i=1;i<MainForm.aff.getNumberOfEntries()+1;i++){
+                        System.out.println(MainForm.aff.getEntry(i).getRest_name());
+                   }
                   JOptionPane.showMessageDialog(null, "Register Successful!! ", "InfoBox: " + "Successful!!", JOptionPane.INFORMATION_MESSAGE);
                          
                  } 
@@ -304,10 +309,12 @@ public class Register extends javax.swing.JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
+        
         MainForm MainForm = new MainForm();
         MainForm.setVisible(true);
         MainForm.setLocationRelativeTo(null);
         this.setVisible(false);
+        
     }//GEN-LAST:event_btnBackActionPerformed
 
     /**
