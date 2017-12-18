@@ -23,7 +23,7 @@ public class UpdateItemDetail extends JFrame {
 
     int currentID = 0000;
     int newID;
-    LList<Affiliate> affiliate = new LList<Affiliate>();
+    AffiliateADT<Affiliate> affiliate = new AffiliateADT<Affiliate>();
     Affiliate restA = new Affiliate(0000, "Rest A", "Rest A address", "Ali", "0111111111", "Zone A", "123456789");
     Affiliate restB = new Affiliate(0001, "Rest B", "Rest B address", "Bli", "0111111111", "Zone B", "123456789");
     LList<Item> item = new LList<Item>();

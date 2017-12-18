@@ -19,7 +19,7 @@ public class Register extends javax.swing.JFrame {
     /**
      * Creates new form Register
      */
-    LList<Affiliate> affiliate=new LList<Affiliate>();
+    AffiliateADT<Affiliate> affiliate=new AffiliateADT<Affiliate>();
     Affiliate a=new Affiliate(1000,"Rest A","Rest A address","Ali","0111111111","Zone A","123456789");
     Affiliate b=new Affiliate(1001,"Rest B","Rest A address","Ali","0111111111","Zone A","123456789");
     Affiliate newRest;    

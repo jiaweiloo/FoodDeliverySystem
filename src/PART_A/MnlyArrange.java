@@ -5,6 +5,7 @@
  */
 package PART_A;
 
+import adt.AffiliateADT;
 import adt.LList;
 import adt.ListInterface;
 import entity.Affiliate;
@@ -34,7 +35,7 @@ public class MnlyArrange extends JFrame{
     
     
     
-    ListInterface<Affiliate> affiliate=new LList<Affiliate>();
+    AffiliateADT<Affiliate> affiliate=new AffiliateADT<Affiliate>();
     Affiliate restA=new Affiliate(1000,"Rest A","Rest A address","Ali","0111111111","Zone A","123456789");
     Affiliate restB=new Affiliate(1001,"Rest B","Rest B address","Bli","0111111111","Zone B","123456789");
     ListInterface<Item> item=new LList<Item>(); 

@@ -5,6 +5,7 @@
  */
 package PART_A;
 
+import adt.AffiliateADT;
 import adt.LList;
 import entity.Affiliate;
 import entity.*;
@@ -29,7 +30,7 @@ public class DeleteItem extends JFrame{
     
     JTextField jtfInput = new JTextField();
     int currentID = 1001;
-    LList<Affiliate> affiliate=new LList<Affiliate>();
+    AffiliateADT<Affiliate> affiliate=new AffiliateADT<Affiliate>();
     Affiliate restA=new Affiliate(1000,"Rest A","Rest A address","Ali","0111111111","Zone A","123456789");
     Affiliate restB=new Affiliate(1001,"Rest B","Rest B address","Bli","0111111111","Zone B","123456789");
     LList<Item> item=new LList<Item>(); 
@@ -66,19 +67,23 @@ public class DeleteItem extends JFrame{
         
         try{
                  for (int i = 1; i < affiliate.getNumberOfEntries() + 1; i++) {
-            if (affiliate.getEntry(i).getAffiliate_id() == currentID) {
-                if(affiliate.getEntry(i).getItemList().isEmpty()){
-                    
-                    
-                }
-            }
-        }
+                        if (affiliate.getEntry(i).getAffiliate_id() == currentID) {
+                            if(affiliate.getEntry(i).getItemList().isEmpty()){
+
+
+                            }
+                        }
+                 }
                  
             }
-                catch (Exception e){
-                    JOptionPane.showMessageDialog(null, "No Item", "InfoBox: " + "Error!!", JOptionPane.ERROR_MESSAGE);
-                    System.exit(0);
-                }
+                 catch (Exception e){
+                     JOptionPane.showMessageDialog(null, "No Item", "InfoBox: " + "Error!!", JOptionPane.ERROR_MESSAGE);
+                     System.exit(0);
+                 }
+        
+            
+        
+        
         
         
         //Calculate number of row

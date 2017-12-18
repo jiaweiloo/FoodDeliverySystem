@@ -5,6 +5,7 @@
  */
 package PART_A;
 
+import adt.AffiliateADT;
 import adt.LList;
 import entity.Affiliate;
 import entity.*;
@@ -30,7 +31,8 @@ public class ArrangeItem extends JFrame{
     
    
     int currentID = 1000;
-    
+    AffiliateADT<Affiliate> affiliate=new AffiliateADT<Affiliate>();
+    Affiliate restA=new Affiliate(1000,"Rest A","Rest A address","Ali","0111111111","Zone A","123456789");
     JButton btnMnly = new JButton("Manually");
     JButton btnAuto = new JButton("Automatically");
     JLabel lblTitle = new JLabel("Select the way to arrange");
@@ -38,9 +40,22 @@ public class ArrangeItem extends JFrame{
     JLabel lblEmpty = new JLabel("       ");
     Font FontTitle = new Font("SansSerif",Font.BOLD,30);
     public ArrangeItem(){
-        
-        
-        
+        affiliate.add(restA);
+        try{
+                 for (int i = 1; i < affiliate.getNumberOfEntries() + 1; i++) {
+                        if (affiliate.getEntry(i).getAffiliate_id() == currentID) {
+                            if(affiliate.getEntry(i).getItemList().isEmpty()){
+
+
+                            }
+                        }
+                 }
+                 
+            }
+                 catch (Exception e){
+                     JOptionPane.showMessageDialog(null, "No Item", "InfoBox: " + "Error!!", JOptionPane.ERROR_MESSAGE);
+                     System.exit(0);
+                 }
         
         btnAuto.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
