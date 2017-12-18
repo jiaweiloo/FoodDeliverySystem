@@ -49,6 +49,7 @@ public class deliveryManInterface extends javax.swing.JFrame {
         initComponents();
         //porpulateData();
         updateTable();
+        System.out.println(emp.getEmp_id());
     }
 
     /**
@@ -427,7 +428,6 @@ public class deliveryManInterface extends javax.swing.JFrame {
         DTM.addColumn("Clockout");
         DTM.addColumn("lunch_out");
         DTM.addColumn("lunch_in");
-
         for (int a = 1; a <= mainform.attdList.getNumberOfEntries(); a++) {
             if (mainform.attdList.getEntry(a).getEmp_id() == emp.getEmp_id()) {
                 DTM.addRow(new Object[]{
@@ -505,12 +505,11 @@ public class deliveryManInterface extends javax.swing.JFrame {
             updateTextField(ord.getCust_name(), ord.getCust_deliveryAddress(), Integer.toString(ord.getRestaurant_id()));
             pendingorder = true;
             btnComplete.setEnabled(true);
+
         } else {
             jtfStatus.setText(mainform.finishedOrder.searchOrderID(ord.getOrder_id()).getCurrent_status());
         }
     }
-    
- 
 
     public void updateTextField(String name, String address, String restaurant) {
         jtfCustName.setText(name);
