@@ -261,9 +261,20 @@ public class MainForm extends javax.swing.JFrame {
         boolean success = false;
         if (empList.searchString(jtfEmail.getText()) != null) {
             emp = empList.searchString(jtfEmail.getText());
+            System.out.println(emp.getEmp_id());
             if (emp.getPassword().equals(jpfPassword.getText())) {
-                Attendance atd = attdList.getEntry(attdList.getNumberOfEntries());
-                if (!atd.getDate().equals(dateOnly.format(new Date()))) {
+                Attendance atd = null;
+                boolean toAdd = true;
+                for (int ct = 1; ct <= attdList.getNumberOfEntries(); ct++) {
+                    atd = attdList.getEntry(ct);
+                    if(atd.getEmp_id() == emp.getEmp_id()){
+                        if (atd.getDate().equals(dateOnly.format(new Date()))) {
+                            toAdd = false;
+                            break;
+                        }
+                    }
+                }
+                if (toAdd) {
                     att = new Attendance(
                             attdList.getEntry(attdList.getNumberOfEntries()).getAttendance_id() + 1,
                             emp.getEmp_id(),
@@ -277,7 +288,6 @@ public class MainForm extends javax.swing.JFrame {
                 success = true;
             } else {
                 success = false;
-
             }
         }
 
@@ -289,8 +299,10 @@ public class MainForm extends javax.swing.JFrame {
                 case "DM":
                     DMI = new deliveryManInterface(empList, attdList, emp, orderList, this);
                     DMI.updateAttendance(att);
+                    //DMI.updateEmp(emp);
                     DMI.setVisible(true);
                     DMI.PreviousFrame(this);
+                    //DMI.updateTable();
                     this.setVisible(false);
                     break;
                 case "EXEC":
@@ -407,7 +419,7 @@ public class MainForm extends javax.swing.JFrame {
             System.out.println(handle_id + "; Order id : " + Integer.toString(ehl.getOrder_id()) + " ,handled by employee : " + Integer.toString(ehl.getEmp_id()));
             if (emp != null) {
                 if (tempEmp.getEmp_id() == emp.getEmp_id()) {
-                    DMI.nextOrder(tempOrd, ehl);                    
+                    DMI.nextOrder(tempOrd, ehl);
                 }
             }
         }
@@ -436,7 +448,7 @@ public class MainForm extends javax.swing.JFrame {
         itemList.add(new Item(201, "Curry Laksa", 5, 101, "asdasd"));
         itemList.add(new Item(202, "Curry Ayam", 5, 101, "asdasd"));
         itemList.add(new Item(203, "Curry Ikan", 5, 101, "asdasd"));
-        itemList2.add( new Item(204, "Curry Babi", 5, 102, "asdasd"));
+        itemList2.add(new Item(204, "Curry Babi", 5, 102, "asdasd"));
         itemList2.add(new Item(205, "Curry Kosong", 5, 102, "asdasd"));
         itemList2.add(new Item(206, "Curry Manis", 5, 102, "asdasd"));
         itemList3.add(new Item(206, "Curry Satu", 5, 103, "asdasd"));
@@ -449,8 +461,7 @@ public class MainForm extends javax.swing.JFrame {
         aff1.setItemList(itemList2);
         aff2.setItemList(itemList3);
         aff3.setItemList(itemList4);
-        
-        
+
         aff.add(aff0);
         aff.add(aff1);
         aff.add(aff2);
@@ -470,7 +481,7 @@ public class MainForm extends javax.swing.JFrame {
         orderList.enqueueAscendingQueue(ord3);
         orderList.enqueueAscendingQueue(ord4);
         orderList.enqueueAscendingQueue(ord5);
-        
+
         //empWaitingList.enqueueAscTotalHandled(emp1);
         //empWaitingList.enqueueAscTotalHandled(emp2);        
         empWaitingList.enqueueAscTotalHandled(emp3);
