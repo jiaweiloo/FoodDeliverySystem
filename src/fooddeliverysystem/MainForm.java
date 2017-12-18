@@ -392,7 +392,7 @@ public class MainForm extends javax.swing.JFrame {
 
     private void refreshWaitingList() {
         //loadAvailableEmployee();
-        System.out.println("Test");
+        //System.out.println("Test");
         int handle_id = 900001;
         if (!empWaitingList.isEmpty() && !orderList.isEmpty()) {
             tempEmp = empWaitingList.dequeue();
