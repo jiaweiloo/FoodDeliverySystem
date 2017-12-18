@@ -25,7 +25,9 @@ public class AffMainMenu extends javax.swing.JFrame {
     public AffMainMenu(int CurrentID,MainForm mainform) {
         initComponents();
         Mainform=mainform;
-        
+        for(int i=1;i<Mainform.aff.getNumberOfEntries()+1;i++){
+            System.out.println(Mainform.aff.getEntry(i).getRest_name());
+        }
         ID = CurrentID;
         
         
@@ -167,10 +169,12 @@ public class AffMainMenu extends javax.swing.JFrame {
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         // TODO add your handling code here:
-        MainForm MainForm = new MainForm();
+       /* MainForm MainForm = new MainForm();
         MainForm.setVisible(true);
         MainForm.setLocationRelativeTo(null);
-        this.setVisible(false);
+        this.setVisible(false);*/
+       this.dispose();
+        Mainform.setVisible(true);
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     /**

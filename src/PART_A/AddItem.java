@@ -36,8 +36,8 @@ public class AddItem extends JFrame {
     Item BitemA=new Item(6001,"Curry BChicken",12.30,0001,"Curry Chicken taste good");
     Item BitemB=new Item(6002,"Curry BFish",12.30,0001,"Curry Fish taste good");
     Item BitemC=new Item(6003,"Curry BDuck",12.30,0001,"Curry Duck taste good");*/
-    LList<Item> EmptyItem=new LList<Item>();
-    Item emptyItem = new Item(0,"empty",0,0,"empty");
+    //LList<Item> EmptyItem=new LList<Item>();
+    //Item emptyItem = new Item(0,"empty",0,0,"empty");
     Item newItem;
     int ID;
     AddItem AI;
@@ -49,7 +49,7 @@ public class AddItem extends JFrame {
         /*item.add(itemA);
         item.add(itemB);
         item.add(itemC);*/
-        EmptyItem.add(emptyItem);
+        //EmptyItem.add(emptyItem);
         Mainform=mainform;
         ID=CurrentID;
         AI=this;

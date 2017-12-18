@@ -34,13 +34,13 @@ public class AutoArrange extends JFrame{
     
     
     ListInterface<Affiliate> affiliate=new LList<Affiliate>();
-    Affiliate restA=new Affiliate(1000,"Rest A","Rest A address","Ali","0111111111","Zone A","123456789");
+    /*Affiliate restA=new Affiliate(1000,"Rest A","Rest A address","Ali","0111111111","Zone A","123456789");
     Affiliate restB=new Affiliate(1001,"Rest B","Rest B address","Bli","0111111111","Zone B","123456789");
     ListInterface<Item> item=new LList<Item>(); 
-    ListInterface<Item> Bitem=new LList<Item>(); 
+    ListInterface<Item> Bitem=new LList<Item>(); */
     ListInterface<Item> tempOrder=new LList<Item>();
     ListInterface<Item> tempOrder2=new LList<Item>();
-    Item itemA=new Item(6001,"Curry Chicken",12.30,1000,"Curry Chicken taste good");
+    /*Item itemA=new Item(6001,"Curry Chicken",12.30,1000,"Curry Chicken taste good");
     Item itemB=new Item(6002,"Curry Fish",12.30,1000,"Curry Fish taste good");
     Item itemC=new Item(6003,"Curry Duck",12.30,1000,"Curry Duck taste good");
     Item BitemA=new Item(6001,"a",12.30,1001,"Curry Chicken taste good");
@@ -48,7 +48,7 @@ public class AutoArrange extends JFrame{
     Item BitemC=new Item(6003,"c",12.30,1001,"Curry Duck taste good");
     Item BitemD=new Item(6003,"e",12.30,1001,"Curry Duck taste good");
     Item BitemE=new Item(6003,"b",12.30,1001,"Curry Duck taste good");
-    Item BitemF=new Item(6003,"f",12.30,1001,"Curry Duck taste good");
+    Item BitemF=new Item(6003,"f",12.30,1001,"Curry Duck taste good");*/
     JLabel lblTitle=new JLabel("Current Arrange Order");
     Font FontTitle = new Font("SansSerif",Font.BOLD,24);
     Font font = new Font("SansSerif",Font.PLAIN,14);
@@ -62,7 +62,7 @@ public class AutoArrange extends JFrame{
     
     public AutoArrange(int CurrentID){
         
-        item.add(itemA);
+       /* item.add(itemA);
         item.add(itemB);
         item.add(itemC);
         restA.setItemList(item);
@@ -74,7 +74,7 @@ public class AutoArrange extends JFrame{
         Bitem.add(BitemE);
         Bitem.add(BitemF);
         restB.setItemList(Bitem);
-        affiliate.add(restB);
+        affiliate.add(restB);*/
         
         JLabel lblID = new JLabel("ID");
         JLabel lblName = new JLabel("Item Name");

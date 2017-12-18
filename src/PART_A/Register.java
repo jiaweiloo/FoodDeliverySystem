@@ -9,6 +9,7 @@ import java.util.Arrays;
 import javax.swing.JOptionPane;
 import entity.*;
 import adt.*;
+import fooddeliverysystem.AffiliateLogin;
 import fooddeliverysystem.MainForm;
 
 /**
@@ -22,11 +23,11 @@ public class Register extends javax.swing.JFrame {
      */
     Affiliate newRest;    
     MainForm MainForm;    
+    LList<Item> EmptyItem=new LList<Item>();
+    Item emptyItem = new Item(0,"empty",0,0,"empty");
     public Register(MainForm mainForm) {
         MainForm=mainForm;
-        for(int i=1;i<MainForm.aff.getNumberOfEntries()+1;i++){
-        System.out.println(MainForm.aff.getEntry(i).getRest_name());
-        }
+        EmptyItem.add(emptyItem);
         
         initComponents();
     }
@@ -278,6 +279,7 @@ public class Register extends javax.swing.JFrame {
                   String passString = new String(pass);
                   newRest = new Affiliate(MainForm.aff.getEntry(MainForm.aff.getNumberOfEntries()).getAffiliate_id()+1,jTextField1.getText(),jTextField2.getText(),jTextField3.getText(),jTextField4.getText(),jTextField5.getText(),passString);
                   MainForm.aff.add(newRest);
+                  MainForm.aff.getEntry(MainForm.aff.getNumberOfEntries()).setItemList(EmptyItem);
                   for(int i=1;i<MainForm.aff.getNumberOfEntries()+1;i++){
                         System.out.println(MainForm.aff.getEntry(i).getRest_name());
                    }
@@ -310,10 +312,13 @@ public class Register extends javax.swing.JFrame {
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
         
-        MainForm MainForm = new MainForm();
+        //AffiliateLogin AA=new AffiliateLogin(MainForm);
+        //MainForm MainForm = new MainForm();
+       // MainForm.setVisible(true);
+       //// MainForm.setLocationRelativeTo(null);
+       // this.setVisible(false);
+       this.dispose();
         MainForm.setVisible(true);
-        MainForm.setLocationRelativeTo(null);
-        this.setVisible(false);
         
     }//GEN-LAST:event_btnBackActionPerformed
 
