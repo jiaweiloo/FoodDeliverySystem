@@ -13,6 +13,7 @@ import adt.AffiliateInterface;
 import adt.LList;
 import adt.ListInterface;
 import entity.Affiliate;
+import fooddeliverysystem.MainForm;
 public class AffMainMenu extends javax.swing.JFrame {
 
     /**
@@ -84,6 +85,11 @@ public class AffMainMenu extends javax.swing.JFrame {
 
         btnLogout.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnLogout.setText("Log Out");
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogoutActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -162,6 +168,14 @@ public class AffMainMenu extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnArrangeActionPerformed
 
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        // TODO add your handling code here:
+        MainForm MainForm = new MainForm();
+        MainForm.setVisible(true);
+        MainForm.setLocationRelativeTo(null);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnLogoutActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -194,8 +208,6 @@ public class AffMainMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAddItem;
-    private javax.swing.JButton btnAddItem1;
     private javax.swing.JButton btnAddItem2;
     private javax.swing.JButton btnArrange;
     private javax.swing.JButton btnDeleteItem;
