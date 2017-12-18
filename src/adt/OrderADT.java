@@ -67,6 +67,11 @@ public class OrderADT<T> implements OrderInterface<T> {
     } // end dequeue
 
     public boolean isEmpty() {
+        /*
+        if(lastNode == null){
+            //System.out.println("Is Null");
+        } */
+        
         return (firstNode == null) && (lastNode == null);
     } // end isEmpty
 
