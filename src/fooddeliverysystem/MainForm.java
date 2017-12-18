@@ -28,6 +28,7 @@ public class MainForm extends javax.swing.JFrame {
     employee emp, emp1, emp2, emp3, emp4, emp5, tempEmp;
     Attendance att, att1, att2, att3, att4, att5;
     Order ord, ord1, ord2, ord3, ord4, ord5, tempOrd;
+    Affiliate aff0 ,aff1,aff2,aff3;
     emp_handled_list ehl;
     SimpleDateFormat timeOnly = new SimpleDateFormat("hh:mm:ss");
     SimpleDateFormat dateOnly = new SimpleDateFormat("dd/MM/yyyy");
@@ -47,7 +48,13 @@ public class MainForm extends javax.swing.JFrame {
      */
     public MainForm() {
         initComponents();
+        System.out.println(aff.getNumberOfEntries());
+        for(int i =1;i<aff.getNumberOfEntries()+1;i++){
+           System.out.println(aff.getEntry(i).getRest_name());
+        }
+        System.out.println("here");
         updateList();
+        
     }
 
     /**
@@ -467,10 +474,10 @@ public class MainForm extends javax.swing.JFrame {
         ord3 = new Order(200003, "MAH HONG WAI", "014-3311311", "mahhw-wa15@student.tarc.edu.my", "A-6-5 Sri Pelangi, Jln Genting Klang, 53300 KL", 300001, 30.50, 2, "PENDING", "11/12/2017", "17:59:51");
         ord4 = new Order(200004, " LIM NAN FUNG", "014-1235437", "limnf-wa15@student.tarc.edu.my", "B-6-5 Teratai Residency, Jln Genting Klang, 53300 KL", 300002, 17.50, 1, "PENDING", "12/12/2017", "16:35:51");
         ord5 = new Order(200005, "LIM PENG LEN", "013-22211122", "limpl-wa15@student.tarc.edu.my", "C-6-5 Sri Pelangi, Jln Genting Klang, 53300 KL", 300002, 22.50, 3, "PENDING", "13/12/2017", "15:37:51");
-        Affiliate aff0 = new Affiliate(101, "Thai Boy Restaurant", "123, Jalan Genting Klang, 53300 setapak, Kuala Lumpur", "Loo Jia Wei", "0123456789", "Genting Klang", "123");
-        Affiliate aff1 = new Affiliate(102, "Curry Chicken", "123, Jalan Genting Klang, 53300 setapak, Kuala Lumpur", "Loo Jia Wei", "0123456789", "Genting Klang", "123");
-        Affiliate aff2 = new Affiliate(103, "The Taste", "123, Jalan Genting Klang, 53300 setapak, Kuala Lumpur", "Loo Jia Wei", "0123456789", "Genting Klang", "123");
-        Affiliate aff3 = new Affiliate(104, "Nasi Putih", "123, Jalan Genting Klang, 53300 setapak, Kuala Lumpur", "Loo Jia Wei", "0123456789", "Genting Klang", "123");
+        aff0 = new Affiliate(101, "Thai Boy Restaurant", "123, Jalan Genting Klang, 53300 setapak, Kuala Lumpur", "Loo Jia Wei", "0123456789", "Genting Klang", "123");
+        aff1 = new Affiliate(102, "Curry Chicken", "123, Jalan Genting Klang, 53300 setapak, Kuala Lumpur", "Loo Jia Wei", "0123456789", "Genting Klang", "123");
+        aff2 = new Affiliate(103, "The Taste", "123, Jalan Genting Klang, 53300 setapak, Kuala Lumpur", "Loo Jia Wei", "0123456789", "Genting Klang", "123");
+        aff3 = new Affiliate(104, "Nasi Putih", "123, Jalan Genting Klang, 53300 setapak, Kuala Lumpur", "Loo Jia Wei", "0123456789", "Genting Klang", "123");
         itemList.add(new Item(201, "Curry Laksa", 5, 101, "asdasd"));
         itemList.add(new Item(202, "Curry Ayam", 5, 101, "asdasd"));
         itemList.add(new Item(203, "Curry Ikan", 5, 101, "asdasd"));

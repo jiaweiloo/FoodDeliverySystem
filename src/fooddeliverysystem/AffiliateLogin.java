@@ -59,6 +59,11 @@ public class AffiliateLogin extends javax.swing.JFrame {
 
         btnBack.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         btnLogin.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnLogin.setText("Login");
@@ -145,6 +150,14 @@ public class AffiliateLogin extends javax.swing.JFrame {
         //for(int i=0;i<aff.getNumberOfEntries()+1;i++){}
         
     }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        MainForm MainForm=new MainForm();
+        MainForm.setVisible(true);
+                MainForm.setLocationRelativeTo(null);
+                this.setVisible(false);
+    }//GEN-LAST:event_btnBackActionPerformed
 
     /**
      * @param args the command line arguments
