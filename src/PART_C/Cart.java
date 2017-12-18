@@ -47,15 +47,15 @@ public class Cart extends JFrame {
     JButton jbCheckOut = new JButton("Check Out");
     JButton jbBack = new JButton("Back to Menu");
 
-    LList<OrderList> cartList = new LList();
+    ListInterface<OrderList> cartList = new LList();
     // LinkedQueue<OrderList> backupOrderListQueue = new LinkedQueue();
     // LinkedQueue<Item> backupItemQueue = new LinkedQueue();
-    LList<Item> itemList = new LList();
+    ListInterface<Item> itemList = new LList();
     OrderInterface<Order> orderList;
     Order order;
     SelectMenuItem2 sm;
 
-    public Cart(LList<OrderList> cartList, LList<Item> itemList, Order order, OrderInterface<Order> orderList,MainForm mainform) {
+    public Cart(ListInterface<OrderList> cartList, ListInterface<Item> itemList, Order order, OrderInterface<Order> orderList,MainForm mainform) {
         this.cartList = cartList;
         this.itemList = itemList;
         this.orderList=orderList;
@@ -165,13 +165,17 @@ public class Cart extends JFrame {
     }
 
     private void jbtCheckOut(ActionEvent evt) {
+        if(!cartList.isEmpty()){
         this.dispose();
         OrderConfirmation oc = new OrderConfirmation(cartList,itemList,order,orderList,mainform,sm);
         oc.setTitle("Cart");
         oc.setSize(1200, 600);
         oc.setLocationRelativeTo(null);
         oc.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        oc.setVisible(true);
+        oc.setVisible(true);}
+        else{
+             JOptionPane.showMessageDialog(null, "No item in cart");
+        }
     }
     private void jbtBack(ActionEvent evt) {
         this.dispose();

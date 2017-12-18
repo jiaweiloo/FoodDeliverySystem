@@ -7,6 +7,7 @@ package PART_C;
 
 import adt.LList;
 import adt.LinkedQueue;
+import adt.ListInterface;
 import adt.OrderInterface;
 import entity.Item;
 import entity.Order;
@@ -24,13 +25,13 @@ public class Payment extends javax.swing.JFrame {
     /**
      * Creates new form Payment
      */
-    LList<OrderList> cartList;
+    ListInterface<OrderList> cartList;
     Order order;
     OrderInterface<Order> orderList;
     MainForm mainform;
     OrderConfirmation oc;
 
-    public Payment(LList<OrderList> cartList, Order order, OrderInterface<Order> orderList,OrderConfirmation oc,MainForm mainform) {
+    public Payment(ListInterface<OrderList> cartList, Order order, OrderInterface<Order> orderList,OrderConfirmation oc,MainForm mainform) {
         this.cartList = cartList;
         this.orderList = orderList;
         this.order = order;
@@ -171,9 +172,9 @@ public class Payment extends javax.swing.JFrame {
                     mainform.custList.add(order);
                     order.setOrderList(cartList);
                     order.setCurrent_status("PAID");
-                    //orderList.enqueue(order);
-                    orderList.arrangeQueue();
-                    System.out.println(orderList.dequeue().getTotal_amount());
+                    orderList.enqueue(order);
+                    //orderList.arrangeQueue();
+                    //System.out.println(orderList.dequeue().getTotal_amount());
                     mainform.order = new Order();
                     oc.dispose();
                     this.dispose();

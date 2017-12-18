@@ -32,13 +32,13 @@ public class OrderConfirmation extends JFrame {
     JScrollPane scrollPane;
     JButton jbtBack = new JButton("Back");
     double totalPrice = 0;
-    LList<OrderList> cartList;
-    LList<Item> itemList;
+    ListInterface<OrderList> cartList;
+    ListInterface<Item> itemList;
     OrderInterface<Order> orderList;
     Order order;
     SelectMenuItem2 sm;
 
-    public OrderConfirmation(LList<OrderList> cartList, LList<Item> itemList, Order order, OrderInterface<Order> orderList, MainForm mainform, SelectMenuItem2 sm) {
+    public OrderConfirmation(ListInterface<OrderList> cartList, ListInterface<Item> itemList, Order order, OrderInterface<Order> orderList, MainForm mainform, SelectMenuItem2 sm) {
         this.cartList = cartList;
         this.itemList = itemList;
         this.orderList = orderList;

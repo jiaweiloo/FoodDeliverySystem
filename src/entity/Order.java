@@ -24,13 +24,13 @@ public class Order {
     String current_status;
     String orderDate;
     String purchase_time;
-    LList<OrderList> orderList;
+    ListInterface<OrderList> orderList;
 
-    public LList<OrderList> getOrderList() {
+    public ListInterface<OrderList> getOrderList() {
         return orderList;
     }
 
-    public void setOrderList(LList<OrderList> orderList) {
+    public void setOrderList(ListInterface<OrderList> orderList) {
         this.orderList = orderList;
     }
     public Order() {

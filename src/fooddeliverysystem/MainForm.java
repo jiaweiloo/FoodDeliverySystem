@@ -34,6 +34,12 @@ public class MainForm extends javax.swing.JFrame {
     public Order order = new Order();
     public LList<Order> custList = new LList<Order>();
     public String phoneNo;
+    public ListInterface<Affiliate> aff = new LList<Affiliate>();
+
+    public ListInterface<Item> itemList = new LList<Item>();
+    public ListInterface<Item> itemList2 = new LList<Item>();
+    public ListInterface<Item> itemList3 = new LList<Item>();
+    public ListInterface<Item> itemList4 = new LList<Item>();
 
     /**
      * Creates new form MainForm
@@ -314,9 +320,9 @@ public class MainForm extends javax.swing.JFrame {
     private void btnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrowseActionPerformed
         // TODO add your handling code here:
         if (phoneNo != null) {
-            SelectRestaurant2 sr2 = new SelectRestaurant2(order, orderList, this);
+            SelectRestaurant2 sr2 = new SelectRestaurant2(order, orderList, aff, this);
         } else {
-            CustFillInForm custForm = new CustFillInForm(order, orderList, this);
+            CustFillInForm custForm = new CustFillInForm(order, orderList, aff, this);
             custForm.PreviousFrame(this);
             custForm.setVisible(true);
             custForm.setLocationRelativeTo(null);
@@ -385,8 +391,6 @@ public class MainForm extends javax.swing.JFrame {
         timer.start();
     }
 
-
-
     private void refreshWaitingList() {
         //loadAvailableEmployee();
         int handle_id = 900001;
@@ -425,6 +429,32 @@ public class MainForm extends javax.swing.JFrame {
         ord3 = new Order(200003, "MAH HONG WAI", "014-3311311", "mahhw-wa15@student.tarc.edu.my", "A-6-5 Sri Pelangi, Jln Genting Klang, 53300 KL", 300001, 30.50, 2, "PENDING", "11/12/2017", "17:59:51");
         ord4 = new Order(200004, " LIM NAN FUNG", "014-1235437", "limnf-wa15@student.tarc.edu.my", "B-6-5 Teratai Residency, Jln Genting Klang, 53300 KL", 300002, 17.50, 1, "PENDING", "12/12/2017", "16:35:51");
         ord5 = new Order(200005, "LIM PENG LEN", "013-22211122", "limpl-wa15@student.tarc.edu.my", "C-6-5 Sri Pelangi, Jln Genting Klang, 53300 KL", 300002, 22.50, 3, "PENDING", "13/12/2017", "15:37:51");
+        Affiliate aff0 = new Affiliate(101, "Thai Boy Restaurant", "123, Jalan Genting Klang, 53300 setapak, Kuala Lumpur", "Loo Jia Wei", "0123456789", "Genting Klang", "123");
+        Affiliate aff1 = new Affiliate(102, "Curry Chicken", "123, Jalan Genting Klang, 53300 setapak, Kuala Lumpur", "Loo Jia Wei", "0123456789", "Genting Klang", "123");
+        Affiliate aff2 = new Affiliate(103, "The Taste", "123, Jalan Genting Klang, 53300 setapak, Kuala Lumpur", "Loo Jia Wei", "0123456789", "Genting Klang", "123");
+        Affiliate aff3 = new Affiliate(104, "Nasi Putih", "123, Jalan Genting Klang, 53300 setapak, Kuala Lumpur", "Loo Jia Wei", "0123456789", "Genting Klang", "123");
+        itemList.add(new Item(201, "Curry Laksa", 5, 101, "asdasd"));
+        itemList.add(new Item(202, "Curry Ayam", 5, 101, "asdasd"));
+        itemList.add(new Item(203, "Curry Ikan", 5, 101, "asdasd"));
+        itemList2.add( new Item(204, "Curry Babi", 5, 102, "asdasd"));
+        itemList2.add(new Item(205, "Curry Kosong", 5, 102, "asdasd"));
+        itemList2.add(new Item(206, "Curry Manis", 5, 102, "asdasd"));
+        itemList3.add(new Item(206, "Curry Satu", 5, 103, "asdasd"));
+        itemList3.add(new Item(206, "Curry Dua", 5, 103, "asdasd"));
+        itemList3.add(new Item(206, "Curry Tiga", 5, 103, "asdasd"));
+        itemList4.add(new Item(206, "Curry Empat", 5, 104, "asdasd"));
+        itemList4.add(new Item(206, "Curry Lima", 5, 104, "asdasd"));
+        itemList4.add(new Item(206, "Curry Enam", 5, 104, "asdasd"));
+        aff0.setItemList(itemList);
+        aff1.setItemList(itemList2);
+        aff2.setItemList(itemList3);
+        aff3.setItemList(itemList4);
+        
+        
+        aff.add(aff0);
+        aff.add(aff1);
+        aff.add(aff2);
+        aff.add(aff3);
         empList.add(emp1);
         empList.add(emp2);
         empList.add(emp3);

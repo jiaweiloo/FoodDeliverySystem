@@ -108,22 +108,20 @@ public class GetCustInfo extends javax.swing.JFrame {
         mainform.phoneNo = phoneNo.getText();
         if (!custList.isEmpty()) {
             for (int a = 1; a <= custList.getNumberOfEntries(); a++) {
-                System.out.println("asd");
                 if (phoneNo.getText().equals(custList.getEntry(a).getCust_phone())) {
-                    System.out.println("nooob");
                     order.setCust_email(custList.getEntry(a).getCust_email());
                     order.setCust_name(custList.getEntry(a).getCust_name());
                     order.setCust_deliveryAddress(custList.getEntry(a).getCust_deliveryAddress());
                     JOptionPane.showMessageDialog(null, "Info Retrieved Succesfully");
                     break;
                 } else {
-                    System.out.println("haha");
                     mainform.phoneNo = null;
                     JOptionPane.showMessageDialog(null, "Record Not Found");
                     break;
                 }
             }
         } else {
+            mainform.phoneNo = null;
             JOptionPane.showMessageDialog(null, "Record Not Found");
         }
 

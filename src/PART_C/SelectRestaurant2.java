@@ -18,24 +18,11 @@ import java.awt.event.*;
 
 public class SelectRestaurant2 extends JFrame {
 
-    Item item0 = new Item(201, "Curry Laksa", 5, 101, "asdasd");
-    Item item1 = new Item(202, "Curry Ayam", 5, 101, "asdasd");
-    Item item2 = new Item(203, "Curry Ikan", 5, 101, "asdasd");
-    Item item3 = new Item(204, "Curry Babi", 5, 102, "asdasd");
-    Item item4 = new Item(205, "Curry Kosong", 5, 102, "asdasd");
-    Item item5 = new Item(206, "Curry Manis", 5, 102, "asdasd");
-
-    Affiliate aff0 = new Affiliate(101, "Thai Boy Restaurant", "123, Jalan Genting Klang, 53300 setapak, Kuala Lumpur", "Loo Jia Wei", "0123456789", "Genting Klang", "123");
-    Affiliate aff1 = new Affiliate(102, "Curry Chicken", "123, Jalan Genting Klang, 53300 setapak, Kuala Lumpur", "Loo Jia Wei", "0123456789", "Genting Klang", "123");
-    Affiliate aff2 = new Affiliate(103, "The Taste", "123, Jalan Genting Klang, 53300 setapak, Kuala Lumpur", "Loo Jia Wei", "0123456789", "Genting Klang", "123");
-    Affiliate aff3 = new Affiliate(104, "Nasi Putih", "123, Jalan Genting Klang, 53300 setapak, Kuala Lumpur", "Loo Jia Wei", "0123456789", "Genting Klang", "123");
-
     MainForm mainform;
     SelectRestaurant2 sr2;
     LinkedQueue<Affiliate> restQueue = new LinkedQueue();
     LinkedQueue<Affiliate> backupRestQueue = new LinkedQueue();
-    LList<Item> itemList = new LList();
-    LList<Item> itemList2 = new LList();
+    ListInterface<Affiliate> aff = new LList<Affiliate>();
     //LinkedQueue<Item> backupItemQueue = new LinkedQueue();
     Order order;
     OrderInterface<Order> orderList;
@@ -45,25 +32,12 @@ public class SelectRestaurant2 extends JFrame {
 
     JButton jbtRest;
 
-    public SelectRestaurant2(Order order, OrderInterface<Order> orderList, MainForm mainform) {
+    public SelectRestaurant2(Order order, OrderInterface<Order> orderList,ListInterface<Affiliate> aff, MainForm mainform) {
         this.order = order;
         this.mainform = mainform;
         this.orderList = orderList;
+        this.aff = aff;
         sr2=this;
-        itemList.add(item0);
-        itemList.add(item1);
-        itemList.add(item2);
-        itemList2.add(item3);
-        itemList2.add(item4);
-        itemList2.add(item5);
-
-        aff0.setItemList(itemList);
-        aff1.setItemList(itemList2);
-
-        restQueue.enqueue(aff0);
-        restQueue.enqueue(aff1);
-        restQueue.enqueue(aff2);
-        restQueue.enqueue(aff3);
         /*System.out.println(restQueue.size());
         for(int a=0;a<restQueue.size();a++){
         System.out.println(restQueue.dequeue().getAffiliate_id());
@@ -74,8 +48,8 @@ public class SelectRestaurant2 extends JFrame {
         //jScrollPane.setPreferredSize(new Dimension(1200,600));
         //jPanel.setPreferredSize(new Dimension(1200,600));
         // setLayout(new GridLayout(restQueue.size(), 1));
-        for (int a = 0; a < restQueue.size(); a++) {
-            Affiliate b = (Affiliate) restQueue.getFront();
+        for (int a = 1; a <= aff.getNumberOfEntries(); a++) {
+            Affiliate b = (Affiliate) aff.getEntry(a);
             jbtRest = new JButton(b.getRest_name());
             jbtRest.setPreferredSize(new Dimension(0, 100));
 
@@ -86,14 +60,9 @@ public class SelectRestaurant2 extends JFrame {
             });
 
             jPanel.add(jbtRest);
-            backupRestQueue.enqueue(restQueue.dequeue());
-            a--;
         }
         jScrollPane = new JScrollPane(jPanel);
         add(jScrollPane);
-        for (int a = 0; a < backupRestQueue.size(); a++) {
-            restQueue.enqueue(backupRestQueue.dequeue());
-        }
         setSize(1200, 600);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);

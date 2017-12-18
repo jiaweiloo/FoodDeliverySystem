@@ -27,7 +27,7 @@ public class SelectMenuItem2 extends JFrame {
     OrderInterface<Order> orderList;
     Order order;
     OrderList ol;
-    LList<Item> itemList;
+    ListInterface<Item> itemList;
     JButton cart = new JButton("Go to Cart");
     SelectMenuItem2 sm2;
 

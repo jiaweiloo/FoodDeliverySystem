@@ -9,6 +9,7 @@ import entity.Order;
 import fooddeliverysystem.MainForm;
 import javax.swing.JOptionPane;
 import adt.*;
+import entity.Affiliate;
 
 /**
  *
@@ -22,12 +23,14 @@ public class CustFillInForm extends javax.swing.JFrame {
     MainForm mainform;
     Order order;
     OrderInterface<Order> orderList;
+    ListInterface<Affiliate> aff;
     
-    public CustFillInForm(Order order, OrderInterface<Order> orderList,MainForm mf) {
+    public CustFillInForm(Order order, OrderInterface<Order> orderList,ListInterface<Affiliate> aff,MainForm mf) {
         
         this.order = order;
         this.orderList=orderList;
         this.mainform=mf;
+        this.aff=aff;
         setTitle("Order Fill In Form");
         initComponents();
     }
@@ -194,7 +197,7 @@ public class CustFillInForm extends javax.swing.JFrame {
             order.setCust_email(custEmail.getText());
             order.setCust_phone(custPhone.getText());
             order.setCust_deliveryAddress(custAddress.getText());
-            SelectRestaurant2 sr2 = new SelectRestaurant2(order,orderList,mainform);
+            SelectRestaurant2 sr2 = new SelectRestaurant2(order,orderList,aff,mainform);
             this.dispose();
         }
     }//GEN-LAST:event_jButton1ActionPerformed

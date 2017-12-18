@@ -17,7 +17,7 @@ public class Affiliate {
     String owner_name;
     String contact_no;
     String restrt_zone;
-    LList<Item> itemList;
+    ListInterface<Item> itemList;
     String password;
    
     public Affiliate() {
@@ -33,11 +33,11 @@ public class Affiliate {
         this.password = password;
     }
 
-    public LList<Item> getItemList() {
+    public ListInterface<Item> getItemList() {
         return itemList;
     }
 
-    public void setItemList(LList<Item> itemList) {
+    public void setItemList(ListInterface<Item> itemList) {
         this.itemList = itemList;
     }
 

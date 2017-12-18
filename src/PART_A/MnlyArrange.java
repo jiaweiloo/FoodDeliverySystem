@@ -6,6 +6,7 @@
 package PART_A;
 
 import adt.LList;
+import adt.ListInterface;
 import entity.Affiliate;
 import entity.Item;
 import java.awt.BorderLayout;
@@ -33,13 +34,13 @@ public class MnlyArrange extends JFrame{
     
     
     
-    LList<Affiliate> affiliate=new LList<Affiliate>();
+    ListInterface<Affiliate> affiliate=new LList<Affiliate>();
     Affiliate restA=new Affiliate(1000,"Rest A","Rest A address","Ali","0111111111","Zone A","123456789");
     Affiliate restB=new Affiliate(1001,"Rest B","Rest B address","Bli","0111111111","Zone B","123456789");
-    LList<Item> item=new LList<Item>(); 
-    LList<Item> Bitem=new LList<Item>(); 
-    LList<Item> tempOrder=new LList<Item>();
-    LList<Item> tempOrder2=new LList<Item>();
+    ListInterface<Item> item=new LList<Item>(); 
+    ListInterface<Item> Bitem=new LList<Item>(); 
+    ListInterface<Item> tempOrder=new LList<Item>();
+    ListInterface<Item> tempOrder2=new LList<Item>();
     Item itemA=new Item(6001,"Curry Chicken",12.30,1000,"Curry Chicken taste good");
     Item itemB=new Item(6002,"Curry Fish",12.30,1000,"Curry Fish taste good");
     Item itemC=new Item(6003,"Curry Duck",12.30,1000,"Curry Duck taste good");
