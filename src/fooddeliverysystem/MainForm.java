@@ -1,5 +1,6 @@
 package fooddeliverysystem;
 
+import PART_A.Register;
 import PART_B.HR_Menu;
 import PART_B.Update_Delivery_Men;
 import PART_C.*;
@@ -34,7 +35,7 @@ public class MainForm extends javax.swing.JFrame {
     public Order order = new Order();
     public LList<Order> custList = new LList<Order>();
     public String phoneNo;
-    public ListInterface<Affiliate> aff = new LList<Affiliate>();
+    public AffiliateInterface<Affiliate> aff = new AffiliateADT<Affiliate>();
 
     public ListInterface<Item> itemList = new LList<Item>();
     public ListInterface<Item> itemList2 = new LList<Item>();
@@ -76,6 +77,7 @@ public class MainForm extends javax.swing.JFrame {
         jbtGetCustomer = new javax.swing.JButton();
         jbClearCust = new javax.swing.JButton();
         btnAfftLogin = new javax.swing.JButton();
+        btnAffReg = new javax.swing.JButton();
 
         jButton6.setText("jButton6");
 
@@ -153,6 +155,18 @@ public class MainForm extends javax.swing.JFrame {
         });
 
         btnAfftLogin.setText("Affiliate Login");
+        btnAfftLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAfftLoginActionPerformed(evt);
+            }
+        });
+
+        btnAffReg.setText("Register as Affiliate");
+        btnAffReg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAffRegActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -187,59 +201,60 @@ public class MainForm extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
-                                .addComponent(btnFgtPw, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnAfftLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnAffReg)
+                                    .addComponent(btnFgtPw, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(jLabel3)
+                .addGap(40, 40, 40)
+                .addComponent(btnBrowse)
+                .addGap(18, 18, 18)
+                .addComponent(btnTrack)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jbtGetCustomer)
+                .addGap(18, 18, 18)
+                .addComponent(jbClearCust)
+                .addContainerGap(57, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator1)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(jLabel3)
-                        .addGap(40, 40, 40)
-                        .addComponent(btnBrowse)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnTrack)
+                        .addComponent(jLabel2)
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblTime)
+                            .addComponent(jtfTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(8, 8, 8)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(jtfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jpfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblPassword))
+                        .addGap(23, 23, 23)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnLogin)
+                            .addComponent(btnFgtPw))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnAfftLogin)
+                            .addComponent(btnExit))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jbtGetCustomer)
-                        .addGap(18, 18, 18)
-                        .addComponent(jbClearCust)
-                        .addGap(0, 44, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator1)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(28, 28, 28)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(lblTime)
-                                    .addComponent(jtfTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(8, 8, 8)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jtfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jpfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblPassword))
-                                .addGap(23, 23, 23)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(btnLogin)
-                                    .addComponent(btnFgtPw))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(btnAfftLogin)
-                                    .addComponent(btnExit))
-                                .addGap(29, 29, 29)))))
-                .addContainerGap())
+                        .addComponent(btnAffReg)
+                        .addGap(4, 4, 4))))
         );
 
         pack();
@@ -344,6 +359,22 @@ public class MainForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         phoneNo = null;
     }//GEN-LAST:event_jbClearCustActionPerformed
+
+    private void btnAfftLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAfftLoginActionPerformed
+        // TODO add your handling code here:
+        AffiliateLogin affLogin = new AffiliateLogin(aff);
+        affLogin.setVisible(true);
+        affLogin.setLocationRelativeTo(null);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnAfftLoginActionPerformed
+
+    private void btnAffRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAffRegActionPerformed
+        // TODO add your handling code here:
+        Register Register = new Register(this);
+        Register.setVisible(true);
+        Register.setLocationRelativeTo(null);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnAffRegActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -489,6 +520,7 @@ public class MainForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAffReg;
     private javax.swing.JButton btnAfftLogin;
     private javax.swing.JButton btnBrowse;
     private javax.swing.JButton btnExit;
