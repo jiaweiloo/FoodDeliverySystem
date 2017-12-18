@@ -19,9 +19,9 @@ public class AffiliateLogin extends javax.swing.JFrame {
      */
     
     AffiliateInterface<Affiliate> aff ;
-    
-    public AffiliateLogin(AffiliateInterface Aff) {
-        this.aff=Aff;
+    MainForm Mainform;
+    public AffiliateLogin(MainForm mainform) {
+        Mainform=mainform;
         initComponents();
     }
 
@@ -127,10 +127,10 @@ public class AffiliateLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Please Enter Restaurent Name and Password!", "InfoBox: " + "Error!!", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        for(int i=1;i<aff.getNumberOfEntries()+1;i++){
-            if(aff.getEntry(i).getRest_name().equals(RestName)&&aff.getEntry(i).getPassword().equals(passString)){
+        for(int i=1;i<Mainform.aff.getNumberOfEntries()+1;i++){
+            if(Mainform.aff.getEntry(i).getRest_name().equals(RestName)&&Mainform.aff.getEntry(i).getPassword().equals(passString)){
                 JOptionPane.showMessageDialog(null, "Login Successful!!", "InfoBox: " + "Successful!!", JOptionPane.INFORMATION_MESSAGE);
-                AffMainMenu AffMainMenu=new AffMainMenu(aff.getEntry(i).getAffiliate_id(),aff);
+                AffMainMenu AffMainMenu=new AffMainMenu(Mainform.aff.getEntry(i).getAffiliate_id(),Mainform);
                 AffMainMenu.setVisible(true);
                 AffMainMenu.setLocationRelativeTo(null);
                 this.setVisible(false);

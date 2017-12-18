@@ -362,7 +362,7 @@ public class MainForm extends javax.swing.JFrame {
 
     private void btnAfftLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAfftLoginActionPerformed
         // TODO add your handling code here:
-        AffiliateLogin affLogin = new AffiliateLogin(aff);
+        AffiliateLogin affLogin = new AffiliateLogin(this);
         affLogin.setVisible(true);
         affLogin.setLocationRelativeTo(null);
         this.setVisible(false);
