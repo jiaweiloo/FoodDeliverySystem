@@ -75,28 +75,63 @@ public class OrderADT<T> implements OrderInterface<T> {
         lastNode = null;
     } // end clear
 
-    public void arrangeQueue() {
-        if (!isEmpty()) {
-            Node currentOrder = firstNode;
-            Node afterCurrent = currentOrder.next;
-            for (int a = 0; a <= size; a++) {
-                while (afterCurrent != null) {
-                    Order tempOrder = (Order) currentOrder.data;
-                    Order tempOrder2 = (Order) afterCurrent.data;
-                    double currentTotal = tempOrder.getTotal_amount();
-                    double currentTotal2 = tempOrder2.getTotal_amount();
-                    if (currentTotal < currentTotal2) {
-                        currentOrder.next = afterCurrent.next;
-                        afterCurrent.next = currentOrder;
-                    }
-
-                    currentOrder = currentOrder.next;
-                    afterCurrent = currentOrder.next;
+    public void enqueueAscendingQueue(T newEntry) {
+        boolean found = false;
+        Node newNode = new Node(newEntry, null);
+        
+        Order newOrder = (Order) newEntry;
+        Node currentNode = firstNode;
+        
+        if (isEmpty()) {
+            firstNode = newNode;
+            lastNode = newNode;
+            found = true;
+        }
+        
+        while(!found&&currentNode!=null){
+            Order currentOrder = (Order)currentNode.data;
+            
+            if(newOrder.getTotal_amount()<currentOrder.getTotal_amount()){
+                if(currentNode.next==null){
+                    currentNode.next = newNode;
+                    lastNode = newNode;
+                    found = true;
+                }else if(((Order)currentNode.next.data).getTotal_amount()<newOrder.getTotal_amount()){
+                    newNode.next = currentNode.next;
+                    currentNode.next=newNode;
+                    found = true;
+                }else{
+                    currentNode = currentNode.next;
                 }
+            }else{
+                newNode.next = currentNode;
+                lastNode = currentNode;
+                firstNode = newNode;
+                found = true;
+            }
+            size++;
+        }
+        
+        /*Node currentNode = firstNode;
+        Node currentOrder = firstNode;
+        Node afterCurrent = currentOrder.next;
+        for (int a = 0; a <= size; a++) {
+            while (afterCurrent != null) {
+                Order tempOrder = (Order) currentOrder.data;
+                Order tempOrder2 = (Order) afterCurrent.data;
+                double currentTotal = tempOrder.getTotal_amount();
+                double currentTotal2 = tempOrder2.getTotal_amount();
+                if (currentTotal < currentTotal2) {
+                    currentOrder.next = afterCurrent.next;
+                    afterCurrent.next = currentOrder;
+                }
+
+                currentOrder = currentOrder.next;
+                afterCurrent = currentOrder.next;
             }
         }
+*/
     }
-
 
     private class Node {
 

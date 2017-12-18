@@ -216,9 +216,6 @@ public class CustFillInForm extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    public void PreviousFrame(MainForm mainform) {
-        this.mainform = mainform;
-    }
 
     /**
      * @param args the command line arguments

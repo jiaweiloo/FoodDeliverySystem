@@ -323,7 +323,6 @@ public class MainForm extends javax.swing.JFrame {
             SelectRestaurant2 sr2 = new SelectRestaurant2(order, orderList, aff, this);
         } else {
             CustFillInForm custForm = new CustFillInForm(order, orderList, aff, this);
-            custForm.PreviousFrame(this);
             custForm.setVisible(true);
             custForm.setLocationRelativeTo(null);
             this.setVisible(false);
@@ -465,11 +464,14 @@ public class MainForm extends javax.swing.JFrame {
         attdList.add(att3);
         attdList.add(att4);
         attdList.add(att5);
-        orderList.enqueue(ord1);
-        orderList.enqueue(ord2);
-        orderList.enqueue(ord3);
-        orderList.enqueue(ord4);
-        orderList.enqueue(ord5);
+        orderList.enqueueAscendingQueue(ord1);
+        orderList.enqueueAscendingQueue(ord2);
+        orderList.enqueueAscendingQueue(ord3);
+        orderList.enqueueAscendingQueue(ord4);
+        orderList.enqueueAscendingQueue(ord5);
+        while(!orderList.isEmpty()){
+            System.out.println(orderList.dequeue().getTotal_amount());
+        }
         //empWaitingList.enqueueAscTotalHandled(emp1);
         //empWaitingList.enqueueAscTotalHandled(emp2);        
         empWaitingList.enqueueAscTotalHandled(emp3);

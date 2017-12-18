@@ -172,7 +172,7 @@ public class Payment extends javax.swing.JFrame {
                     mainform.custList.add(order);
                     order.setOrderList(cartList);
                     order.setCurrent_status("PAID");
-                    orderList.enqueue(order);
+                    orderList.enqueueAscendingQueue(order);
                     //orderList.arrangeQueue();
                     //System.out.println(orderList.dequeue().getTotal_amount());
                     mainform.order = new Order();
