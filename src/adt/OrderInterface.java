@@ -50,5 +50,16 @@ public interface OrderInterface<T> {
   //and order and put highest total total amount order in front
   public void enqueueAscendingQueue(T newEntry);
 
+  /**
+   * Task: Replaces the entry at a given position in the list.
+   *
+   * @param oldEntry an entry that indicates the position of the entry to
+   * be replaced
+   * @param newEntry the object that will replace the entry at the position
+   * givenPosition
+   * @return true if the replacement occurs, or false if either the list is
+   * empty or not found
+   */
+  public boolean replaceObject(T oldEntry, T newEntry);
   
 } // end QueueInterface

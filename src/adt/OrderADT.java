@@ -138,6 +138,24 @@ public class OrderADT<T> implements OrderInterface<T> {
 */
     }
 
+    public boolean replaceObject(T oldEntry, T newEntry) {
+        boolean found = false;
+        Node currentNode = firstNode;
+        Node newNode = new Node(newEntry,null);
+        
+        while (!found && (currentNode != null)) {
+            if (oldEntry.equals(currentNode.data)) {
+                found = true;
+                newNode.next = currentNode.next;
+                currentNode = newNode;
+                System.out.println("Replace status : "+found);
+            } else {
+                currentNode = currentNode.next;
+            }
+        }
+        return found;        
+    }
+    
     private class Node {
 
         private T data; // entry in queue
