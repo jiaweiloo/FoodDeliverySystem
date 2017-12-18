@@ -784,7 +784,7 @@ public class HR_Menu extends javax.swing.JFrame {
         DefaultTableModel dm2 = (DefaultTableModel) jtPendingDelivery.getModel();
         dm2.setRowCount(0);
         Object[] rowdata3 = new Object[7];
-        for (int a = 1; a < mainform.ehlList.getNumberOfEntries(); a++) {
+        for (int a = 1; a <= mainform.ehlList.getNumberOfEntries(); a++) {
             rowdata3[0] = mainform.ehlList.getEntry(a).getHandle_id();
             rowdata3[1] = mainform.ehlList.getEntry(a).getEmp_id();
             rowdata3[2] = mainform.ehlList.getEntry(a).getOrder_id();
