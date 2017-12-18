@@ -9,6 +9,7 @@ import java.util.Arrays;
 import javax.swing.JOptionPane;
 import entity.*;
 import adt.*;
+import fooddeliverysystem.MainForm;
 
 /**
  *
@@ -19,12 +20,12 @@ public class Register extends javax.swing.JFrame {
     /**
      * Creates new form Register
      */
-    AffiliateADT<Affiliate> affiliate=new AffiliateADT<Affiliate>();
-    Affiliate a=new Affiliate(1000,"Rest A","Rest A address","Ali","0111111111","Zone A","123456789");
-    Affiliate b=new Affiliate(1001,"Rest B","Rest A address","Ali","0111111111","Zone A","123456789");
     Affiliate newRest;    
+    MainForm MainForm;    
+    public Register(MainForm mainForm) {
+        MainForm=mainForm;
         
-    public Register() {
+        
         initComponents();
     }
 
@@ -230,8 +231,7 @@ public class Register extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        affiliate.add(a);
-        affiliate.add(b);
+        
         
         
         if((jTextField1.getText().isEmpty()||jTextField2.getText().isEmpty()||jTextField3.getText().isEmpty()||jTextField4.getText().isEmpty()||jTextField5.getText().isEmpty()||jPasswordField1.getPassword().length==0||jPasswordField2.getPassword().length==0)){
@@ -242,25 +242,25 @@ public class Register extends javax.swing.JFrame {
         else{
             try {
                   Integer.parseInt(jTextField4.getText());
-                  if(affiliate.isEmpty()){
+                  if(MainForm.aff.isEmpty()){
                         char[] pass = jPasswordField1.getPassword();
                          String passString = new String(pass);
                          newRest = new Affiliate(1000,jTextField1.getText(),jTextField2.getText(),jTextField3.getText(),jTextField4.getText(),jTextField5.getText(),passString);
-                         affiliate.add(newRest);
+                         MainForm.aff.add(newRest);
                          JOptionPane.showMessageDialog(null, "Register Successful!!", "InfoBox: " + "Successful!!", JOptionPane.INFORMATION_MESSAGE);
                       
                   }
                   else{
-                      for(int i=1;i<affiliate.getNumberOfEntries()+1;i++){
-                       if(affiliate.getEntry(i).getRest_name().equals(jTextField1.getText())){
+                      for(int i=1;i<MainForm.aff.getNumberOfEntries()+1;i++){
+                       if(MainForm.aff.getEntry(i).getRest_name().equals(jTextField1.getText())){
                            JOptionPane.showMessageDialog(null, "Restaurant Name Used!", "Error!!", JOptionPane.ERROR_MESSAGE);
                            return; 
                         }                
                        }
                   char[] pass = jPasswordField1.getPassword();
                   String passString = new String(pass);
-                  newRest = new Affiliate(affiliate.getEntry(affiliate.getNumberOfEntries()).getAffiliate_id()+1,jTextField1.getText(),jTextField2.getText(),jTextField3.getText(),jTextField4.getText(),jTextField5.getText(),passString);
-                  affiliate.add(newRest);
+                  newRest = new Affiliate(MainForm.aff.getEntry(MainForm.aff.getNumberOfEntries()).getAffiliate_id()+1,jTextField1.getText(),jTextField2.getText(),jTextField3.getText(),jTextField4.getText(),jTextField5.getText(),passString);
+                  MainForm.aff.add(newRest);
                   JOptionPane.showMessageDialog(null, "Register Successful!! ", "InfoBox: " + "Successful!!", JOptionPane.INFORMATION_MESSAGE);
                          
                  } 
@@ -316,12 +316,7 @@ public class Register extends javax.swing.JFrame {
         //</editor-fold>
         
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                
-                new Register().setVisible(true);
-            }
-        });
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
