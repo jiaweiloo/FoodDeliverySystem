@@ -22,7 +22,7 @@ public class MainForm extends javax.swing.JFrame {
     public ListInterface<Attendance> attdList = new LList<Attendance>();
     public OrderInterface<Order> orderList = new OrderADT<Order>();
     public WaitingInterface<employee> empWaitingList = new WaitingQueueADT<employee>();
-    ListInterface<emp_handled_list> ehlList = new LList<emp_handled_list>();
+    public ListInterface<emp_handled_list> ehlList = new LList<emp_handled_list>();
     public ListInterface<Order> finishedOrder = new LList<Order>();
     employee emp, emp1, emp2, emp3, emp4, emp5, tempEmp;
     Attendance att, att1, att2, att3, att4, att5;
