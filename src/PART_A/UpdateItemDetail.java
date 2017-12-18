@@ -8,6 +8,7 @@ package PART_A;
 import javax.swing.JFrame;
 import entity.*;
 import adt.*;
+import fooddeliverysystem.MainForm;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -22,7 +23,7 @@ import javax.swing.*;
 public class UpdateItemDetail extends JFrame {
 
     int currentID ;
-    AffiliateInterface<Affiliate> affiliate ;
+    MainForm Mainform;
     UpdateItemDetail UI;
     /*Affiliate restA = new Affiliate(0000, "Rest A", "Rest A address", "Ali", "0111111111", "Zone A", "123456789");
     Affiliate restB = new Affiliate(0001, "Rest B", "Rest B address", "Bli", "0111111111", "Zone B", "123456789");
@@ -58,9 +59,9 @@ public class UpdateItemDetail extends JFrame {
     String desc;
     int id;
 
-    public UpdateItemDetail(int CurrentID,AffiliateInterface AFF) {
+    public UpdateItemDetail(int CurrentID,MainForm mainform) {
         currentID=CurrentID;
-        affiliate=AFF;
+        Mainform=mainform;
         UI=this;
         /*item.add(itemA);
         item.add(itemB);
@@ -79,9 +80,9 @@ public class UpdateItemDetail extends JFrame {
 
 
         try{
-                 for (int i = 1; i < affiliate.getNumberOfEntries() + 1; i++) {
-            if (affiliate.getEntry(i).getAffiliate_id() == currentID) {
-                if(affiliate.getEntry(i).getItemList().isEmpty()){
+                 for (int i = 1; i < Mainform.aff.getNumberOfEntries() + 1; i++) {
+            if (Mainform.aff.getEntry(i).getAffiliate_id() == currentID) {
+                if(Mainform.aff.getEntry(i).getItemList().isEmpty()){
 
 
                 }
@@ -114,7 +115,7 @@ public class UpdateItemDetail extends JFrame {
                     });
         btnBack.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                AffMainMenu AFF=new AffMainMenu(currentID,affiliate);
+                AffMainMenu AFF=new AffMainMenu(currentID,Mainform);
                     AFF.setVisible(true);
                     AFF.setLocationRelativeTo(null);
                     UI.setVisible(false);
@@ -139,9 +140,9 @@ public class UpdateItemDetail extends JFrame {
 
         jpInfo.removeAll();
 
-        for (int i = 1; i < affiliate.getNumberOfEntries() + 1; i++) {
-            if (affiliate.getEntry(i).getAffiliate_id() == currentID) {
-                jpInfo.setLayout(new GridLayout(affiliate.getEntry(i).getItemList().getNumberOfEntries() + 4, 5));
+        for (int i = 1; i < Mainform.aff.getNumberOfEntries() + 1; i++) {
+            if (Mainform.aff.getEntry(i).getAffiliate_id() == currentID) {
+                jpInfo.setLayout(new GridLayout(Mainform.aff.getEntry(i).getItemList().getNumberOfEntries() + 4, 5));
             }
         }
 
@@ -151,21 +152,21 @@ public class UpdateItemDetail extends JFrame {
         jpInfo.add(lblDesc).setFont(font);
         jpInfo.add(lblEmpty).setFont(font);
 
-        for (int i = 1; i < affiliate.getNumberOfEntries() + 1; i++) {
-            if (affiliate.getEntry(i).getAffiliate_id() == currentID) {
-                for (int o = 1; o < affiliate.getEntry(i).getItemList().getNumberOfEntries() + 1; o++) {
+        for (int i = 1; i < Mainform.aff.getNumberOfEntries() + 1; i++) {
+            if (Mainform.aff.getEntry(i).getAffiliate_id() == currentID) {
+                for (int o = 1; o < Mainform.aff.getEntry(i).getItemList().getNumberOfEntries() + 1; o++) {
                     JButton btnSelect = new JButton("Select");
-                    jpInfo.add(new JLabel(String.valueOf(affiliate.getEntry(i).getItemList().getEntry(o).getItem_id()))).setFont(font);
-                    jpInfo.add(new JLabel(affiliate.getEntry(i).getItemList().getEntry(o).getItem_name())).setFont(font);
-                    jpInfo.add(new JLabel(Double.toString(affiliate.getEntry(i).getItemList().getEntry(o).getItem_price()))).setFont(font);
-                    jpInfo.add(new JLabel(affiliate.getEntry(i).getItemList().getEntry(o).getDesc())).setFont(font);
+                    jpInfo.add(new JLabel(String.valueOf(Mainform.aff.getEntry(i).getItemList().getEntry(o).getItem_id()))).setFont(font);
+                    jpInfo.add(new JLabel(Mainform.aff.getEntry(i).getItemList().getEntry(o).getItem_name())).setFont(font);
+                    jpInfo.add(new JLabel(Double.toString(Mainform.aff.getEntry(i).getItemList().getEntry(o).getItem_price()))).setFont(font);
+                    jpInfo.add(new JLabel(Mainform.aff.getEntry(i).getItemList().getEntry(o).getDesc())).setFont(font);
                     
                     jpInfo.add(btnSelect);
 
-                    String SID =String.valueOf(affiliate.getEntry(i).getItemList().getEntry(o).getItem_id());
-                    String SName=affiliate.getEntry(i).getItemList().getEntry(o).getItem_name();
-                    String SPrice=Double.toString(affiliate.getEntry(i).getItemList().getEntry(o).getItem_price());
-                    String SDesc=affiliate.getEntry(i).getItemList().getEntry(o).getDesc();
+                    String SID =String.valueOf(Mainform.aff.getEntry(i).getItemList().getEntry(o).getItem_id());
+                    String SName=Mainform.aff.getEntry(i).getItemList().getEntry(o).getItem_name();
+                    String SPrice=Double.toString(Mainform.aff.getEntry(i).getItemList().getEntry(o).getItem_price());
+                    String SDesc=Mainform.aff.getEntry(i).getItemList().getEntry(o).getDesc();
                     btnSelect.addActionListener(new ActionListener() {
                       public void actionPerformed(ActionEvent evt) {
                             SelectItem(evt,SID,SName,SPrice,SDesc);
@@ -227,13 +228,13 @@ public class UpdateItemDetail extends JFrame {
         }
 
 
-            for (int i = 1; i < affiliate.getNumberOfEntries() + 1; i++) {
-                 if (affiliate.getEntry(i).getAffiliate_id() == currentID) {
-                      for (int o = 1; o < affiliate.getEntry(i).getItemList().getNumberOfEntries() + 1; o++) {
-                          if(id==affiliate.getEntry(i).getItemList().getEntry(o).getItem_id()){
-                              affiliate.getEntry(i).getItemList().getEntry(o).setItem_name(jtfNewName.getText());
-                              affiliate.getEntry(i).getItemList().getEntry(o).setItem_price(Double.parseDouble(jtfNewPrice.getText()));
-                              affiliate.getEntry(i).getItemList().getEntry(o).setDesc(jtfNewDesc.getText());
+            for (int i = 1; i < Mainform.aff.getNumberOfEntries() + 1; i++) {
+                 if (Mainform.aff.getEntry(i).getAffiliate_id() == currentID) {
+                      for (int o = 1; o < Mainform.aff.getEntry(i).getItemList().getNumberOfEntries() + 1; o++) {
+                          if(id==Mainform.aff.getEntry(i).getItemList().getEntry(o).getItem_id()){
+                              Mainform.aff.getEntry(i).getItemList().getEntry(o).setItem_name(jtfNewName.getText());
+                              Mainform.aff.getEntry(i).getItemList().getEntry(o).setItem_price(Double.parseDouble(jtfNewPrice.getText()));
+                              Mainform.aff.getEntry(i).getItemList().getEntry(o).setDesc(jtfNewDesc.getText());
                               JOptionPane.showMessageDialog(null, "Item Modified!!", "InfoBox: " + "Successful!!", JOptionPane.INFORMATION_MESSAGE);
                           }
                       }

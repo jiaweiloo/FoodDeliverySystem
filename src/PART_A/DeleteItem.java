@@ -9,6 +9,7 @@ import adt.*;
 import adt.LList;
 import entity.Affiliate;
 import entity.*;
+import fooddeliverysystem.MainForm;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -30,7 +31,7 @@ public class DeleteItem extends JFrame{
     
     JTextField jtfInput = new JTextField();
     int currentID ;
-    AffiliateInterface<Affiliate> aff;
+    MainForm Mainform;
     /*Affiliate restA=new Affiliate(1000,"Rest A","Rest A address","Ali","0111111111","Zone A","123456789");
     Affiliate restB=new Affiliate(1001,"Rest B","Rest B address","Bli","0111111111","Zone B","123456789");
     LList<Item> item=new LList<Item>(); 
@@ -53,7 +54,7 @@ public class DeleteItem extends JFrame{
         DeleteItem DI;
     
     
-    public DeleteItem(int ID,AffiliateInterface AFF){
+    public DeleteItem(int ID,MainForm mainform){
         
         /*item.add(itemA);
         item.add(itemB);
@@ -66,14 +67,14 @@ public class DeleteItem extends JFrame{
         restB.setItemList(Bitem);
         affiliate.add(restB);*/
         currentID = ID;
-        aff=AFF;
+        Mainform=mainform;
         DI=this;
         
         
         try{
-                 for (int i = 1; i < aff.getNumberOfEntries() + 1; i++) {
-                        if (aff.getEntry(i).getAffiliate_id() == currentID) {
-                            if(aff.getEntry(i).getItemList().isEmpty()){
+                 for (int i = 1; i < Mainform.aff.getNumberOfEntries() + 1; i++) {
+                        if (Mainform.aff.getEntry(i).getAffiliate_id() == currentID) {
+                            if(Mainform.aff.getEntry(i).getItemList().isEmpty()){
 
 
                             }
@@ -101,7 +102,7 @@ public class DeleteItem extends JFrame{
         });
        btnBack.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                AffMainMenu AFF=new AffMainMenu(ID,aff);
+                AffMainMenu AFF=new AffMainMenu(ID,Mainform);
                     AFF.setVisible(true);
                     AFF.setLocationRelativeTo(null);
                     DI.setVisible(false);
@@ -132,9 +133,9 @@ public class DeleteItem extends JFrame{
         jpInfo.removeAll();
 
         //Calculate number of row
-        for(int i=1;i<aff.getNumberOfEntries()+1;i++){
-            if(aff.getEntry(i).getAffiliate_id()==currentID){
-                jpInfo.setLayout(new GridLayout(aff.getEntry(i).getItemList().getNumberOfEntries()+2, 4));
+        for(int i=1;i<Mainform.aff.getNumberOfEntries()+1;i++){
+            if(Mainform.aff.getEntry(i).getAffiliate_id()==currentID){
+                jpInfo.setLayout(new GridLayout(Mainform.aff.getEntry(i).getItemList().getNumberOfEntries()+2, 4));
             }  
         }
 
@@ -143,13 +144,13 @@ public class DeleteItem extends JFrame{
         jpInfo.add(lblPrice).setFont(font);
         jpInfo.add(lblDesc).setFont(font);
 
-        for(int i=1;i<aff.getNumberOfEntries()+1;i++){
-           if(aff.getEntry(i).getAffiliate_id()==currentID){
-                for(int o=1;o<aff.getEntry(i).getItemList().getNumberOfEntries()+1;o++){
-                    jpInfo.add(new JLabel(String.valueOf(aff.getEntry(i).getItemList().getEntry(o).getItem_id()))).setFont(font);
-                    jpInfo.add(new JLabel(aff.getEntry(i).getItemList().getEntry(o).getItem_name())).setFont(font);
-                    jpInfo.add(new JLabel(Double.toString(aff.getEntry(i).getItemList().getEntry(o).getItem_price()))).setFont(font);
-                    jpInfo.add(new JLabel(aff.getEntry(i).getItemList().getEntry(o).getDesc())).setFont(font);
+        for(int i=1;i<Mainform.aff.getNumberOfEntries()+1;i++){
+           if(Mainform.aff.getEntry(i).getAffiliate_id()==currentID){
+                for(int o=1;o<Mainform.aff.getEntry(i).getItemList().getNumberOfEntries()+1;o++){
+                    jpInfo.add(new JLabel(String.valueOf(Mainform.aff.getEntry(i).getItemList().getEntry(o).getItem_id()))).setFont(font);
+                    jpInfo.add(new JLabel(Mainform.aff.getEntry(i).getItemList().getEntry(o).getItem_name())).setFont(font);
+                    jpInfo.add(new JLabel(Double.toString(Mainform.aff.getEntry(i).getItemList().getEntry(o).getItem_price()))).setFont(font);
+                    jpInfo.add(new JLabel(Mainform.aff.getEntry(i).getItemList().getEntry(o).getDesc())).setFont(font);
                  } 
             } 
         }
@@ -178,12 +179,12 @@ public class DeleteItem extends JFrame{
                  int position=1;
                  int counter=0;
                  int input_ID=Integer.parseInt(jtfInput.getText().toString());
-                 for(int i=1;i<aff.getNumberOfEntries()+1;i++){
-                     if(currentID==aff.getEntry(i).getAffiliate_id()){
-                         for(int o=1;o<aff.getEntry(i).getItemList().getNumberOfEntries()+1;o++){
-                             if(aff.getEntry(i).getItemList().getEntry(o).getItem_id()!=input_ID){
+                 for(int i=1;i<Mainform.aff.getNumberOfEntries()+1;i++){
+                     if(currentID==Mainform.aff.getEntry(i).getAffiliate_id()){
+                         for(int o=1;o<Mainform.aff.getEntry(i).getItemList().getNumberOfEntries()+1;o++){
+                             if(Mainform.aff.getEntry(i).getItemList().getEntry(o).getItem_id()!=input_ID){
                                  counter++; 
-                                 if(counter==aff.getEntry(i).getItemList().getNumberOfEntries()){
+                                 if(counter==Mainform.aff.getEntry(i).getItemList().getNumberOfEntries()){
                                      JOptionPane.showMessageDialog(null, "Item ID incorrect!!", "InfoBox: " + "Error!!", JOptionPane.ERROR_MESSAGE);
                                      return;
                                  }
@@ -193,16 +194,16 @@ public class DeleteItem extends JFrame{
                  }
                  
                  //Delete item
-                 for(int i=1;i<aff.getNumberOfEntries()+1;i++){
-                     if(currentID==aff.getEntry(i).getAffiliate_id()){
-                         for(int o=1;o<aff.getEntry(i).getItemList().getNumberOfEntries()+1;o++){
-                             if(aff.getEntry(i).getItemList().getEntry(o).getItem_id()!=input_ID){
+                 for(int i=1;i<Mainform.aff.getNumberOfEntries()+1;i++){
+                     if(currentID==Mainform.aff.getEntry(i).getAffiliate_id()){
+                         for(int o=1;o<Mainform.aff.getEntry(i).getItemList().getNumberOfEntries()+1;o++){
+                             if(Mainform.aff.getEntry(i).getItemList().getEntry(o).getItem_id()!=input_ID){
                                  position++; 
                              }else{
                                  break;
                              } 
                          }
-                         aff.getEntry(i).getItemList().remove(position);
+                         Mainform.aff.getEntry(i).getItemList().remove(position);
                      }
                  }
                  

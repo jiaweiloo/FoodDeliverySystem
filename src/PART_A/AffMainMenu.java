@@ -19,19 +19,16 @@ public class AffMainMenu extends javax.swing.JFrame {
     /**
      * Creates new form AffMainMenu
      */
-    AffiliateInterface<Affiliate> aff;
+    
+    MainForm Mainform;
     int ID;
-    public AffMainMenu(int CurrentID,AffiliateInterface Aff) {
+    public AffMainMenu(int CurrentID,MainForm mainform) {
         initComponents();
+        Mainform=mainform;
         
-        aff=Aff;
         ID = CurrentID;
         
-        for(int i=1;i<aff.getNumberOfEntries()+1;i++){
-            if(aff.getEntry(i).getAffiliate_id()==ID){
-                lblRestName.setText(aff.getEntry(i).getRest_name());
-            }
-        }
+        
         
     }
     @SuppressWarnings("unchecked")
@@ -137,7 +134,7 @@ public class AffMainMenu extends javax.swing.JFrame {
 
     private void btnAddItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddItem2ActionPerformed
         // TODO add your handling code here:
-        AddItem AddItem = new AddItem(ID,aff);
+        AddItem AddItem = new AddItem(ID,Mainform);
         AddItem.setVisible(true);
         AddItem.setLocationRelativeTo(null);
         this.setVisible(false);
@@ -145,7 +142,7 @@ public class AffMainMenu extends javax.swing.JFrame {
 
     private void btnDeleteItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteItemActionPerformed
         // TODO add your handling code here:
-        DeleteItem DeleteItem = new DeleteItem(ID,aff);
+        DeleteItem DeleteItem = new DeleteItem(ID,Mainform);
         DeleteItem.setVisible(true);
         DeleteItem.setLocationRelativeTo(null);
         this.setVisible(false);
@@ -154,7 +151,7 @@ public class AffMainMenu extends javax.swing.JFrame {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-        UpdateItemDetail UpdateItem = new UpdateItemDetail(ID,aff);
+        UpdateItemDetail UpdateItem = new UpdateItemDetail(ID,Mainform);
         UpdateItem.setVisible(true);
         UpdateItem.setLocationRelativeTo(null);
         this.setVisible(false);
@@ -162,7 +159,7 @@ public class AffMainMenu extends javax.swing.JFrame {
 
     private void btnArrangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnArrangeActionPerformed
         // TODO add your handling code here:
-        ArrangeItem ArrangeItem = new ArrangeItem(ID,aff);
+        ArrangeItem ArrangeItem = new ArrangeItem(ID,Mainform);
         ArrangeItem.setVisible(true);
         ArrangeItem.setLocationRelativeTo(null);
         this.setVisible(false);

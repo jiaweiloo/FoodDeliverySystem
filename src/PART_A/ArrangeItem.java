@@ -10,6 +10,7 @@ import adt.AffiliateInterface;
 import adt.LList;
 import entity.Affiliate;
 import entity.*;
+import fooddeliverysystem.MainForm;
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
@@ -33,7 +34,7 @@ public class ArrangeItem extends JFrame{
    
     int currentID ;
     ArrangeItem AI;
-    AffiliateInterface<Affiliate> affiliate;
+    MainForm Mainform;
    // Affiliate restA=new Affiliate(1000,"Rest A","Rest A address","Ali","0111111111","Zone A","123456789");
     JButton btnMnly = new JButton("Manually");
     JButton btnAuto = new JButton("Automatically");
@@ -43,15 +44,15 @@ public class ArrangeItem extends JFrame{
     JLabel lblEmpty = new JLabel("");
     JLabel lblEmpty1 = new JLabel("");
     Font FontTitle = new Font("SansSerif",Font.BOLD,30);
-    public ArrangeItem(int CurrentID,AffiliateInterface aff){
+    public ArrangeItem(int CurrentID,MainForm mainform){
         currentID=CurrentID;
-        affiliate=aff;
+        Mainform=mainform;
         AI=this;
         //affiliate.add(restA);
         try{
-                 for (int i = 1; i < affiliate.getNumberOfEntries() + 1; i++) {
-                        if (affiliate.getEntry(i).getAffiliate_id() == currentID) {
-                            if(affiliate.getEntry(i).getItemList().isEmpty()){
+                 for (int i = 1; i < Mainform.aff.getNumberOfEntries() + 1; i++) {
+                        if (Mainform.aff.getEntry(i).getAffiliate_id() == currentID) {
+                            if(Mainform.aff.getEntry(i).getItemList().isEmpty()){
 
 
                             }
@@ -61,7 +62,7 @@ public class ArrangeItem extends JFrame{
             }
                  catch (Exception e){
                      JOptionPane.showMessageDialog(null, "No Item", "InfoBox: " + "Error!!", JOptionPane.ERROR_MESSAGE);
-                     AffMainMenu AFF=new AffMainMenu(currentID,affiliate);
+                     AffMainMenu AFF=new AffMainMenu(currentID,Mainform);
                     AFF.setVisible(true);
                     AFF.setLocationRelativeTo(null);
                     AI.setVisible(false);
@@ -69,7 +70,7 @@ public class ArrangeItem extends JFrame{
         
         btnBack.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                AffMainMenu AFF=new AffMainMenu(currentID,affiliate);
+                AffMainMenu AFF=new AffMainMenu(currentID,Mainform);
                     AFF.setVisible(true);
                     AFF.setLocationRelativeTo(null);
                     AI.setVisible(false);
@@ -117,7 +118,7 @@ public class ArrangeItem extends JFrame{
     private void SelMnly(ActionEvent evt) {
             
             this.dispose();
-            MnlyArrange MnlyArrange=new MnlyArrange(currentID,affiliate);
+            MnlyArrange MnlyArrange=new MnlyArrange(currentID,Mainform);
         MnlyArrange.setVisible(true);
         MnlyArrange.setLocationRelativeTo(null);
         this.setVisible(false);

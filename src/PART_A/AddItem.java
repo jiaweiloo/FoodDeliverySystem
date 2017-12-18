@@ -7,6 +7,7 @@ package PART_A;
 import adt.AffiliateADT;
 import adt.*;
 import entity.*;
+import fooddeliverysystem.MainForm;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -22,7 +23,7 @@ public class AddItem extends JFrame {
     
     
     
-    AffiliateInterface<Affiliate> aff;
+    
     /*Affiliate restA=new Affiliate(0000,"Rest A","Rest A address","Ali","0111111111","Zone A","123456789");
     Affiliate restB=new Affiliate(0001,"Rest B","Rest B address","Bli","0111111111","Zone B","123456789");
     LList<Item> item=new LList<Item>(); 
@@ -43,12 +44,13 @@ public class AddItem extends JFrame {
     JTextField jtfName = new JTextField();
     JTextField jtfPrice = new JTextField();
     JTextField jtfDescription = new JTextField();
-    public AddItem(int CurrentID,AffiliateInterface Aff){
+    MainForm Mainform;
+    public AddItem(int CurrentID,MainForm mainform){
         /*item.add(itemA);
         item.add(itemB);
         item.add(itemC);*/
         EmptyItem.add(emptyItem);
-        aff=Aff;
+        Mainform=mainform;
         ID=CurrentID;
         AI=this;
         /*restA.setItemList(EmptyItem);
@@ -80,7 +82,7 @@ public class AddItem extends JFrame {
         });
         btnBack.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                AffMainMenu AFF=new AffMainMenu(ID,aff);
+                AffMainMenu AFF=new AffMainMenu(ID,Mainform);
                     AFF.setVisible(true);
                     AFF.setLocationRelativeTo(null);
                     AI.setVisible(false);
@@ -137,28 +139,28 @@ public class AddItem extends JFrame {
                 
             }
         
-            for(int i=1;i<aff.getNumberOfEntries()+1;i++){
-                     if(aff.getEntry(i).getAffiliate_id()==ID){
-                            for(int o=1;o<aff.getEntry(i).getItemList().getNumberOfEntries()+1;o++){
-                                if(aff.getEntry(i).getItemList().getEntry(o).getItem_id()>newID){
-                                    newID=aff.getEntry(i).getItemList().getEntry(o).getItem_id();
+            for(int i=1;i<Mainform.aff.getNumberOfEntries()+1;i++){
+                     if(Mainform.aff.getEntry(i).getAffiliate_id()==ID){
+                            for(int o=1;o<Mainform.aff.getEntry(i).getItemList().getNumberOfEntries()+1;o++){
+                                if(Mainform.aff.getEntry(i).getItemList().getEntry(o).getItem_id()>newID){
+                                    newID=Mainform.aff.getEntry(i).getItemList().getEntry(o).getItem_id();
                                 }
-                                 if(aff.getEntry(i).getItemList().getEntry(o).getItem_name().equals(jtfName.getText())){
+                                 if(Mainform.aff.getEntry(i).getItemList().getEntry(o).getItem_name().equals(jtfName.getText())){
                                     JOptionPane.showMessageDialog(null, "Item Name Used!!", "InfoBox: " + "Error!!", JOptionPane.ERROR_MESSAGE);
                                     return;
-                                }else if(aff.getEntry(i).getItemList().getEntry(1).getItem_name().equals("empty")){
+                                }else if(Mainform.aff.getEntry(i).getItemList().getEntry(1).getItem_name().equals("empty")){
                                     newItem = new Item(201,jtfName.getText(),Double.parseDouble(jtfPrice.getText()),ID,jtfDescription.getText());
-                                    aff.getEntry(i).getItemList().add(1, newItem);
-                                    aff.getEntry(i).getItemList().remove(2);
+                                    Mainform.aff.getEntry(i).getItemList().add(1, newItem);
+                                    Mainform.aff.getEntry(i).getItemList().remove(2);
                                     JOptionPane.showMessageDialog(null, "Item Added!!", "InfoBox: " + "Successful!!", JOptionPane.INFORMATION_MESSAGE);
                                              
                                     return;
                                 }
                                  else{
-                                     if(aff.getEntry(i).getItemList().getNumberOfEntries()==o){
+                                     if(Mainform.aff.getEntry(i).getItemList().getNumberOfEntries()==o){
                                          newID=newID+1; 
                                          newItem = new Item(newID,jtfName.getText(),Double.parseDouble(jtfPrice.getText()),ID,jtfDescription.getText());
-                                          aff.getEntry(i).getItemList().add(newItem);
+                                          Mainform.aff.getEntry(i).getItemList().add(newItem);
                                                  JOptionPane.showMessageDialog(null, "Item Added!!", "InfoBox: " + "Successful!!", JOptionPane.INFORMATION_MESSAGE);
                                                  
                                                  return;

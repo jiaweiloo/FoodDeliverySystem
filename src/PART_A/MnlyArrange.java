@@ -11,6 +11,7 @@ import adt.LList;
 import adt.ListInterface;
 import entity.Affiliate;
 import entity.Item;
+import fooddeliverysystem.MainForm;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -36,7 +37,7 @@ public class MnlyArrange extends JFrame{
     
     int currentID;
     MnlyArrange MA;
-    AffiliateInterface<Affiliate> affiliate;
+    MainForm Mainform;
     /*Affiliate restA=new Affiliate(1000,"Rest A","Rest A address","Ali","0111111111","Zone A","123456789");
     Affiliate restB=new Affiliate(1001,"Rest B","Rest B address","Bli","0111111111","Zone B","123456789");
     ListInterface<Item> item=new LList<Item>(); 
@@ -79,10 +80,10 @@ public class MnlyArrange extends JFrame{
     JButton btnBack=new JButton("Back");
     int countP=1;
     
-    public MnlyArrange(int CurrentID,AffiliateInterface AFF){
+    public MnlyArrange(int CurrentID,MainForm mainform){
         currentID=CurrentID;
         MA=this;
-        affiliate=AFF;
+        Mainform=mainform;
         /*item.add(itemA);
         item.add(itemB);
         item.add(itemC);
@@ -101,7 +102,7 @@ public class MnlyArrange extends JFrame{
         
         btnBack.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                AffMainMenu AFF=new AffMainMenu(currentID,affiliate);
+                AffMainMenu AFF=new AffMainMenu(currentID,Mainform);
                     AFF.setVisible(true);
                     AFF.setLocationRelativeTo(null);
                     MA.setVisible(false);
@@ -145,10 +146,10 @@ public class MnlyArrange extends JFrame{
         
         jpInfo.removeAll();
         
-        for(int i=1;i<affiliate.getNumberOfEntries()+1;i++){
-            if(affiliate.getEntry(i).getAffiliate_id()==CurrentID){
-                tempOrder=affiliate.getEntry(i).getItemList();
-               jpInfo.setLayout(new GridLayout(affiliate.getEntry(i).getItemList().getNumberOfEntries() + 4, 5));
+        for(int i=1;i<Mainform.aff.getNumberOfEntries()+1;i++){
+            if(Mainform.aff.getEntry(i).getAffiliate_id()==CurrentID){
+                tempOrder=Mainform.aff.getEntry(i).getItemList();
+               jpInfo.setLayout(new GridLayout(Mainform.aff.getEntry(i).getItemList().getNumberOfEntries() + 4, 5));
             }  
         }
         
@@ -158,9 +159,9 @@ public class MnlyArrange extends JFrame{
         jpInfo.add(lblDesc).setFont(font);
         jpInfo.add(lblEmpty2);
         
-        for(int i=1;i<affiliate.getNumberOfEntries()+1;i++){
-           if(affiliate.getEntry(i).getAffiliate_id()==CurrentID){
-                for(int o=1;o<affiliate.getEntry(i).getItemList().getNumberOfEntries()+1;o++){
+        for(int i=1;i<Mainform.aff.getNumberOfEntries()+1;i++){
+           if(Mainform.aff.getEntry(i).getAffiliate_id()==CurrentID){
+                for(int o=1;o<Mainform.aff.getEntry(i).getItemList().getNumberOfEntries()+1;o++){
                     JButton btnSelect = new JButton("Select");
                     
                     jpInfo.add(new JLabel(String.valueOf(tempOrder.getEntry(o).getItem_id()))).setFont(font);
@@ -169,10 +170,10 @@ public class MnlyArrange extends JFrame{
                     jpInfo.add(new JLabel(tempOrder.getEntry(o).getDesc())).setFont(font);
                     jpInfo.add(btnSelect);
                     
-                    String SID =String.valueOf(affiliate.getEntry(i).getItemList().getEntry(o).getItem_id());
-                    String SName=affiliate.getEntry(i).getItemList().getEntry(o).getItem_name();
-                    String SPrice=Double.toString(affiliate.getEntry(i).getItemList().getEntry(o).getItem_price());
-                    String SDesc=affiliate.getEntry(i).getItemList().getEntry(o).getDesc();
+                    String SID =String.valueOf(Mainform.aff.getEntry(i).getItemList().getEntry(o).getItem_id());
+                    String SName=Mainform.aff.getEntry(i).getItemList().getEntry(o).getItem_name();
+                    String SPrice=Double.toString(Mainform.aff.getEntry(i).getItemList().getEntry(o).getItem_price());
+                    String SDesc=Mainform.aff.getEntry(i).getItemList().getEntry(o).getDesc();
                     String P=String.valueOf(countP);
                     
                     btnSelect.addActionListener(new ActionListener() {
@@ -237,9 +238,9 @@ public class MnlyArrange extends JFrame{
             JOptionPane.showMessageDialog(null, "Please Enter Different Position!", "Error!!", JOptionPane.ERROR_MESSAGE);
                            return;
         }
-        for(int i=1;i<affiliate.getNumberOfEntries()+1;i++){
-            if(affiliate.getEntry(i).getAffiliate_id()==CurrentID){
-                maxP=affiliate.getEntry(i).getItemList().getNumberOfEntries();
+        for(int i=1;i<Mainform.aff.getNumberOfEntries()+1;i++){
+            if(Mainform.aff.getEntry(i).getAffiliate_id()==CurrentID){
+                maxP=Mainform.aff.getEntry(i).getItemList().getNumberOfEntries();
                 }
             }
         if( inputP > maxP ){
@@ -247,11 +248,11 @@ public class MnlyArrange extends JFrame{
                            return;
         }
         
-        for(int i=1;i<affiliate.getNumberOfEntries()+1;i++){
-            if(affiliate.getEntry(i).getAffiliate_id()==CurrentID){
+        for(int i=1;i<Mainform.aff.getNumberOfEntries()+1;i++){
+            if(Mainform.aff.getEntry(i).getAffiliate_id()==CurrentID){
                         Item item;
-                        item=affiliate.getEntry(i).getItemList().remove(currentPosition);
-                        affiliate.getEntry(i).getItemList().add(inputP, item);
+                        item=Mainform.aff.getEntry(i).getItemList().remove(currentPosition);
+                        Mainform.aff.getEntry(i).getItemList().add(inputP, item);
                         JOptionPane.showMessageDialog(null, "Position Changed!!", "InfoBox: " + "Successful!!", JOptionPane.INFORMATION_MESSAGE);
                         break;
                     }
