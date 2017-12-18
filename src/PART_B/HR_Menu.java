@@ -2,6 +2,10 @@ package PART_B;
 
 import adt.EmployeeADT;
 import adt.EmployeeInterface;
+import adt.LList;
+import adt.ListInterface;
+import entity.Order;
+import entity.emp_handled_list;
 import entity.employee;
 import fooddeliverysystem.MainForm;
 import java.time.LocalDate;
@@ -21,6 +25,8 @@ public class HR_Menu extends javax.swing.JFrame {
      */
     MainForm mainform;
     static EmployeeInterface<employee> empList = new EmployeeADT<employee>();
+    static ListInterface<emp_handled_list> ehlList = new LList<emp_handled_list>();
+     public ListInterface<Order> finishedOrder = new LList<Order>();
 
     public HR_Menu() {
         initComponents();
@@ -83,6 +89,10 @@ public class HR_Menu extends javax.swing.JFrame {
         txtAddress = new javax.swing.JTextArea();
         jButton3 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jTable4 = new javax.swing.JTable();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -430,18 +440,61 @@ public class HR_Menu extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Update Delivery Men", jPanel3);
 
+        jTable4.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Handle ID", "Employee ID", "Order ID", "Date", "Time", "Status", "Message"
+            }
+        ));
+        jScrollPane6.setViewportView(jTable4);
+
+        jButton5.setText("Exit");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        jButton6.setText("Refresh");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 858, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 817, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(29, Short.MAX_VALUE))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(109, 109, 109)
+                .addComponent(jButton5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton6)
+                .addGap(100, 100, 100))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 499, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 394, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton5)
+                    .addComponent(jButton6))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Nothing Now", jPanel4);
+        jTabbedPane1.addTab("Pending Delivery", jPanel4);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -728,6 +781,30 @@ public class HR_Menu extends javax.swing.JFrame {
         mainform.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+       // this.dispose();
+        //mainform.setVisible(true);
+        DefaultTableModel dm2 = (DefaultTableModel) jTable4.getModel();
+        dm2.setRowCount(0);
+        Object[] rowdata3 = new Object[7];
+        for(int a=0;a<mainform.ehlList.getNumberOfEntries();a++){
+        rowdata3[0]=mainform.ehlList.getEntry(a).getHandle_id();
+        rowdata3[1]=mainform.ehlList.getEntry(a).getEmp_id();
+        rowdata3[2]=mainform.ehlList.getEntry(a).getOrder_id();
+        rowdata3[3]=mainform.ehlList.getEntry(a).getDate();
+        rowdata3[4]=mainform.ehlList.getEntry(a).getTime();
+        rowdata3[5]=mainform.ehlList.getEntry(a).getHandled_status();
+        rowdata3[6]=mainform.ehlList.getEntry(a).getMessage();
+    }
+        
+        
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+       this.dispose();
+        mainform.setVisible(true);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
     public void report() {
 
     }
@@ -774,6 +851,8 @@ public class HR_Menu extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButtonClear;
     private javax.swing.JButton jButtonDelete;
     private javax.swing.JButton jButtonShow;
@@ -798,10 +877,12 @@ public class HR_Menu extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
+    private javax.swing.JTable jTable4;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JComboBox<String> jcbStatus;
     private javax.swing.JTextArea jtfAddress;
