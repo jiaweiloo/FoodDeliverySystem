@@ -61,13 +61,14 @@ public class HR_Menu extends javax.swing.JFrame {
         btnExit = new javax.swing.JButton();
         btnRegister = new javax.swing.JButton();
         jButtonClear = new javax.swing.JButton();
-        jcbStatus = new javax.swing.JComboBox<>();
+        jcbStatus = new javax.swing.JComboBox<String>();
         jPass = new javax.swing.JPasswordField();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
         jButtonShow = new javax.swing.JButton();
         jButtonDelete = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
@@ -80,12 +81,14 @@ public class HR_Menu extends javax.swing.JFrame {
         txtPhone = new javax.swing.JTextField();
         jScrollPane5 = new javax.swing.JScrollPane();
         txtAddress = new javax.swing.JTextArea();
+        jButton3 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -127,8 +130,13 @@ public class HR_Menu extends javax.swing.JFrame {
         });
 
         jButtonClear.setText("Clear");
+        jButtonClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonClearActionPerformed(evt);
+            }
+        });
 
-        jcbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Offline", "Available", "Pending", "other" }));
+        jcbStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Offline", "Available", "Pending", "other" }));
 
         jPass.setText("abcd1234");
 
@@ -196,7 +204,7 @@ public class HR_Menu extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(85, Short.MAX_VALUE))
+                        .addContainerGap(106, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -240,6 +248,13 @@ public class HR_Menu extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("Exit");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -247,11 +262,13 @@ public class HR_Menu extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 828, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addComponent(jButtonShow)
+                .addGap(62, 62, 62)
+                .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonShow)
+                .addGap(263, 263, 263)
                 .addComponent(jButtonDelete)
                 .addGap(74, 74, 74))
         );
@@ -260,11 +277,13 @@ public class HR_Menu extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonShow)
-                    .addComponent(jButtonDelete))
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonDelete)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButtonShow)
+                        .addComponent(jButton2)))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Delete Delivery Men", jPanel2);
@@ -329,13 +348,20 @@ public class HR_Menu extends javax.swing.JFrame {
         txtAddress.setColumns(20);
         txtAddress.setRows(5);
         txtAddress.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 txtAddressInputMethodTextChanged(evt);
             }
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
         });
         jScrollPane5.setViewportView(txtAddress);
+
+        jButton3.setText("Exit");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -358,17 +384,21 @@ public class HR_Menu extends javax.swing.JFrame {
                                     .addGroup(jPanel3Layout.createSequentialGroup()
                                         .addComponent(jLabel8)
                                         .addGap(40, 40, 40)
-                                        .addComponent(txtPhone, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE))
+                                        .addComponent(txtPhone, javax.swing.GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE))
                                     .addGroup(jPanel3Layout.createSequentialGroup()
                                         .addComponent(jLabel7)
                                         .addGap(93, 93, 93)
                                         .addComponent(txtEmail)))
                                 .addGap(155, 155, 155)))
                         .addGap(36, 36, 36)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnUpdate)
-                            .addComponent(btnShow))
-                        .addGap(37, 37, 37))))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(btnUpdate)
+                                .addComponent(btnShow))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(4, 4, 4)
+                                .addComponent(jButton3)))
+                        .addGap(31, 31, 31))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -390,7 +420,10 @@ public class HR_Menu extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnUpdate)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(btnUpdate)
+                                .addGap(35, 35, 35)
+                                .addComponent(jButton3))
                             .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -444,6 +477,13 @@ public class HR_Menu extends javax.swing.JFrame {
             }
         });
 
+        jButton4.setText("Exit");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -451,11 +491,14 @@ public class HR_Menu extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 828, Short.MAX_VALUE)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 834, Short.MAX_VALUE)
+                        .addContainerGap())
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jButton1)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton4)
+                        .addGap(27, 27, 27))))
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(299, 299, 299)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -465,11 +508,17 @@ public class HR_Menu extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
-                .addComponent(jButton1)
-                .addContainerGap(106, Short.MAX_VALUE))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)
+                        .addComponent(jButton1)
+                        .addContainerGap(113, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton4)
+                        .addGap(121, 121, 121))))
         );
 
         jTabbedPane1.addTab("Daily Report", jPanel5);
@@ -523,9 +572,9 @@ public class HR_Menu extends javax.swing.JFrame {
         }
 
         /*   for (int b = 1; b <= empList.getNumberOfEntries() ; b++) {
-            //System.out.println("Employee list number : " + b);
-            //System.out.println(ic_number+ " list ic : " + empList.getEntry(b).getIc_number());
-        } */
+         //System.out.println("Employee list number : " + b);
+         //System.out.println(ic_number+ " list ic : " + empList.getEntry(b).getIc_number());
+         } */
 
     }//GEN-LAST:event_btnRegisterActionPerformed
 
@@ -546,11 +595,11 @@ public class HR_Menu extends javax.swing.JFrame {
         DefaultTableModel dm = (DefaultTableModel) jTable1.getModel();
         dm.setRowCount(0);
         Object[] rowdata = new Object[4];
-        for (int a = 1; a <= empList.getNumberOfEntries(); a++) {
-            rowdata[0] = empList.getEntry(a).getEmp_id();
-            rowdata[1] = empList.getEntry(a).getPhone_num();
-            rowdata[2] = empList.getEntry(a).getStatus();
-            rowdata[3] = empList.getEntry(a).getTotal_handled();
+        for (int a = 1; a <= mainform.empList.getNumberOfEntries(); a++) {
+            rowdata[0] = mainform.empList.getEntry(a).getEmp_id();
+            rowdata[1] = mainform.empList.getEntry(a).getPhone_num();
+            rowdata[2] = mainform.empList.getEntry(a).getStatus();
+            rowdata[3] = mainform.empList.getEntry(a).getTotal_handled();
             dm.addRow(rowdata);
         }
 
@@ -561,13 +610,13 @@ public class HR_Menu extends javax.swing.JFrame {
         DefaultTableModel dm2 = (DefaultTableModel) jTable2.getModel();
         dm2.setRowCount(0);
         Object[] rowdata2 = new Object[6];
-        for (int a = 1; a <= empList.getNumberOfEntries(); a++) {
-            rowdata2[0] = empList.getEntry(a).getEmp_id();
-            rowdata2[1] = empList.getEntry(a).getEmail();
-            rowdata2[2] = empList.getEntry(a).getIc_number();
-            rowdata2[3] = empList.getEntry(a).getAddress();
-            rowdata2[4] = empList.getEntry(a).getYear_joined();
-            rowdata2[5] = empList.getEntry(a).getTotal_handled();
+        for (int a = 1; a <= mainform.empList.getNumberOfEntries(); a++) {
+            rowdata2[0] = mainform.empList.getEntry(a).getEmp_id();
+            rowdata2[1] = mainform.empList.getEntry(a).getEmail();
+            rowdata2[2] = mainform.empList.getEntry(a).getIc_number();
+            rowdata2[3] = mainform.empList.getEntry(a).getAddress();
+            rowdata2[4] = mainform.empList.getEntry(a).getYear_joined();
+            rowdata2[5] = mainform.empList.getEntry(a).getTotal_handled();
             dm2.addRow(rowdata2);
         }
     }//GEN-LAST:event_jButtonShowActionPerformed
@@ -575,17 +624,17 @@ public class HR_Menu extends javax.swing.JFrame {
     private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
         int b = jTable2.getSelectedRow() + 1;
         if (b >= 1) {
-            empList.remove(b);
+            mainform.empList.remove(b);
             DefaultTableModel dm2 = (DefaultTableModel) jTable2.getModel();
             dm2.setRowCount(0);
             Object[] rowdata2 = new Object[6];
-            for (int a = 1; a <= empList.getNumberOfEntries(); a++) {
-                rowdata2[0] = empList.getEntry(a).getEmp_id();
-                rowdata2[1] = empList.getEntry(a).getEmail();
-                rowdata2[2] = empList.getEntry(a).getIc_number();
-                rowdata2[3] = empList.getEntry(a).getAddress();
-                rowdata2[4] = empList.getEntry(a).getYear_joined();
-                rowdata2[5] = empList.getEntry(a).getTotal_handled();
+            for (int a = 1; a <= mainform.empList.getNumberOfEntries(); a++) {
+                rowdata2[0] = mainform.empList.getEntry(a).getEmp_id();
+                rowdata2[1] = mainform.empList.getEntry(a).getEmail();
+                rowdata2[2] = mainform.empList.getEntry(a).getIc_number();
+                rowdata2[3] = mainform.empList.getEntry(a).getAddress();
+                rowdata2[4] = mainform.empList.getEntry(a).getYear_joined();
+                rowdata2[5] = mainform.empList.getEntry(a).getTotal_handled();
                 dm2.addRow(rowdata2);
             }
         } else {
@@ -595,17 +644,17 @@ public class HR_Menu extends javax.swing.JFrame {
 
     private void txtPhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPhoneActionPerformed
         int c = jTable3.getSelectedRow() + 1;
-        txtPhone.setText(empList.getEntry(c).getPhone_num());
+        txtPhone.setText(mainform.empList.getEntry(c).getPhone_num());
     }//GEN-LAST:event_txtPhoneActionPerformed
 
     private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
         int c = jTable3.getSelectedRow() + 1;
-        txtEmail.setText(empList.getEntry(c).getEmail());
+        txtEmail.setText(mainform.empList.getEntry(c).getEmail());
     }//GEN-LAST:event_txtEmailActionPerformed
 
     private void txtAddressInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_txtAddressInputMethodTextChanged
         int c = jTable3.getSelectedRow() + 1;
-        txtAddress.setText(empList.getEntry(c).getAddress());
+        txtAddress.setText(mainform.empList.getEntry(c).getAddress());
     }//GEN-LAST:event_txtAddressInputMethodTextChanged
 
     private void btnShowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowActionPerformed
@@ -614,11 +663,11 @@ public class HR_Menu extends javax.swing.JFrame {
         DefaultTableModel dm2 = (DefaultTableModel) jTable3.getModel();
         dm2.setRowCount(0);
         Object[] rowdata2 = new Object[4];
-        for (int a = 1; a <= empList.getNumberOfEntries(); a++) {
-            rowdata2[0] = empList.getEntry(a).getEmp_id();
-            rowdata2[1] = empList.getEntry(a).getEmail();
-            rowdata2[2] = empList.getEntry(a).getPhone_num();
-            rowdata2[3] = empList.getEntry(a).getAddress();
+        for (int a = 1; a <= mainform.empList.getNumberOfEntries(); a++) {
+            rowdata2[0] = mainform.empList.getEntry(a).getEmp_id();
+            rowdata2[1] = mainform.empList.getEntry(a).getEmail();
+            rowdata2[2] = mainform.empList.getEntry(a).getPhone_num();
+            rowdata2[3] = mainform.empList.getEntry(a).getAddress();
 
             dm2.addRow(rowdata2);
         }
@@ -627,16 +676,16 @@ public class HR_Menu extends javax.swing.JFrame {
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         int c = jTable3.getSelectedRow() + 1;
         if (c >= 1) {
-            employee em2 = new employee(empList.getEntry(c).getEmp_id(), txtEmail.getText(), empList.getEntry(c).getPassword(), empList.getEntry(c).getStatus(), empList.getEntry(c).getIc_number(), txtAddress.getText(), txtPhone.getText(), empList.getEntry(c).getRank(), empList.getEntry(c).getYear_joined(), empList.getEntry(c).getTotal_handled());
-            empList.replace(c, em2);
+            employee em2 = new employee(mainform.empList.getEntry(c).getEmp_id(), txtEmail.getText(), mainform.empList.getEntry(c).getPassword(), mainform.empList.getEntry(c).getStatus(), mainform.empList.getEntry(c).getIc_number(), txtAddress.getText(), txtPhone.getText(), mainform.empList.getEntry(c).getRank(), mainform.empList.getEntry(c).getYear_joined(), mainform.empList.getEntry(c).getTotal_handled());
+            mainform.empList.replace(c, em2);
             DefaultTableModel dm2 = (DefaultTableModel) jTable3.getModel();
             dm2.setRowCount(0);
             Object[] rowdata2 = new Object[4];
-            for (int a = 1; a <= empList.getNumberOfEntries(); a++) {
-                rowdata2[0] = empList.getEntry(a).getEmp_id();
-                rowdata2[1] = empList.getEntry(a).getEmail();
-                rowdata2[2] = empList.getEntry(a).getPhone_num();
-                rowdata2[3] = empList.getEntry(a).getAddress();
+            for (int a = 1; a <= mainform.empList.getNumberOfEntries(); a++) {
+                rowdata2[0] = mainform.empList.getEntry(a).getEmp_id();
+                rowdata2[1] = mainform.empList.getEntry(a).getEmail();
+                rowdata2[2] = mainform.empList.getEntry(a).getPhone_num();
+                rowdata2[3] = mainform.empList.getEntry(a).getAddress();
                 dm2.addRow(rowdata2);
             }
         } else {
@@ -646,14 +695,38 @@ public class HR_Menu extends javax.swing.JFrame {
 
     private void jTable3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable3MouseClicked
         int c = jTable3.getSelectedRow() + 1;
-        txtEmail.setText(empList.getEntry(c).getEmail());
-        txtAddress.setText(empList.getEntry(c).getAddress());
-        txtPhone.setText(empList.getEntry(c).getPhone_num());
+        txtEmail.setText(mainform.empList.getEntry(c).getEmail());
+        txtAddress.setText(mainform.empList.getEntry(c).getAddress());
+        txtPhone.setText(mainform.empList.getEntry(c).getPhone_num());
     }//GEN-LAST:event_jTable3MouseClicked
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
 
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButtonClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClearActionPerformed
+        // TODO add your handling code here:
+        jtfEmail.setText(null);
+        jPass.setText(null);
+        jPhoneNumber.setText(null);
+        jtfIC_Number.setText(null);
+        jtfAddress.setText(null);
+    }//GEN-LAST:event_jButtonClearActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.dispose();
+        mainform.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        this.dispose();
+        mainform.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        this.dispose();
+        mainform.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     public void report() {
 
@@ -698,6 +771,9 @@ public class HR_Menu extends javax.swing.JFrame {
     private javax.swing.JButton btnShow;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButtonClear;
     private javax.swing.JButton jButtonDelete;
     private javax.swing.JButton jButtonShow;
