@@ -392,6 +392,7 @@ public class MainForm extends javax.swing.JFrame {
 
     private void refreshWaitingList() {
         //loadAvailableEmployee();
+        System.out.println("Test");
         int handle_id = 900001;
         if (!empWaitingList.isEmpty() && !orderList.isEmpty()) {
             tempEmp = empWaitingList.dequeue();
@@ -469,9 +470,7 @@ public class MainForm extends javax.swing.JFrame {
         orderList.enqueueAscendingQueue(ord3);
         orderList.enqueueAscendingQueue(ord4);
         orderList.enqueueAscendingQueue(ord5);
-        while(!orderList.isEmpty()){
-            System.out.println(orderList.dequeue().getTotal_amount());
-        }
+        
         //empWaitingList.enqueueAscTotalHandled(emp1);
         //empWaitingList.enqueueAscTotalHandled(emp2);        
         empWaitingList.enqueueAscTotalHandled(emp3);
