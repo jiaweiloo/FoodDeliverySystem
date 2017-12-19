@@ -67,7 +67,7 @@ public class HR_Menu extends javax.swing.JFrame {
         btnExit = new javax.swing.JButton();
         btnRegister = new javax.swing.JButton();
         jButtonClear = new javax.swing.JButton();
-        jcbStatus = new javax.swing.JComboBox<>();
+        jcbStatus = new javax.swing.JComboBox<String>();
         jPass = new javax.swing.JPasswordField();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -147,7 +147,7 @@ public class HR_Menu extends javax.swing.JFrame {
             }
         });
 
-        jcbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Offline", "Available", "Pending", "other" }));
+        jcbStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Offline", "Available", "Pending", "other" }));
 
         jPass.setText("abcd1234");
 
@@ -482,7 +482,7 @@ public class HR_Menu extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Delivery Men ID", "Phone Number", "Status", "Task Complete Today"
+                "Delivery Men ID", "Phone Number", "Status", "Year Joined"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -640,7 +640,7 @@ public class HR_Menu extends javax.swing.JFrame {
             rowdata[0] = List.getEntry(a).getEmp_id();
             rowdata[1] = List.getEntry(a).getPhone_num();
             rowdata[2] = List.getEntry(a).getStatus();
-            rowdata[3] = List.getEntry(a).getTotal_handled();
+            rowdata[3] = List.getEntry(a).getYear_joined();
             dm.addRow(rowdata);
         }
 
