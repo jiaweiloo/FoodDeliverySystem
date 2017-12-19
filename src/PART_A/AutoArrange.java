@@ -163,7 +163,7 @@ public class AutoArrange extends JFrame{
        
        if(index==0){
            
-           ArrangeAZ();
+           
            
         }else if(index==1){
             for(int o=1;o<tempOrder2.getNumberOfEntries()+1;o++){
