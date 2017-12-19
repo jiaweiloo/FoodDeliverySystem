@@ -97,7 +97,7 @@ public class HR_Menu extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        btnRefreshDaily = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
 
@@ -495,10 +495,10 @@ public class HR_Menu extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jTable1);
 
-        jButton1.setText("Refresh");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnRefreshDaily.setText("Refresh");
+        btnRefreshDaily.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnRefreshDailyActionPerformed(evt);
             }
         });
 
@@ -526,7 +526,7 @@ public class HR_Menu extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(btnRefreshDaily)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton4)
                         .addContainerGap())
@@ -544,7 +544,7 @@ public class HR_Menu extends javax.swing.JFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(btnRefreshDaily)
                     .addComponent(jButton4))
                 .addContainerGap())
         );
@@ -622,18 +622,21 @@ public class HR_Menu extends javax.swing.JFrame {
         jTextField1.setText(dtf.format(localDate));
     }
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnRefreshDailyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshDailyActionPerformed
         DefaultTableModel dm = (DefaultTableModel) jTable1.getModel();
         dm.setRowCount(0);
-        //List.clear();
+        List.clear();
+        employee newEmp;
         for(int b=1;b<mainform.empList.getNumberOfEntries()+1;b++){
             //System.out.println("haha");
-            employee newEmp=new employee(mainform.empList.getEntry(b).getEmp_id(),mainform.empList.getEntry(b).getEmail(),mainform.empList.getEntry(b).getPassword(),mainform.empList.getEntry(b).getStatus(),mainform.empList.getEntry(b).getIc_number(),mainform.empList.getEntry(b).getAddress(),mainform.empList.getEntry(b).getPhone_num(),mainform.empList.getEntry(b).getRank(),mainform.empList.getEntry(b).getYear_joined(),mainform.empList.getEntry(b).getTotal_handled());
+            newEmp=new employee(mainform.empList.getEntry(b).getEmp_id(),mainform.empList.getEntry(b).getEmail(),mainform.empList.getEntry(b).getPassword(),mainform.empList.getEntry(b).getStatus(),mainform.empList.getEntry(b).getIc_number(),mainform.empList.getEntry(b).getAddress(),mainform.empList.getEntry(b).getPhone_num(),mainform.empList.getEntry(b).getRank(),mainform.empList.getEntry(b).getYear_joined(),mainform.empList.getEntry(b).getTotal_handled());
             List.DailyReport(newEmp);
+            System.out.println("HR_MENU : "+newEmp.getEmp_id());
         }
         Object[] rowdata = new Object[4];
        // System.out.println(List.getNumberOfEntries());
         for (int a = 1; a <= List.getNumberOfEntries(); a++) {
+            System.out.println(a+" , HR_MENU : "+List.getEntry(a).getEmp_id()+" handled total : "+ List.getEntry(a).getTotal_handled());
             rowdata[0] = List.getEntry(a).getEmp_id();
             rowdata[1] = List.getEntry(a).getPhone_num();
             rowdata[2] = List.getEntry(a).getStatus();
@@ -642,7 +645,7 @@ public class HR_Menu extends javax.swing.JFrame {
         }
 
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnRefreshDailyActionPerformed
 
     private void jButtonShowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonShowActionPerformed
         DefaultTableModel dm2 = (DefaultTableModel) jTable2.getModel();
@@ -858,11 +861,11 @@ public class HR_Menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnRefresh;
+    private javax.swing.JButton btnRefreshDaily;
     private javax.swing.JButton btnRegister;
     private javax.swing.JButton btnShow;
     private javax.swing.JButton btnShowPending;
     private javax.swing.JButton btnUpdate;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
