@@ -31,12 +31,12 @@ public class Payment extends javax.swing.JFrame {
     MainForm mainform;
     OrderConfirmation oc;
 
-    public Payment(ListInterface<OrderList> cartList, Order order, OrderInterface<Order> orderList,OrderConfirmation oc,MainForm mainform) {
+    public Payment(ListInterface<OrderList> cartList, Order order, OrderInterface<Order> orderList, OrderConfirmation oc, MainForm mainform) {
         this.cartList = cartList;
         this.orderList = orderList;
         this.order = order;
-        this.oc=oc;
-        this.mainform=mainform;
+        this.oc = oc;
+        this.mainform = mainform;
         initComponents();
         setTitle("Payment");
         setLocationRelativeTo(null);
@@ -157,28 +157,56 @@ public class Payment extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        if (order.getCurrent_status() ==null) {
+        if (order.getCurrent_status() == null) {
             if (ccNum.getText().equals("") || exDate.getText().equals("") || CVV.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Please complete the credit card info");
-            }else if(!ccNum.getText().matches("[0-9]+")||!CVV.getText().matches("[0-9]+")){
+            } else if (!ccNum.getText().matches("[0-9]+") || !CVV.getText().matches("[0-9]+")) {
                 JOptionPane.showMessageDialog(null, "Please key in number only for CVV and credit card number");
-            }else if(!exDate.getText().matches("^\\d{4}-\\d{2}-\\d{2}")){
-            JOptionPane.showMessageDialog(null, "Please enter date in YYYY-MM-DD format");
-        }
-            else {
+            } else if (!exDate.getText().matches("^\\d{4}-\\d{2}-\\d{2}")) {
+                JOptionPane.showMessageDialog(null, "Please enter date in YYYY-MM-DD format");
+            } else {
                 int result = JOptionPane.showConfirmDialog(null, "Confirm Pay?", "Confirmation", JOptionPane.YES_NO_OPTION);
                 if (result == JOptionPane.YES_OPTION) {
                     JOptionPane.showMessageDialog(null, "Your order is on its way!");
                     mainform.custList.add(order);
                     order.setOrderList(cartList);
+                    int b = 0;
+                    for (int a = 1; a <= cartList.getNumberOfEntries(); a++) {
+                        b = b + cartList.getEntry(a).getQuantity();
+                    }
+
+                    order.setTotal_item(b);
                     order.setCurrent_status("PAID");
+                    order.setOrder_id(101+orderList.size());
                     orderList.enqueueAscendingQueue(order);
+                    String name = order.getCust_name();
+                    String email = order.getCust_email();
+                    String phone = order.getCust_phone();
+                    String address = order.getCust_deliveryAddress();
+                    System.out.println();
+                    System.out.println(order.getCust_name());
+                    System.out.println(order.getCust_email());
+                    System.out.println(order.getCust_phone());
+                    System.out.println(order.getCust_deliveryAddress());
+                    System.out.println(order.getOrder_id());
+                    System.out.println(order.getCurrent_status());
+                    System.out.println(order.getTotal_amount());
+                    System.out.println(order.getTotal_item());
+                    System.out.println(order.getOrderDate());
+                    System.out.println(order.getRestaurant_id());
+                    System.out.println(order.getPurchase_time());
+                    System.out.println();
+
                     //orderList.arrangeQueue();
                     //System.out.println(orderList.dequeue().getTotal_amount());
                     mainform.order = new Order();
+                    mainform.order.setCust_name(name);
+                    mainform.order.setCust_email(email);
+                    mainform.order.setCust_phone(phone);
+                    mainform.order.setCust_deliveryAddress(address);
                     oc.dispose();
-                    this.dispose();
                     mainform.setVisible(true);
+                    this.dispose();
                 }
             }
         } else {

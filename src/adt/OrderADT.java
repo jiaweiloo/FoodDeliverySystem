@@ -114,7 +114,6 @@ public class OrderADT<T> implements OrderInterface<T> {
                 firstNode = newNode;
                 found = true;
             }
-            size++;
         }
         
         /*Node currentNode = firstNode;
@@ -136,6 +135,7 @@ public class OrderADT<T> implements OrderInterface<T> {
             }
         }
 */
+            size++;
     }
 
     public boolean replaceObject(T oldEntry, T newEntry) {

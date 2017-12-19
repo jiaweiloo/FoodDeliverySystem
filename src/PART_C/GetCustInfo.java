@@ -105,23 +105,21 @@ public class GetCustInfo extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
 
-        mainform.phoneNo = phoneNo.getText();
         if (!custList.isEmpty()) {
             for (int a = 1; a <= custList.getNumberOfEntries(); a++) {
                 if (phoneNo.getText().equals(custList.getEntry(a).getCust_phone())) {
                     order.setCust_email(custList.getEntry(a).getCust_email());
                     order.setCust_name(custList.getEntry(a).getCust_name());
                     order.setCust_deliveryAddress(custList.getEntry(a).getCust_deliveryAddress());
+                    order.setCust_phone(phoneNo.getText());
+                    mainform.phoneNo = phoneNo.getText();
                     JOptionPane.showMessageDialog(null, "Info Retrieved Succesfully");
-                    break;
                 } else {
-                    mainform.phoneNo = null;
                     JOptionPane.showMessageDialog(null, "Record Not Found");
                     break;
                 }
             }
         } else {
-            mainform.phoneNo = null;
             JOptionPane.showMessageDialog(null, "Record Not Found");
         }
 

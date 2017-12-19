@@ -38,6 +38,8 @@ public class SelectRestaurant2 extends JFrame {
         this.orderList = orderList;
         this.aff = aff;
         sr2=this;
+        
+                    System.out.println(order.getCust_name());
         /*System.out.println(restQueue.size());
         for(int a=0;a<restQueue.size();a++){
         System.out.println(restQueue.dequeue().getAffiliate_id());
