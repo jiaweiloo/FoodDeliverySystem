@@ -24,7 +24,7 @@ public class HR_Menu extends javax.swing.JFrame {
      * Creates new form HR_Menu
      */
     MainForm mainform;
-    static EmployeeInterface<employee> empList = new EmployeeADT<employee>();
+    static EmployeeInterface<employee> List = new EmployeeADT<employee>();
     static ListInterface<emp_handled_list> ehlList = new LList<emp_handled_list>();
     public ListInterface<Order> finishedOrder = new LList<Order>();
 
@@ -625,12 +625,19 @@ public class HR_Menu extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         DefaultTableModel dm = (DefaultTableModel) jTable1.getModel();
         dm.setRowCount(0);
+        //List.clear();
+        for(int b=1;b<mainform.empList.getNumberOfEntries()+1;b++){
+            //System.out.println("haha");
+            employee newEmp=new employee(mainform.empList.getEntry(b).getEmp_id(),mainform.empList.getEntry(b).getEmail(),mainform.empList.getEntry(b).getPassword(),mainform.empList.getEntry(b).getStatus(),mainform.empList.getEntry(b).getIc_number(),mainform.empList.getEntry(b).getAddress(),mainform.empList.getEntry(b).getPhone_num(),mainform.empList.getEntry(b).getRank(),mainform.empList.getEntry(b).getYear_joined(),mainform.empList.getEntry(b).getTotal_handled());
+            List.DailyReport(newEmp);
+        }
         Object[] rowdata = new Object[4];
-        for (int a = 1; a <= mainform.empList.getNumberOfEntries(); a++) {
-            rowdata[0] = mainform.empList.getEntry(a).getEmp_id();
-            rowdata[1] = mainform.empList.getEntry(a).getPhone_num();
-            rowdata[2] = mainform.empList.getEntry(a).getStatus();
-            rowdata[3] = mainform.empList.getEntry(a).getTotal_handled();
+       // System.out.println(List.getNumberOfEntries());
+        for (int a = 1; a <= List.getNumberOfEntries(); a++) {
+            rowdata[0] = List.getEntry(a).getEmp_id();
+            rowdata[1] = List.getEntry(a).getPhone_num();
+            rowdata[2] = List.getEntry(a).getStatus();
+            rowdata[3] = List.getEntry(a).getTotal_handled();
             dm.addRow(rowdata);
         }
 
