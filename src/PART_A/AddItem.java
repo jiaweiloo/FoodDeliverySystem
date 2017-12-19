@@ -99,7 +99,7 @@ public class AddItem extends JFrame {
         add(jbtnSave);
         add(jbtnReset);
         setTitle("AddItem");
-        setSize(500, 250);  
+        setSize(1000, 500);  
         setLocationRelativeTo(null);   
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    
         setVisible(true);

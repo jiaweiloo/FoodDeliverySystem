@@ -130,7 +130,7 @@ public class UpdateItemDetail extends JFrame {
 
 
         setTitle("Update Item");
-        setSize(800, 250);
+        setSize(1000, 500);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);

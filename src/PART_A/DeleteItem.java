@@ -123,7 +123,7 @@ public class DeleteItem extends JFrame{
        DisplayLayout();
         
         setTitle("Delete Item");
-        setSize(800, 300);  
+        setSize(1000, 500);  
         setLocationRelativeTo(null);   
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    
         setVisible(true);
