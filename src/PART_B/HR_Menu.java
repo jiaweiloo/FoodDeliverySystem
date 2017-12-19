@@ -631,7 +631,7 @@ public class HR_Menu extends javax.swing.JFrame {
             //System.out.println("haha");
             newEmp=new employee(mainform.empList.getEntry(b).getEmp_id(),mainform.empList.getEntry(b).getEmail(),mainform.empList.getEntry(b).getPassword(),mainform.empList.getEntry(b).getStatus(),mainform.empList.getEntry(b).getIc_number(),mainform.empList.getEntry(b).getAddress(),mainform.empList.getEntry(b).getPhone_num(),mainform.empList.getEntry(b).getRank(),mainform.empList.getEntry(b).getYear_joined(),mainform.empList.getEntry(b).getTotal_handled());
             List.DailyReport(newEmp);
-            System.out.println("HR_MENU : "+newEmp.getEmp_id());
+            //System.out.println("HR_MENU : "+newEmp.getEmp_id());
         }
         Object[] rowdata = new Object[4];
        // System.out.println(List.getNumberOfEntries());
