@@ -66,15 +66,15 @@ public class HR_Menu extends javax.swing.JFrame {
         jtfAddress = new javax.swing.JTextArea();
         btnExit = new javax.swing.JButton();
         btnRegister = new javax.swing.JButton();
-        jButtonClear = new javax.swing.JButton();
+        btnClear = new javax.swing.JButton();
         jcbStatus = new javax.swing.JComboBox<String>();
         jPass = new javax.swing.JPasswordField();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
-        jButtonShow = new javax.swing.JButton();
-        jButtonDelete = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnRefresh2 = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
+        btnExit2 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
@@ -87,11 +87,11 @@ public class HR_Menu extends javax.swing.JFrame {
         txtPhone = new javax.swing.JTextField();
         jScrollPane5 = new javax.swing.JScrollPane();
         txtAddress = new javax.swing.JTextArea();
-        jButton3 = new javax.swing.JButton();
+        btnExit3 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         jtPendingDelivery = new javax.swing.JTable();
-        jButton5 = new javax.swing.JButton();
+        btnExit4 = new javax.swing.JButton();
         btnRefresh = new javax.swing.JButton();
         btnShowPending = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
@@ -99,7 +99,7 @@ public class HR_Menu extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         btnRefreshDaily = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
+        btnExit5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -140,10 +140,10 @@ public class HR_Menu extends javax.swing.JFrame {
             }
         });
 
-        jButtonClear.setText("Clear");
-        jButtonClear.addActionListener(new java.awt.event.ActionListener() {
+        btnClear.setText("Clear");
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonClearActionPerformed(evt);
+                btnClearActionPerformed(evt);
             }
         });
 
@@ -163,7 +163,7 @@ public class HR_Menu extends javax.swing.JFrame {
                         .addGap(54, 54, 54)
                         .addComponent(btnRegister)
                         .addGap(38, 38, 38)
-                        .addComponent(jButtonClear, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel6)
@@ -211,7 +211,7 @@ public class HR_Menu extends javax.swing.JFrame {
                     .addComponent(jLabel6))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonClear)
+                    .addComponent(btnClear)
                     .addComponent(btnRegister)
                     .addComponent(btnExit))
                 .addContainerGap(69, Short.MAX_VALUE))
@@ -237,24 +237,24 @@ public class HR_Menu extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(jTable2);
 
-        jButtonShow.setText("Show");
-        jButtonShow.addActionListener(new java.awt.event.ActionListener() {
+        btnRefresh2.setText("Show");
+        btnRefresh2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonShowActionPerformed(evt);
+                btnRefresh2ActionPerformed(evt);
             }
         });
 
-        jButtonDelete.setText("Delete");
-        jButtonDelete.addActionListener(new java.awt.event.ActionListener() {
+        btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonDeleteActionPerformed(evt);
+                btnDeleteActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Exit");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnExit2.setText("Exit");
+        btnExit2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnExit2ActionPerformed(evt);
             }
         });
 
@@ -265,11 +265,11 @@ public class HR_Menu extends javax.swing.JFrame {
             .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 602, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnExit2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(164, 164, 164)
-                .addComponent(jButtonShow, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnRefresh2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -279,9 +279,9 @@ public class HR_Menu extends javax.swing.JFrame {
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonDelete)
-                    .addComponent(jButtonShow)
-                    .addComponent(jButton2))
+                    .addComponent(btnDelete)
+                    .addComponent(btnRefresh2)
+                    .addComponent(btnExit2))
                 .addContainerGap())
         );
 
@@ -355,10 +355,10 @@ public class HR_Menu extends javax.swing.JFrame {
         });
         jScrollPane5.setViewportView(txtAddress);
 
-        jButton3.setText("Exit");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnExit3.setText("Exit");
+        btnExit3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnExit3ActionPerformed(evt);
             }
         });
 
@@ -389,7 +389,7 @@ public class HR_Menu extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnExit3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(78, 78, 78))))
             .addComponent(jScrollPane4)
         );
@@ -411,7 +411,7 @@ public class HR_Menu extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(btnUpdate)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3))
+                        .addComponent(btnExit3))
                     .addComponent(jLabel9)
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(24, 24, 24))
@@ -429,10 +429,10 @@ public class HR_Menu extends javax.swing.JFrame {
         ));
         jScrollPane6.setViewportView(jtPendingDelivery);
 
-        jButton5.setText("Exit");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btnExit4.setText("Exit");
+        btnExit4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btnExit4ActionPerformed(evt);
             }
         });
 
@@ -456,7 +456,7 @@ public class HR_Menu extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 602, Short.MAX_VALUE)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnExit4, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(160, 160, 160)
                 .addComponent(btnShowPending)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -469,7 +469,7 @@ public class HR_Menu extends javax.swing.JFrame {
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5)
+                    .addComponent(btnExit4)
                     .addComponent(btnRefresh)
                     .addComponent(btnShowPending))
                 .addContainerGap())
@@ -511,10 +511,10 @@ public class HR_Menu extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("Exit");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnExit5.setText("Exit");
+        btnExit5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnExit5ActionPerformed(evt);
             }
         });
 
@@ -528,7 +528,7 @@ public class HR_Menu extends javax.swing.JFrame {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(btnRefreshDaily)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton4)
+                        .addComponent(btnExit5)
                         .addContainerGap())
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 592, Short.MAX_VALUE)))
             .addGroup(jPanel5Layout.createSequentialGroup()
@@ -545,7 +545,7 @@ public class HR_Menu extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRefreshDaily)
-                    .addComponent(jButton4))
+                    .addComponent(btnExit5))
                 .addContainerGap())
         );
 
@@ -647,7 +647,7 @@ public class HR_Menu extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnRefreshDailyActionPerformed
 
-    private void jButtonShowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonShowActionPerformed
+    private void btnRefresh2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefresh2ActionPerformed
         DefaultTableModel dm2 = (DefaultTableModel) jTable2.getModel();
         dm2.setRowCount(0);
         Object[] rowdata2 = new Object[6];
@@ -660,9 +660,9 @@ public class HR_Menu extends javax.swing.JFrame {
             rowdata2[5] = mainform.empList.getEntry(a).getTotal_handled();
             dm2.addRow(rowdata2);
         }
-    }//GEN-LAST:event_jButtonShowActionPerformed
+    }//GEN-LAST:event_btnRefresh2ActionPerformed
 
-    private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         int b = jTable2.getSelectedRow() + 1;
         if (b >= 1) {
             mainform.empList.remove(b);
@@ -681,7 +681,7 @@ public class HR_Menu extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "Selec a Delivery Man");
         }
-    }//GEN-LAST:event_jButtonDeleteActionPerformed
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void txtPhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPhoneActionPerformed
         int c = jTable3.getSelectedRow() + 1;
@@ -745,29 +745,29 @@ public class HR_Menu extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jTextField1ActionPerformed
 
-    private void jButtonClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClearActionPerformed
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
         // TODO add your handling code here:
         jtfEmail.setText(null);
         jPass.setText(null);
         jPhoneNumber.setText(null);
         jtfIC_Number.setText(null);
         jtfAddress.setText(null);
-    }//GEN-LAST:event_jButtonClearActionPerformed
+    }//GEN-LAST:event_btnClearActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnExit2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExit2ActionPerformed
         this.dispose();
         mainform.setVisible(true);        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnExit2ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnExit3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExit3ActionPerformed
         this.dispose();
         mainform.setVisible(true);        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnExit3ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btnExit5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExit5ActionPerformed
         this.dispose();
         mainform.setVisible(true);        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btnExit5ActionPerformed
 
     private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
         // this.dispose();
@@ -789,10 +789,10 @@ public class HR_Menu extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnRefreshActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void btnExit4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExit4ActionPerformed
         this.dispose();
         mainform.setVisible(true);
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_btnExit4ActionPerformed
 
     private void btnShowPendingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowPendingActionPerformed
         // TODO add your handling code here:
@@ -859,20 +859,20 @@ public class HR_Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnClear;
+    private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnExit;
+    private javax.swing.JButton btnExit2;
+    private javax.swing.JButton btnExit3;
+    private javax.swing.JButton btnExit4;
+    private javax.swing.JButton btnExit5;
     private javax.swing.JButton btnRefresh;
+    private javax.swing.JButton btnRefresh2;
     private javax.swing.JButton btnRefreshDaily;
     private javax.swing.JButton btnRegister;
     private javax.swing.JButton btnShow;
     private javax.swing.JButton btnShowPending;
     private javax.swing.JButton btnUpdate;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButtonClear;
-    private javax.swing.JButton jButtonDelete;
-    private javax.swing.JButton jButtonShow;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
