@@ -50,6 +50,7 @@ public class SelectRestaurant2 extends JFrame {
         // setLayout(new GridLayout(restQueue.size(), 1));
         for (int a = 1; a <= aff.getNumberOfEntries(); a++) {
             Affiliate b = (Affiliate) aff.getEntry(a);
+            if(b.getItemList().getEntry(1).getItem_id()!=0){
             jbtRest = new JButton(b.getRest_name());
             jbtRest.setPreferredSize(new Dimension(0, 100));
 
@@ -60,6 +61,7 @@ public class SelectRestaurant2 extends JFrame {
             });
 
             jPanel.add(jbtRest);
+            }
         }
         jScrollPane = new JScrollPane(jPanel);
         add(jScrollPane);
