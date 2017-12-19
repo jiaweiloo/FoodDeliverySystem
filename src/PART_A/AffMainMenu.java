@@ -25,10 +25,13 @@ public class AffMainMenu extends javax.swing.JFrame {
     public AffMainMenu(int CurrentID,MainForm mainform) {
         initComponents();
         Mainform=mainform;
-        for(int i=1;i<Mainform.aff.getNumberOfEntries()+1;i++){
-            System.out.println(Mainform.aff.getEntry(i).getRest_name());
-        }
         ID = CurrentID;
+        for(int i=1;i<Mainform.aff.getNumberOfEntries()+1;i++){
+            if(Mainform.aff.getEntry(i).getAffiliate_id()==ID){
+                lblRestName.setText(Mainform.aff.getEntry(i).getRest_name());
+            }
+        }
+        
         
         
         
