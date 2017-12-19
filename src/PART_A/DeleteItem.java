@@ -131,13 +131,14 @@ public class DeleteItem extends JFrame{
     
     private void DisplayLayout(){
         jpInfo.removeAll();
-
+        
         //Calculate number of row
         for(int i=1;i<Mainform.aff.getNumberOfEntries()+1;i++){
             if(Mainform.aff.getEntry(i).getAffiliate_id()==currentID){
                 jpInfo.setLayout(new GridLayout(Mainform.aff.getEntry(i).getItemList().getNumberOfEntries()+2, 4));
             }  
         }
+        
 
         jpInfo.add(lblID).setFont(font);
         jpInfo.add(lblName).setFont(font);
@@ -172,6 +173,7 @@ public class DeleteItem extends JFrame{
                 return;
             }
             //Compare invalid input
+            
             try{
                  double value = Double.parseDouble(jtfInput.getText());
                  double answer = value * 9 / 5 + 35;

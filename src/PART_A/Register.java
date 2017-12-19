@@ -24,10 +24,8 @@ public class Register extends javax.swing.JFrame {
     Affiliate newRest;    
     MainForm MainForm;    
     LList<Item> EmptyItem=new LList<Item>();
-    Item emptyItem = new Item(0,"empty",0,0,"empty");
     public Register(MainForm mainForm) {
         MainForm=mainForm;
-        EmptyItem.add(emptyItem);
         
         initComponents();
     }

@@ -141,7 +141,6 @@ public class AddItem extends JFrame {
         
             for(int i=1;i<Mainform.aff.getNumberOfEntries()+1;i++){
                      if(Mainform.aff.getEntry(i).getAffiliate_id()==ID){
-                         
                          if(Mainform.aff.getEntry(i).getItemList().getNumberOfEntries()!=0){
                             for(int o=1;o<Mainform.aff.getEntry(i).getItemList().getNumberOfEntries()+1;o++){
                                 if(Mainform.aff.getEntry(i).getItemList().getEntry(o).getItem_id()>newID){
@@ -150,15 +149,7 @@ public class AddItem extends JFrame {
                                  if(Mainform.aff.getEntry(i).getItemList().getEntry(o).getItem_name().equals(jtfName.getText())){
                                     JOptionPane.showMessageDialog(null, "Item Name Used!!", "InfoBox: " + "Error!!", JOptionPane.ERROR_MESSAGE);
                                     return;
-                                }else if(Mainform.aff.getEntry(i).getItemList().getEntry(1).getItem_name().equals("empty")){
-                                    newItem = new Item(201,jtfName.getText(),Double.parseDouble(jtfPrice.getText()),ID,jtfDescription.getText());
-                                    Mainform.aff.getEntry(i).getItemList().add(1, newItem);
-                                    Mainform.aff.getEntry(i).getItemList().remove(2);
-                                    JOptionPane.showMessageDialog(null, "Item Added!!", "InfoBox: " + "Successful!!", JOptionPane.INFORMATION_MESSAGE);
-                                             
-                                    return;
-                                }
-                                 else{
+                                }else{
                                      if(Mainform.aff.getEntry(i).getItemList().getNumberOfEntries()==o){
                                          newID=newID+1; 
                                          newItem = new Item(newID,jtfName.getText(),Double.parseDouble(jtfPrice.getText()),ID,jtfDescription.getText());
