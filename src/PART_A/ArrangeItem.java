@@ -49,24 +49,7 @@ public class ArrangeItem extends JFrame{
         Mainform=mainform;
         AI=this;
         //affiliate.add(restA);
-        try{
-                 for (int i = 1; i < Mainform.aff.getNumberOfEntries() + 1; i++) {
-                        if (Mainform.aff.getEntry(i).getAffiliate_id() == currentID) {
-                            if(Mainform.aff.getEntry(i).getItemList().isEmpty()){
-
-
-                            }
-                        }
-                 }
-                 
-            }
-                 catch (Exception e){
-                     JOptionPane.showMessageDialog(null, "No Item", "InfoBox: " + "Error!!", JOptionPane.ERROR_MESSAGE);
-                     AffMainMenu AFF=new AffMainMenu(currentID,Mainform);
-                    AFF.setVisible(true);
-                    AFF.setLocationRelativeTo(null);
-                    AI.setVisible(false);
-                 }
+        
         
         btnBack.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {

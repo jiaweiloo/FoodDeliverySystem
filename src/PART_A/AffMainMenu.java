@@ -14,6 +14,7 @@ import adt.LList;
 import adt.ListInterface;
 import entity.Affiliate;
 import fooddeliverysystem.MainForm;
+import javax.swing.JOptionPane;
 public class AffMainMenu extends javax.swing.JFrame {
 
     /**
@@ -147,6 +148,20 @@ public class AffMainMenu extends javax.swing.JFrame {
 
     private void btnDeleteItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteItemActionPerformed
         // TODO add your handling code here:
+        try{
+                 for (int i = 1; i < Mainform.aff.getNumberOfEntries() + 1; i++) {
+                        if (Mainform.aff.getEntry(i).getAffiliate_id() == ID) {
+                            System.out.println(Mainform.aff.getEntry(i).getItemList().getEntry(1).getItem_name());
+                        }
+                 }
+                 
+            }
+                 catch (Exception e){
+                     JOptionPane.showMessageDialog(null, "No Item", "InfoBox: " + "Error!!", JOptionPane.ERROR_MESSAGE);
+                     //AffMainMenu AFF=new AffMainMenu(ID,Mainform);
+                     return;
+                 }
+        
         DeleteItem DeleteItem = new DeleteItem(ID,Mainform);
         DeleteItem.setVisible(true);
         DeleteItem.setLocationRelativeTo(null);
@@ -156,6 +171,19 @@ public class AffMainMenu extends javax.swing.JFrame {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
+        try{
+                 for (int i = 1; i < Mainform.aff.getNumberOfEntries() + 1; i++) {
+                        if (Mainform.aff.getEntry(i).getAffiliate_id() == ID) {
+                            System.out.println(Mainform.aff.getEntry(i).getItemList().getEntry(1).getItem_name());
+                        }
+                 }
+                 
+            }
+                 catch (Exception e){
+                     JOptionPane.showMessageDialog(null, "No Item", "InfoBox: " + "Error!!", JOptionPane.ERROR_MESSAGE);
+                     //AffMainMenu AFF=new AffMainMenu(ID,Mainform);
+                     return;
+                 }
         UpdateItemDetail UpdateItem = new UpdateItemDetail(ID,Mainform);
         UpdateItem.setVisible(true);
         UpdateItem.setLocationRelativeTo(null);
@@ -164,6 +192,19 @@ public class AffMainMenu extends javax.swing.JFrame {
 
     private void btnArrangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnArrangeActionPerformed
         // TODO add your handling code here:
+        try{
+                 for (int i = 1; i < Mainform.aff.getNumberOfEntries() + 1; i++) {
+                        if (Mainform.aff.getEntry(i).getAffiliate_id() == ID) {
+                            System.out.println(Mainform.aff.getEntry(i).getItemList().getEntry(1).getItem_name());
+                        }
+                 }
+                 
+            }
+                 catch (Exception e){
+                     JOptionPane.showMessageDialog(null, "No Item", "InfoBox: " + "Error!!", JOptionPane.ERROR_MESSAGE);
+                     //AffMainMenu AFF=new AffMainMenu(ID,Mainform);
+                     return;
+                 }
         ArrangeItem ArrangeItem = new ArrangeItem(ID,Mainform);
         ArrangeItem.setVisible(true);
         ArrangeItem.setLocationRelativeTo(null);

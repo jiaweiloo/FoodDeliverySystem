@@ -70,31 +70,7 @@ public class DeleteItem extends JFrame{
         Mainform=mainform;
         DI=this;
         
-        
-        try{
-                 for (int i = 1; i < Mainform.aff.getNumberOfEntries() + 1; i++) {
-                        if (Mainform.aff.getEntry(i).getAffiliate_id() == currentID) {
-                            if(Mainform.aff.getEntry(i).getItemList().isEmpty()){
 
-
-                            }
-                        }
-                 }
-                 
-            }
-                 catch (Exception e){
-                     JOptionPane.showMessageDialog(null, "No Item", "InfoBox: " + "Error!!", JOptionPane.ERROR_MESSAGE);
-                     System.exit(0);
-                 }
-        
-            
-        
-        
-        
-        
-        
-        
-       
        jtbDel.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 deleteItem(evt);
