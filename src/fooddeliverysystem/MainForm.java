@@ -102,7 +102,7 @@ public class MainForm extends javax.swing.JFrame {
         });
 
         jtfTime.setEditable(false);
-        jtfTime.setText("Thu Dec 07 00:00:01 SGT 2017");
+        jtfTime.setText("Starting UI, Please wait.....");
 
         lblTime.setText("Current Time:");
 
@@ -260,7 +260,7 @@ public class MainForm extends javax.swing.JFrame {
                                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(2, 2, 2)
                                 .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                                 .addComponent(btnAfftLogin)
                                 .addGap(4, 4, 4)
                                 .addComponent(btnAffReg))
