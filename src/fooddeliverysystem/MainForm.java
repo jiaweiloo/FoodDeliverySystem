@@ -28,7 +28,7 @@ public class MainForm extends javax.swing.JFrame {
     employee emp, emp1, emp2, emp3, emp4, emp5, tempEmp;
     Attendance att, att1, att2, att3, att4, att5;
     Order ord, ord1, ord2, ord3, ord4, ord5, tempOrd;
-    Affiliate aff0 ,aff1,aff2,aff3;
+    Affiliate aff0, aff1, aff2, aff3;
     emp_handled_list ehl;
     SimpleDateFormat timeOnly = new SimpleDateFormat("hh:mm:ss");
     SimpleDateFormat dateOnly = new SimpleDateFormat("dd/MM/yyyy");
@@ -49,12 +49,12 @@ public class MainForm extends javax.swing.JFrame {
     public MainForm() {
         initComponents();
         System.out.println(aff.getNumberOfEntries());
-        for(int i =1;i<aff.getNumberOfEntries()+1;i++){
-           System.out.println(aff.getEntry(i).getRest_name());
+        for (int i = 1; i < aff.getNumberOfEntries() + 1; i++) {
+            System.out.println(aff.getEntry(i).getRest_name());
         }
         System.out.println("here");
         updateList();
-        
+
     }
 
     /**
@@ -306,7 +306,7 @@ public class MainForm extends javax.swing.JFrame {
                 boolean toAdd = true;
                 for (int ct = 1; ct <= attdList.getNumberOfEntries(); ct++) {
                     atd = attdList.getEntry(ct);
-                    if(atd.getEmp_id() == emp.getEmp_id()){
+                    if (atd.getEmp_id() == emp.getEmp_id()) {
                         if (atd.getDate().equals(dateOnly.format(new Date()))) {
                             toAdd = false;
                             break;
@@ -400,7 +400,7 @@ public class MainForm extends javax.swing.JFrame {
 
     private void btnAffRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAffRegActionPerformed
         // TODO add your handling code here:
-        
+
         Register Register = new Register(this);
         Register.setVisible(true);
         Register.setLocationRelativeTo(null);
@@ -497,22 +497,22 @@ public class MainForm extends javax.swing.JFrame {
         ord3 = new Order(200003, "MAH HONG WAI", "014-3311311", "mahhw-wa15@student.tarc.edu.my", "A-6-5 Sri Pelangi, Jln Genting Klang, 53300 KL", 300001, 30.50, 2, "PENDING", "11/12/2017", "17:59:51");
         ord4 = new Order(200004, " LIM NAN FUNG", "014-1235437", "limnf-wa15@student.tarc.edu.my", "B-6-5 Teratai Residency, Jln Genting Klang, 53300 KL", 300002, 17.50, 1, "PENDING", "12/12/2017", "16:35:51");
         ord5 = new Order(200005, "LIM PENG LEN", "013-22211122", "limpl-wa15@student.tarc.edu.my", "C-6-5 Sri Pelangi, Jln Genting Klang, 53300 KL", 300002, 22.50, 3, "PENDING", "13/12/2017", "15:37:51");
-        aff0 = new Affiliate(101, "Thai Boy Restaurant", "123, Jalan Genting Klang, 53300 setapak, Kuala Lumpur", "Loo Jia Wei", "0123456789", "Genting Klang", "123");
-        aff1 = new Affiliate(102, "Curry Chicken", "123, Jalan Genting Klang, 53300 setapak, Kuala Lumpur", "Loo Jia Wei", "0123456789", "Genting Klang", "123");
-        aff2 = new Affiliate(103, "The Taste", "123, Jalan Genting Klang, 53300 setapak, Kuala Lumpur", "Loo Jia Wei", "0123456789", "Genting Klang", "123");
-        aff3 = new Affiliate(104, "Nasi Putih", "123, Jalan Genting Klang, 53300 setapak, Kuala Lumpur", "Loo Jia Wei", "0123456789", "Genting Klang", "123");
-        itemList.add(new Item(201, "Curry Laksa", 5, 101, "asdasd"));
-        itemList.add(new Item(202, "Curry Ayam", 5, 101, "asdasd"));
-        itemList.add(new Item(203, "Curry Ikan", 5, 101, "asdasd"));
-        itemList2.add(new Item(201, "Curry Babi", 5, 102, "asdasd"));
-        itemList2.add(new Item(202, "Curry Kosong", 5, 102, "asdasd"));
-        itemList2.add(new Item(203, "Curry Manis", 5, 102, "asdasd"));
-        itemList3.add(new Item(201, "Curry Satu", 5, 103, "asdasd"));
-        itemList3.add(new Item(202, "Curry Dua", 5, 103, "asdasd"));
-        itemList3.add(new Item(203, "Curry Tiga", 5, 103, "asdasd"));
-        itemList4.add(new Item(201, "Curry Empat", 5, 104, "asdasd"));
-        itemList4.add(new Item(202, "Curry Lima", 5, 104, "asdasd"));
-        itemList4.add(new Item(203, "Curry Enam", 5, 104, "asdasd"));
+        aff0 = new Affiliate(101, "Thai Boy Restaurant", "123, Jalan Genting Klang, 53300 setapak, Kuala Lumpur", "Mah Hong Wai", "0123456789", "Genting Klang", "123");
+        aff1 = new Affiliate(102, "Curry Chicken", "18, Jalan Bunga Klang, 53300 setapak, Kuala Lumpur", "Loi Kah Hou", "0123456789", "Genting Klang", "123");
+        aff2 = new Affiliate(103, "The Taste", "20, Jalan Pahang Klang, 53300 setapak, Kuala Lumpur", "Lim Jun Kit", "0123456789", "Genting Klang", "123");
+        aff3 = new Affiliate(104, "Nasi Putih", "11, Jalan Genting Klang, 53300 setapak, Kuala Lumpur", "Loo Jia Wei", "0123456789", "Genting Klang", "123");
+        itemList.add(new Item(201, "Curry Laksa", 5.99, 101, "One of a kind penang laksa served with pineapples!"));
+        itemList.add(new Item(202, "Curry Chicken", 6.80, 101, "Curry chicken steamed"));
+        itemList.add(new Item(203, "Chicken Rice", 4.80, 101, "Best in town"));
+        itemList2.add(new Item(204, "Fried Noodles", 8.90, 102, "Confirm satisfied"));
+        itemList2.add(new Item(205, "Fried Rice", 8.90, 102, "Confirm satisfied"));
+        itemList2.add(new Item(206, "Hawaii Pizza", 18.90, 102, "Confirm satisfied"));
+        itemList3.add(new Item(207, "Pepperoni Pizza", 19.90, 103, "Confirm satisfied"));
+        itemList3.add(new Item(208, "Roti Kosong", 5, 103, "Confirm satisfied"));
+        itemList3.add(new Item(209, "Roti Telur", 5, 103, "Confirm satisfied"));
+        itemList4.add(new Item(210, "Roti Pisang", 5, 104, "Confirm satisfied"));
+        itemList4.add(new Item(211, "Milo Dinasour", 5, 104, "So large you won't drink finish!"));
+        itemList4.add(new Item(212, "Limau Mango", 5, 104, "Best drink ever created"));
         aff0.setItemList(itemList);
         aff1.setItemList(itemList2);
         aff2.setItemList(itemList3);
