@@ -93,16 +93,17 @@ public class ArrangeItem extends JFrame{
         lblTitle.setFont(FontTitle);
         btnAuto.setFont(FontTitle);
         btnMnly.setFont(FontTitle);
-        add(lblTitle);
+        add(lblTitle,BorderLayout.NORTH);
         
-        setLayout(new GridLayout(2,3));
-        add(btnAuto);
-        add(lblEmpty);
-        add(btnMnly);
-        add(lblEmpty);
-        add(btnBack);
+        P.setLayout(new GridLayout(2,3));
+        P.add(btnAuto);
+        P.add(lblEmpty);
+        P.add(btnMnly);
+        P.add(lblEmpty1);
+        P.add(btnBack);
+        add(P);
         setTitle("Arrange Item");
-        setSize(500, 250);  
+        setSize(1000, 250);  
         setLocationRelativeTo(null);   
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    
         setVisible(true);
