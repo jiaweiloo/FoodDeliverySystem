@@ -130,4 +130,6 @@ public interface EmployeeInterface<T> {
    * empty or not found
    */
   public boolean replaceObject(T oldEntry, T newEntry);
+  
+  public void DailyReport(T newEntry);
 }

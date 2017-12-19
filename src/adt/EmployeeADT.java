@@ -11,6 +11,7 @@ public class EmployeeADT<T> implements EmployeeInterface<T> {
     private Node firstNode; // reference to first node
     private int numberOfEntries;  	// number of entries in list
     employee emp;
+    private Node lastNode;
 
     public EmployeeADT() {
         clear();
@@ -239,6 +240,44 @@ public class EmployeeADT<T> implements EmployeeInterface<T> {
         }
         return found;        
     }
+    
+     public void DailyReport(T newEntry) {
+        boolean found = false;
+        Node newNode = new Node(newEntry, null);
+        
+        employee newEmp = (employee) newEntry;
+        Node currentNode = firstNode;
+        
+        if (isEmpty()) {
+            firstNode = newNode;
+            lastNode = newNode;
+            found = true;
+        }
+        
+        while(!found&&currentNode!=null){
+            employee currentEmp = (employee)currentNode.data;
+            
+            if(newEmp.getTotal_handled()<currentEmp.getTotal_handled()){
+                if(currentNode.next==null){
+                    currentNode.next = newNode;
+                    lastNode = newNode;
+                    found = true;
+                }else if(((employee)currentNode.next.data).getTotal_handled()<newEmp.getTotal_handled()){
+                    newNode.next = currentNode.next;
+                    currentNode.next=newNode;
+                    found = true;
+                }else{
+                    currentNode = currentNode.next;
+                }
+            }else{
+                newNode.next = currentNode;
+                lastNode = currentNode;
+                firstNode = newNode;
+                found = true;
+            }
+        }
+        numberOfEntries++;
+     }
     
     private class Node {
 
