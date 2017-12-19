@@ -112,7 +112,10 @@ public class ArrangeItem extends JFrame{
     private void SelAuto(ActionEvent evt) {
             
             this.dispose();
-            AutoArrange AA=new AutoArrange(currentID);
+            AutoArrange AutoArrange=new AutoArrange(currentID,Mainform);
+        AutoArrange.setVisible(true);
+        AutoArrange.setLocationRelativeTo(null);
+        this.setVisible(false);
         
         }
     
