@@ -257,12 +257,12 @@ public class EmployeeADT<T> implements EmployeeInterface<T> {
         while(!found&&currentNode!=null){
             employee currentEmp = (employee)currentNode.data;
             
-            if(newEmp.getTotal_handled()<currentEmp.getTotal_handled()){
+            if(newEmp.getYear_joined()<currentEmp.getYear_joined()){
                 if(currentNode.next==null){
                     currentNode.next = newNode;
                     lastNode = newNode;
                     found = true;
-                }else if(((employee)currentNode.next.data).getTotal_handled()<newEmp.getTotal_handled()){
+                }else if(((employee)currentNode.next.data).getYear_joined()<newEmp.getYear_joined()){
                     newNode.next = currentNode.next;
                     currentNode.next=newNode;
                     found = true;
