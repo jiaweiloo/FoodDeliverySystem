@@ -28,7 +28,7 @@ public class MainForm extends javax.swing.JFrame {
     public ListInterface<Item> itemList2 = new LList<Item>();
     public ListInterface<Item> itemList3 = new LList<Item>();
     public ListInterface<Item> itemList4 = new LList<Item>();
-    public LList<Order> custList = new LList<Order>();
+    public ListInterface<Order> custList = new LList<Order>();
     
     employee emp, emp1, emp2, emp3, emp4, emp5, tempEmp;
     Attendance att, att1, att2, att3, att4, att5;
