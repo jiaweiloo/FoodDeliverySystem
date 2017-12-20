@@ -162,10 +162,11 @@ public class LList<T> implements ListInterface<T> {
         return false;
     }
 
+    /*
     public emp_handled_list searchID(int ID) {
         boolean found = false;
         emp_handled_list result = null;
-        
+
         Node currentNode = firstNode;
         emp_handled_list ehl;
         while (!found && (currentNode != null)) {
@@ -178,26 +179,55 @@ public class LList<T> implements ListInterface<T> {
             }
         }
         return result;
-    }
+    } */
 
-    public Attendance searchAttdId(int ID) {
+    public T searchByID(int ID) {
         boolean found = false;
-        Attendance result = null;
-        
+        T result = null;
+
         Node currentNode = firstNode;
-        Attendance atd;
-        while (!found && (currentNode != null)) {
-            atd = (Attendance) currentNode.data;
-            if (atd.getEmp_id() == ID) {
-                result = atd;
-                found = true;
-            } else {
-                currentNode = currentNode.next;
+        if (currentNode.data instanceof Attendance) {
+            //if currentNode.data is an object of Attendance
+            Attendance atd;
+            while (!found && (currentNode != null)) {
+                atd = (Attendance) currentNode.data;
+                if (atd.getEmp_id() == ID) {
+                    result = currentNode.data;
+                    found = true;
+                } else {
+                    currentNode = currentNode.next;
+                }
+            }
+        } else if (currentNode.data instanceof Order) {
+            //if currentNode.data is an object of Order
+            Order order;
+            while (!found && (currentNode != null)) {
+                order = (Order) currentNode.data;
+                if (order.getOrder_id() == ID) {
+                    result = currentNode.data;
+                    found = true;
+                } else {
+                    currentNode = currentNode.next;
+                }
+            }
+        } else if (currentNode.data instanceof emp_handled_list) {
+            //if currentNode.data is an object of emp_handled_list
+            emp_handled_list ehl;
+            while (!found && (currentNode != null)) {
+                ehl = (emp_handled_list) currentNode.data;
+                if (ehl.getEmp_id() == ID) {
+                    result = currentNode.data;
+                    found = true;
+                } else {
+                    currentNode = currentNode.next;
+                }
             }
         }
+
         return result;
     }
-    
+
+    /*
     public Order searchOrderID(int ID) {
         boolean found = false;
         Order result = null;
@@ -205,7 +235,7 @@ public class LList<T> implements ListInterface<T> {
         Order order;
         while (!found && (currentNode != null)) {
             order = (Order) currentNode.data;
-            if (order.getOrder_id()== ID) {
+            if (order.getOrder_id() == ID) {
                 found = true;
                 result = order;
             } else {
@@ -213,27 +243,26 @@ public class LList<T> implements ListInterface<T> {
             }
         }
         return result;
-    }
-    
-    
+    } */
+
     public boolean replaceObject(T oldEntry, T newEntry) {
         boolean found = false;
         Node currentNode = firstNode;
-        Node newNode = new Node(newEntry,null);
-        
+        Node newNode = new Node(newEntry, null);
+
         while (!found && (currentNode != null)) {
             if (oldEntry.equals(currentNode.data)) {
                 found = true;
                 newNode.next = currentNode.next;
                 currentNode = newNode;
-                System.out.println("Replace status : "+found);
+                System.out.println("Replace status : " + found);
             } else {
                 currentNode = currentNode.next;
             }
         }
-        return found;        
+        return found;
     }
-    
+
     @Override
     public String toString() {
         String outputStr = "";
