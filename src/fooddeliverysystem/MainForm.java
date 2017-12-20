@@ -23,7 +23,13 @@ public class MainForm extends javax.swing.JFrame {
     public OrderInterface<Order> orderList = new OrderADT<Order>();
     public WaitingInterface<employee> empWaitingList = new WaitingQueueADT<employee>();
     public ListInterface<emp_handled_list> ehlList = new LList<emp_handled_list>();
-    //public ListInterface<Order> finishedOrder = new LList<Order>();
+    public AffiliateInterface<Affiliate> aff = new AffiliateADT<Affiliate>();
+    public ListInterface<Item> itemList = new LList<Item>();
+    public ListInterface<Item> itemList2 = new LList<Item>();
+    public ListInterface<Item> itemList3 = new LList<Item>();
+    public ListInterface<Item> itemList4 = new LList<Item>();
+    public LList<Order> custList = new LList<Order>();
+    
     employee emp, emp1, emp2, emp3, emp4, emp5, tempEmp;
     Attendance att, att1, att2, att3, att4, att5;
     Order ord, ord1, ord2, ord3, ord4, ord5, tempOrd;
@@ -33,14 +39,9 @@ public class MainForm extends javax.swing.JFrame {
     SimpleDateFormat dateOnly = new SimpleDateFormat("dd/MM/yyyy");
     deliveryManInterface DMI;
     public Order order = new Order();
-    public LList<Order> custList = new LList<Order>();
+    
     public String phoneNo;
-    public AffiliateInterface<Affiliate> aff = new AffiliateADT<Affiliate>();
-
-    public ListInterface<Item> itemList = new LList<Item>();
-    public ListInterface<Item> itemList2 = new LList<Item>();
-    public ListInterface<Item> itemList3 = new LList<Item>();
-    public ListInterface<Item> itemList4 = new LList<Item>();
+    
 
     /**
      * Creates new form MainForm
