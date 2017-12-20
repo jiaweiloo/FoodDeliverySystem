@@ -211,7 +211,7 @@ public class TrackMyOrder extends javax.swing.JFrame {
 
             try {
                 int orderID = Integer.valueOf(jtfOrderID.getText());
-                order = mainform.finishedOrder.searchOrderID(orderID);
+                order = mainform.custList.searchByID(orderID);
                 if (order == null) {
                     JOptionPane.showMessageDialog(null, "Order not found !Please enter valid order ID! ", "Error!", JOptionPane.ERROR_MESSAGE);
                 } else {

@@ -16,8 +16,6 @@ import javax.swing.table.DefaultTableModel;
 public class deliveryManInterface extends javax.swing.JFrame {
 
     MainForm mainform;
-    //ListInterface<employee> empList = new LList<employee>();
-    //ListInterface<Attendance> attdList = new LList<Attendance>();
     EmployeeInterface<employee> empList;
     ListInterface<Attendance> attdList;
     OrderInterface<Order> orderQueue;
@@ -414,8 +412,8 @@ public class deliveryManInterface extends javax.swing.JFrame {
         ord.setCurrent_status("DELIVERED");
         ehl.setHandled_status("DELIVERED");
         mainform.ehlList.replaceObject(ehl_old, ehl);
-        mainform.finishedOrder.replaceObject(mainform.finishedOrder.searchOrderID(ord.getOrder_id()), ord);
-        System.out.println(mainform.finishedOrder.searchOrderID(ord.getOrder_id()).getCurrent_status());
+        mainform.custList.replaceObject(mainform.custList.searchByID(ord.getOrder_id()), ord);
+        System.out.println(mainform.custList.searchByID(ord.getOrder_id()).getCurrent_status());
         jtfFinish.setText(Integer.toString(complete));
     }//GEN-LAST:event_btnCompleteActionPerformed
 
@@ -498,7 +496,7 @@ public class deliveryManInterface extends javax.swing.JFrame {
     }
 
     public void nextOrder(Order ord, emp_handled_list ehl) {
-        if (!mainform.finishedOrder.searchOrderID(ord.getOrder_id()).getCurrent_status().equals("DELIVERED")) {
+        if (!mainform.custList.searchByID(ord.getOrder_id()).getCurrent_status().equals("DELIVERED")) {
             this.ord = ord;
             this.ehl = ehl;
             jtfStatus.setText("ACTIVE");
@@ -507,7 +505,7 @@ public class deliveryManInterface extends javax.swing.JFrame {
             btnComplete.setEnabled(true);
 
         } else {
-            jtfStatus.setText(mainform.finishedOrder.searchOrderID(ord.getOrder_id()).getCurrent_status());
+            jtfStatus.setText(mainform.custList.searchByID(ord.getOrder_id()).getCurrent_status());
         }
     }
 
