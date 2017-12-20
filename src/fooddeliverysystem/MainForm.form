@@ -128,7 +128,7 @@
                               <Component id="jSeparator2" min="-2" pref="10" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="9" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Component id="btnAfftLogin" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                               <Component id="btnAffReg" min="-2" max="-2" attributes="0"/>
@@ -201,7 +201,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jtfEmail">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jason@mail.com"/>
+        <Property name="text" type="java.lang.String" value="manager@mail.com"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JPasswordField" name="jpfPassword">

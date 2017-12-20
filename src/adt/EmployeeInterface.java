@@ -132,4 +132,13 @@ public interface EmployeeInterface<T> {
   public boolean replaceObject(T oldEntry, T newEntry);
   
   public void DailyReport(T newEntry);
+  
+  /**
+   * Task: Add entry according to tasks handled by ascending order
+   *
+   * @param newEntry the object that will be added into the list
+   * @return true if the add occurs, or false if either the list is
+   * unable to add
+   */
+  public boolean addByTaskHandled(T newEntry);
 }
