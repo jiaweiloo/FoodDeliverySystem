@@ -115,7 +115,7 @@ public class AutoArrange extends JFrame{
         lblName.setForeground(Color.MAGENTA);
         lblPrice.setForeground(Color.MAGENTA);
         lblDesc.setForeground(Color.MAGENTA);
-        
+        lblSeason.setForeground(Color.MAGENTA);
         
         DisplayLayout();
         
