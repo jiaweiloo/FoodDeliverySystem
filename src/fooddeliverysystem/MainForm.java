@@ -537,9 +537,9 @@ public class MainForm extends javax.swing.JFrame {
 
         //empWaitingList.enqueueAscTotalHandled(emp1);
         //empWaitingList.enqueueAscTotalHandled(emp2);        
-        empWaitingList.enqueueAscTotalHandled(emp3);
-        empWaitingList.enqueueAscTotalHandled(emp4);
-        empWaitingList.enqueueAscTotalHandled(emp5);
+        empWaitingList.add(emp3);
+        empWaitingList.add(emp4);
+        empWaitingList.add(emp5);
     }
 
     public void returnAtt(Attendance att) {
