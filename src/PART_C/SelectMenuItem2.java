@@ -69,7 +69,7 @@ public class SelectMenuItem2 extends JFrame {
                 public void actionPerformed(ActionEvent e) {
                     if ((Integer) jsQuantity.getValue() != 0) {
                         int count = 0;
-                        ol = new OrderList(cartList.getNumberOfEntries() + 401, order.getOrder_id(), tempItem.getItem_id(), (int) jsQuantity.getValue(), (int) jsQuantity.getValue() * tempItem.getItem_price());
+                        ol = new OrderList(cartList.getNumberOfEntries() + 400001, order.getOrder_id(), tempItem.getItem_id(), (int) jsQuantity.getValue(), (int) jsQuantity.getValue() * tempItem.getItem_price());
 
                         if (cartList.getNumberOfEntries() != 0) {
                             for (int a = 1; a <= cartList.getNumberOfEntries(); a++) {

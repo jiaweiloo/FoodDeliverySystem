@@ -192,7 +192,7 @@ public class CustFillInForm extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Please key in number only for phone no");
         }
         else{
-            order.setOrder_id(orderList.size()+101);
+            order.setOrder_id(orderList.size()+200001);
             order.setCust_name(custName.getText());
             order.setCust_email(custEmail.getText());
             order.setCust_phone(custPhone.getText());

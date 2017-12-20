@@ -177,7 +177,7 @@ public class Payment extends javax.swing.JFrame {
 
                     order.setTotal_item(b);
                     order.setCurrent_status("PAID");
-                    order.setOrder_id(101+orderList.size());
+                    order.setOrder_id(200001+orderList.size());
                     orderList.enqueueAscendingQueue(order);
                     String name = order.getCust_name();
                     String email = order.getCust_email();
