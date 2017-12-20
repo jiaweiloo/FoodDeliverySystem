@@ -162,25 +162,6 @@ public class LList<T> implements ListInterface<T> {
         return false;
     }
 
-    /*
-    public emp_handled_list searchID(int ID) {
-        boolean found = false;
-        emp_handled_list result = null;
-
-        Node currentNode = firstNode;
-        emp_handled_list ehl;
-        while (!found && (currentNode != null)) {
-            ehl = (emp_handled_list) currentNode.data;
-            if (ehl.getEmp_id() == ID) {
-                result = ehl;
-                found = true;
-            } else {
-                currentNode = currentNode.next;
-            }
-        }
-        return result;
-    } */
-
     public T searchByID(int ID) {
         boolean found = false;
         T result = null;
@@ -226,24 +207,6 @@ public class LList<T> implements ListInterface<T> {
 
         return result;
     }
-
-    /*
-    public Order searchOrderID(int ID) {
-        boolean found = false;
-        Order result = null;
-        Node currentNode = firstNode;
-        Order order;
-        while (!found && (currentNode != null)) {
-            order = (Order) currentNode.data;
-            if (order.getOrder_id() == ID) {
-                found = true;
-                result = order;
-            } else {
-                currentNode = currentNode.next;
-            }
-        }
-        return result;
-    } */
 
     public boolean replaceObject(T oldEntry, T newEntry) {
         boolean found = false;
