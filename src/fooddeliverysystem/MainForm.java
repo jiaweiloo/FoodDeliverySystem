@@ -350,9 +350,6 @@ public class MainForm extends javax.swing.JFrame {
                     this.setVisible(false);
                     //JOptionPane.showMessageDialog(null, "Login success, application under construction! ");
                     break;
-                case "AFFT":
-                    JOptionPane.showMessageDialog(null, "Login success, application under construction! ");
-                    break;
                 default:
                     JOptionPane.showMessageDialog(null, "Login success, USER DO NOT BELONG TO ANY GROUP! ");
                     break;
