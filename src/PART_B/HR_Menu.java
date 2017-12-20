@@ -835,7 +835,7 @@ public class HR_Menu extends javax.swing.JFrame {
 
     private void btnShowHandledReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowHandledReportActionPerformed
         // TODO add your handling code here:
-        DailyEmpTasksHdlRprt report = new DailyEmpTasksHdlRprt(mainform);
+        DailyEmpTasksHdlRprt report = new DailyEmpTasksHdlRprt(mainform, this);
         this.setVisible(false);
         report.setVisible(true);
     }//GEN-LAST:event_btnShowHandledReportActionPerformed
