@@ -379,7 +379,7 @@ public class deliveryManInterface extends javax.swing.JFrame {
         employee emmmp = mainform.empList.searchID(emp.getEmp_id());
         emmmp.getEmp_id();
         mainform.empList.replaceObject(emmmp, emp);
-        mainform.empWaitingList.enqueueAscTotalHandled(emp);
+        mainform.empWaitingList.add(emp);
         jtfContinueStatus.setText(Boolean.toString(cont));
     }//GEN-LAST:event_btnAcceptActionPerformed
 
@@ -394,7 +394,7 @@ public class deliveryManInterface extends javax.swing.JFrame {
         jtfContinueStatus.setText(Boolean.toString(cont));
         pendingorder = false;
         if (cont == true) {
-            mainform.empWaitingList.enqueueAscTotalHandled(emp);
+            mainform.empWaitingList.add(emp);
             jtfStatus.setText("ACTIVE");
             jtfCustName.setText("CHANGE STATUS TO AVAILABLE TO ACCEPT CUSTOMER!");
             jtfDelAdd.setText("NOT AVAILABLE");
