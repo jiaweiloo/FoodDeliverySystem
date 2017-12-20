@@ -278,6 +278,31 @@ public class EmployeeADT<T> implements EmployeeInterface<T> {
         }
         numberOfEntries++;
      }
+     
+    @Override
+     public boolean addByTaskHandled(T newEntry) {
+        firstNode = addEmployee(newEntry, firstNode);
+        numberOfEntries++;
+        return true;
+    }
+
+    private Node addEmployee(T newEntry, Node currNode) {
+        employee newEmp = (employee) newEntry;
+        employee currentNodeEmp = null;
+        if (currNode != null) {
+            currentNodeEmp = ((employee) currNode.data);
+        }
+
+        if ((currNode == null)) {
+            currNode = new Node(newEntry, currNode);
+        } else if (newEmp.getTotal_handled() < currentNodeEmp.getTotal_handled()) {
+            currNode = new Node(newEntry, currNode);
+        } else {
+            Node nodeAfter = addEmployee(newEntry, currNode.next);
+            currNode.next = nodeAfter;
+        }
+        return currNode;
+    }
     
     private class Node {
 
