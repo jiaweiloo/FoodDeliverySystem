@@ -70,55 +70,28 @@ public class WaitingQueueADT<T> implements WaitingInterface<T> {
         lastNode = null;
     } // end clear
 
-    public void enqueueAscTotalHandled(T newEntry) {
-        boolean found = false;
-        Node newNode = new Node(newEntry, null);
-
-        employee newEmp = (employee) newEntry;
-        Node currentNode = firstNode;
-
-        if (isEmpty()) {
-            firstNode = newNode;
-            lastNode = newNode;
-            found = true;
-        }
-        /*
-        else {
-            lastNode.next = newNode;
-        } */
-        System.out.println("New Employee : " + newEmp.getEmp_id() + " with total handled of: " + newEmp.getTotal_handled());
-        while (!found && (currentNode != null)) {
-            employee currentNodeEmp = ((employee) currentNode.data);
-
-            //System.out.println("Current Node : "+currentNodeEmp.getTotal_handled());
-            //check currentNode total handled equals to new total handled
-            if (newEmp.getTotal_handled() >= currentNodeEmp.getTotal_handled()) {
-                if (currentNode.next == null) {
-                    currentNode.next = newNode;
-                    lastNode = newNode;
-                    found = true;
-                    //System.out.println("Condition 1 "+found);
-                } else if (((employee) currentNode.next.data).getTotal_handled() > newEmp.getTotal_handled()) {
-                    //employee nextEmp = (employee) currentNode.next.data;
-                    newNode.next = currentNode.next;
-                    currentNode.next = newNode;
-                    found = true;
-                    //System.out.println("Condition 2 "+found);
-                } else {
-                    currentNode = currentNode.next;
-                }
-            } else {
-                //if (currentNodeEmp.getTotal_handled() > newEmp.getTotal_handled()) 
-                newNode.next = currentNode;
-                lastNode = currentNode;
-                firstNode = newNode;
-                found = true;
-                //System.out.println("Condition 3 "+found);
-            } // end of first if-else check same value with current node
-
-        }// end of while loop
-
+    public boolean add(T newEntry) {
+        firstNode = addEmployee(newEntry, firstNode);
         size++;
+        return true;
+    }
+
+    private Node addEmployee(T newEntry, Node currNode) {
+        employee newEmp = (employee) newEntry;
+        employee currentNodeEmp = null;
+        if (currNode != null) {
+            currentNodeEmp = ((employee) currNode.data);
+        }
+
+        if ((currNode == null)) {
+            currNode = new Node(newEntry, currNode);
+        } else if (newEmp.getTotal_handled() < currentNodeEmp.getTotal_handled()) {
+            currNode = new Node(newEntry, currNode);
+        } else {
+            Node nodeAfter = addEmployee(newEntry, currNode.next);
+            currNode.next = nodeAfter;
+        }
+        return currNode;
     }
 
     @Override
