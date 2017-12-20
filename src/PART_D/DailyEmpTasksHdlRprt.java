@@ -20,7 +20,7 @@ public class DailyEmpTasksHdlRprt extends javax.swing.JFrame {
 
     MainForm mainform;
     HR_Menu hrmenu;
-    EmployeeInterface<employee> List = new EmployeeADT<employee>();
+    EmployeeInterface<employee> sortedList = new EmployeeADT<employee>();
 
     /**
      * Creates new form DailyEmpTasksHdlRprt
@@ -125,23 +125,23 @@ public class DailyEmpTasksHdlRprt extends javax.swing.JFrame {
         // TODO add your handling code here:
         DefaultTableModel dm = (DefaultTableModel) employeeTable.getModel();
         dm.setRowCount(0);
-        List.clear();
+        sortedList.clear();
         employee newEmp;
         for (int b = 1; b < mainform.empList.getNumberOfEntries() + 1; b++) {
             //System.out.println("haha");
             newEmp = mainform.empList.getEntry(b);
-            List.addByTaskHandled(newEmp);
+            sortedList.addByTaskHandled(newEmp);
             //System.out.println("HR_MENU : "+newEmp.getEmp_id());
         }
         Object[] rowdata = new Object[5];
         // System.out.println(List.getNumberOfEntries());
-        for (int a = 1; a <= List.getNumberOfEntries(); a++) {
-            System.out.println(a + " , HR_MENU : " + List.getEntry(a).getEmp_id() + " handled total : " + List.getEntry(a).getTotal_handled());
-            rowdata[0] = List.getEntry(a).getEmp_id();
-            rowdata[1] = List.getEntry(a).getEmail();
-            rowdata[2] = List.getEntry(a).getPhone_num();
-            rowdata[3] = List.getEntry(a).getStatus();
-            rowdata[4] = List.getEntry(a).getTotal_handled();
+        for (int a = 1; a <= sortedList.getNumberOfEntries(); a++) {
+            System.out.println(a + " , HR_MENU : " + sortedList.getEntry(a).getEmp_id() + " handled total : " + sortedList.getEntry(a).getTotal_handled());
+            rowdata[0] = sortedList.getEntry(a).getEmp_id();
+            rowdata[1] = sortedList.getEntry(a).getEmail();
+            rowdata[2] = sortedList.getEntry(a).getPhone_num();
+            rowdata[3] = sortedList.getEntry(a).getStatus();
+            rowdata[4] = sortedList.getEntry(a).getTotal_handled();
             dm.addRow(rowdata);
         }
     }//GEN-LAST:event_btnRefreshActionPerformed
