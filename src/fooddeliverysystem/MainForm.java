@@ -1,8 +1,7 @@
 package fooddeliverysystem;
 
 import PART_A.Register;
-import PART_B.HR_Menu;
-import PART_B.Update_Delivery_Men;
+import PART_B.*;
 import PART_C.*;
 import PART_D.*;
 import adt.*;
