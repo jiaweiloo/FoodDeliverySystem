@@ -253,7 +253,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnBrowse">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Browse"/>
+        <Property name="text" type="java.lang.String" value="Order Food"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBrowseActionPerformed"/>
