@@ -5,6 +5,7 @@
  */
 package PART_D;
 
+import PART_B.HR_Menu;
 import adt.EmployeeADT;
 import adt.EmployeeInterface;
 import entity.employee;
@@ -18,6 +19,7 @@ import javax.swing.table.DefaultTableModel;
 public class DailyEmpTasksHdlRprt extends javax.swing.JFrame {
 
     MainForm mainform;
+    HR_Menu hrmenu;
     EmployeeInterface<employee> List = new EmployeeADT<employee>();
 
     /**
@@ -27,9 +29,10 @@ public class DailyEmpTasksHdlRprt extends javax.swing.JFrame {
         initComponents();
     }
 
-    public DailyEmpTasksHdlRprt(MainForm mainform) {
+    public DailyEmpTasksHdlRprt(MainForm mainform, HR_Menu hrmenu) {
         initComponents();
         this.mainform = mainform;
+        this.hrmenu = hrmenu;
     }
 
     /**
@@ -146,7 +149,7 @@ public class DailyEmpTasksHdlRprt extends javax.swing.JFrame {
     private void btnExitReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitReportActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        mainform.setVisible(true);        // TODO add your handling code here:
+        hrmenu.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_btnExitReportActionPerformed
 
     /**
