@@ -51,8 +51,9 @@ public interface WaitingInterface<T> {
      * Task: Enqueue in Ascending order of total handled tasks. Add to next node
      * if handled task larger than the node
      */
-    public void enqueueAscTotalHandled(T newEntry);
-
+    
+    public boolean add(T newEntry);
+    
     /**
      * Task: Search a specific employee with ID
      *
