@@ -104,10 +104,20 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="ccNum">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="4848100033125593"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="exDate">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="2020-12-01"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="CVV">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="357"/>
+        <Property name="toolTipText" type="java.lang.String" value=""/>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CVVActionPerformed"/>
       </Events>

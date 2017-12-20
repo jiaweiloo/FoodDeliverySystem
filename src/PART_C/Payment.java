@@ -71,6 +71,12 @@ public class Payment extends javax.swing.JFrame {
 
         jLabel5.setText("CVV");
 
+        ccNum.setText("4848100033125593");
+
+        exDate.setText("2020-12-01");
+
+        CVV.setText("357");
+        CVV.setToolTipText("");
         CVV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CVVActionPerformed(evt);
