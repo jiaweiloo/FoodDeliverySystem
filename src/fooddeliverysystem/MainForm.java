@@ -110,7 +110,7 @@ public class MainForm extends javax.swing.JFrame {
 
         lblPassword.setText("Password:");
 
-        jtfEmail.setText("jason@mail.com");
+        jtfEmail.setText("manager@mail.com");
 
         jpfPassword.setText("abcd1234");
 
@@ -260,7 +260,7 @@ public class MainForm extends javax.swing.JFrame {
                                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(2, 2, 2)
                                 .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnAfftLogin)
                                 .addGap(4, 4, 4)
                                 .addComponent(btnAffReg))
