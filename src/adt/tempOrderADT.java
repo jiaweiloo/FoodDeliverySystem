@@ -221,6 +221,7 @@ public class tempOrderADT<T> implements tempOrderInterface<T> {
             if(item.getItem_season().equals("Spring")){
                 newNode.next=firstNode;
                 firstNode=newNode;
+                found = true;
             
             }else{
                 
