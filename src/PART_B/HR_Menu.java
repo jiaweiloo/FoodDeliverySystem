@@ -1,5 +1,6 @@
 package PART_B;
 
+import PART_D.DailyEmpTasksHdlRprt;
 import adt.EmployeeADT;
 import adt.EmployeeInterface;
 import adt.LList;
@@ -100,7 +101,7 @@ public class HR_Menu extends javax.swing.JFrame {
         btnRefreshDaily = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         btnExit5 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnShowHandledReport = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -519,7 +520,12 @@ public class HR_Menu extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Show Sort Total Handle Report");
+        btnShowHandledReport.setText("Show Sort Total Handle Report");
+        btnShowHandledReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnShowHandledReportActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -531,7 +537,7 @@ public class HR_Menu extends javax.swing.JFrame {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(btnRefreshDaily)
                         .addGap(132, 132, 132)
-                        .addComponent(jButton1)
+                        .addComponent(btnShowHandledReport)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnExit5)
                         .addContainerGap())
@@ -551,7 +557,7 @@ public class HR_Menu extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRefreshDaily)
                     .addComponent(btnExit5)
-                    .addComponent(jButton1))
+                    .addComponent(btnShowHandledReport))
                 .addContainerGap())
         );
 
@@ -633,16 +639,16 @@ public class HR_Menu extends javax.swing.JFrame {
         dm.setRowCount(0);
         List.clear();
         employee newEmp;
-        for(int b=1;b<mainform.empList.getNumberOfEntries()+1;b++){
+        for (int b = 1; b < mainform.empList.getNumberOfEntries() + 1; b++) {
             //System.out.println("haha");
-            newEmp=new employee(mainform.empList.getEntry(b).getEmp_id(),mainform.empList.getEntry(b).getEmail(),mainform.empList.getEntry(b).getPassword(),mainform.empList.getEntry(b).getStatus(),mainform.empList.getEntry(b).getIc_number(),mainform.empList.getEntry(b).getAddress(),mainform.empList.getEntry(b).getPhone_num(),mainform.empList.getEntry(b).getRank(),mainform.empList.getEntry(b).getYear_joined(),mainform.empList.getEntry(b).getTotal_handled());
+            newEmp = new employee(mainform.empList.getEntry(b).getEmp_id(), mainform.empList.getEntry(b).getEmail(), mainform.empList.getEntry(b).getPassword(), mainform.empList.getEntry(b).getStatus(), mainform.empList.getEntry(b).getIc_number(), mainform.empList.getEntry(b).getAddress(), mainform.empList.getEntry(b).getPhone_num(), mainform.empList.getEntry(b).getRank(), mainform.empList.getEntry(b).getYear_joined(), mainform.empList.getEntry(b).getTotal_handled());
             List.DailyReport(newEmp);
             //System.out.println("HR_MENU : "+newEmp.getEmp_id());
         }
         Object[] rowdata = new Object[4];
-       // System.out.println(List.getNumberOfEntries());
+        // System.out.println(List.getNumberOfEntries());
         for (int a = 1; a <= List.getNumberOfEntries(); a++) {
-            System.out.println(a+" , HR_MENU : "+List.getEntry(a).getEmp_id()+" handled total : "+ List.getEntry(a).getTotal_handled());
+            System.out.println(a + " , HR_MENU : " + List.getEntry(a).getEmp_id() + " handled total : " + List.getEntry(a).getTotal_handled());
             rowdata[0] = List.getEntry(a).getEmp_id();
             rowdata[1] = List.getEntry(a).getPhone_num();
             rowdata[2] = List.getEntry(a).getStatus();
@@ -827,6 +833,13 @@ public class HR_Menu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnShowPendingActionPerformed
 
+    private void btnShowHandledReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowHandledReportActionPerformed
+        // TODO add your handling code here:
+        DailyEmpTasksHdlRprt report = new DailyEmpTasksHdlRprt(mainform);
+        this.setVisible(false);
+        report.setVisible(true);
+    }//GEN-LAST:event_btnShowHandledReportActionPerformed
+
     public void report() {
 
     }
@@ -855,7 +868,7 @@ public class HR_Menu extends javax.swing.JFrame {
         }
         //</editor-fold>
         //employee em2 = new employee(100001, "JJzaii96@gmail.com", "12345678", "Available", "12345678", "Jalan 88", "1234", "Rank", 2017, 0);
-        //empList.add(em2);
+        //mainform.empList.addByTaskHandled(em2);
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -877,9 +890,9 @@ public class HR_Menu extends javax.swing.JFrame {
     private javax.swing.JButton btnRefreshDaily;
     private javax.swing.JButton btnRegister;
     private javax.swing.JButton btnShow;
+    private javax.swing.JButton btnShowHandledReport;
     private javax.swing.JButton btnShowPending;
     private javax.swing.JButton btnUpdate;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
