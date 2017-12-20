@@ -48,6 +48,7 @@ public class DeleteItem extends JFrame{
         JLabel lblName = new JLabel("Item Name");
         JLabel lblPrice = new JLabel("Price(RM)");
         JLabel lblDesc = new JLabel("Desc");
+        JLabel lblSeason = new JLabel("Season");
         JButton btnBack = new JButton("Back");
         JButton jtbDel = new JButton("Delete");
         JLabel lblInput = new JLabel("Enter Item ID");
@@ -89,6 +90,7 @@ public class DeleteItem extends JFrame{
         lblName.setForeground(Color.MAGENTA);
         lblPrice.setForeground(Color.MAGENTA);
         lblDesc.setForeground(Color.MAGENTA);
+        lblSeason.setForeground(Color.MAGENTA);
        
        add(lblID).setFont(font);
        add(lblName).setFont(font);
@@ -111,7 +113,7 @@ public class DeleteItem extends JFrame{
         //Calculate number of row
         for(int i=1;i<Mainform.aff.getNumberOfEntries()+1;i++){
             if(Mainform.aff.getEntry(i).getAffiliate_id()==currentID){
-                jpInfo.setLayout(new GridLayout(Mainform.aff.getEntry(i).getItemList().getNumberOfEntries()+2, 4));
+                jpInfo.setLayout(new GridLayout(Mainform.aff.getEntry(i).getItemList().getNumberOfEntries()+2, 6));
             }  
         }
         
@@ -120,6 +122,7 @@ public class DeleteItem extends JFrame{
         jpInfo.add(lblName).setFont(font);
         jpInfo.add(lblPrice).setFont(font);
         jpInfo.add(lblDesc).setFont(font);
+        jpInfo.add(lblSeason).setFont(font);
 
         for(int i=1;i<Mainform.aff.getNumberOfEntries()+1;i++){
            if(Mainform.aff.getEntry(i).getAffiliate_id()==currentID){
@@ -128,6 +131,8 @@ public class DeleteItem extends JFrame{
                     jpInfo.add(new JLabel(Mainform.aff.getEntry(i).getItemList().getEntry(o).getItem_name())).setFont(font);
                     jpInfo.add(new JLabel(Double.toString(Mainform.aff.getEntry(i).getItemList().getEntry(o).getItem_price()))).setFont(font);
                     jpInfo.add(new JLabel(Mainform.aff.getEntry(i).getItemList().getEntry(o).getDesc())).setFont(font);
+                    jpInfo.add(new JLabel(Mainform.aff.getEntry(i).getItemList().getEntry(o).getItem_season()));
+
                  } 
             } 
         }

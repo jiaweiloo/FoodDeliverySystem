@@ -61,11 +61,12 @@ public class AutoArrange extends JFrame{
         JLabel lblName = new JLabel("Item Name");
         JLabel lblPrice = new JLabel("Price(RM)");
         JLabel lblDesc = new JLabel("Desc");
+        JLabel lblSeason = new JLabel("Season");
         JButton btnRef = new JButton("Refresh");
         JButton btnCon = new JButton("Confirm");
         JButton btnBack = new JButton("Back");
     MainForm Mainform;
-    String[] ArrOrder = new String[]{"A to Z(First Alphabet)","Z to A(First Alphabet)","Price(Highest to Lowest)","Price(Lowest to Highest)"};
+    String[] ArrOrder = new String[]{"A to Z(First Alphabet)","Z to A(First Alphabet)","Price(Highest to Lowest)","Price(Lowest to Highest)","Spring","Summer","Autumn","Winter"};
     AutoArrange AA;
     int currentID;
     JComboBox ArrOrderList = new JComboBox(ArrOrder);
@@ -100,7 +101,7 @@ public class AutoArrange extends JFrame{
         for(int i=1;i<Mainform.aff.getNumberOfEntries()+1;i++){
             if(Mainform.aff.getEntry(i).getAffiliate_id()==CurrentID){
                 for(int o=1;o<Mainform.aff.getEntry(i).getItemList().getNumberOfEntries()+1;o++){
-                    tempItem tempItem=new tempItem(Mainform.aff.getEntry(i).getItemList().getEntry(o).getItem_id(),Mainform.aff.getEntry(i).getItemList().getEntry(o).getItem_name(),Mainform.aff.getEntry(i).getItemList().getEntry(o).getItem_price(),Mainform.aff.getEntry(i).getItemList().getEntry(o).getRest_id(),Mainform.aff.getEntry(i).getItemList().getEntry(o).getDesc());
+                    tempItem tempItem=new tempItem(Mainform.aff.getEntry(i).getItemList().getEntry(o).getItem_id(),Mainform.aff.getEntry(i).getItemList().getEntry(o).getItem_name(),Mainform.aff.getEntry(i).getItemList().getEntry(o).getItem_price(),Mainform.aff.getEntry(i).getItemList().getEntry(o).getRest_id(),Mainform.aff.getEntry(i).getItemList().getEntry(o).getDesc(),Mainform.aff.getEntry(i).getItemList().getEntry(o).getItem_season());
                     tempOrder1.add(tempItem);
                     tempOrder.add(tempItem);
                 }
@@ -164,13 +165,14 @@ public class AutoArrange extends JFrame{
         for(int i=1;i<Mainform.aff.getNumberOfEntries()+1;i++){
             if(Mainform.aff.getEntry(i).getAffiliate_id()==currentID){
                 
-                P.setLayout(new GridLayout(Mainform.aff.getEntry(i).getItemList().getNumberOfEntries()+2, 4));
+                P.setLayout(new GridLayout(Mainform.aff.getEntry(i).getItemList().getNumberOfEntries()+2, 5));
             }  
         }
         P.add(lblID).setFont(font);
         P.add(lblName).setFont(font);
         P.add(lblPrice).setFont(font);
         P.add(lblDesc).setFont(font);
+        P.add(lblSeason).setFont(font);
         
         
                 for(int o=1;o<tempOrder.getNumberOfEntries()+1;o++){
@@ -178,6 +180,7 @@ public class AutoArrange extends JFrame{
                     P.add(new JLabel(tempOrder.getEntry(o).getItem_name())).setFont(font);
                     P.add(new JLabel(Double.toString(tempOrder.getEntry(o).getItem_price()))).setFont(font);
                     P.add(new JLabel(tempOrder.getEntry(o).getDesc())).setFont(font);
+                    P.add(new JLabel(tempOrder.getEntry(o).getItem_season()));
                  } 
         P.add(ArrOrderList);
         P.add(btnRef);
@@ -192,7 +195,7 @@ public class AutoArrange extends JFrame{
             if(Mainform.aff.getEntry(i).getAffiliate_id()==currentID){
                 
                 for(int o=1;o<tempOrder.getNumberOfEntries()+1;o++){
-                    Item AddItem=new Item(tempOrder.getEntry(o).getItem_id(),tempOrder.getEntry(o).getItem_name(),tempOrder.getEntry(o).getItem_price(),tempOrder.getEntry(o).getRest_id(),tempOrder.getEntry(o).getDesc());
+                    Item AddItem=new Item(tempOrder.getEntry(o).getItem_id(),tempOrder.getEntry(o).getItem_name(),tempOrder.getEntry(o).getItem_price(),tempOrder.getEntry(o).getRest_id(),tempOrder.getEntry(o).getDesc(),tempOrder.getEntry(o).getItem_season());
                     Mainform.aff.getEntry(i).getItemList().replace(o,AddItem);
                 }
             }
@@ -200,7 +203,7 @@ public class AutoArrange extends JFrame{
         JOptionPane.showMessageDialog(null, "Arrange Successful!!", "InfoBox: " + "Successful!!", JOptionPane.INFORMATION_MESSAGE);
     }
         
-    ;
+    
     
     private void refresh(ActionEvent evt,int index) {
        
@@ -233,12 +236,42 @@ public class AutoArrange extends JFrame{
            }
            DisplayLayout();
         
-        }else{
+        }else if(index==3){
             tempOrder.clear();
            
            for(int o=1;o<tempOrder1.getNumberOfEntries()+1;o++){
                tempOrder.ArrangePriceAZ(tempOrder1.getEntry(o));
                
+           }
+           DisplayLayout();
+        }else if(index==4){
+            tempOrder.clear();
+           for(int o=1;o<tempOrder1.getNumberOfEntries()+1;o++){
+               tempOrder.ArrangeSpring(tempOrder1.getEntry(o));
+           }
+           DisplayLayout();
+        }else if(index==5){
+            tempOrder.clear();
+           
+           for(int o=1;o<tempOrder1.getNumberOfEntries()+1;o++){
+               tempOrder.ArrangeSummer(tempOrder1.getEntry(o)); 
+               System.out.println("Finish summer loop");
+           }
+           
+           DisplayLayout();
+        }else if(index==6){
+            tempOrder.clear();
+           System.out.println("autumn");
+           for(int o=1;o<tempOrder1.getNumberOfEntries()+1;o++){
+               tempOrder.ArrangeAutumn(tempOrder1.getEntry(o));
+               
+           }
+           DisplayLayout();
+        }else{
+            tempOrder.clear();
+           System.out.println("winter");
+           for(int o=1;o<tempOrder1.getNumberOfEntries()+1;o++){
+               tempOrder.ArrangeWinter(tempOrder1.getEntry(o));   
            }
            DisplayLayout();
         }
@@ -250,80 +283,7 @@ public class AutoArrange extends JFrame{
         
     }
 
-/*
-for(int o=1;o<tempOrder2.getNumberOfEntries()+1;o++){
-                        if(count==0){
-                            tempOrder.add(tempOrder2.getEntry(o));
-                            System.out.println(tempOrder.getEntry(1).getItem_name());
-                            System.out.println("1======");
-                            count++;
-                        }else if(count==1){
-                            newChar=tempOrder2.getEntry(o).getItem_name().charAt(0);
-                            charB4=tempOrder.getEntry(1).getItem_name().charAt(0);
-                            System.out.println(newChar);
-                            System.out.println(charB4);
-                            System.out.println("2======");
-                            if(newChar>charB4||newChar==charB4){
-                                       tempOrder.add(2,tempOrder2.getEntry(o) );
-                                       count++;
-                                       System.out.println(tempOrder.getEntry(1).getItem_name());
-                                       System.out.println(tempOrder.getEntry(2).getItem_name());
-                                       System.out.println("After add in 2======");
-                                }
-                            else{
-                                tempOrder.add(1,tempOrder2.getEntry(o) );
-                                       count++;
-                                       System.out.println(tempOrder.getEntry(1).getItem_name());
-                                       System.out.println(tempOrder.getEntry(2).getItem_name());
-                                       System.out.println("After add in 2======");
-                            }
-                        }else{
-                            
-                            newChar=tempOrder2.getEntry(o).getItem_name().charAt(0);
-                            
-                            
-                        }
-                        }for(int q=1;q<tempOrder2.getNumberOfEntries()+1;q++){
-                                if(q<6){
-                                charB4=tempOrder.getEntry(q).getItem_name().charAt(0);
-                                charAft=tempOrder.getEntry(q+1).getItem_name().charAt(0);
-                                if((newChar>charB4&&newChar<charAft)||(newChar==charB4&&newChar<charAft)||(newChar==charB4&&newChar==charAft)||(newChar<charB4&&newChar==charAft)){
-                                    tempOrder.add(q+1,tempOrder2.getEntry(o));
-                                    for(int i=1;i<tempOrder.getNumberOfEntries()+1;i++){
-                                        System.out.println(tempOrder.getEntry(i).getItem_name());
-                                    }
-                                    System.out.println("After add in "+e+"======");
-                                    e++;
-                                    break;
-                                }else if(newChar<=charB4){
-                                    tempOrder.add(q,tempOrder2.getEntry(o));
-                                    for(int i=1;i<tempOrder.getNumberOfEntries()+1;i++){
-                                        System.out.println(tempOrder.getEntry(i).getItem_name());
-                                    }
-                                    System.out.println("After add in "+e+"======");
-                                    e++;
-                                    break;
-                                }else{
-                                    tempOrder.add(q+2,tempOrder2.getEntry(o));
-                                    for(int i=1;i<tempOrder.getNumberOfEntries()+1;i++){
-                                        System.out.println(tempOrder.getEntry(i).getItem_name());
-                                    }
-                                    System.out.println("After add in "+e+"======");
-                                    e++;
-                                    break;
-                                }
-                                }else{
-                                    tempOrder.add(q,tempOrder2.getEntry(o));
-                                    for(int i=1;i<tempOrder.getNumberOfEntries()+1;i++){
-                                        System.out.println(tempOrder.getEntry(i).getItem_name());
-                                    }
-                                    System.out.println("After add in "+e+"======");
-                                    e++;
-                                }
-                                
-                                
-                            
-                            }*/
+
         
     
 

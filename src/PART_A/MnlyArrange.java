@@ -58,6 +58,7 @@ public class MnlyArrange extends JFrame{
     JTextField jtfSName = new JTextField();
     JTextField jtfSPrice = new JTextField();
     JTextField jtfSDesc = new JTextField();
+    JTextField jtfSSeason = new JTextField();
     JTextField input = new JTextField();
     
     JPanel jpInfo = new JPanel();
@@ -65,12 +66,14 @@ public class MnlyArrange extends JFrame{
     JLabel lblSelectedName = new JLabel("Selected Name");
     JLabel lblSelectedPrice = new JLabel("Selected Price");
     JLabel lblSelectedDesc = new JLabel("Selected Desc");
+    JLabel lblSelectedSeason = new JLabel("Selected Season");
     JLabel lblCurrentPosition = new JLabel("Current Position");
     JLabel lblID = new JLabel("ID");
     JLabel lblInfo = new JLabel("Enter new Position =>");
     JLabel lblName = new JLabel("Item Name");
     JLabel lblPrice = new JLabel("Price(RM)");
     JLabel lblDesc = new JLabel("Desc");
+    JLabel lblSeason = new JLabel("Season");
     JLabel lblEmpty = new JLabel();
     JLabel lblEmpty2 = new JLabel();
     JLabel lblEmpty3 = new JLabel();
@@ -113,6 +116,7 @@ public class MnlyArrange extends JFrame{
         jtfSName.setEditable(false);
         jtfSPrice.setEditable(false);
         jtfSDesc.setEditable(false);
+        jtfSSeason.setEditable(false);
         
         lblTitle.setHorizontalAlignment(SwingConstants.LEFT);
         lblTitle.setFont(FontTitle);
@@ -124,6 +128,7 @@ public class MnlyArrange extends JFrame{
         lblName.setForeground(Color.MAGENTA);
         lblPrice.setForeground(Color.MAGENTA);
         lblDesc.setForeground(Color.MAGENTA);
+        lblSeason.setForeground(Color.MAGENTA);
         
         DisplayLayout(CurrentID);
         
@@ -157,6 +162,7 @@ public class MnlyArrange extends JFrame{
         jpInfo.add(lblName).setFont(font);
         jpInfo.add(lblPrice).setFont(font);
         jpInfo.add(lblDesc).setFont(font);
+        jpInfo.add(lblSeason).setFont(font);
         jpInfo.add(lblEmpty2);
         
         for(int i=1;i<Mainform.aff.getNumberOfEntries()+1;i++){
@@ -168,17 +174,19 @@ public class MnlyArrange extends JFrame{
                     jpInfo.add(new JLabel(tempOrder.getEntry(o).getItem_name())).setFont(font);
                     jpInfo.add(new JLabel(Double.toString(tempOrder.getEntry(o).getItem_price()))).setFont(font);
                     jpInfo.add(new JLabel(tempOrder.getEntry(o).getDesc())).setFont(font);
+                    jpInfo.add(new JLabel(Mainform.aff.getEntry(i).getItemList().getEntry(o).getItem_season()));
                     jpInfo.add(btnSelect);
                     
                     String SID =String.valueOf(Mainform.aff.getEntry(i).getItemList().getEntry(o).getItem_id());
                     String SName=Mainform.aff.getEntry(i).getItemList().getEntry(o).getItem_name();
                     String SPrice=Double.toString(Mainform.aff.getEntry(i).getItemList().getEntry(o).getItem_price());
                     String SDesc=Mainform.aff.getEntry(i).getItemList().getEntry(o).getDesc();
+                    String SSeason=Mainform.aff.getEntry(i).getItemList().getEntry(o).getItem_season();
                     String P=String.valueOf(countP);
                     
                     btnSelect.addActionListener(new ActionListener() {
                       public void actionPerformed(ActionEvent evt) {
-                            SelectItem(evt,SID,SName,SPrice,SDesc,P);
+                            SelectItem(evt,SID,SName,SPrice,SDesc,P,SSeason);
                         }
                     });
                     countP++;
@@ -190,11 +198,13 @@ public class MnlyArrange extends JFrame{
         jpInfo.add(lblSelectedName);
         jpInfo.add(lblSelectedPrice);
         jpInfo.add(lblSelectedDesc);
+        jpInfo.add(lblSelectedSeason);
         jpInfo.add(lblCurrentPosition);
         jpInfo.add(lblSID);
         jpInfo.add(jtfSName);
         jpInfo.add(jtfSPrice);
         jpInfo.add(jtfSDesc);
+        jpInfo.add(jtfSSeason);
         jpInfo.add(jtfPosition);
         jpInfo.add(btnBack);
         jpInfo.add(lblInfo);
@@ -205,13 +215,13 @@ public class MnlyArrange extends JFrame{
     
     }
     
-    private void SelectItem(ActionEvent evt,String ID,String Name,String Price,String Desc,String CountP) {
+    private void SelectItem(ActionEvent evt,String ID,String Name,String Price,String Desc,String CountP,String Season) {
         lblSID.setText(ID);
         jtfSName.setText(Name);
         jtfSPrice.setText(Price);
         jtfSDesc.setText(Desc);
         jtfPosition.setText(CountP);
-        
+        jtfSSeason.setText(Season); 
     }
     
     private void Arrange(ActionEvent evt,String ItemId,String CP,int CurrentID) {

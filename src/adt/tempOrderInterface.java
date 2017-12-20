@@ -38,6 +38,10 @@ public interface tempOrderInterface<T> {
   public void ArrangeZA(T newEntry);
   public void ArrangePriceAZ(T newEntey);
   public void ArrangePriceZA(T newEntey);
+  public void ArrangeSummer(T newEntry);
+  public void ArrangeSpring(T newEntry);
+  public void ArrangeWinter(T newEntey);
+  public void ArrangeAutumn(T newEntey);
   /**
    * Task: Adds a new entry at a specified position within the list. Entries
    * originally at and above the specified position are at the next higher

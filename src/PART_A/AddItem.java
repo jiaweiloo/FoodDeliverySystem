@@ -41,6 +41,8 @@ public class AddItem extends JFrame {
     Item newItem;
     int ID;
     AddItem AI;
+    String[] seasonStr = new String[]{"Spring","Summer","Autumn","Winter"};
+    JComboBox season_ddl = new JComboBox(seasonStr);
     JTextField jtfName = new JTextField();
     JTextField jtfPrice = new JTextField();
     JTextField jtfDescription = new JTextField();
@@ -64,12 +66,14 @@ public class AddItem extends JFrame {
         JLabel jlblName = new JLabel("Name :");
         JLabel jlblPrice = new JLabel("Price (RM) :");
         JLabel jlblDescription = new JLabel("Description");
+        JLabel jlblSeason = new JLabel("Season");
         JButton btnBack = new JButton("Back");
         JButton jbtnReset = new JButton("Reset");
         JButton jbtnSave = new JButton("Save Item");
         JButton jbtnBack = new JButton("Back");
+        
         JPanel panel=new JPanel();
-        setLayout(new GridLayout(5, 2)); 
+        setLayout(new GridLayout(6, 2)); 
         jbtnSave.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 SaveItem(evt);
@@ -88,13 +92,15 @@ public class AddItem extends JFrame {
                     AI.setVisible(false);
             }
         });
-        
+        season_ddl.setSelectedIndex(0);
         add(jlblName);
         add(jtfName);
         add(jlblPrice);
         add(jtfPrice);
         add(jlblDescription);
         add(jtfDescription);
+        add(jlblSeason);
+        add(season_ddl);
         add(btnBack);
         add(jbtnSave);
         add(jbtnReset);
@@ -124,6 +130,15 @@ public class AddItem extends JFrame {
     
     private void SaveItem(ActionEvent evt) {
         int newID=0;
+        String season;
+        if(season_ddl.getSelectedIndex()==0)
+            season="Spring";
+        else if(season_ddl.getSelectedIndex()==1)
+            season="Summer";
+        else if(season_ddl.getSelectedIndex()==2)
+            season="Autumn";
+        else
+            season="Winter";
         if(jtfName.getText().isEmpty()||jtfPrice.getText().isEmpty()||jtfDescription.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "All fields are required!!", "InfoBox: " + "Error!!", JOptionPane.ERROR_MESSAGE);
             return;
@@ -152,7 +167,7 @@ public class AddItem extends JFrame {
                                 }else{
                                      if(Mainform.aff.getEntry(i).getItemList().getNumberOfEntries()==o){
                                          newID=newID+1; 
-                                         newItem = new Item(newID,jtfName.getText(),Double.parseDouble(jtfPrice.getText()),ID,jtfDescription.getText());
+                                         newItem = new Item(newID,jtfName.getText(),Double.parseDouble(jtfPrice.getText()),ID,jtfDescription.getText(),season);
                                           Mainform.aff.getEntry(i).getItemList().add(newItem);
                                                  JOptionPane.showMessageDialog(null, "Item Added!!", "InfoBox: " + "Successful!!", JOptionPane.INFORMATION_MESSAGE);
                                                  
@@ -162,15 +177,10 @@ public class AddItem extends JFrame {
                                      }
                                     }
                          else{
-                             newItem = new Item(201,jtfName.getText(),Double.parseDouble(jtfPrice.getText()),ID,jtfDescription.getText());
-                             Mainform.aff.getEntry(i).getItemList().add(newItem);
-                             JOptionPane.showMessageDialog(null, "Item Added!!", "InfoBox: " + "Successful!!", JOptionPane.INFORMATION_MESSAGE);
-                             return;
-                         
+                             newItem = new Item(201,jtfName.getText(),Double.parseDouble(jtfPrice.getText()),ID,jtfDescription.getText(),season);
                          }
-                                 }
-                            } 
-            
+                     }
+            }
     }
     private void Reset(ActionEvent evt) {
         jtfName.setText("");

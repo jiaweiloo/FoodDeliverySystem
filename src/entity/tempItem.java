@@ -16,15 +16,27 @@ public class tempItem {
     double item_price;
     int rest_id;
 
+    
+
+    String item_season;
     String desc;
-    public tempItem(int item_id, String item_name, double item_price, int rest_id,String desc) {
+    public tempItem(int item_id, String item_name, double item_price, int rest_id,String desc,String season) {
         this.item_id = item_id;
         this.item_name = item_name;
         this.item_price = item_price;
         this.rest_id = rest_id;
         this.desc=desc;
+        this.item_season=season;
     }
 
+    public String getItem_season() {
+        return item_season;
+    }
+
+    public void setItem_season(String item_season) {
+        this.item_season = item_season;
+    }
+    
     public int getItem_id() {
         return item_id;
     }

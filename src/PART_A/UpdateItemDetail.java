@@ -43,6 +43,7 @@ public class UpdateItemDetail extends JFrame {
     JLabel lblName = new JLabel("Name");
     JLabel lblPrice = new JLabel("Price(RM)");
     JLabel lblDesc = new JLabel("Description");
+    JLabel lblSeason = new JLabel("Season");
     JPanel jpInfo = new JPanel();
     JLabel lblSelectedID = new JLabel();
     JTextField jtfNewName = new JTextField();
@@ -52,9 +53,13 @@ public class UpdateItemDetail extends JFrame {
         JLabel lblSName = new JLabel("Selected Name");
         JLabel lblSPrice = new JLabel("Selected Price");
         JLabel lblSDesc = new JLabel("Selected Desc");
+        JLabel lblSSeason = new JLabel("Season");
         JButton btnUpdate = new JButton("Update");
         JButton btnBack = new JButton("Back");
+        String[] seasonStr = new String[]{"Spring","Summer","Autumn","Winter"};
+    JComboBox season_ddl = new JComboBox(seasonStr);
     String name;
+    String Sea;
     double price;
     String desc;
     int id;
@@ -78,7 +83,7 @@ public class UpdateItemDetail extends JFrame {
         lblName.setForeground(Color.MAGENTA);
         lblPrice.setForeground(Color.MAGENTA);
         lblDesc.setForeground(Color.MAGENTA);
-
+        lblSeason.setForeground(Color.MAGENTA);
 
 
         btnUpdate.addActionListener(new ActionListener() {
@@ -95,10 +100,12 @@ public class UpdateItemDetail extends JFrame {
             }
         });
         
+        season_ddl.setSelectedIndex(0);
         lblSID.setForeground(Color.BLUE);
         lblSName.setForeground(Color.BLUE);
         lblSPrice.setForeground(Color.BLUE);
         lblSDesc.setForeground(Color.BLUE);
+        lblSSeason.setForeground(Color.BLUE);
         DisplayLayout();
 
 
@@ -115,7 +122,7 @@ public class UpdateItemDetail extends JFrame {
 
         for (int i = 1; i < Mainform.aff.getNumberOfEntries() + 1; i++) {
             if (Mainform.aff.getEntry(i).getAffiliate_id() == currentID) {
-                jpInfo.setLayout(new GridLayout(Mainform.aff.getEntry(i).getItemList().getNumberOfEntries() + 4, 5));
+                jpInfo.setLayout(new GridLayout(Mainform.aff.getEntry(i).getItemList().getNumberOfEntries() + 4, 6));
             }
         }
 
@@ -123,6 +130,7 @@ public class UpdateItemDetail extends JFrame {
         jpInfo.add(lblName).setFont(font);
         jpInfo.add(lblPrice).setFont(font);
         jpInfo.add(lblDesc).setFont(font);
+        jpInfo.add(lblSeason).setFont(font);
         jpInfo.add(lblEmpty).setFont(font);
 
         for (int i = 1; i < Mainform.aff.getNumberOfEntries() + 1; i++) {
@@ -133,16 +141,17 @@ public class UpdateItemDetail extends JFrame {
                     jpInfo.add(new JLabel(Mainform.aff.getEntry(i).getItemList().getEntry(o).getItem_name())).setFont(font);
                     jpInfo.add(new JLabel(Double.toString(Mainform.aff.getEntry(i).getItemList().getEntry(o).getItem_price()))).setFont(font);
                     jpInfo.add(new JLabel(Mainform.aff.getEntry(i).getItemList().getEntry(o).getDesc())).setFont(font);
-                    
+                    jpInfo.add(new JLabel(Mainform.aff.getEntry(i).getItemList().getEntry(o).getItem_season()));
                     jpInfo.add(btnSelect);
 
                     String SID =String.valueOf(Mainform.aff.getEntry(i).getItemList().getEntry(o).getItem_id());
                     String SName=Mainform.aff.getEntry(i).getItemList().getEntry(o).getItem_name();
                     String SPrice=Double.toString(Mainform.aff.getEntry(i).getItemList().getEntry(o).getItem_price());
                     String SDesc=Mainform.aff.getEntry(i).getItemList().getEntry(o).getDesc();
+                    String SSea=Mainform.aff.getEntry(i).getItemList().getEntry(o).getItem_season();
                     btnSelect.addActionListener(new ActionListener() {
                       public void actionPerformed(ActionEvent evt) {
-                            SelectItem(evt,SID,SName,SPrice,SDesc);
+                            SelectItem(evt,SID,SName,SPrice,SDesc,SSea);
                         }
                     });
 
@@ -154,11 +163,13 @@ public class UpdateItemDetail extends JFrame {
         jpInfo.add(lblSName);
         jpInfo.add(lblSPrice);
         jpInfo.add(lblSDesc);
+        jpInfo.add(lblSSeason);
         jpInfo.add(lblEmpty1);
         jpInfo.add(lblSelectedID);
         jpInfo.add(jtfNewName);
         jpInfo.add(jtfNewPrice);
         jpInfo.add(jtfNewDesc);
+        jpInfo.add(season_ddl);
         jpInfo.add(btnUpdate);
         jpInfo.add(btnBack);
         jpInfo.revalidate();
@@ -167,23 +178,41 @@ public class UpdateItemDetail extends JFrame {
     }
 
 
-    private void SelectItem(ActionEvent evt,String ID,String Name,String Price,String Desc) {
+    private void SelectItem(ActionEvent evt,String ID,String Name,String Price,String Desc,String SSea) {
         lblSelectedID.setText(ID);
         jtfNewName.setText(Name);
         jtfNewPrice.setText(Price);
         jtfNewDesc.setText(Desc);
         name=Name;
+        Sea=SSea;
         price=Double.parseDouble(Price);
         id=Integer.parseInt(ID);
         desc=Desc;
-
+        
+        if(SSea=="Spring")
+            season_ddl.setSelectedIndex(0);
+        else if(SSea=="Summer")
+            season_ddl.setSelectedIndex(1);
+        else if(SSea=="Autumn")
+            season_ddl.setSelectedIndex(2);
+        else
+            season_ddl.setSelectedIndex(3);
     }
 
     private void UpdateItem(ActionEvent evt,int ID,String Name,double Price,String Desc){
+        String season;
+        if(season_ddl.getSelectedIndex()==0)
+            season="Spring";
+        else if(season_ddl.getSelectedIndex()==1)
+            season="Summer";
+        else if(season_ddl.getSelectedIndex()==2)
+            season="Autumn";
+        else
+            season="Winter";
         if(lblSelectedID.getText().isEmpty()||jtfNewName.getText().isEmpty()||jtfNewPrice.getText().isEmpty()||jtfNewDesc.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Please select an item and enter new detail", "InfoBox: " + "Error!!", JOptionPane.ERROR_MESSAGE);
             return;
-        }else if(lblSelectedID.getText().equals(String.valueOf(id))&&jtfNewName.getText().equals(name)&&jtfNewPrice.getText().equals(String.valueOf(price))&&jtfNewDesc.getText().equals(desc)){
+        }else if(lblSelectedID.getText().equals(String.valueOf(id))&&jtfNewName.getText().equals(name)&&jtfNewPrice.getText().equals(String.valueOf(price))&&jtfNewDesc.getText().equals(desc)&&season.equals(Sea)){
             JOptionPane.showMessageDialog(null, "Please key in at least one different detail", "InfoBox: " + "Error!!", JOptionPane.ERROR_MESSAGE);
             return;
         }else{
@@ -208,6 +237,7 @@ public class UpdateItemDetail extends JFrame {
                               Mainform.aff.getEntry(i).getItemList().getEntry(o).setItem_name(jtfNewName.getText());
                               Mainform.aff.getEntry(i).getItemList().getEntry(o).setItem_price(Double.parseDouble(jtfNewPrice.getText()));
                               Mainform.aff.getEntry(i).getItemList().getEntry(o).setDesc(jtfNewDesc.getText());
+                              Mainform.aff.getEntry(i).getItemList().getEntry(o).setItem_season(season);
                               JOptionPane.showMessageDialog(null, "Item Modified!!", "InfoBox: " + "Successful!!", JOptionPane.INFORMATION_MESSAGE);
                           }
                       }

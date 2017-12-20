@@ -201,6 +201,132 @@ public class tempOrderADT<T> implements tempOrderInterface<T> {
         numberOfEntries++;
     }
     
+    public void ArrangeSpring(T newEntry){
+        boolean found = false;
+        tempOrderADT.Node newNode = new tempOrderADT.Node(newEntry, null);
+        
+        tempItem item = (tempItem) newEntry;
+        tempOrderADT.Node currentNode = firstNode;
+        
+        if (isEmpty()) {
+            firstNode = newNode;
+            lastNode = newNode;
+            found = true;
+            
+        }
+        
+        while(!found&&currentNode!=null){
+            tempItem currentItem = (tempItem)currentNode.data;
+            
+            if(item.getItem_season().equals("Spring")){
+                newNode.next=firstNode;
+                firstNode=newNode;
+            
+            }else{
+                
+                lastNode.next=newNode;
+                lastNode=newNode;
+                found = true;
+            
+            }
+            
+        }
+        numberOfEntries++;
+    }
+    
+    public void ArrangeSummer(T newEntry){
+        boolean found = false;
+        tempOrderADT.Node newNode = new tempOrderADT.Node(newEntry, null);
+        
+        tempItem item = (tempItem) newEntry;
+        tempOrderADT.Node currentNode = firstNode;
+        
+        if (isEmpty()) {
+            firstNode = newNode;
+            lastNode = newNode;
+            found = true;
+        }
+        
+        while(!found&&currentNode!=null){
+            tempItem currentItem = (tempItem)currentNode.data;
+            System.out.println(item.getItem_season());
+            if(item.getItem_season().equals("Summer")){
+                newNode.next=firstNode;
+                firstNode=newNode;
+                found =true;
+            }else{
+                
+                lastNode.next=newNode;
+                lastNode=newNode;
+                found = true;
+            }
+            
+        }
+        numberOfEntries++;
+    }
+    
+    public void ArrangeAutumn(T newEntry){
+        boolean found = false;
+        tempOrderADT.Node newNode = new tempOrderADT.Node(newEntry, null);
+        
+        tempItem item = (tempItem) newEntry;
+        tempOrderADT.Node currentNode = firstNode;
+        
+        if (isEmpty()) {
+            firstNode = newNode;
+            lastNode = newNode;
+            found = true;
+        }
+        
+        while(!found&&currentNode!=null){
+            tempItem currentItem = (tempItem)currentNode.data;
+            
+            if(item.getItem_season().equals("Autumn")){
+                newNode.next=firstNode;
+                firstNode=newNode;
+                found = true;
+            }else{
+                
+                lastNode.next=newNode;
+                lastNode=newNode;
+                found = true;
+            }
+            
+        }
+        numberOfEntries++;
+    }
+    
+    public void ArrangeWinter(T newEntry){
+        boolean found = false;
+        tempOrderADT.Node newNode = new tempOrderADT.Node(newEntry, null);
+        
+        tempItem item = (tempItem) newEntry;
+        tempOrderADT.Node currentNode = firstNode;
+        
+        if (isEmpty()) {
+            firstNode = newNode;
+            lastNode = newNode;
+            found = true;
+        }
+        
+        while(!found&&currentNode!=null){
+            tempItem currentItem = (tempItem)currentNode.data;
+            
+            if(item.getItem_season().equals("Winter")){
+                newNode.next=firstNode;
+                firstNode=newNode;
+                found = true;
+            }else{
+                
+                lastNode.next=newNode;
+                lastNode=newNode;
+                found = true;
+            }
+            
+        }
+        numberOfEntries++;
+    }
+    
     @Override
     public T getEntry(int givenPosition) {
         T result = null;
