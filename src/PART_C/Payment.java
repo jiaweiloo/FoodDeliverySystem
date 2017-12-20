@@ -167,7 +167,7 @@ public class Payment extends javax.swing.JFrame {
             } else {
                 int result = JOptionPane.showConfirmDialog(null, "Confirm Pay?", "Confirmation", JOptionPane.YES_NO_OPTION);
                 if (result == JOptionPane.YES_OPTION) {
-                    JOptionPane.showMessageDialog(null, "Your order is on its way!");
+                    
                     mainform.custList.add(order);
                     order.setOrderList(cartList);
                     int b = 0;
@@ -179,6 +179,7 @@ public class Payment extends javax.swing.JFrame {
                     order.setCurrent_status("PAID");
                     order.setOrder_id(200001+orderList.size());
                     orderList.enqueueAscendingQueue(order);
+                    JOptionPane.showMessageDialog(null, "Your order is on its way! \n The order ID is "+order.getOrder_id());
                     String name = order.getCust_name();
                     String email = order.getCust_email();
                     String phone = order.getCust_phone();
