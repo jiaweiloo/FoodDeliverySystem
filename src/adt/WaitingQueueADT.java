@@ -131,7 +131,8 @@ public class WaitingQueueADT<T> implements WaitingInterface<T> {
                 size--;
             } else {
                 currentNode = currentNode.next;
-                if (currentPosition > 1) {
+                currentPosition++;
+                if (currentPosition > 2) {
                     nodeBefore = nodeBefore.next;
                 }
             }
