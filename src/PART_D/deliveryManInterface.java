@@ -75,7 +75,6 @@ public class deliveryManInterface extends javax.swing.JFrame {
         btnLunchIn = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jtfStatus = new javax.swing.JTextField();
-        btnCancel = new javax.swing.JButton();
         btnComplete = new javax.swing.JButton();
         lblName = new javax.swing.JLabel();
         jtfCustName = new javax.swing.JTextField();
@@ -174,8 +173,6 @@ public class deliveryManInterface extends javax.swing.JFrame {
         jtfStatus.setEditable(false);
         jtfStatus.setText("BREAK");
 
-        btnCancel.setText("Cancel");
-
         btnComplete.setText("Complete Delivery");
         btnComplete.setEnabled(false);
         btnComplete.addActionListener(new java.awt.event.ActionListener() {
@@ -216,9 +213,7 @@ public class deliveryManInterface extends javax.swing.JFrame {
                                         .addComponent(btnAccept, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(btnBreak, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(17, 17, 17)
-                                        .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
+                                        .addGap(135, 135, 135)
                                         .addComponent(btnComplete))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -285,7 +280,6 @@ public class deliveryManInterface extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBreak)
                     .addComponent(btnAccept)
-                    .addComponent(btnCancel)
                     .addComponent(btnComplete))
                 .addContainerGap())
         );
@@ -368,7 +362,7 @@ public class deliveryManInterface extends javax.swing.JFrame {
         // TODO add your handling code here:
         cont = true;
         //orderQueue.dequeue();
-        btnCancel.setEnabled(false);
+        //btnCancel.setEnabled(false);
         btnAccept.setEnabled(false);
         btnBreak.setEnabled(true);
         jtfStatus.setText("DELIVERY");
@@ -519,7 +513,6 @@ public class deliveryManInterface extends javax.swing.JFrame {
     private javax.swing.JTable attdTable;
     private javax.swing.JButton btnAccept;
     private javax.swing.JButton btnBreak;
-    private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnComplete;
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnLunchIn;
