@@ -75,7 +75,6 @@ public class MainForm extends javax.swing.JFrame {
         jtfEmail = new javax.swing.JTextField();
         jpfPassword = new javax.swing.JPasswordField();
         btnLogin = new javax.swing.JButton();
-        btnFgtPw = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -120,8 +119,6 @@ public class MainForm extends javax.swing.JFrame {
                 btnLoginActionPerformed(evt);
             }
         });
-
-        btnFgtPw.setText("Forget Password");
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(204, 102, 0));
@@ -231,8 +228,7 @@ public class MainForm extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
-                                .addComponent(btnFgtPw, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(btnExit, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))))
@@ -279,9 +275,7 @@ public class MainForm extends javax.swing.JFrame {
                                     .addComponent(jpfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblPassword))
                                 .addGap(23, 23, 23)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(btnLogin)
-                                    .addComponent(btnFgtPw))
+                                .addComponent(btnLogin)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnExit)))
                         .addContainerGap())))
@@ -558,7 +552,6 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JButton btnAfftLogin;
     private javax.swing.JButton btnBrowse;
     private javax.swing.JButton btnExit;
-    private javax.swing.JButton btnFgtPw;
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnTrack;
     private javax.swing.JButton jButton6;
