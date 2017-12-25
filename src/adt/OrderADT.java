@@ -80,7 +80,7 @@ public class OrderADT<T> implements OrderInterface<T> {
         lastNode = null;
     } // end clear
 
-    public void enqueueAscendingQueue(T newEntry) {
+    public void enqueueTotalAmount(T newEntry) {
         boolean found = false;
         Node newNode = new Node(newEntry, null);
         

@@ -48,7 +48,7 @@ public interface OrderInterface<T> {
   public void clear();
   
   //and order and put highest total total amount order in front
-  public void enqueueAscendingQueue(T newEntry);
+  public void enqueueTotalAmount(T newEntry);
 
   /**
    * Task: Replaces the entry at a given position in the list.
