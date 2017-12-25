@@ -275,6 +275,7 @@ public class MnlyArrange extends JFrame{
         jtfSPrice.setText("");
         jtfSDesc.setText("");
         jtfPosition.setText("");
+        jtfSSeason.setText("");
         DisplayLayout(CurrentID);
         
         }
