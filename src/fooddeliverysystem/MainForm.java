@@ -525,11 +525,11 @@ public class MainForm extends javax.swing.JFrame {
         attdList.add(att3);
         attdList.add(att4);
         attdList.add(att5);
-        orderList.enqueueAscendingQueue(ord1);
-        orderList.enqueueAscendingQueue(ord2);
-        orderList.enqueueAscendingQueue(ord3);
-        orderList.enqueueAscendingQueue(ord4);
-        orderList.enqueueAscendingQueue(ord5);
+        orderList.enqueueTotalAmount(ord1);
+        orderList.enqueueTotalAmount(ord2);
+        orderList.enqueueTotalAmount(ord3);
+        orderList.enqueueTotalAmount(ord4);
+        orderList.enqueueTotalAmount(ord5);
         custList.add(ord1);
         custList.add(ord2);
         custList.add(ord3);
