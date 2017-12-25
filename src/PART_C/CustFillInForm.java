@@ -195,7 +195,7 @@ public class CustFillInForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (custEmail.getText().equals("") || custAddress.getText().equals("") || custName.getText().equals("") || custPhone.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Please complete the fill in form");
-        } else if (!custName.getText().matches("^[a-zA-Z]+$")){
+        } else if (!custName.getText().matches("^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$")){
             JOptionPane.showMessageDialog(null, "Please key in alphabet only for name");
         }else if(!custPhone.getText().matches("[0-9]+")){
             JOptionPane.showMessageDialog(null, "Please key in number only for phone no");
