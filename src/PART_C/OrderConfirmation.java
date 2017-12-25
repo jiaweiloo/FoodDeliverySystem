@@ -67,7 +67,7 @@ public class OrderConfirmation extends JFrame {
         add(jlblName);
         add(new JLabel(order.getCust_name()));
         add(jlblDate);
-        add(new JLabel(order.getPurchase_time()));
+        add(new JLabel(order.getOrderDate()));
         add(jlblOrder);
         add(scrollPane);
         add(new JLabel("Total Amount (RM) :"));
