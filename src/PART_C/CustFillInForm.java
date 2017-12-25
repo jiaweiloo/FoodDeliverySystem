@@ -87,7 +87,7 @@ public class CustFillInForm extends javax.swing.JFrame {
             }
         });
 
-        custPhone.setText("012-3456123");
+        custPhone.setText("0123456123");
         custPhone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 custPhoneActionPerformed(evt);
