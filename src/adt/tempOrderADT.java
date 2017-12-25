@@ -215,7 +215,7 @@ public class tempOrderADT<T> implements tempOrderInterface<T> {
             
         }
         
-        while(!found&&currentNode!=null){
+        if(!found){
             tempItem currentItem = (tempItem)currentNode.data;
             
             if(item.getItem_season().equals("Spring")){
@@ -248,7 +248,7 @@ public class tempOrderADT<T> implements tempOrderInterface<T> {
             found = true;
         }
         
-        while(!found&&currentNode!=null){
+        if(!found){
             tempItem currentItem = (tempItem)currentNode.data;
             System.out.println(item.getItem_season());
             if(item.getItem_season().equals("Summer")){
@@ -279,7 +279,7 @@ public class tempOrderADT<T> implements tempOrderInterface<T> {
             found = true;
         }
         
-        while(!found&&currentNode!=null){
+        if(!found){
             tempItem currentItem = (tempItem)currentNode.data;
             
             if(item.getItem_season().equals("Autumn")){
@@ -310,7 +310,7 @@ public class tempOrderADT<T> implements tempOrderInterface<T> {
             found = true;
         }
         
-        while(!found&&currentNode!=null){
+        if(!found){
             tempItem currentItem = (tempItem)currentNode.data;
             
             if(item.getItem_season().equals("Winter")){
