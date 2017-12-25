@@ -71,7 +71,7 @@ public class OrderConfirmation extends JFrame {
         add(jlblOrder);
         add(scrollPane);
         add(new JLabel("Total Amount (RM) :"));
-        add(new JLabel(String.valueOf(totalPrice)));
+        add(new JLabel(String.format("%.2f",totalPrice)));
         add(jlblAddressHeader);
         add(new JLabel(order.getCust_deliveryAddress()));
         add(jbtBack);
