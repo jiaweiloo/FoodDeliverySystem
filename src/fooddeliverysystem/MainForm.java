@@ -464,7 +464,7 @@ public class MainForm extends javax.swing.JFrame {
             }
             ehl = new emp_handled_list(handle_id, tempEmp.getEmp_id(), tempOrd.getOrder_id(), dateOnly.format(new Date()), timeOnly.format(new Date()), "PROCESSING", "NONE");
             ehlList.add(ehl);
-            System.out.println(handle_id + "; Order id : " + Integer.toString(ehl.getOrder_id()) + " ,handled by employee : " + Integer.toString(ehl.getEmp_id()));
+            System.out.println("[System] Handle id:"+handle_id + "; Order id :" + Integer.toString(ehl.getOrder_id()) + " ,handled by employee :" + Integer.toString(ehl.getEmp_id()));
             if (emp != null) {
                 if (tempEmp.getEmp_id() == emp.getEmp_id()) {
                     DMI.nextOrder(tempOrd, ehl);
