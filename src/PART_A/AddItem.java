@@ -179,6 +179,8 @@ public class AddItem extends JFrame {
                          else{
                              newItem = new Item(201,jtfName.getText(),Double.parseDouble(jtfPrice.getText()),ID,jtfDescription.getText(),season);
                          }
+                     }else{
+                         System.out.println("[System] AddItem.java: Affiliate not found");
                      }
             }
     }
