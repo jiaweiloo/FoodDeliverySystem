@@ -152,6 +152,7 @@ public class AddItem extends JFrame {
         }
 
         for (int i = 1; i < Mainform.aff.getNumberOfEntries() + 1; i++) {
+            System.out.println(ID+" "+Mainform.aff.getEntry(i).getAffiliate_id());
             if (Mainform.aff.getEntry(i).getAffiliate_id() == ID) {
                 if (Mainform.aff.getEntry(i).getItemList().getNumberOfEntries() != 0) {
                     for (int o = 1; o < Mainform.aff.getEntry(i).getItemList().getNumberOfEntries() + 1; o++) {
@@ -174,6 +175,9 @@ public class AddItem extends JFrame {
                     }
                 } else {
                     newItem = new Item(201, jtfName.getText(), Double.parseDouble(jtfPrice.getText()), ID, jtfDescription.getText(), season);
+                    Mainform.aff.getEntry(i).getItemList().add(newItem);
+                    JOptionPane.showMessageDialog(null, "Item Added!!", "InfoBox: " + "Successful!!", JOptionPane.INFORMATION_MESSAGE);
+                    return;
                 }
             } else {
                 System.out.println("[System] AddItem.java: Affiliate not found");
