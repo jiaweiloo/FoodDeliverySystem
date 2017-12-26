@@ -263,8 +263,9 @@ public class Register extends javax.swing.JFrame {
                   newRest = new Affiliate(MainForm.aff.getEntry(MainForm.aff.getNumberOfEntries()).getAffiliate_id()+1,jTextField1.getText(),jTextField2.getText(),jTextField3.getText(),jTextField4.getText(),jTextField5.getText(),passString);
                   MainForm.aff.add(newRest);
                   MainForm.aff.getEntry(MainForm.aff.getNumberOfEntries()).setItemList(EmptyItem);
+                  System.out.print("[System] ");
                   for(int i=1;i<MainForm.aff.getNumberOfEntries()+1;i++){
-                        System.out.println(MainForm.aff.getEntry(i).getRest_name());
+                        System.out.print(MainForm.aff.getEntry(i).getRest_name() +" ");
                    }
                   JOptionPane.showMessageDialog(null, "Register Successful!! ", "InfoBox: " + "Successful!!", JOptionPane.INFORMATION_MESSAGE);
                          
