@@ -187,11 +187,5 @@ public class AddItem extends JFrame {
         jtfPrice.setText("");
         jtfDescription.setText("");
     }
-    
-    
-    public static void main(String[] args) {
-        
-        
-        
-    }
+
 }
