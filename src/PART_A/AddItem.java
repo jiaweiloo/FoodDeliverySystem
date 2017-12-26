@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package PART_A;
+
 import adt.AffiliateADT;
 import adt.*;
 import entity.*;
@@ -18,12 +19,8 @@ import javax.swing.*;
 import java.util.*;
 import javax.swing.table.DefaultTableModel;
 
-
 public class AddItem extends JFrame {
-    
-    
-    
-    
+
     /*Affiliate restA=new Affiliate(0000,"Rest A","Rest A address","Ali","0111111111","Zone A","123456789");
     Affiliate restB=new Affiliate(0001,"Rest B","Rest B address","Bli","0111111111","Zone B","123456789");
     LList<Item> item=new LList<Item>(); 
@@ -41,20 +38,21 @@ public class AddItem extends JFrame {
     Item newItem;
     int ID;
     AddItem AI;
-    String[] seasonStr = new String[]{"Spring","Summer","Autumn","Winter"};
+    String[] seasonStr = new String[]{"Spring", "Summer", "Autumn", "Winter"};
     JComboBox season_ddl = new JComboBox(seasonStr);
     JTextField jtfName = new JTextField();
     JTextField jtfPrice = new JTextField();
     JTextField jtfDescription = new JTextField();
     MainForm Mainform;
-    public AddItem(int CurrentID,MainForm mainform){
+
+    public AddItem(int CurrentID, MainForm mainform) {
         /*item.add(itemA);
         item.add(itemB);
         item.add(itemC);*/
         //EmptyItem.add(emptyItem);
-        Mainform=mainform;
-        ID=CurrentID;
-        AI=this;
+        Mainform = mainform;
+        ID = CurrentID;
+        AI = this;
         /*restA.setItemList(EmptyItem);
         affiliate.add(restA);
         Bitem.add(BitemA);
@@ -62,7 +60,7 @@ public class AddItem extends JFrame {
         Bitem.add(BitemC);
         restB.setItemList(Bitem);
         affiliate.add(restB);*/
-        
+
         JLabel jlblName = new JLabel("Name :");
         JLabel jlblPrice = new JLabel("Price (RM) :");
         JLabel jlblDescription = new JLabel("Description");
@@ -71,9 +69,9 @@ public class AddItem extends JFrame {
         JButton jbtnReset = new JButton("Reset");
         JButton jbtnSave = new JButton("Save Item");
         JButton jbtnBack = new JButton("Back");
-        
-        JPanel panel=new JPanel();
-        setLayout(new GridLayout(6, 2)); 
+
+        JPanel panel = new JPanel();
+        setLayout(new GridLayout(6, 2));
         jbtnSave.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 SaveItem(evt);
@@ -86,10 +84,10 @@ public class AddItem extends JFrame {
         });
         btnBack.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                AffMainMenu AFF=new AffMainMenu(ID,Mainform);
-                    AFF.setVisible(true);
-                    AFF.setLocationRelativeTo(null);
-                    AI.setVisible(false);
+                AffMainMenu AFF = new AffMainMenu(ID, Mainform);
+                AFF.setVisible(true);
+                AFF.setLocationRelativeTo(null);
+                AI.setVisible(false);
             }
         });
         season_ddl.setSelectedIndex(0);
@@ -105,11 +103,11 @@ public class AddItem extends JFrame {
         add(jbtnSave);
         add(jbtnReset);
         setTitle("AddItem");
-        setSize(1000, 500);  
-        setLocationRelativeTo(null);   
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);    
+        setSize(1000, 500);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
-       /* addWindowListener(new java.awt.event.WindowAdapter() {
+        /* addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent windowEvent) {
                 if (JOptionPane.showConfirmDialog(AI,
@@ -124,66 +122,65 @@ public class AddItem extends JFrame {
                 }
             }
         });*/
-        
-        
+
     }
-    
+
     private void SaveItem(ActionEvent evt) {
-        int newID=0;
+        int newID = 0;
         String season;
-        if(season_ddl.getSelectedIndex()==0)
-            season="Spring";
-        else if(season_ddl.getSelectedIndex()==1)
-            season="Summer";
-        else if(season_ddl.getSelectedIndex()==2)
-            season="Autumn";
-        else
-            season="Winter";
-        if(jtfName.getText().isEmpty()||jtfPrice.getText().isEmpty()||jtfDescription.getText().isEmpty()){
+        if (season_ddl.getSelectedIndex() == 0) {
+            season = "Spring";
+        } else if (season_ddl.getSelectedIndex() == 1) {
+            season = "Summer";
+        } else if (season_ddl.getSelectedIndex() == 2) {
+            season = "Autumn";
+        } else {
+            season = "Winter";
+        }
+        if (jtfName.getText().isEmpty() || jtfPrice.getText().isEmpty() || jtfDescription.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "All fields are required!!", "InfoBox: " + "Error!!", JOptionPane.ERROR_MESSAGE);
             return;
-        }else{
-            try{
-                 double value = Double.parseDouble(jtfPrice.getText());
-                 double answer = value * 9 / 5 + 35;
-                     }
-                catch (Exception e){
-                    JOptionPane.showMessageDialog(null, "Price must be numeric!!", "InfoBox: " + "Error!!", JOptionPane.ERROR_MESSAGE);
-                    return;
+        } else {
+            try {
+                double value = Double.parseDouble(jtfPrice.getText());
+                double answer = value * 9 / 5 + 35;
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Price must be numeric!!", "InfoBox: " + "Error!!", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+        }
+
+        for (int i = 1; i < Mainform.aff.getNumberOfEntries() + 1; i++) {
+            if (Mainform.aff.getEntry(i).getAffiliate_id() == ID) {
+                if (Mainform.aff.getEntry(i).getItemList().getNumberOfEntries() != 0) {
+                    for (int o = 1; o < Mainform.aff.getEntry(i).getItemList().getNumberOfEntries() + 1; o++) {
+                        if (Mainform.aff.getEntry(i).getItemList().getEntry(o).getItem_id() > newID) {
+                            newID = Mainform.aff.getEntry(i).getItemList().getEntry(o).getItem_id();
+                        }
+                        if (Mainform.aff.getEntry(i).getItemList().getEntry(o).getItem_name().equals(jtfName.getText())) {
+                            JOptionPane.showMessageDialog(null, "Item Name Used!!", "InfoBox: " + "Error!!", JOptionPane.ERROR_MESSAGE);
+                            return;
+                        } else {
+                            if (Mainform.aff.getEntry(i).getItemList().getNumberOfEntries() == o) {
+                                newID = newID + 1;
+                                newItem = new Item(newID, jtfName.getText(), Double.parseDouble(jtfPrice.getText()), ID, jtfDescription.getText(), season);
+                                Mainform.aff.getEntry(i).getItemList().add(newItem);
+                                JOptionPane.showMessageDialog(null, "Item Added!!", "InfoBox: " + "Successful!!", JOptionPane.INFORMATION_MESSAGE);
+
+                                return;
+                            }
+                        }
+                    }
+                } else {
+                    newItem = new Item(201, jtfName.getText(), Double.parseDouble(jtfPrice.getText()), ID, jtfDescription.getText(), season);
                 }
-                
+            } else {
+                System.out.println("[System] AddItem.java: Affiliate not found");
             }
-        
-            for(int i=1;i<Mainform.aff.getNumberOfEntries()+1;i++){
-                     if(Mainform.aff.getEntry(i).getAffiliate_id()==ID){
-                         if(Mainform.aff.getEntry(i).getItemList().getNumberOfEntries()!=0){
-                            for(int o=1;o<Mainform.aff.getEntry(i).getItemList().getNumberOfEntries()+1;o++){
-                                if(Mainform.aff.getEntry(i).getItemList().getEntry(o).getItem_id()>newID){
-                                    newID=Mainform.aff.getEntry(i).getItemList().getEntry(o).getItem_id();
-                                }
-                                 if(Mainform.aff.getEntry(i).getItemList().getEntry(o).getItem_name().equals(jtfName.getText())){
-                                    JOptionPane.showMessageDialog(null, "Item Name Used!!", "InfoBox: " + "Error!!", JOptionPane.ERROR_MESSAGE);
-                                    return;
-                                }else{
-                                     if(Mainform.aff.getEntry(i).getItemList().getNumberOfEntries()==o){
-                                         newID=newID+1; 
-                                         newItem = new Item(newID,jtfName.getText(),Double.parseDouble(jtfPrice.getText()),ID,jtfDescription.getText(),season);
-                                          Mainform.aff.getEntry(i).getItemList().add(newItem);
-                                                 JOptionPane.showMessageDialog(null, "Item Added!!", "InfoBox: " + "Successful!!", JOptionPane.INFORMATION_MESSAGE);
-                                                 
-                                                 return;
-                                             }   
-                                         }
-                                     }
-                                    }
-                         else{
-                             newItem = new Item(201,jtfName.getText(),Double.parseDouble(jtfPrice.getText()),ID,jtfDescription.getText(),season);
-                         }
-                     }else{
-                         System.out.println("[System] AddItem.java: Affiliate not found");
-                     }
-            }
+        }
     }
+
     private void Reset(ActionEvent evt) {
         jtfName.setText("");
         jtfPrice.setText("");
