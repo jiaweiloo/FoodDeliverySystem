@@ -222,7 +222,7 @@
           <Color blue="0" green="66" red="cc" type="rgb"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="User Login"/>
+        <Property name="text" type="java.lang.String" value="Employee Login"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
