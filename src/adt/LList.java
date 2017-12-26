@@ -180,7 +180,7 @@ public class LList<T> implements ListInterface<T> {
                 }
             }
         } else if (currentNode.data instanceof Order) {
-            //if currentNode.data is an object of Order
+            //if currentNode.data is an object of Order            
             Order order;
             while (!found && (currentNode != null)) {
                 order = (Order) currentNode.data;
