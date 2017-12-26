@@ -34,12 +34,23 @@ public class TrackMyOrder extends javax.swing.JFrame {
      */
     public TrackMyOrder() {
         initComponents();
-        try {
-            //Thread.sleep(1000);
-            timerrun();
-        } catch (Exception e) {
 
-        }
+        /*---------- Start timer to update with latest time ---------------*/
+        Timer timer = new Timer(1000, new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                //jtfTime.setText(new Date().toString());
+                try {
+                    String datenow = timein24hrs.format(new Date());
+                    Date dtnow = timein24hrs.parse(datenow);
+                    jtfTime.setText(timein24hrs.format(dtnow));
+                    countRemainingTime();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+        timer.start();
+        /*----------                 End of Timer                 ---------------*/
 
     }
 
@@ -227,11 +238,12 @@ public class TrackMyOrder extends javax.swing.JFrame {
 
             try {
                 int orderID = Integer.valueOf(jtfOrderID.getText());
-                //System.out.println("System: Success converting orderid into integer.");
+                //Search by order id entered by user
                 order = mainform.custList.searchByID(orderID);
                 if (order == null) {
                     JOptionPane.showMessageDialog(null, "Order not found !Please enter valid order ID! ", "Error!", JOptionPane.ERROR_MESSAGE);
                 } else {
+                    //update data field with latest details
                     purchasetime = order.getPurchase_time();
                     countRemainingTime();
                     jtfPurchaseTime.setText(purchasetime);
@@ -284,8 +296,7 @@ public class TrackMyOrder extends javax.swing.JFrame {
 
                 long diffSeconds = diff / 1000 % 60;
                 long diffMinutes = diff / (60 * 1000) % 60;
-                long diffHours = diff / (60 * 60 * 1000) % 24;
-                long diffDays = diff / (24 * 60 * 60 * 1000);
+                long diffHours = diff / (60 * 60 * 1000) % 24;                
                 String difference;
                 if (diffMinutes < 0) {
                     difference = "00:00:00 Delivery completed!";
@@ -302,38 +313,6 @@ public class TrackMyOrder extends javax.swing.JFrame {
 
     public void setMainForm(MainForm mainform) {
         this.mainform = mainform;
-    }
-
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TrackMyOrder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TrackMyOrder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TrackMyOrder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TrackMyOrder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TrackMyOrder().setVisible(true);
-            }
-        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

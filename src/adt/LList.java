@@ -157,11 +157,6 @@ public class LList<T> implements ListInterface<T> {
         return result;
     }
 
-    @Override
-    public boolean isFull() {
-        return false;
-    }
-
     public T searchByID(int ID) {
         boolean found = false;
         T result = null;
@@ -218,7 +213,7 @@ public class LList<T> implements ListInterface<T> {
                 found = true;
                 newNode.next = currentNode.next;
                 currentNode = newNode;
-                System.out.println("Replace status : " + found);
+                //System.out.println("Replace status : " + found);
             } else {
                 currentNode = currentNode.next;
             }
