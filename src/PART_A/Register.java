@@ -240,10 +240,10 @@ public class Register extends javax.swing.JFrame {
         }else if(!Arrays.equals(jPasswordField1.getPassword(), jPasswordField2.getPassword())){
                 JOptionPane.showMessageDialog(null, "Both Password are now same!", "Error!!", JOptionPane.ERROR_MESSAGE);
         }
-        else{
-            try {
-                  Integer.parseInt(jTextField4.getText());
-                  if(MainForm.aff.isEmpty()){
+        else if(!jTextField4.getText().matches("[0-9]+")){
+            JOptionPane.showMessageDialog(null, "Contact Number must be numeric!", "Error!!", JOptionPane.ERROR_MESSAGE);
+        }else{
+        if(MainForm.aff.isEmpty()){
                         char[] pass = jPasswordField1.getPassword();
                          String passString = new String(pass);
                          newRest = new Affiliate(1000,jTextField1.getText(),jTextField2.getText(),jTextField3.getText(),jTextField4.getText(),jTextField5.getText(),passString);
@@ -269,12 +269,15 @@ public class Register extends javax.swing.JFrame {
                   JOptionPane.showMessageDialog(null, "Register Successful!! ", "InfoBox: " + "Successful!!", JOptionPane.INFORMATION_MESSAGE);
                          
                  } 
-            }
-                    catch (NumberFormatException e) {
-                           JOptionPane.showMessageDialog(null, "Contact Number must be numeric!", "Error!!", JOptionPane.ERROR_MESSAGE);
-                 }
-            
+        
         }
+                  
+            
+                  
+                           
+                 
+            
+        
     }//GEN-LAST:event_btnRegActionPerformed
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
