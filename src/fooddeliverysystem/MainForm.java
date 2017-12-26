@@ -29,7 +29,7 @@ public class MainForm extends javax.swing.JFrame {
     public ListInterface<Item> itemList3 = new LList<Item>();
     public ListInterface<Item> itemList4 = new LList<Item>();
     public ListInterface<Order> custList = new LList<Order>();
-    
+
     employee emp, emp1, emp2, emp3, emp4, emp5, tempEmp;
     Attendance att, att1, att2, att3, att4, att5;
     Order ord, ord1, ord2, ord3, ord4, ord5, tempOrd;
@@ -39,22 +39,21 @@ public class MainForm extends javax.swing.JFrame {
     SimpleDateFormat dateOnly = new SimpleDateFormat("dd/MM/yyyy");
     deliveryManInterface DMI;
     public Order order = new Order();
-    
+
     public String phoneNo;
-    
 
     /**
      * Creates new form MainForm
      */
     public MainForm() {
         initComponents();
+        /*
         System.out.println(aff.getNumberOfEntries());
         for (int i = 1; i < aff.getNumberOfEntries() + 1; i++) {
             System.out.println(aff.getEntry(i).getRest_name());
-        }
-        System.out.println("here");
+        } */
+        //to load all the initial data 
         updateList();
-
     }
 
     /**

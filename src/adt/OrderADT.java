@@ -148,7 +148,7 @@ public class OrderADT<T> implements OrderInterface<T> {
                 found = true;
                 newNode.next = currentNode.next;
                 currentNode = newNode;
-                System.out.println("Replace status : "+found);
+                //System.out.println("Replace status : "+found);
             } else {
                 currentNode = currentNode.next;
             }
