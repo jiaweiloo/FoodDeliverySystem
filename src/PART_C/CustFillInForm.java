@@ -24,13 +24,13 @@ public class CustFillInForm extends javax.swing.JFrame {
     Order order;
     OrderInterface<Order> orderList;
     AffiliateInterface<Affiliate> aff;
-    
-    public CustFillInForm(Order order, OrderInterface<Order> orderList,AffiliateInterface<Affiliate> aff,MainForm mf) {
-        
+
+    public CustFillInForm(Order order, OrderInterface<Order> orderList, AffiliateInterface<Affiliate> aff, MainForm mf) {
+
         this.order = order;
-        this.orderList=orderList;
-        this.mainform=mf;
-        this.aff=aff;
+        this.orderList = orderList;
+        this.mainform = mf;
+        this.aff = aff;
         setTitle("Order Fill In Form");
         initComponents();
     }
@@ -195,20 +195,29 @@ public class CustFillInForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (custEmail.getText().equals("") || custAddress.getText().equals("") || custName.getText().equals("") || custPhone.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Please complete the fill in form");
-        } else if (!custName.getText().matches("^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$")){
+        } else if (!custName.getText().matches("^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$")) {
             JOptionPane.showMessageDialog(null, "Please key in alphabet only for name");
-        }else if(!custPhone.getText().matches("[0-9]+")){
+        } else if (!custPhone.getText().matches("[0-9]+")) {
             JOptionPane.showMessageDialog(null, "Please key in number only for phone no");
+        } else {
+            int count=1;
+            for (int a = 1; a <= mainform.custList.getNumberOfEntries(); a++) {
+                if (custPhone.getText().equals(mainform.custList.getEntry(a).getCust_phone())) {
+                    JOptionPane.showMessageDialog(null, "Phone number is registered! Please try another one");
+                    break;
+                } else if(count==mainform.custList.getNumberOfEntries()){
+                    order.setOrder_id(mainform.custList.getNumberOfEntries() + 200000);
+                    order.setCust_name(custName.getText());
+                    order.setCust_email(custEmail.getText());
+                    order.setCust_phone(custPhone.getText());
+                    order.setCust_deliveryAddress(custAddress.getText());
+                    SelectRestaurant2 sr2 = new SelectRestaurant2(order, orderList, aff, mainform);
+                    this.dispose();
+                }
+                count++;
+            }
         }
-        else{
-            order.setOrder_id(mainform.custList.getNumberOfEntries()+200000);
-            order.setCust_name(custName.getText());
-            order.setCust_email(custEmail.getText());
-            order.setCust_phone(custPhone.getText());
-            order.setCust_deliveryAddress(custAddress.getText());
-            SelectRestaurant2 sr2 = new SelectRestaurant2(order,orderList,aff,mainform);
-            this.dispose();
-        }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -224,7 +233,6 @@ public class CustFillInForm extends javax.swing.JFrame {
         mainform.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
-
 
     /**
      * @param args the command line arguments
