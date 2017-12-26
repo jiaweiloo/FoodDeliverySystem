@@ -157,6 +157,7 @@ public class LList<T> implements ListInterface<T> {
         return result;
     }
 
+    @Override
     public T searchByID(int ID) {
         boolean found = false;
         T result = null;
@@ -203,6 +204,7 @@ public class LList<T> implements ListInterface<T> {
         return result;
     }
 
+    @Override
     public boolean replaceObject(T oldEntry, T newEntry) {
         boolean found = false;
         Node currentNode = firstNode;
