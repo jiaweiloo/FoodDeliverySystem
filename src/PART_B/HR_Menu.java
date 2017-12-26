@@ -12,6 +12,7 @@ import fooddeliverysystem.MainForm;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -68,7 +69,7 @@ public class HR_Menu extends javax.swing.JFrame {
         btnExit = new javax.swing.JButton();
         btnRegister = new javax.swing.JButton();
         btnClear = new javax.swing.JButton();
-        jcbStatus = new javax.swing.JComboBox<>();
+        jcbStatus = new javax.swing.JComboBox<String>();
         jPass = new javax.swing.JPasswordField();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -95,6 +96,7 @@ public class HR_Menu extends javax.swing.JFrame {
         btnExit4 = new javax.swing.JButton();
         btnRefresh = new javax.swing.JButton();
         btnShowPending = new javax.swing.JButton();
+        comboboxID = new javax.swing.JComboBox();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -149,7 +151,7 @@ public class HR_Menu extends javax.swing.JFrame {
             }
         });
 
-        jcbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Offline", "Available", "Pending", "other" }));
+        jcbStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Offline", "Available", "Pending", "other" }));
 
         jPass.setText("abcd1234");
 
@@ -452,6 +454,12 @@ public class HR_Menu extends javax.swing.JFrame {
             }
         });
 
+        comboboxID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboboxIDActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -459,21 +467,25 @@ public class HR_Menu extends javax.swing.JFrame {
             .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 709, Short.MAX_VALUE)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(btnExit4, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(160, 160, 160)
+                .addGap(82, 82, 82)
                 .addComponent(btnShowPending)
+                .addGap(128, 128, 128)
+                .addComponent(comboboxID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnRefresh))
+                .addComponent(btnRefresh)
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnExit4)
                     .addComponent(btnRefresh)
-                    .addComponent(btnShowPending))
+                    .addComponent(btnShowPending)
+                    .addComponent(comboboxID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -786,6 +798,8 @@ public class HR_Menu extends javax.swing.JFrame {
         //mainform.setVisible(true);
         DefaultTableModel dm2 = (DefaultTableModel) jtPendingDelivery.getModel();
         dm2.setRowCount(0);
+        DefaultComboBoxModel haha = new DefaultComboBoxModel();
+        comboboxID.setModel(haha);
         Object[] rowdata3 = new Object[7];
         for (int a = 1; a <= mainform.ehlList.getNumberOfEntries(); a++) {
             rowdata3[0] = mainform.ehlList.getEntry(a).getHandle_id();
@@ -796,6 +810,9 @@ public class HR_Menu extends javax.swing.JFrame {
             rowdata3[5] = mainform.ehlList.getEntry(a).getHandled_status();
             rowdata3[6] = mainform.ehlList.getEntry(a).getMessage();
             dm2.addRow(rowdata3);
+        }
+         for(int b=1;b<=mainform.empList.getNumberOfEntries();b++){
+            comboboxID.addItem(mainform.empList.getEntry(b).getEmp_id());
         }
 
 
@@ -815,7 +832,7 @@ public class HR_Menu extends javax.swing.JFrame {
         Object[] rowdata3 = new Object[7];
         boolean isEmpty = true;
         for (int a = 1; a <= mainform.ehlList.getNumberOfEntries(); a++) {
-            if (STR.equals(mainform.ehlList.getEntry(a).getHandled_status())) {
+            if (STR.equals(mainform.ehlList.getEntry(a).getHandled_status())&&comboboxID.getSelectedItem().equals(mainform.ehlList.getEntry(a).getEmp_id())) {
                 rowdata3[0] = mainform.ehlList.getEntry(a).getHandle_id();
                 rowdata3[1] = mainform.ehlList.getEntry(a).getEmp_id();
                 rowdata3[2] = mainform.ehlList.getEntry(a).getOrder_id();
@@ -839,6 +856,10 @@ public class HR_Menu extends javax.swing.JFrame {
         this.setVisible(false);
         report.setVisible(true);
     }//GEN-LAST:event_btnShowHandledReportActionPerformed
+
+    private void comboboxIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboboxIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboboxIDActionPerformed
 
     public void report() {
 
@@ -893,6 +914,7 @@ public class HR_Menu extends javax.swing.JFrame {
     private javax.swing.JButton btnShowHandledReport;
     private javax.swing.JButton btnShowPending;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JComboBox comboboxID;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
