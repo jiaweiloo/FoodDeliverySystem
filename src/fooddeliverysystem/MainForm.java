@@ -39,7 +39,7 @@ public class MainForm extends javax.swing.JFrame {
     SimpleDateFormat dateOnly = new SimpleDateFormat("dd/MM/yyyy");
     deliveryManInterface DMI;
     public Order order = new Order();
-
+    boolean dmIsLogin = false;
     public String phoneNo;
 
     /**
@@ -48,10 +48,10 @@ public class MainForm extends javax.swing.JFrame {
     public MainForm() {
         initComponents();
         /*
-        System.out.println(aff.getNumberOfEntries());
-        for (int i = 1; i < aff.getNumberOfEntries() + 1; i++) {
-            System.out.println(aff.getEntry(i).getRest_name());
-        } */
+         System.out.println(aff.getNumberOfEntries());
+         for (int i = 1; i < aff.getNumberOfEntries() + 1; i++) {
+         System.out.println(aff.getEntry(i).getRest_name());
+         } */
         //to load all the initial data 
         updateList();
     }
@@ -291,62 +291,68 @@ public class MainForm extends javax.swing.JFrame {
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
         boolean success = false;
-        if (empList.searchString(jtfEmail.getText()) != null) {
-            emp = empList.searchString(jtfEmail.getText());
-            System.out.println(emp.getEmp_id());
-            if (emp.getPassword().equals(jpfPassword.getText())) {
-                Attendance atd = null;
-                boolean toAdd = true;
-                for (int ct = 1; ct <= attdList.getNumberOfEntries(); ct++) {
-                    atd = attdList.getEntry(ct);
-                    if (atd.getEmp_id() == emp.getEmp_id()) {
-                        if (atd.getDate().equals(dateOnly.format(new Date()))) {
-                            toAdd = false;
-                            break;
+        if (!dmIsLogin) {
+            if (empList.searchString(jtfEmail.getText()) != null) {
+                emp = empList.searchString(jtfEmail.getText());
+                System.out.println(emp.getEmp_id());
+                if (emp.getPassword().equals(jpfPassword.getText())) {
+                    Attendance atd = null;
+                    boolean toAdd = true;
+                    for (int ct = 1; ct <= attdList.getNumberOfEntries(); ct++) {
+                        atd = attdList.getEntry(ct);
+                        if (atd.getEmp_id() == emp.getEmp_id()) {
+                            if (atd.getDate().equals(dateOnly.format(new Date()))) {
+                                toAdd = false;
+                                break;
+                            }
                         }
                     }
+                    if (toAdd) {
+                        att = new Attendance(
+                                attdList.getEntry(attdList.getNumberOfEntries()).getAttendance_id() + 1,
+                                emp.getEmp_id(),
+                                dateOnly.format(new Date()),
+                                timeOnly.format(new Date()),
+                                "00:00:00",
+                                "00:00:00",
+                                "00:00:00");
+                        attdList.add(att);
+                    }
+                    success = true;
+                } else {
+                    success = false;
                 }
-                if (toAdd) {
-                    att = new Attendance(
-                            attdList.getEntry(attdList.getNumberOfEntries()).getAttendance_id() + 1,
-                            emp.getEmp_id(),
-                            dateOnly.format(new Date()),
-                            timeOnly.format(new Date()),
-                            "00:00:00",
-                            "00:00:00",
-                            "00:00:00");
-                    attdList.add(att);
-                }
-                success = true;
-            } else {
-                success = false;
             }
-        }
 
-        if (!success) {
-            JOptionPane.showMessageDialog(null, "Verified fail! Please try again");
+            if (!success) {
+                JOptionPane.showMessageDialog(null, "Verified fail! Please try again");
+            } else {
+                //see login rank is deliveryman ,executive manager, or affiliates
+                switch (emp.getRank()) {
+                    case "DM":
+
+                        DMI = new deliveryManInterface(empList, attdList, emp, orderList, this);
+                        DMI.updateAttendance(att);
+                        //DMI.updateEmp(emp);
+                        DMI.setVisible(true);
+                        DMI.PreviousFrame(this);
+                        //DMI.updateTable();
+                        //this.setVisible(false);
+                        dmIsLogin = true;
+                        break;
+                    case "EXEC":
+                        HR_Menu HRM = new HR_Menu(this);
+                        HRM.setVisible(true);
+                        this.setVisible(false);
+                        //JOptionPane.showMessageDialog(null, "Login success, application under construction! ");
+                        break;
+                    default:
+                        JOptionPane.showMessageDialog(null, "Login success, USER DO NOT BELONG TO ANY GROUP! ");
+                        break;
+                } //switch case for login interface
+            }
         } else {
-            //see login rank is deliveryman ,executive manager, or affiliates
-            switch (emp.getRank()) {
-                case "DM":
-                    DMI = new deliveryManInterface(empList, attdList, emp, orderList, this);
-                    DMI.updateAttendance(att);
-                    //DMI.updateEmp(emp);
-                    DMI.setVisible(true);
-                    DMI.PreviousFrame(this);
-                    //DMI.updateTable();
-                    //this.setVisible(false);
-                    break;
-                case "EXEC":
-                    HR_Menu HRM = new HR_Menu(this);
-                    HRM.setVisible(true);
-                    this.setVisible(false);
-                    //JOptionPane.showMessageDialog(null, "Login success, application under construction! ");
-                    break;
-                default:
-                    JOptionPane.showMessageDialog(null, "Login success, USER DO NOT BELONG TO ANY GROUP! ");
-                    break;
-            } //switch case for login interface
+            JOptionPane.showMessageDialog(null, "Deliveryman can only login once! ");
         }
     }//GEN-LAST:event_btnLoginActionPerformed
 
@@ -464,7 +470,7 @@ public class MainForm extends javax.swing.JFrame {
             }
             ehl = new emp_handled_list(handle_id, tempEmp.getEmp_id(), tempOrd.getOrder_id(), dateOnly.format(new Date()), timeOnly.format(new Date()), "PROCESSING", "NONE");
             ehlList.add(ehl);
-            System.out.println("[System] Handle id:"+handle_id + "; Order id :" + Integer.toString(ehl.getOrder_id()) + " ,handled by employee :" + Integer.toString(ehl.getEmp_id()));
+            System.out.println("[System] Handle id:" + handle_id + "; Order id :" + Integer.toString(ehl.getOrder_id()) + " ,handled by employee :" + Integer.toString(ehl.getEmp_id()));
             if (emp != null) {
                 if (tempEmp.getEmp_id() == emp.getEmp_id()) {
                     DMI.nextOrder(tempOrd, ehl);
