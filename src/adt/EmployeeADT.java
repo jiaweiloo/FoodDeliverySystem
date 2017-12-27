@@ -153,12 +153,12 @@ public class EmployeeADT<T> implements EmployeeInterface<T> {
             emp = (employee) currentNode.data;
 
             if (input.equals(emp.getEmail())) {
-                System.out.println("EmployeeADT.java : Email match!");
+                System.out.println("[System] EmployeeADT.java : Email match!");
                 found = true;
                 result = emp;
             } 
             else if (input.equals(emp.getIc_number())) {
-                System.out.println("EmployeeADT.java : IC match!");
+                System.out.println("[System] EmployeeADT.java : IC match!");
                 found = true;
                 result = emp;
             } 
