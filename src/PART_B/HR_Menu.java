@@ -129,6 +129,9 @@ public class HR_Menu extends javax.swing.JFrame {
         employeeTable = new javax.swing.JTable();
         btnRefresh1 = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jtfTotalRecords = new javax.swing.JTextField();
+        btnExitTskHdl = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -809,6 +812,17 @@ public class HR_Menu extends javax.swing.JFrame {
         jLabel15.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel15.setText("Daily Task Handled Report");
 
+        jLabel16.setText("Total Records: ");
+
+        jtfTotalRecords.setText("0");
+
+        btnExitTskHdl.setText("Exit");
+        btnExitTskHdl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExitTskHdlActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
@@ -820,7 +834,13 @@ public class HR_Menu extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                         .addComponent(jLabel15)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnRefresh1)))
+                        .addComponent(btnRefresh1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                        .addComponent(btnExitTskHdl)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel16)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jtfTotalRecords, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
@@ -831,8 +851,13 @@ public class HR_Menu extends javax.swing.JFrame {
                     .addComponent(btnRefresh1)
                     .addComponent(jLabel15))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16)
+                    .addComponent(jtfTotalRecords, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnExitTskHdl))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Daily Task Handled Report", jPanel8);
@@ -1155,27 +1180,29 @@ public class HR_Menu extends javax.swing.JFrame {
 
     private void btnRefresh1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefresh1ActionPerformed
         // TODO add your handling code here:
+        int totalrow = 0;
         DefaultTableModel dm = (DefaultTableModel) employeeTable.getModel();
         dm.setRowCount(0);
         sortedList.clear();
         employee newEmp;
         for (int b = 1; b < mainform.empList.getNumberOfEntries() + 1; b++) {
-            //System.out.println("haha");
             newEmp = mainform.empList.getEntry(b);
             sortedList.addByTaskHandled(newEmp);
-            //System.out.println("HR_MENU : "+newEmp.getEmp_id());
         }
+        
+        //Add all the row from sortedList into the table
         Object[] rowdata = new Object[5];
-        // System.out.println(List.getNumberOfEntries());
-        for (int a = 1; a <= sortedList.getNumberOfEntries(); a++) {
-            System.out.println(a + " , HR_MENU : " + sortedList.getEntry(a).getEmp_id() + " handled total : " + sortedList.getEntry(a).getTotal_handled());
+        for (int a = 1; a <= sortedList.getNumberOfEntries(); a++) {            
             rowdata[0] = sortedList.getEntry(a).getEmp_id();
             rowdata[1] = sortedList.getEntry(a).getEmail();
             rowdata[2] = sortedList.getEntry(a).getPhone_num();
             rowdata[3] = sortedList.getEntry(a).getStatus();
             rowdata[4] = sortedList.getEntry(a).getTotal_handled();
             dm.addRow(rowdata);
+            totalrow++;
         }
+        //Display total records to the java text field
+        jtfTotalRecords.setText(Integer.toString(totalrow));
     }//GEN-LAST:event_btnRefresh1ActionPerformed
 
     private void jBtGetOrderReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtGetOrderReportActionPerformed
@@ -1198,14 +1225,17 @@ public class HR_Menu extends javax.swing.JFrame {
                 dm.addRow(rowdata);
                 isEmpty = false;
             }
-
         }
         jLabelGetOrder.setText("Total Order : " + b);
         if (isEmpty) {
             JOptionPane.showMessageDialog(null, "No Order for today");
-
         }
     }//GEN-LAST:event_jBtGetOrderReportActionPerformed
+
+    private void btnExitTskHdlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitTskHdlActionPerformed
+        this.dispose();
+        mainform.setVisible(true);
+    }//GEN-LAST:event_btnExitTskHdlActionPerformed
 
     public void report() {
 
@@ -1255,6 +1285,7 @@ public class HR_Menu extends javax.swing.JFrame {
     private javax.swing.JButton btnExit3;
     private javax.swing.JButton btnExit4;
     private javax.swing.JButton btnExit5;
+    private javax.swing.JButton btnExitTskHdl;
     private javax.swing.JButton btnRefresh;
     private javax.swing.JButton btnRefresh1;
     private javax.swing.JButton btnRefresh2;
@@ -1274,6 +1305,7 @@ public class HR_Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1313,6 +1345,7 @@ public class HR_Menu extends javax.swing.JFrame {
     private javax.swing.JTextArea jtfAddress;
     private javax.swing.JTextField jtfEmail;
     private javax.swing.JTextField jtfIC_Number;
+    private javax.swing.JTextField jtfTotalRecords;
     private javax.swing.JLabel total_AFF;
     private javax.swing.JLabel total_item;
     private javax.swing.JTextArea txtAddress;
