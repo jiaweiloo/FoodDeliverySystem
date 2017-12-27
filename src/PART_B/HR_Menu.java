@@ -9,9 +9,11 @@ import entity.Order;
 import entity.emp_handled_list;
 import entity.employee;
 import fooddeliverysystem.MainForm;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
+import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -69,7 +71,7 @@ public class HR_Menu extends javax.swing.JFrame {
         btnExit = new javax.swing.JButton();
         btnRegister = new javax.swing.JButton();
         btnClear = new javax.swing.JButton();
-        jcbStatus = new javax.swing.JComboBox<String>();
+        jcbStatus = new javax.swing.JComboBox<>();
         jPass = new javax.swing.JPasswordField();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -105,6 +107,11 @@ public class HR_Menu extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         btnExit5 = new javax.swing.JButton();
         btnShowHandledReport = new javax.swing.JButton();
+        jPanel6 = new javax.swing.JPanel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        jTGetOrder = new javax.swing.JTable();
+        jBtGetOrderReport = new javax.swing.JButton();
+        jLabelGetOrder = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -152,7 +159,7 @@ public class HR_Menu extends javax.swing.JFrame {
             }
         });
 
-        jcbStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Offline", "Available", "Pending", "other" }));
+        jcbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Offline", "Available", "Pending", "other" }));
 
         jPass.setText("abcd1234");
 
@@ -185,7 +192,7 @@ public class HR_Menu extends javax.swing.JFrame {
                             .addComponent(jPhoneNumber)
                             .addComponent(jtfIC_Number)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE))))
-                .addContainerGap(168, Short.MAX_VALUE))
+                .addContainerGap(214, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -267,7 +274,7 @@ public class HR_Menu extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 724, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 770, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnExit2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -281,7 +288,7 @@ public class HR_Menu extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDelete)
@@ -380,7 +387,7 @@ public class HR_Menu extends javax.swing.JFrame {
                         .addGap(40, 40, 40)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
+                                .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
                                 .addGap(7, 7, 7))
                             .addComponent(txtPhone))
                         .addGap(18, 18, 18)
@@ -466,7 +473,7 @@ public class HR_Menu extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 724, Short.MAX_VALUE)
+            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 770, Short.MAX_VALUE)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(btnExit4, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(82, 82, 82)
@@ -483,7 +490,7 @@ public class HR_Menu extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnExit4)
@@ -558,7 +565,7 @@ public class HR_Menu extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnExit5)
                         .addContainerGap())
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 712, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 758, Short.MAX_VALUE)))
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(220, 220, 220)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -569,7 +576,7 @@ public class HR_Menu extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRefreshDaily)
@@ -580,13 +587,74 @@ public class HR_Menu extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Daily Report", jPanel5);
 
+        jTGetOrder.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Order ID", "Order Time", "Order Amount", "Customer Name", "Customer Phone No", "Customer Address"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane7.setViewportView(jTGetOrder);
+        if (jTGetOrder.getColumnModel().getColumnCount() > 0) {
+            jTGetOrder.getColumnModel().getColumn(5).setPreferredWidth(200);
+        }
+
+        jBtGetOrderReport.setText("Get Report");
+        jBtGetOrderReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtGetOrderReportActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 746, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jBtGetOrderReport)
+                        .addGap(339, 339, 339))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabelGetOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelGetOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addComponent(jBtGetOrderReport)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Daily Order Report", jPanel6);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 729, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -816,7 +884,7 @@ public class HR_Menu extends javax.swing.JFrame {
             rowdata3[6] = mainform.ehlList.getEntry(a).getMessage();
             dm2.addRow(rowdata3);
         }
-         for(int b=1;b<=mainform.empList.getNumberOfEntries();b++){
+        for (int b = 1; b <= mainform.empList.getNumberOfEntries(); b++) {
             comboboxID.addItem(mainform.empList.getEntry(b).getEmp_id());
         }
 
@@ -837,7 +905,7 @@ public class HR_Menu extends javax.swing.JFrame {
         Object[] rowdata3 = new Object[7];
         boolean isEmpty = true;
         for (int a = 1; a <= mainform.ehlList.getNumberOfEntries(); a++) {
-            if (STR.equals(mainform.ehlList.getEntry(a).getHandled_status())&&comboboxID.getSelectedItem().equals(mainform.ehlList.getEntry(a).getEmp_id())) {
+            if (STR.equals(mainform.ehlList.getEntry(a).getHandled_status()) && comboboxID.getSelectedItem().equals(mainform.ehlList.getEntry(a).getEmp_id())) {
                 rowdata3[0] = mainform.ehlList.getEntry(a).getHandle_id();
                 rowdata3[1] = mainform.ehlList.getEntry(a).getEmp_id();
                 rowdata3[2] = mainform.ehlList.getEntry(a).getOrder_id();
@@ -865,6 +933,35 @@ public class HR_Menu extends javax.swing.JFrame {
     private void comboboxIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboboxIDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboboxIDActionPerformed
+
+    private void jBtGetOrderReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtGetOrderReportActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel dm = (DefaultTableModel) jTGetOrder.getModel();
+        dm.setRowCount(0);
+        //ListInterface<emp_handled_list> hl=mainform.ehlList.searchString("HANDLED");
+        Object[] rowdata = new Object[6];
+        boolean isEmpty = true;
+        int b=0;
+        for (int a = 1; a <= mainform.custList.getNumberOfEntries(); a++) {
+            if (mainform.custList.getEntry(a).getOrderDate().equals(new SimpleDateFormat("yyyy.MM.dd").format(new Date()))) {
+                b++;
+                rowdata[0] = mainform.custList.getEntry(a).getOrder_id();
+                rowdata[1] = mainform.custList.getEntry(a).getPurchase_time();
+                rowdata[2] = mainform.custList.getEntry(a).getTotal_amount();
+                rowdata[3] = mainform.custList.getEntry(a).getCust_name();
+                rowdata[4] = mainform.custList.getEntry(a).getCust_phone();
+                rowdata[5] = mainform.custList.getEntry(a).getCust_deliveryAddress();
+                dm.addRow(rowdata);
+                isEmpty = false;
+            }
+
+        }
+        jLabelGetOrder.setText("Total Order : "+b);
+        if (isEmpty) {
+            JOptionPane.showMessageDialog(null, "No Order for today");
+
+        }
+    }//GEN-LAST:event_jBtGetOrderReportActionPerformed
 
     public void report() {
 
@@ -920,6 +1017,7 @@ public class HR_Menu extends javax.swing.JFrame {
     private javax.swing.JButton btnShowPending;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox comboboxID;
+    private javax.swing.JButton jBtGetOrderReport;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -930,11 +1028,13 @@ public class HR_Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelGetOrder;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JPasswordField jPass;
     private javax.swing.JTextField jPhoneNumber;
     private javax.swing.JScrollPane jScrollPane1;
@@ -943,6 +1043,8 @@ public class HR_Menu extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JTable jTGetOrder;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
