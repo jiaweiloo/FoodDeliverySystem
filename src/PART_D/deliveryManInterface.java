@@ -332,6 +332,7 @@ public class deliveryManInterface extends javax.swing.JFrame {
             att.setTime_checkout(timeOnly.format(new Date()));
             mainform.returnAtt(att);
             mainform.setVisible(true);
+            mainform.dmIsLogin = false;
             this.dispose();
         } else {
             JOptionPane.showMessageDialog(null, "Please Clear Pending Task" + "\nBefore Logging out! ", "LOGOUT FAIL!", JOptionPane.ERROR_MESSAGE);

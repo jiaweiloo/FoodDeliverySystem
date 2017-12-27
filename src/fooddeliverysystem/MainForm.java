@@ -39,7 +39,7 @@ public class MainForm extends javax.swing.JFrame {
     SimpleDateFormat dateOnly = new SimpleDateFormat("dd/MM/yyyy");
     deliveryManInterface DMI;
     public Order order = new Order();
-    boolean dmIsLogin = false;
+    public boolean dmIsLogin = false;
     public String phoneNo;
 
     /**
@@ -336,7 +336,7 @@ public class MainForm extends javax.swing.JFrame {
                         //DMI.updateEmp(emp);
                         DMI.setVisible(true);
                         DMI.PreviousFrame(this);
-                        //DMI.updateTable();
+                    //DMI.updateTable();
                         //this.setVisible(false);
                         dmIsLogin = true;
                         break;
@@ -347,13 +347,12 @@ public class MainForm extends javax.swing.JFrame {
                         //JOptionPane.showMessageDialog(null, "Login success, application under construction! ");
                         break;
                     default:
-                        JOptionPane.showMessageDialog(null, "Login success, USER DO NOT BELONG TO ANY GROUP! ");
-                        break;
-                } //switch case for login interface
+                }
             }
         } else {
             JOptionPane.showMessageDialog(null, "Deliveryman can only login once! ");
         }
+
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnTrackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTrackActionPerformed
@@ -480,11 +479,11 @@ public class MainForm extends javax.swing.JFrame {
     }
 
     private void updateList() {
-        emp1 = new employee(100001, "jason@mail.com", "abcd1234", "offline", "890831-05-4492", "A-4-2 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-4441221", "DM", 2009, 0);
+        emp1 = new employee(100001, "jason@mail.com", "abcd1234", "offline", "890831-05-4492", "A-4-2 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-4441221", "DM", 2009, 1);
         emp2 = new employee(100002, "manager@mail.com", "abcd1234", "other", "890731-05-4492", "A-7-4 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-4661321", "EXEC", 2010, 0);
         emp3 = new employee(100003, "annabelle@mail.com", "abcd1234", "offline", "800831-05-4592", "A-3-6 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-8535221", "DM", 2016, 0);
-        emp4 = new employee(100004, "marie@mail.com", "abcd1234", "offline", "990731-08-4492", "A-2-2 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-1231221", "DM", 2012, 0);
-        emp5 = new employee(100005, "lucas@mail.com", "abcd1234", "other", "790821-05-4492", "A-6-5 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-4990621", "AFFT", 2014, 0);
+        emp4 = new employee(100004, "marie@mail.com", "abcd1234", "offline", "990731-08-4492", "A-2-2 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-1231221", "DM", 2012, 3);
+        emp5 = new employee(100005, "lucas@mail.com", "abcd1234", "other", "790821-05-4492", "A-6-5 Sri Pelangi, Jln Genting Klang, 53300 KL", "012-4990621", "DM", 2014, 2);
         att1 = new Attendance(600001, 100001, "21/07/2017", "08:00:21", "17:03:21", "13:10:52", "13:55:13");
         att2 = new Attendance(600002, 100002, "21/07/2017", "08:01:11", "17:13:31", "13:05:51", "14:02:11");
         att3 = new Attendance(600003, 100001, "22/07/2017", "08:11:31", "17:23:41", "13:12:25", "14:01:12");
