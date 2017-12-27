@@ -1209,7 +1209,6 @@ public class HR_Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
         DefaultTableModel dm = (DefaultTableModel) jTGetOrder.getModel();
         dm.setRowCount(0);
-        //ListInterface<emp_handled_list> hl=mainform.ehlList.searchString("HANDLED");
         Object[] rowdata = new Object[6];
         boolean isEmpty = true;
         int b = 0;
