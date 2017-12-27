@@ -335,7 +335,7 @@ public class MainForm extends javax.swing.JFrame {
                     DMI.setVisible(true);
                     DMI.PreviousFrame(this);
                     //DMI.updateTable();
-                    this.setVisible(false);
+                    //this.setVisible(false);
                     break;
                 case "EXEC":
                     HR_Menu HRM = new HR_Menu(this);
