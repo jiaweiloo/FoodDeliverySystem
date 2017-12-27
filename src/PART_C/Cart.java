@@ -113,7 +113,7 @@ public class Cart extends JFrame {
                     row[0] = itemList.getEntry(b).getItem_name();
                     row[1] = cartList.getEntry(a).getQuantity();
                     row[2] = itemList.getEntry(b).getItem_price();
-                    row[3] = cartList.getEntry(a).getSubTotal();
+                    row[3] = String.format("%.2f", cartList.getEntry(a).getSubTotal());
                 }
             }
             model.addRow(row);

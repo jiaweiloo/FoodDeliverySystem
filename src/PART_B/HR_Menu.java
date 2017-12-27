@@ -107,11 +107,23 @@ public class HR_Menu extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         btnExit5 = new javax.swing.JButton();
         btnShowHandledReport = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        dm_total_this_year = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane7 = new javax.swing.JScrollPane();
         jTGetOrder = new javax.swing.JTable();
         jBtGetOrderReport = new javax.swing.JButton();
         jLabelGetOrder = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        AFF_REP_Table = new javax.swing.JTable();
+        AFF_REF_btn = new javax.swing.JButton();
+        total_AFF = new javax.swing.JLabel();
+        total_item = new javax.swing.JLabel();
+        AFF_REP_EXIT_btn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -288,7 +300,7 @@ public class HR_Menu extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDelete)
@@ -358,10 +370,10 @@ public class HR_Menu extends javax.swing.JFrame {
         txtAddress.setColumns(20);
         txtAddress.setRows(5);
         txtAddress.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 txtAddressInputMethodTextChanged(evt);
+            }
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
         jScrollPane5.setViewportView(txtAddress);
@@ -490,7 +502,7 @@ public class HR_Menu extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnExit4)
@@ -551,6 +563,20 @@ public class HR_Menu extends javax.swing.JFrame {
             }
         });
 
+        jLabel12.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel12.setText("Delivery Men Report Sorted By Year Joined");
+
+        jLabel13.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel13.setText("Total Delivery Men Joined :");
+
+        dm_total_this_year.setEditable(false);
+        dm_total_this_year.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dm_total_this_yearActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -560,24 +586,38 @@ public class HR_Menu extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(btnRefreshDaily)
-                        .addGap(132, 132, 132)
+                        .addGap(183, 183, 183)
                         .addComponent(btnShowHandledReport)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnExit5)
                         .addContainerGap())
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 758, Short.MAX_VALUE)))
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(220, 220, 220)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addGap(62, 62, 62)
+                .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(65, 65, 65))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addComponent(jLabel13)
+                .addGap(18, 18, 18)
+                .addComponent(dm_total_this_year, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(dm_total_this_year, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 155, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRefreshDaily)
                     .addComponent(btnExit5)
@@ -615,6 +655,9 @@ public class HR_Menu extends javax.swing.JFrame {
             }
         });
 
+        jLabel14.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel14.setText("Daily Order Report");
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -622,31 +665,122 @@ public class HR_Menu extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 746, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jBtGetOrderReport)
-                        .addGap(339, 339, 339))))
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                                .addComponent(jBtGetOrderReport)
+                                .addGap(339, 339, 339))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                                .addComponent(jLabelGetOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(40, 40, 40))))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 746, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 12, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabelGetOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40))
+                .addComponent(jLabel14)
+                .addGap(308, 308, 308))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(47, 47, 47)
+                .addComponent(jLabel14)
+                .addGap(44, 44, 44)
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabelGetOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
                 .addComponent(jBtGetOrderReport)
                 .addContainerGap())
         );
 
         jTabbedPane1.addTab("Daily Order Report", jPanel6);
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel11.setText("Affiliate Report");
+
+        AFF_REP_Table.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Rest Name", "Owner Name", "Rest Address", "Zone", "Contact Number", "Number Of Item"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane8.setViewportView(AFF_REP_Table);
+
+        AFF_REF_btn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        AFF_REF_btn.setText("Get Report");
+        AFF_REF_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AFF_REF_btnActionPerformed(evt);
+            }
+        });
+
+        AFF_REP_EXIT_btn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        AFF_REP_EXIT_btn.setText("Exit");
+        AFF_REP_EXIT_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AFF_REP_EXIT_btnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 723, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(21, Short.MAX_VALUE))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(AFF_REF_btn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(AFF_REP_EXIT_btn)
+                        .addGap(62, 62, 62))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addGap(270, 270, 270)
+                .addComponent(total_AFF)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(total_item)
+                .addGap(103, 103, 103))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(total_AFF)
+                    .addComponent(total_item))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 243, Short.MAX_VALUE)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(AFF_REF_btn)
+                    .addComponent(AFF_REP_EXIT_btn))
+                .addGap(26, 26, 26))
+        );
+
+        jTabbedPane1.addTab("Affiliate Report", jPanel7);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -654,7 +788,7 @@ public class HR_Menu extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 775, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -740,6 +874,15 @@ public class HR_Menu extends javax.swing.JFrame {
             rowdata[3] = List.getEntry(a).getYear_joined();
             dm.addRow(rowdata);
         }
+        int dmyear=0;
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate localDate = LocalDate.now();
+       // jTextField1.setText(dtf.format(localDate));
+        for(int b=1;b<=mainform.empList.getNumberOfEntries();b++){
+        
+            dmyear++;
+        }
+        dm_total_this_year.setText(Integer.toString(dmyear));
 
 
     }//GEN-LAST:event_btnRefreshDailyActionPerformed
@@ -947,7 +1090,7 @@ public class HR_Menu extends javax.swing.JFrame {
                 b++;
                 rowdata[0] = mainform.custList.getEntry(a).getOrder_id();
                 rowdata[1] = mainform.custList.getEntry(a).getPurchase_time();
-                rowdata[2] = mainform.custList.getEntry(a).getTotal_amount();
+                rowdata[2] = String.format("%.2f", mainform.custList.getEntry(a).getTotal_amount());
                 rowdata[3] = mainform.custList.getEntry(a).getCust_name();
                 rowdata[4] = mainform.custList.getEntry(a).getCust_phone();
                 rowdata[5] = mainform.custList.getEntry(a).getCust_deliveryAddress();
@@ -962,6 +1105,41 @@ public class HR_Menu extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_jBtGetOrderReportActionPerformed
+
+    private void AFF_REF_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AFF_REF_btnActionPerformed
+        DefaultTableModel dm2 = (DefaultTableModel) AFF_REP_Table.getModel();
+        dm2.setRowCount(0);
+        int totalItem=0;
+        Object[] rowdata3 = new Object[7];
+        for (int a = 1; a <= mainform.aff.getNumberOfEntries(); a++) {
+            rowdata3[0] = mainform.aff.getEntry(a).getAffiliate_id();
+            rowdata3[1] = mainform.aff.getEntry(a).getRest_name();
+            rowdata3[2] = mainform.aff.getEntry(a).getOwner_name();
+            rowdata3[3] = mainform.aff.getEntry(a).getRest_address();
+            rowdata3[4] = mainform.aff.getEntry(a).getRestrt_zone();
+            rowdata3[5] = mainform.aff.getEntry(a).getContact_no();
+            rowdata3[6] = mainform.aff.getEntry(a).getItemList().getNumberOfEntries();
+            totalItem=totalItem+mainform.aff.getEntry(a).getItemList().getNumberOfEntries();
+            dm2.addRow(rowdata3);
+        }
+        total_AFF.setText("Total Number Of Affiliate : "+mainform.aff.getNumberOfEntries());
+        total_item.setText("Total Number of Item : "+totalItem);
+
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AFF_REF_btnActionPerformed
+
+    private void AFF_REP_EXIT_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AFF_REP_EXIT_btnActionPerformed
+        this.dispose();
+        mainform.setVisible(true);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AFF_REP_EXIT_btnActionPerformed
+
+    private void dm_total_this_yearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dm_total_this_yearActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_dm_total_this_yearActionPerformed
 
     public void report() {
 
@@ -1001,6 +1179,9 @@ public class HR_Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AFF_REF_btn;
+    private javax.swing.JButton AFF_REP_EXIT_btn;
+    private javax.swing.JTable AFF_REP_Table;
     private javax.swing.JButton btnClear;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnExit;
@@ -1017,9 +1198,14 @@ public class HR_Menu extends javax.swing.JFrame {
     private javax.swing.JButton btnShowPending;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox comboboxID;
+    private javax.swing.JTextField dm_total_this_year;
     private javax.swing.JButton jBtGetOrderReport;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1035,6 +1221,7 @@ public class HR_Menu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JPasswordField jPass;
     private javax.swing.JTextField jPhoneNumber;
     private javax.swing.JScrollPane jScrollPane1;
@@ -1044,6 +1231,7 @@ public class HR_Menu extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JTable jTGetOrder;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
@@ -1055,6 +1243,8 @@ public class HR_Menu extends javax.swing.JFrame {
     private javax.swing.JTextArea jtfAddress;
     private javax.swing.JTextField jtfEmail;
     private javax.swing.JTextField jtfIC_Number;
+    private javax.swing.JLabel total_AFF;
+    private javax.swing.JLabel total_item;
     private javax.swing.JTextArea txtAddress;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtPhone;

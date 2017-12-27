@@ -52,7 +52,7 @@ public class OrderConfirmation extends JFrame {
                 if (cartList.getEntry(a).getItem_id() == itemList.getEntry(b).getItem_id()) {
                     data[a - 1][0] = itemList.getEntry(b).getItem_name();
                     data[a - 1][1] = Integer.toString(cartList.getEntry(a).getQuantity());
-                    data[a - 1][2] = Double.toString(cartList.getEntry(a).getSubTotal());
+                    data[a - 1][2] = String.format("%.2f", cartList.getEntry(a).getSubTotal());
                     totalPrice += cartList.getEntry(a).getSubTotal();
                     order.setTotal_amount(totalPrice);
                 }
